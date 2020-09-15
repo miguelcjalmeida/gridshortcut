@@ -1,0 +1,759 @@
+
+######################################################
+################## BUTTON TEMPLATES ##################
+######################################################
+
+
+template Button_Shared_Stuff_Temp
+{
+
+}
+
+types Buttons
+{
+    type button_primary_big = button_primary
+    {
+        size = { 250 42 }
+
+        buttonText = {
+            text_single = {
+                size = { 100% 100% }
+                autoresize = no
+                margin = { 10 0 }
+                align = center|nobaseline
+                default_format = "#high"
+                using = Font_Size_Medium
+            }
+        }
+    }
+
+
+    type button_primary = button_standard
+    {
+        texture = "gfx/interface/buttons/button_verb_primary.dds"
+        shortcut = confirm
+        shortcut = confirm_2
+
+        buttonText = {
+            text_single = {
+                size = { 100% 100% }
+                autoresize = no
+                margin = { 10 0 }
+                align = center|nobaseline
+                default_format = "#high"
+            }
+        }
+    }
+
+    type button_tertiary = button_frontend
+    {
+        size = { 170 33 }
+
+        buttonText = {
+            text_single = {
+                size = { 100% 100% }
+                autoresize = no
+                margin = { 10 0 }
+                align = center|nobaseline
+                default_format = "#clickable"
+                using = Font_Size_Small
+            }
+        }
+    }
+
+    ## The standard button
+    type button_standard = button_normal
+    {
+        texture = "gfx/interface/buttons/button_standard.dds"
+        size = { 170 33 }
+
+        gfxtype = togglepushbuttongfx
+        effectname = "NoHighlight"
+
+        upframe = 1
+        uphoverframe = 2
+        uppressedframe = 3
+        downframe = 4
+        downhoverframe = 4
+        downpressedframe = 4
+        disableframe = 7
+
+        spriteType = Corneredtiled
+        spriteborder = { 3 3 }
+        framesize = { 249 78 }
+
+        buttonText = {
+            text_single = {
+                size = { 100% 100% }
+                autoresize = no
+                margin = { 10 0 }
+                align = center|nobaseline
+                default_format = "#clickable"
+            }
+        }
+
+        modify_texture = {
+            name = "overlay"
+            texture = "gfx/interface/buttons/button_standard_overlay.dds"
+            spriteType = Corneredstretched
+            spriteborder = { 3 3 }
+            blend_mode = overlay
+            alpha = 0.3
+        }
+
+        block "disabled"
+        {
+            highlight_icon = {
+                size = { 100% 100% }
+                gfxtype = togglepushbuttongfx
+                effectname = "NoHighlight"
+                texture = "gfx/interface/buttons/button_disabled_stripes.dds"
+                spriteType = Corneredtiled
+                spriteborder = { 2 2 }
+                framesize  = { 238 63 }
+
+                upframe = 1
+                uphoverframe = 1
+                uppressedframe = 1
+                downframe = 1
+                downhoverframe = 1
+                downpressedframe = 1
+                disableframe = 2
+
+                alpha = 0.4
+
+                modify_texture = {
+                    name = "overlay"
+                    texture = "gfx/interface/buttons/button_standard_overlay.dds"
+                    spriteType = Corneredstretched
+                    spriteborder = { 3 3 }
+                    blend_mode = overlay
+                }
+
+                block "button_standard_mouseover" {}
+            }
+        }
+
+        highlight_icon = {
+            size = { 100% 100% }
+            gfxtype = togglepushbuttongfx
+            effectname = "NoHighlight"
+            texture = "gfx/interface/buttons/button_mouseover.dds"
+            spriteType = Corneredstretched
+            spriteborder = { 20 20 }
+            framesize  = { 238 63 }
+
+            upframe = 1
+            uphoverframe = 2
+            uppressedframe = 1
+            downframe = 1
+            downhoverframe = 1
+            downpressedframe = 1
+            disableframe = 1
+
+            alpha = 0.5
+
+            block "button_standard_mouseover" {}
+        }
+
+        margin_widget = {
+            size = { 100% 100% }
+            margin = { 3 3 }
+
+            block "vignette"
+            {
+                icon = {
+                    name = "vignette"
+                    size = { 100% 100% }
+                    alpha = 0.2
+                    texture = "gfx/interface/hud/pause_border.dds"
+                }
+            }
+        }
+    }
+
+    type button_standard_big = button_standard
+    {
+        size = { 250 42 }
+       
+        buttonText = {
+            text_single = {
+                size = { 100% 100% }
+                autoresize = no
+                margin = { 10 0 }
+                align = center|nobaseline
+                default_format = "#clickable"
+                using = Font_Size_Medium
+            }
+        }
+    }
+
+    type button_standard_small = button_standard
+    {
+        size = { 140 25 }
+    }
+
+    ## The standard button, with a clean interior
+    type button_standard_clean = button_standard
+    {
+        texture = "gfx/interface/buttons/button_standard_clean.dds"
+
+        blockoverride "vignette" {}
+    }
+
+    ## Clean, darker version used for list entries
+    type button_standard_list = button_standard
+    {
+        texture = "gfx/interface/buttons/button_standard_clean_weak.dds"
+    }
+
+    # Highlight used to show current selected Option
+    type button_highlight = icon {
+        size = { 100% 100% }
+        texture = "gfx/interface/buttons/background_frame.dds"
+        using = Color_Bright_Yellow
+    }
+
+    type button_standard_hover = button_standard_clean {
+        upframe = 8
+    }
+
+    type button_list = button_normal
+    {
+        gfxtype = togglepushbuttongfx
+        effectname = "NoHighlight"
+
+        upframe = 1
+        uphoverframe = 3
+        uppressedframe = 3
+        downframe = 4
+        downhoverframe = 5
+        downpressedframe = 6
+        texture = "gfx/interface/buttons/button_list.dds"
+        spriteType = Corneredtiled
+        spriteborder = { 50 50 }
+        framesize = { 150 150 }
+
+        buttonText = {
+            text_single = {
+                size = { 100% 100% }
+                autoresize = no
+                margin = { 10 0 }
+                align = center|nobaseline
+                default_format = "#clickable"
+            }
+        }
+    }
+
+    type button_tab = button_normal
+    {
+        size = { 100 38 }
+        gfxtype = togglepushbuttongfx
+        effectname = "NoHighlight"
+
+        upframe = 1
+        uphoverframe = 2
+        uppressedframe = 3
+        downframe = 4
+        downhoverframe = 4
+        downpressedframe = 4
+
+        texture = "gfx/interface/buttons/button_tab.dds"
+        spriteType = Corneredtiled
+        spriteborder = { 10 10 }
+        framesize = { 198 53 }
+
+        buttonText = {
+            text_single = {
+                size = { 100% 100% }
+                autoresize = no
+                margin = { 10 0 }
+                align = center|nobaseline
+                default_format = "#low"
+            }
+        }
+    }
+
+    # For tabs over a dark background area
+    type button_tab_dark = button_tab
+    {
+        upframe = 4
+        uphoverframe = 2
+        uppressedframe = 4
+        downframe = 3
+        downhoverframe = 3
+        downpressedframe = 3
+        framesize  = { 198 45 }
+
+        spriteborder = { 10 10 }
+    }
+
+    type button_tab_vertical = button_normal
+    {
+        size = { 180 48 }
+        gfxtype = togglepushbuttongfx
+        effectname = "NoHighlight"
+
+        upframe = 1
+        uphoverframe = 2
+        uppressedframe = 3
+        downframe = 4
+        downhoverframe = 4
+        downpressedframe = 4
+
+        texture = "gfx/interface/buttons/button_tab_vertical.dds"
+        spriteType = Corneredtiled
+        spriteborder = { 10 10 }
+        framesize = { 202 48 }
+
+        buttonText = {
+            text_single = {
+                size = { 100% 100% }
+                autoresize = no
+                margin = { 10 0 }
+                align = center|nobaseline
+                default_format = "#low"
+            }
+        }
+    }
+
+    type button_tab_round = button_normal
+    {
+        size = { 50 50 }
+
+        framesize = { 100 100 }
+        texture = "gfx/interface/tiles/button_tab_round.dds"
+
+        # upframe = 1
+        # uphoverframe = 2
+        # uppressedframe = 3
+        # downframe = 2
+        # downhoverframe = 1
+        # downpressedframe = 1
+        # disableframe = 1
+    }
+
+    # For main menu
+    type button_frontend = button_normal
+    {
+        size = { 391 69 }
+        gfxtype = framedbuttongfx
+        effectname = "NoHighlight"
+        upframe = 1
+        overframe = 2
+        downframe = 3
+        framesize = { 391 69 }
+        texture = "gfx/interface/frontend/button_frontend.dds"
+
+        buttonText = {
+            text_single = {
+                size = { 100% 100% }
+                autoresize = no
+                margin = { 10 0 }
+                align = center|nobaseline
+                default_format = "#clickable"
+                using = Font_Size_Medium
+            }
+        }
+    }
+
+    type button_event_standard = button_normal
+    {
+        size = { 170 33 }
+        gfxtype = togglepushbuttongfx
+        effectname = "NoHighlight"
+        texture = "gfx/interface/buttons/button_event.dds"
+
+        upframe = 1
+        uphoverframe = 2
+        uppressedframe = 3
+        downframe = 4
+        downhoverframe = 4
+        downpressedframe = 4
+        disableframe = 7
+        spriteType = Corneredtiled
+        spriteborder = { 3 3 }
+        framesize  = { 249 78 }
+
+        highlight_icon = {
+            size = { 98% 100% }
+            gfxtype = togglepushbuttongfx
+            effectname = "NoHighlight"
+            texture = "gfx/interface/buttons/button_mouseover_event.dds"
+            spriteType = Corneredstretched
+            spriteborder = { 20 20 }
+            framesize  = { 238 63 }
+            parentanchor = center
+
+            upframe = 1
+            uphoverframe = 2
+            uppressedframe = 1
+            downframe = 1
+            downhoverframe = 1
+            downpressedframe = 1
+            disableframe = 1
+
+            alpha = 0.5
+
+            block "button_standard_mouseover" {}
+        }
+    }
+
+    type button_event_letter = button_normal
+    {
+        size = { 260 34 }
+
+        gfxtype = framedbuttongfx
+        effectname = "NoHighlight"
+        upframe = 1
+        overframe = 2
+        downframe = 3
+        disableframe = 4
+        texture = "gfx/interface/event_window/options_button.dds"
+        framesize = { 175 37 }
+        spriteType = Corneredtiled
+        spriteborder = { 7 7 }
+
+        default_format = "#light_background"
+        using = Font_Size_Medium
+        using = tooltip_es
+
+        modify_texture = {
+            name = "paper_texture_overlay"
+            texture = "gfx/interface/event_window/paper_texture_overlay.dds"
+            spriteType = Corneredtiled
+            spriteborder = { 0 0 }
+            blend_mode = overlay
+        }
+
+        modify_texture = {
+            name = "shading_overlay"
+            texture = "gfx/interface/event_window/options_button_overlay.dds"
+            spriteType = Corneredstretched
+            spriteborder = { 0 0 }
+            blend_mode = overlay
+        }
+
+        modify_texture = {
+            name = "mask"
+            texture = "gfx/interface/tiles/tile_fade_mask_2.dds"
+            spriteType = Corneredtiled
+            spriteborder_left = 40
+            spriteborder_right = 40
+            blend_mode = alphamultiply
+        }
+    }
+
+    type button_letter = button_normal
+    {
+        size = { 260 34 }
+
+        gfxtype = togglepushbuttongfx
+
+        effectname = "NoHighlight"
+        upframe = 1
+        downframe = 3
+        disableframe = 4
+
+        texture = "gfx/interface/event_window/options_button.dds"
+        framesize = { 175 37 }
+        spriteType = Corneredtiled
+        spriteborder = { 7 7 }
+
+        default_format = "#light_background"
+        using = Font_Size_Medium
+        using = tooltip_es
+
+        modify_texture = {
+            name = "paper_texture_overlay"
+            texture = "gfx/interface/event_window/paper_texture_overlay.dds"
+            spriteType = Corneredtiled
+            spriteborder = { 0 0 }
+            blend_mode = overlay
+        }
+
+        modify_texture = {
+            name = "shading_overlay"
+            texture = "gfx/interface/event_window/options_button_overlay.dds"
+            spriteType = Corneredstretched
+            spriteborder = { 0 30 }
+            blend_mode = overlay
+        }
+    }
+
+    ### Icon Buttons backgrounds
+    type icon_button_decorative = button
+    {
+        gfxtype = framedbuttongfx
+        effectname = "NoHighlight"
+        upframe = 1
+        overframe = 2
+        downframe = 3
+        texture = "gfx/interface/buttons/button_small_dec.dds"
+        framesize = { 94 94 }
+        size = { 47 47 }
+    }
+
+    # This type is kind of deprecated, big_round does not have radio version atm, and this is only used for map modes now anyway.
+    type icon_button_small_round_radio = button
+    {
+        gfxtype = updownframedbuttongfx
+        effectname = "NoHighlight"
+
+        upframe = 1
+        overframe = 2
+        downframe = 4
+
+        texture = "gfx/interface/buttons/button_small_round.dds"
+        framesize = { 82 82 }
+        size = { 41 41 }
+    }
+
+    type button_round  = button
+    {
+        gfxtype = framedbuttongfx
+        effectname = "NoHighlight"
+        upframe = 1
+        overframe = 2
+        downframe = 3
+        texture = "gfx/interface/buttons/button_big_round.dds"
+        framesize = { 94 94 }
+        size = { 42 42 }
+    }
+
+    ## The standard close/minimize etc. buttons used on most windows
+    type buttons_window_control = flowcontainer {
+        ignoreinvisible = yes
+        margin = { 8 8 }
+
+        button_go_to_my_location = {
+            name = "button_go_to"
+            using = Animation_ShowHide_Standard
+
+            block "button_go_to" {
+                visible = no
+            }
+        }
+
+        container = {
+            visible = "[Not(Character.IsLocalPlayer)]"
+            using = Animation_ShowHide_Standard
+
+            block "button_pin"
+            {
+                visible = no
+            }
+
+            button_pin = {
+                name = "button_pin"
+                visible = "[Not(Character.IsPinned)]"
+                onclick = "[Character.ToggleCharacterPinned]"
+                tooltip = "PIN_TT"
+                using = tooltip_se
+            }
+
+            button_unpin = {
+                name = "button_unpin"
+                visible = "[Character.IsPinned]"
+                onclick = "[Character.ToggleCharacterPinned]"
+                tooltip = "PIN_TT"
+                using = tooltip_se
+            }
+        }
+
+        button_icon = {
+            name = "button_me"
+            texture = "gfx/interface/buttons/button_icons/window_me.dds"
+            tooltip = "CV_TOOLTIP_ME_BUTTON"
+
+            using = Animation_ShowHide_Standard
+
+            block "button_me" {
+                visible = no
+            }
+        }
+
+        button_icon = {
+            name = "button_back"
+            shortcut = "go_back"
+            texture = "gfx/interface/buttons/button_icons/window_back.dds"
+            clicksound = "event:/SFX/UI/Generic/sfx_ui_generic_close"
+
+            using = Animation_ShowHide_Standard
+
+            block "button_back" {
+                visible = no
+            }
+        }
+
+        button_icon = {
+            name = "button_minimize"
+            shortcut = "close_window"
+            tooltip = "MINIMIZE_TOOLTIP"
+            texture = "gfx/interface/buttons/button_icons/window_minimize.dds"
+            clicksound = "event:/SFX/UI/Generic/sfx_ui_generic_close"
+
+            using = Animation_ShowHide_Standard
+
+            block "button_minimize" {
+                visible = no
+            }
+        }
+
+        button_icon = {
+            name = "button_close"
+            shortcut = "close_window"
+            tooltip = "CLOSE_TOOLTIP"
+            texture = "gfx/interface/buttons/button_icons/window_close.dds"
+            clicksound = "event:/SFX/UI/Generic/sfx_ui_generic_close"
+
+            using = Animation_ShowHide_Standard
+
+            block "button_close" {}
+        }
+    }
+
+    # individual backbutton icon
+    type button_back = button_icon {
+        name = "button_back_standard"
+        texture = "gfx/interface/buttons/button_icons/window_back.dds"
+        size = { 25 25 }
+    }
+
+    type button_checkbox = checkbutton {
+        name = "button_checkbox"
+        texture = "gfx/interface/buttons/button_checkbox.dds"
+        framesize = { 80 80 }
+        size = { 25 25 }
+        clicksound = "event:/SFX/UI/Generic/sfx_ui_generic_checkbox"
+    }
+
+    type button_radio = button_toggle {
+        name = "button_checkbox"
+        texture = "gfx/interface/buttons/button_radio.dds"
+        framesize = { 80 80 }
+        size = { 25 25 }
+        clicksound = "event:/SFX/UI/Generic/sfx_ui_generic_checkbox"
+    }
+
+    type button_expand = button_toggle {
+        size = { 18 18 }
+        texture = "gfx/interface/buttons/button_tree_expand.dds"
+        framesize = { 36 36 }
+        clicksound = "event:/SFX/UI/Generic/sfx_ui_generic_checkbox"
+    }
+
+    # For dropdown filter
+    type button_drop = button_normal {
+        size = { 225 33 }
+        button_trigger = none
+        gfxtype = framedbuttongfx
+        effectname = "NoHighlight"
+        upframe = 1
+        overframe = 2
+        downframe = 3
+        disableframe = 4
+        texture = "gfx/interface/buttons/button_drop_down.dds"
+        framesize = { 225 33 }
+        spriteType = Corneredtiled
+        spriteborder = { 75 11 }
+        clicksound = "event:/SFX/UI/Generic/sfx_ui_generic_checkbox"
+
+        buttonText = {
+            text_single = {
+                size = { 100% 100% }
+                autoresize = no
+                margin = { 15 0 }
+                margin_right = 25
+                align = left|nobaseline
+            }
+        }
+    }
+
+    type button_dropdown = button_normal {
+        size = { 225 30 }
+        button_trigger = none
+        gfxtype = framedbuttongfx
+        effectname = "NoHighlight"
+        shaderfile = "gfx/FX/pdxgui_pushbutton.shader"
+        upframe = 1
+        overframe = 2
+        downframe = 3
+        disableframe = 1
+        texture = "gfx/interface/character_interaction/interaction_menu_button.dds"
+        framesize = { 317 30 }
+        clicksound = "event:/SFX/UI/Generic/sfx_ui_generic_checkbox"
+
+        buttonText = {
+            text_single = {
+                size = { 100% 100% }
+                autoresize = no
+                margin_left = 10
+                align = left|nobaseline
+            }
+        }
+    }
+
+    type button_religion_icon = button {
+
+        # Needs a Faith Data Context!
+
+        name = "faith_button"
+        size = { 65 65 }
+        onclick = "[DefaultOnFaithClick(Faith.GetID)]"
+        tooltipwidget = { faith_tooltip_click = {} }
+        texture = "[Faith.GetIcon]"
+    }
+
+    # Do not use
+    type button_entry_old = button
+    {
+        gfxtype = togglepushbuttongfx
+        effectname = "NoHighlight"
+
+        upframe = 1
+        uphoverframe = 2
+        uppressedframe = 3
+        downframe = 4
+        downhoverframe = 5
+        downpressedframe = 6
+        texture = "gfx/interface/buttons/button_entry_01.dds"
+        spriteType = Corneredtiled
+        spriteborder = { 3 3 }
+        framesize  = { 249 78 }
+
+        block "overlay" {
+            modify_texture = {
+                name = "overlay"
+                texture = "gfx/interface/buttons/button_entry_01_overlay.dds"
+                spriteType = Corneredstretched
+                spriteborder = { 2 2 }
+                blend_mode = overlay
+            }
+        }
+    }
+
+    type button_standard_old = game_button {
+        text = "Words.."
+        #   using = framed_clickbutton
+
+        upframe = 1
+        overframe = 2
+        downframe = 3
+        texture = "gfx/interface/buttons/button_standard.dds"
+        framesize = { 251 80 }
+        spriteType = Corneredtiled
+        spriteborder = { 3 3 }
+        size = { 180 42 }
+
+        block "overlay" {
+            modify_texture = {
+                name = "overlay"
+                texture = "gfx/interface/buttons/button_standard_overlay.dds"
+                spriteType = Corneredstretched
+                spriteborder = { 3 3 }
+                blend_mode = overlay
+            }
+        }
+    }
+}

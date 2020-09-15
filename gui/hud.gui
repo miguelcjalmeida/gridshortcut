@@ -1,0 +1,2373 @@
+######################################################
+#################### META INFO #######################
+######################################################
+
+widget = {
+	size = { 100% 100% }
+	name = "meta_info"
+	visible = "[IsDefaultGUIMode]"
+	layer = bottom
+
+	using = Animation_ShowHide_Standard
+
+	flowcontainer = {
+		name = "observer_status"
+		visible = "[IsObserver]"
+		parentanchor = bottom|left
+		position = { 240 -50 }
+		ignoreinvisible = yes
+
+		background = {
+			using = Background_Area_Dark
+		}
+
+		text_single = {
+			name = "global_observer_indication"
+			visible = "[Not(GetPlayer.IsValid)]"
+			text = "GLOBAL_OBSERVER"
+		}
+
+		text_single = {
+			name = "player_observer_indication"
+			visible = "[GetPlayer.IsValid]"
+			text = "PLAYER_OBSERVER"
+		}
+
+		button_cancel = {
+			name = "cancel_button"
+			visible = "[GetPlayer.IsValid]"
+
+			size = { 30 30 }
+			onclick = "[ClearObserver]"
+			tooltip = "OBSERVER_MODE_ON"
+		}
+
+		icon_observer = {
+			size = { 30 30 }
+			visible = "[Not(GetPlayer.IsValid)]"
+		}
+	}
+
+	## Build version
+	text_single = {
+		name = "build_version_text"
+		position = { 5 5 }
+		visible = "[Not(ReleaseMode)]"
+
+		tooltip = "[GetBuildVersionDescription]"
+
+		text = "VERSION_SHORT"
+		default_format = "#low"
+		max_width = 300
+	}
+
+	### Error Horse
+	container = {
+		name = "debug_info_horse"
+		parentanchor = bottom|left
+		position = { 610 -10 }
+		visible = "[And( Not( IsPauseMenuShown ), Not(ReleaseMode) )]"
+
+		using = Animation_ShowHide_Standard
+
+		button = {
+			name = "error_button"
+			visible = "[HasErrors]"
+			position = { 0 2 }
+
+			using = Animation_ShowHide_Standard
+
+			tooltip = "[ErrorTooltip]"
+			onclick = "[OpenErrorLog]"
+			oversound = "event:/SFX/UI/Generic/sfx_ui_generic_pointer_over"
+			clicksound = "event:/SFX/UI/Generic/sfx_ui_generic_select"
+
+			texture = "gfx/interface/debug/errorhoof.dds"
+			framesize = { 113 113 }
+			size = { 80 80 }
+			frame = "[GetErrorHoofFrame]"
+
+			state = {
+				name = _show
+				start_sound = {
+					soundeffect = "event:/Error/Errorhof"
+				}
+			}
+		}
+
+		flowcontainer = {
+			position = { 100 5 }
+			direction = vertical
+			spacing = 5
+
+			## Low FPS warning
+			text_single = {
+				tooltip = "FPS lower than 30"
+				visible = "[HasLowFps]"
+
+				text = "Low FPS"
+				max_width = 300
+
+				background = {
+					using = Text_Label_Background
+					margin = { 17 3 }
+				}
+			}
+
+			## Error count
+			text_single = {
+				name = "error_text"
+				visible = "[HasErrors]"
+
+				text = "Errors: [NumberOrErrors]"
+				max_width = 300
+
+				using = Animation_ShowHide_Standard
+
+				background = {
+					using = Text_Label_Background
+					shaderfile = "gfx/FX/pdxgui_default.shader"
+					margin = { 17 3 }
+				}
+			}
+		}
+	}
+}
+
+widget = {
+	name = "ingame_topbar"
+	visible = "[InGameTopbar.ShouldBeVisible]"
+	size = { 100% 100% }
+	layer = middle
+
+	### Alerts
+	notifications_alerts = {
+		visible = "[Not( IsPauseMenuShown )]"
+		parentanchor = top|right
+		position = { -700 0 }
+		spacing = 10
+		scale = 0.7
+
+		state = {
+			name = _show
+			using = Animation_FadeIn_Quick
+		}
+
+		state = {
+			name = _hide
+			using = Animation_FadeOut_Quick
+		}
+	}
+
+	######################################################
+	#################### TOP RIGHT #######################
+	######################################################
+
+	### Top Right Bar
+	widget = {
+		visible = "[Not( IsPauseMenuShown )]"
+		name = "top_bar"
+		size = { 640 38 }
+		parentanchor = top|right
+		filter_mouse = all
+		alwaystransparent = no
+		layer = top
+
+		background = {
+			texture = "gfx/interface/hud/hud_bg_top_right.dds"
+			margin_left = 0
+			margin_bottom = 8
+			margin_right = 20
+		}
+
+		## Resources
+		hbox = {
+			name = "resources"
+
+			hbox = {
+				name = "spendables"
+				layoutpolicy_horizontal = expanding
+				layoutpolicy_vertical = expanding
+
+				hbox = {
+					name = "tutorial_highlight_resources_bar"
+					layoutpolicy_horizontal = expanding
+					layoutpolicy_vertical = expanding
+					margin_right = 5
+					margin_left = 15
+
+					hbox = {
+						name = "gold"
+						layoutpolicy_vertical = expanding
+						minimumsize = { 90 0 }
+						margin_left = 7
+						margin_right = 5
+
+						using = tooltip_ne
+
+						tooltipwidget = {
+							widget_gold_breakdown_tooltip = {
+								blockoverride "income"
+								{
+									datacontext = "[InGameTopbar.GetIncomeBalanceBreakdown]"
+								}
+
+								blockoverride "expenses"
+								{
+									datacontext = "[InGameTopbar.GetExpensesBalanceBreakdown]"
+								}
+							}
+						}
+
+						hbox = {
+							name = "gold"
+							layoutpolicy_vertical = expanding
+
+							hbox = {
+								spacing = 5
+								margin_top = -11
+
+								icon = {
+									name = "gold_icon"
+									size = { 25 25 }
+									texture = "gfx/interface/icons/icon_gold.dds"
+								}
+
+								flowcontainer = {
+									margin_bottom = 7
+									spacing = -6
+									direction = vertical
+									ignoreinvisible = yes
+
+									text_single = {
+										name = "gold_value_positive"
+										layoutpolicy_horizontal = expanding
+										visible = "[GreaterThanOrEqualTo_CFixedPoint(GetPlayer.GetGold, '(CFixedPoint)0')]"
+
+										text = "[GetPlayer.GetGold|0]"
+										max_width = 110
+										default_format = "#high"
+										using = Font_Size_Medium
+									}
+
+									text_single = {
+										name = "gold_value_negative"
+										layoutpolicy_horizontal = expanding
+										visible = "[LessThan_CFixedPoint(GetPlayer.GetGold, '(CFixedPoint)0')]"
+
+
+										text = "[GetPlayer.GetGold|0]"
+										max_width = 110
+										default_format = "#N"
+										using = Font_Size_Medium
+									}
+
+									text_single = {
+										name = "balance_positive"
+										visible = "[GreaterThanOrEqualTo_CFixedPoint(GetPlayerBalance, '(CFixedPoint)0')]"
+
+										layoutpolicy_horizontal = expanding
+										text = "CURRENT_BALANCE"
+
+										max_width = 110
+										default_format = "#low"
+									}
+
+									text_single = {
+										name = "balance_negative"
+										visible = "[LessThan_CFixedPoint(GetPlayerBalance, '(CFixedPoint)0')]"
+
+										layoutpolicy_horizontal = expanding
+										text = "CURRENT_BALANCE"
+
+										max_width = 110
+										default_format = "#N"
+									}
+								}
+							}
+						}
+					}
+
+					divider_light = {
+						layoutpolicy_vertical = expanding
+						alpha = 0.5
+					}
+
+					hbox = {
+						name = "prestige"
+						datacontext = "[InGameTopbar.GetPrestigeItem]"
+						layoutpolicy_vertical = expanding
+						minimumsize = { 90 0 }
+
+						using = tooltip_ne
+
+						hbox = {
+							margin_top = -5
+							spacing = 6
+
+							icon = {
+								name = "prestige_icon"
+								size = { 25 25 }
+								texture = "[GetPlayer.GetPrestigeLevelTexture]"
+							}
+
+							flowcontainer = {
+								margin_bottom = 7
+								spacing = -6
+								direction = vertical
+
+								text_single = {
+									name = "prestige_value"
+									text = "[GetPlayer.GetPrestige|0]"
+									max_width = 110
+									default_format = "#high"
+									using = Font_Size_Medium
+								}
+
+								container_resource_balance = {}
+							}
+						}
+
+						tooltipwidget = {
+							widget_resource_value_tooltip = {}
+						}
+					}
+
+					divider_light = {
+						layoutpolicy_vertical = expanding
+						alpha = 0.5
+					}
+
+					button = {
+						name = "piety"
+						datacontext = "[InGameTopbar.GetPietyItem]"
+						layoutpolicy_vertical = expanding
+						onclick = "[DefaultOnFaithClick(GetPlayer.GetFaith.GetID)]"
+
+						minimumsize = { 90 0 }
+						margin_left = 7
+						margin_right = 5
+
+						using = tooltip_ne
+						tooltipwidget = {
+							widget_resource_value_tooltip = {}
+						}
+
+						hbox = {
+							hbox = {
+								margin_top = -5
+								spacing = 5
+
+								icon = {
+									name = "piety_icon"
+									size = { 25 25 }
+									texture = "[GetPlayer.GetPietyLevelTexture]"
+								}
+
+								flowcontainer = {
+									margin_bottom = 7
+									spacing = -6
+									direction = vertical
+
+									text_single = {
+										name = "piety_value"
+										text = "[GetPlayer.GetPiety|0]"
+
+										max_width = 110
+										default_format = "#high"
+										using = Font_Size_Medium
+									}
+
+									container_resource_balance = {}
+								}
+							}
+						}
+					}
+
+					divider_light = {
+						layoutpolicy_vertical = expanding
+						alpha = 0.5
+					}
+
+					button = {
+						name = "renown"
+						datacontext = "[InGameTopbar.GetDynastyPrestigeItem]"
+						layoutpolicy_vertical = expanding
+
+						onclick = "[DefaultOnHouseCoatOfArmsClick(GetPlayer.GetHouse.GetID)]"
+
+						minimumsize = { 90 0 }
+						margin_left = 6
+						margin_right = 5
+
+						using = tooltip_ne
+						tooltipwidget = {
+							widget_resource_value_tooltip = {}
+						}
+
+						hbox = {
+							hbox = {
+								margin_top = -5
+								spacing = 5
+
+								icon = {
+									visible = "[GetPlayer.IsDynast]"
+									texture = "[GetPlayer.GetDynasty.GetDynastyPrestigeLevelTexture]"
+									size = { 25 25 }
+								}
+
+								icon = {
+									visible = "[Not(GetPlayer.IsDynast)]"
+									texture = "[GetPlayer.GetDynasty.GetDynastyPrestigeLevelTexture]"
+									size = { 25 25 }
+									alpha = 0.3
+								}
+
+								flowcontainer = {
+									visible = "[GetPlayer.IsDynast]"
+									margin_bottom = 7
+									spacing = -6
+									direction = vertical
+
+									text_single = {
+										name = "prestige_value"
+										text = "[GetPlayer.GetDynasty.GetPrestige|0]"
+
+										max_width = 110
+										default_format = "#high"
+										using = Font_Size_Medium
+									}
+
+									container_resource_balance = {}
+								}
+
+								flowcontainer = {
+									visible = "[Not(GetPlayer.IsDynast)]"
+									margin_bottom = 7
+									spacing = -6
+									direction = vertical
+
+									text_single = {
+										name = "prestige_value_nodynast"
+										text = "[GetPlayer.GetDynasty.GetPrestige|0]"
+
+										max_width = 110
+										default_format = "#low"
+										using = Font_Size_Medium
+									}
+
+									container_resource_balance = {}
+								}
+							}
+						}
+					}
+				}
+
+				hbox = {
+					name = "military"
+					spacing = 8
+					margin_left = 10
+					datacontext = "[GetPlayer]"
+					datacontext = "[GetPlayerArmyComposition]"
+
+					button_group = {
+
+						hbox = {
+							margin = { 4 4 }
+
+							tooltip = "[ArmyComposition.GetArmyCompositionTooltip]"
+
+							background = {
+								using = Background_Area_Dark
+								margin = { 3 0 }
+							}
+
+							icon = {
+								name = "icon_soldier"
+								texture = "gfx/interface/icons/icon_soldier.dds"
+								size = { 25 25 }
+							}
+
+							flowcontainer = {
+								direction = vertical
+
+								text_single = {
+									name = "strength"
+									parentanchor = right
+									text = "[ArmyComposition.GetSoldierCountString]"
+									default_format = "#high"
+								}
+
+								progressbar_standard = {
+									name = "soldiers_max"
+									size = { 50 8 }
+									visible = "[And( NotEqualTo_int32(ArmyComposition.GetCurrentNumberOfSoldiers, ArmyComposition.GetMaxNumberOfSoldiers), NotEqualTo_int32(ArmyComposition.GetMaxNumberOfSoldiers, '(int32)0' ) )]"
+
+									min = 0
+									max = "[IntToFloat(ArmyComposition.GetMaxNumberOfSoldiers)]"
+									value = "[IntToFloat(ArmyComposition.GetCurrentNumberOfSoldiers)]"
+								}
+							}
+
+							spacer = {
+								size = { 3 10 }
+							}
+
+							army_quality_icon = {
+								tooltip_enabled = no
+							}
+						}
+
+						onclick = "[ToggleGameViewData('military', GetPlayer.GetID)]"
+					}
+
+					button = {
+						name = "domain_limit"
+						layoutpolicy_vertical = expanding
+
+						minimumsize = { 70 0 }
+
+						margin_left = 3
+						margin_bottom = 3
+
+						tooltip = "[Character.GetDomainLimitTooltip]"
+						using = tooltip_ne
+
+						onclick = "[ToggleGameView('my_realm')]"
+
+						background = {
+							visible = "[GreaterThan_int32( Character.GetDomainSize, Character.GetDomainLimit )]"
+							using = Status_Bad
+							margin_bottom = -3
+						}
+
+						hbox = {
+							icon = {
+								texture = "gfx/interface/icons/icon_domain.dds"
+								size = { 25 25 }
+							}
+
+							text_single = {
+								name = "value"
+								text = "[Character.GetDomainSize]/[Character.GetDomainLimit]"
+								margin_bottom = 5
+
+								max_width = 110
+							}
+						}
+					}
+				}
+
+				spacer = {
+					size = { 10 0 }
+				}
+			}
+		}
+	}
+
+	### Outliner Button
+	button_outliner = {
+		name = "outliner_button"
+		visible = "[And( Not( IsPauseMenuShown ), And(Not(GetVariableSystem.Exists( 'right_window_open')), IsDefaultGUIMode))]"
+		parentanchor = top|right
+		position = { -5 45 }
+		onclick = "[ToggleGameView('outliner')]"
+
+		tooltip = "TOGGLE_OUTLINER"
+		using = tooltip_se
+
+		state = {
+			name = _show
+			using = Animation_FadeIn_Standard
+		}
+
+		state = {
+			name = _hide
+			using = Animation_FadeOut_Standard
+		}
+
+		background = {
+			texture = "gfx/interface/hud/tab_bg.dds"
+			margin_bottom = 7
+			margin_top = 12
+			margin_left = 15
+			margin_right = 5
+		}
+	}
+
+	### Main Tabs
+	container = {
+		name = "main_tabs"
+		parentanchor = top|right
+		position = { 4 105 }
+
+		widget = {
+			visible = "[Not(GetVariableSystem.Exists( 'right_window_open'))]"
+			size = { 100% 100% }
+
+			state = {
+				name = _show
+				alpha = 1
+				duration = 0.1
+				using = Animation_Curve_Default
+			}
+
+			state = {
+				name = _hide
+				duration = 0.6
+				alpha = 0
+				using = Animation_Curve_Default
+			}
+
+			background = {
+				visible = "[And( Not( IsPauseMenuShown ), And(Or(Not(IsObserver), GetPlayer.IsValid), IsDefaultGUIMode))]"
+
+				texture = "gfx/interface/hud/tab_bg.dds"
+				margin_bottom = 25
+				margin_top = 35
+				margin_left = 5
+				margin_right = 0
+			}
+
+			background = {
+				visible = "[And( Not( IsPauseMenuShown ), And(Or(Not(IsObserver), GetPlayer.IsValid), IsDefaultGUIMode))]"
+				alpha = 0.32
+
+				texture = "gfx/interface/hud/tab_bg.dds"
+				margin_bottom = 25
+				margin_top = 35
+				margin_left = 5
+				margin_right = 0
+			}
+		}
+
+		flowcontainer = {
+			visible = "[And( Not( IsPauseMenuShown ), And(Or(Not(IsObserver), GetPlayer.IsValid), IsDefaultGUIMode))]"
+
+			alwaystransparent = no
+			filter_mouse = all
+			direction = vertical
+			spacing = 15
+
+			using = Animation_ShowHide_Quick
+
+			flowcontainer = {
+				direction = vertical
+
+				button_hud_main_tab = {
+					name = "tab_my_realm"
+					parentanchor = hcenter
+					texture = "gfx/interface/hud/tab_my_realm.dds"
+
+					onclick = "[ToggleGameView('my_realm')]"
+					shortcut = "my_realm_window"
+					down = "[IsGameViewOpen('my_realm')]"
+
+					tooltip = "MY_REALM_BUTTON"
+					using = tooltip_ws
+				}
+
+				button_hud_main_tab = {
+					name = "tab_military"
+					parentanchor = hcenter
+					texture = "gfx/interface/hud/tab_military.dds"
+
+					onclick = "[ToggleGameViewData('military', GetPlayer.GetID)]"
+					shortcut = "military_window"
+					down = "[IsGameViewOpen('military')]"
+
+					tooltip = "MILITARY_BUTTON"
+					using = tooltip_ws
+				}
+
+				button_hud_main_tab = {
+					name = "tab_council"
+					parentanchor = hcenter
+					texture = "gfx/interface/hud/tab_council.dds"
+
+					onclick = "[ToggleGameViewData('council_window', GetPlayer.GetID)]"
+					shortcut = "council_window"
+					down = "[IsGameViewOpen('council_window')]"
+
+					tooltip = "COUNCIL_BUTTON"
+					using = tooltip_ws
+				}
+			}
+
+			flowcontainer = {
+				direction = vertical
+				parentanchor = hcenter
+
+				button_hud_main_tab = {
+					name = "tab_court"
+					parentanchor = hcenter
+					#	size = { 38 31 }
+					texture = "gfx/interface/hud/tab_court.dds"
+
+					onclick = "[ToggleGameViewData( 'court_window', GetPlayer.GetID )]"
+					shortcut = "court_window"
+					down = "[IsGameViewOpen( 'court_window' )]"
+
+					tooltip = "COURT_BUTTON"
+					using = tooltip_ws
+				}
+
+				button_hud_main_tab = {
+					name = "tab_intrigue"
+					parentanchor = hcenter
+					#	size = { 38 31 }
+					texture = "gfx/interface/hud/tab_intrigue.dds"
+
+					onclick = "[ToggleGameViewData('intrigue_window', GetPlayer.GetID)]"
+					shortcut = "intrigue_window"
+					down = "[IsGameViewOpen('intrigue_window')]"
+
+					tooltip = "INTRIGUE_BUTTON"
+					using = tooltip_ws
+				}
+
+				button_hud_main_tab = {
+					name = "tab_factions"
+					parentanchor = hcenter
+					#	size = { 38 31 }
+					texture = "gfx/interface/hud/tab_factions.dds"
+
+					onclick = "[ToggleGameView('factions_window')]"
+					shortcut = "factions_window"
+					down = "[IsGameViewOpen('factions_window')]"
+
+					tooltip = "FACTION_BUTTON"
+					using = tooltip_ws
+				}
+
+				button_hud_main_tab = {
+					name = "tab_decisions"
+					parentanchor = hcenter
+					#	size = { 38 31 }
+					texture = "gfx/interface/hud/tab_decisions.dds"
+
+					onclick = "[ToggleGameView('decisions')]"
+					shortcut = "decision_window"
+					down = "[IsGameViewOpen('decisions')]"
+
+					tooltip = "DECISIONS_BUTTON"
+					using = tooltip_ws
+				}
+			}
+
+			# Invisible button to ensure that these shortcuts don't get hidden
+			button = {
+				size = { 0 0 }
+				onclick = "[ToggleCharacter( GetPlayer.GetID )]"
+				shortcut = "character_window"
+			}
+		}
+	}
+
+	flowcontainer = {
+		visible = "[And( Not( IsPauseMenuShown ), And(Or(Not(IsObserver), GetPlayer.IsValid), IsDefaultGUIMode))]"
+		parentanchor = top|right
+		position = { 0 105 }
+		direction = vertical
+		margin_top = 30
+		#	spacing = 19
+
+		state = {
+			name = _show
+			using = Animation_Curve_Default
+			duration = 0.25
+
+			position = { 0 105 }
+			alpha = 1
+		}
+
+		state = {
+			name = _hide
+			using = Animation_Curve_Default
+			duration = 0.25
+
+			position = { 40 105 }
+			alpha = 0
+		}
+
+		icon = {
+			#		texture = "gfx/interface/hud/hud_spike_small.dds"
+			size = { 31 22 }
+		}
+
+		spacer = { size = { 5 21 }}
+
+		icon = {
+			#	texture = "gfx/interface/hud/hud_spike_small.dds"
+			size = { 31 22 }
+		}
+
+		spacer = { size = { 5 29 }}
+
+		icon = {
+			texture = "gfx/interface/hud/hud_spike_big.dds"
+			size = { 31 22 }
+		}
+
+		spacer = { size = { 5 21 }}
+
+		icon = {
+			#		texture = "gfx/interface/hud/hud_spike_small.dds"
+			size = { 31 22 }
+		}
+
+		spacer = { size = { 5 21 }}
+
+		icon = {
+			#		texture = "gfx/interface/hud/hud_spike_small.dds"
+			size = { 31 22 }
+		}
+
+		spacer = { size = { 5 21 }}
+
+		icon = {
+			#		texture = "gfx/interface/hud/hud_spike_small.dds"
+			size = { 31 22 }
+		}
+	}
+
+	widget_stress_sounds = {}
+}
+
+### Time Controls
+icon = {
+	name = "timeline_widget"
+	visible = "[And( Not( IsPauseMenuShown ), TimelineWidget.ShouldBeVisible )]"
+	size = { 629 45 }
+	parentanchor = bottom|right
+	#	position = { 0 -3 }
+	filter_mouse = all
+	alwaystransparent = yes
+	layer = top
+	allow_outside = yes
+	texture = "gfx/interface/hud/hud_bg_gamespeed.dds"
+
+	hotkeys_HUD = {}
+
+	### Extra Buttons
+	flowcontainer = {
+		name = "extra_buttons_menu"
+		visible = "[And( Not( IsPauseMenuShown ), GetVariableSystem.Exists( 'extra_buttons_expand' ))]"
+		parentanchor = bottom|right
+		widgetanchor = bottom|hcenter
+		position = { -570 -20 }
+		alwaystransparent = no
+		margin = { 40 40 }
+		direction = vertical
+		spacing = 3
+		ignoreinvisible = yes
+
+		background = {
+			using = Background_Area_Dark
+			margin = { -25 -25 }
+		}
+
+		state = {
+			name = _show
+			using = Animation_FadeIn_Quick
+
+			position_y = -20
+		}
+
+		state = {
+			name = _hide
+
+			using = Animation_FadeOut_Quick
+			position_y = 60
+		}
+
+		state = {
+			name = _mouse_hierarchy_leave
+			on_finish = "[GetVariableSystem.Clear( 'extra_buttons_expand' )]"
+		}
+
+		button_standard = {
+			name = "find_character_button"
+			text = "FIND_CHARACTER"
+			onclick = "[ToggleGameView( 'character_finder' )]"
+			onclick = "[GetVariableSystem.Toggle( 'extra_buttons_expand' )]"
+			tooltip = "IM_TT_FIND_CHARACTER"
+		}
+
+		button_standard = {
+			name = "find_title_button"
+
+			onclick = "[ToggleGameView( 'find_title' )]"
+			onclick = "[GetVariableSystem.Toggle( 'extra_buttons_expand' )]"
+
+			down = "[IsGameViewOpen('find_title')]"
+			shortcut = "find_title_shortcut"
+
+			text = "FIND_TITLE"
+			tooltip = "IM_TT_FIND_TITLE"
+		}
+
+		button_standard = {
+			name = "legacy_button"
+			text = "SHOW_LEGACY"
+			onclick = "[ToggleLegacy]"
+			down = "[IsGameViewOpen('succession_event')]"
+			onclick = "[GetVariableSystem.Toggle( 'extra_buttons_expand' )]"
+			tooltip = "IM_TT_SHOW_LEGACY"
+		}
+
+		button_standard = {
+			name = "go_to_capital_button"
+			text = "GO_TO_CAPITAL"
+			onclick = "[OnGoToPlayerCapital]"
+			onclick = "[GetVariableSystem.Toggle( 'extra_buttons_expand' )]"
+			shortcut = "go_to_capital"
+			tooltip = "IM_TT_GO_TO_CAPITAL"
+			visible = "[GetPlayer.IsValid]"
+		}
+	}
+
+	hbox = {
+		margin_left = 20
+		hbox = {
+			margin_top = 5
+			spacing = 3
+
+			button_search = {
+				name = "button_hud_extra_buttons"
+				onclick = "[GetVariableSystem.Toggle( 'extra_buttons_expand' )]"
+				tooltip = MORE_POPOUT_TT
+				using = tooltip_ws
+			}
+
+			button_menu = {
+				name = "pause_menu_button"
+				onclick = "[OnPauseMenu]"
+				tooltip = INGAME_MENU_TT
+				using = tooltip_ne
+
+				tooltipwidget = {
+					using = TooltipWithFakeShortcut
+					blockoverride "shortcut_text"
+					{
+						text = FAKE_ESCAPE
+					}
+				}
+			}
+
+			button_encyclopedia_small = {
+				name = "encyclopedia_button_extended_menu"
+				tooltip = "OPEN_ENCYCLOPEDIA"
+				onclick = "[ToggleEncyclopedia]"
+			}
+		}
+
+		hbox = {
+			name = "tutorial_highlight_bottom_right_bar"
+			layoutpolicy_horizontal = expanding
+			layoutpolicy_vertical = expanding
+			margin_right = 5
+			margin_left = 15
+
+			## Date
+
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				margin = { 10 0 }
+
+				hbox = {
+					layoutpolicy_horizontal = expanding
+					expand = {}
+					text_single = {
+						name = "date_text_sp"
+						visible = "[Not(GameIsMultiplayer)]"
+
+						text = "CURRENT_DATE"
+						using = Font_Size_Medium
+						align = right
+
+						tooltip = "CURRENT_DATE_TOOLTIP"
+					}
+				}
+
+				text_single = {
+					name = "date_text_mp"
+					visible = "[GameIsMultiplayer]"
+					layoutpolicy_horizontal = expanding
+
+					text = "CURRENT_DATE"
+					using = Font_Size_Medium
+
+					tooltip = "CURRENT_DATE_TOOLTIP"
+				}
+			}
+
+			using = tooltip_above
+
+			hbox = {
+				margin = { 5 0 }
+				margin_top = 2
+				spacing = 1
+
+				button_pause_hud = {
+					visible = "[Not( GameIsMultiplayer )]"
+					shortcut = "pause"
+				}
+
+				button_pause_hud = {
+					visible = "[GameIsMultiplayer]"
+					shortcut = "pause"
+				}
+
+				vbox = {
+					button_round = {
+						size = { 18 18 }
+
+						button_plus_small = {
+							name = "increase_speed"
+							parentanchor = center
+							size = { 14 14 }
+
+							tooltip = "[GetIncreaseSpeedTooltip]"
+
+							shortcut = "increase_speed"
+							shortcut = "increase_speed_2"
+							shortcut = "increase_speed_3"
+							onclick = "[OnIncreaseGameSpeed]"
+
+						}
+					}
+
+					button_round = {
+						size = { 18 18 }
+
+						button_minus_small = {
+							name = "decrease_speed"
+							parentanchor = center
+							size = { 14 14 }
+
+							tooltip = "[GetDecreaseSpeedTooltip]"
+
+							shortcut = "decrease_speed"
+							shortcut = "decrease_speed_2"
+							shortcut = "decrease_speed_3"
+							onclick = "[OnDecreaseGameSpeed]"
+						}
+					}
+				}
+
+
+				icon = {
+					name = "speed_indicator"
+					size = { 165 40 }
+					framesize = { 200 30 }
+					texture = "gfx/interface/hud/speed_indicator.dds"
+					frame = "[GetCurrentGameSpeed]"
+					tooltip = "CURRENT_SPEED_TOOLTIP"
+					tooltip_offset = { 0 -170 }
+					alpha = 0.8
+
+					modify_texture = {
+						visible = "[And(IsPausedByEvent, Not(IsManuallyPaused))]"
+						texture = "gfx/interface/hud/speed_indicator_auto_pause.dds"
+						spritetype = corneredtiled
+						blend_mode = darken
+						texture_density = 2
+					}
+
+					modify_texture = {
+						visible = "[IsManuallyPaused]"
+						texture = "gfx/interface/hud/speed_indicator_pause.dds"
+						spritetype = corneredtiled
+						blend_mode = darken
+						texture_density = 2
+					}
+
+					modify_texture = {
+						visible = "[Not(Or(IsPausedByEvent, IsManuallyPaused))]"
+						texture = "gfx/interface/hud/speed_indicator_play.dds"
+						spritetype = corneredtiled
+						blend_mode = darken
+						texture_density = 2
+					}
+
+					hbox = {
+						margin = { 0 7 }
+						margin_left = 6
+						margin_right = 6
+
+						button = {
+							name = "speed_1"
+							shortcut = "speed_1"
+							layoutpolicy_horizontal = shrinking
+							layoutpolicy_vertical = expanding
+
+							alwaystransparent = "[EqualTo_int32(GetCurrentGameSpeed, '(int32)1')]"
+							texture = "gfx/interface/hud/speed_indicator_mouseover.dds"
+							onclick = "[SetGameSpeed('(int32)0')]"
+							tooltip = "CHANGE_SPEED_TOOLTIP_1"
+							using = tooltip_ne
+
+							alpha = 0
+
+							state = {
+								name = _mouse_enter
+								alpha = 1
+							}
+
+							state = {
+								name = _mouse_leave
+								alpha = 0
+							}
+						}
+
+						button = {
+							name = "speed_2"
+							shortcut = "speed_2"
+							layoutpolicy_horizontal = shrinking
+							layoutpolicy_vertical = expanding
+
+							alwaystransparent = "[EqualTo_int32(GetCurrentGameSpeed, '(int32)2')]"
+							texture = "gfx/interface/hud/speed_indicator_mouseover.dds"
+							onclick = "[SetGameSpeed('(int32)1')]"
+							tooltip = "CHANGE_SPEED_TOOLTIP_2"
+							using = tooltip_ne
+
+							alpha = 0
+
+							state = {
+								name = _mouse_enter
+								alpha = 1
+							}
+
+							state = {
+								name = _mouse_leave
+								alpha = 0
+							}
+						}
+
+						button = {
+							name = "speed_3"
+							shortcut = "speed_3"
+							layoutpolicy_horizontal = shrinking
+							layoutpolicy_vertical = expanding
+
+							alwaystransparent = "[EqualTo_int32(GetCurrentGameSpeed, '(int32)3')]"
+							texture = "gfx/interface/hud/speed_indicator_mouseover.dds"
+							onclick = "[SetGameSpeed('(int32)2')]"
+							tooltip = "CHANGE_SPEED_TOOLTIP_3"
+							using = tooltip_ne
+
+							alpha = 0
+
+							state = {
+								name = _mouse_enter
+								alpha = 1
+							}
+
+							state = {
+								name = _mouse_leave
+								alpha = 0
+							}
+						}
+
+						button = {
+							name = "speed_4"
+							shortcut = "speed_4"
+							layoutpolicy_horizontal = shrinking
+							layoutpolicy_vertical = expanding
+
+							alwaystransparent = "[EqualTo_int32(GetCurrentGameSpeed, '(int32)4')]"
+							texture = "gfx/interface/hud/speed_indicator_mouseover.dds"
+							onclick = "[SetGameSpeed('(int32)3')]"
+							tooltip = "CHANGE_SPEED_TOOLTIP_4"
+							using = tooltip_ne
+
+							alpha = 0
+
+							state = {
+								name = _mouse_enter
+								alpha = 1
+							}
+
+							state = {
+								name = _mouse_leave
+								alpha = 0
+							}
+						}
+
+						button = {
+							name = "speed_5"
+							shortcut = "speed_5"
+							layoutpolicy_horizontal = shrinking
+							layoutpolicy_vertical = expanding
+
+							alwaystransparent = "[EqualTo_int32(GetCurrentGameSpeed, '(int32)5')]"
+							texture = "gfx/interface/hud/speed_indicator_mouseover.dds"
+
+							onclick = "[SetGameSpeed('(int32)4')]"
+							tooltip = "CHANGE_SPEED_TOOLTIP_5"
+							using = tooltip_ne
+
+							alpha = 0
+
+							state = {
+								name = _mouse_enter
+								alpha = 1
+							}
+
+							state = {
+								name = _mouse_leave
+								alpha = 0
+							}
+						}
+					}
+				}
+			}
+		}
+
+		# Just the hotkeys for increase/decrease speed
+		container = {
+			name = "speed_hotkeys"
+
+			button = {
+				name = "increase_speed"
+				size = { 0 0 }
+
+				shortcut = "increase_speed"
+				shortcut = "increase_speed_2"
+				onclick = "[OnIncreaseGameSpeed]"
+				oversound = "event:/SFX/UI/Generic/sfx_ui_generic_pointer_over"
+			}
+
+			button = {
+				name = "decrease_speed"
+				size = { 0 0 }
+
+				shortcut = "decrease_speed"
+				shortcut = "decrease_speed_2"
+				onclick = "[OnDecreaseGameSpeed]"
+				clicksound = "event:/SFX/UI/Generic/sfx_ui_generic_decrement"
+			}
+		}
+
+		widget_gamespeed_sounds = {}
+	}
+}
+
+### Bottom Left
+widget = {
+	name = "bottom_bar"
+	visible = "[And( Not( IsPauseMenuShown ), IsDefaultGUIMode )]"
+	size = { 100% 100% }
+	layer = bottom
+
+	icon = {
+		visible = "[And(GetPlayer.IsValid, Not(GetVariableSystem.Exists( 'hide_bottom_left_HUD')))]"
+		parentanchor = bottom|left
+		size = { 415 44 }
+		texture = "gfx/interface/hud/hud_bg_character_bar.dds"
+		spritetype = corneredtiled
+		spriteborder_left = 70
+		spriteborder_right = 240
+		texture_density = 2
+
+		state = {
+			name = _show
+			using = Animation_Curve_Default
+			duration = 0.21
+
+			position = { 0 0 }
+			alpha = 1
+		}
+
+		state = {
+			name = _hide
+			using = Animation_Curve_Default
+			duration = 0.21
+
+			position = { -36 50 }
+			alpha = 0
+		}
+	}
+
+	### BOTTOM LEFT CHARACTER PORTRAIT
+	container = {
+		datacontext = "[GetPlayer]"
+		visible = "[And(GetPlayer.IsValid, Not(GetVariableSystem.Exists( 'hide_bottom_left_HUD')))]"
+		parentanchor = bottom|left
+
+
+		state = {
+			name = _show
+			using = Animation_Curve_Default
+			duration = 0.15
+
+			position = { 0 0 }
+			alpha = 1
+		}
+
+		state = {
+			name = _hide
+			using = Animation_Curve_Default
+			duration = 0.15
+
+			position = { 0 50 }
+			alpha = 0
+		}
+
+		portrait_hud = {
+			parentanchor = center
+			position = { -40 0 }
+		}
+
+		icon = {
+			texture = "gfx/interface/temp/bottom_left_portrait_fade.dds"
+			parentanchor = bottom|left
+		}
+	}
+
+	icon = {
+		visible = "[And(And(IsDefaultGUIMode, GetPlayer.IsRuler), Not(GetVariableSystem.Exists( 'hide_bottom_left_HUD'))))]"
+		parentanchor = bottom|left
+		position = { 0 -90 }
+		texture = "gfx/interface/hud/hud_stress_bg.dds"
+		size = { 42 174 }
+
+		tooltip = "PLAYER_STRESS_TOOLTIP"
+		using = tooltip_ne
+
+		state = {
+			name = _show
+			using = Animation_Curve_Default
+			duration = 0.25
+
+			position = { 0 -90 }
+			alpha = 1
+		}
+
+		state = {
+			name = _hide
+			using = Animation_Curve_Default
+			duration = 0.25
+
+			position = { -50 -90 }
+			alpha = 0
+		}
+
+		state = {
+			name = "stress_increase"
+		}
+
+
+		icon = {
+			position = { -3 16 }
+			size = { 30 30 }
+
+			texture = "gfx/interface/icons/icon_stress_level.dds"
+			framesize = { 60 60 }
+			frame = "[IntToFrameIndex( GetPlayer.GetStressLevel )]"
+		}
+
+		progressbar_red = {
+			position = { -12 57 }
+			size = { 15 92 }
+			parentanchor = hcenter
+			value = "[GetPlayer.GetStressProgress]"
+			direction = vertical
+		}
+
+		icon = {
+			visible = "[EqualTo_int32(IntToFrameIndex( GetPlayer.GetStressLevel ), '(int32)5')]"
+			size = { 100% 100% }
+			texture = "gfx/interface/hud/hud_stress_glow.dds"
+			using = Color_Orange
+			using = Animation_ShowHide_Standard
+
+			state = {
+				name = a
+				trigger_on_create = yes
+				next = b
+				alpha = 1
+				duration = 1
+				using = Animation_Curve_Default
+			}
+
+			state = {
+				name = b
+				next = a
+				alpha = 0.5
+				duration = 0.7
+				using = Animation_Curve_Default
+			}
+		}
+
+		icon = {
+			visible = "[EqualTo_int32(IntToFrameIndex( GetPlayer.GetStressLevel ), '(int32)6')]"
+			size = { 100% 100% }
+			texture = "gfx/interface/hud/hud_stress_glow.dds"
+			using = Color_Red
+			using = Animation_ShowHide_Standard
+
+			state = {
+				name = a
+				trigger_on_create = yes
+				next = b
+				alpha = 1
+				duration = 1
+				using = Animation_Curve_Default
+			}
+
+			state = {
+				name = b
+				next = a
+				alpha = 0.5
+				duration = 0.7
+				using = Animation_Curve_Default
+			}
+		}
+	}
+
+	## Bottom left CoA
+	coa_realm_medium_crown = {
+		datacontext = "[GetPlayer]"
+		visible = "[And(And(IsDefaultGUIMode, GetPlayer.IsRuler), Not(GetVariableSystem.Exists( 'hide_bottom_left_HUD'))))]"
+		parentanchor = bottom|left
+
+		state = {
+			name = _show
+			using = Animation_Curve_Default
+			duration = 0.25
+
+			position = { 0 4 }
+			alpha = 1
+		}
+
+		state = {
+			name = _hide
+			using = Animation_Curve_Default
+			duration = 0.25
+
+			position = { 0 50 }
+			alpha = 0
+		}
+
+		blockoverride "coa_button"
+		{
+			tooltip = "[GetPlayer.GetDefaultRealmFlagTooltipPrimaryTitleClickInfo]"
+			onclick = "[DefaultOnCoatOfArmsClick(GetPlayer.GetPrimaryTitle.GetID)]"
+		}
+	}
+
+	### Lifestyle
+	flowcontainer = {
+		name = "bottom_left_bar"
+		visible = "[And( Not( IsPauseMenuShown ), And(And(IsDefaultGUIMode, GetPlayer.IsValid), Not(GetVariableSystem.Exists( 'hide_bottom_left_HUD')))))]"
+		parentanchor = bottom|left
+		ignoreinvisible = yes
+		position = { 66 0 }
+
+		state = {
+			name = _show
+			using = Animation_Curve_Default
+			duration = 0.21
+
+			position = { 66 0 }
+			alpha = 1
+		}
+
+		state = {
+			name = _hide
+			using = Animation_Curve_Default
+			duration = 0.21
+
+			position = { 30 50 }
+			alpha = 0
+		}
+
+		flowcontainer = {
+			ignoreinvisible = yes
+			margin_bottom = 5
+
+			button_normal = {
+				name = "lifestyle_button"
+				visible = "[GetPlayer.IsAdult]"
+
+				tooltip = "PLAYER_LIFESTYLE_TOOLTIP"
+				using = tooltip_ne
+
+				onclick = "[OpenLifestyleView( GetPlayer )]"
+				size = { 55 55 }
+
+				icon = {
+					texture = "gfx/interface/icons/lifestyles/lifestyle_button_base.dds"
+					size = { 100% 100% }
+				}
+
+				icon = {
+					name = "progress_frame"
+					texture = "gfx/interface/siege_window/action_progress_frame.dds"
+					size = { 100% 100% }
+					alpha = 0.5
+				}
+
+				highlight_icon_lifestyle_focus = {
+					name = "tutorial_highlight_lifestyle_HUD_button"
+					texture = "[GetPlayer.GetFocus.GetIcon]"
+					alwaystransparent = yes
+					size = { 100% 100% }
+
+					modify_texture = {
+						texture = "gfx/interface/icons/focuses/hud_icon_mask.dds"
+						blend_mode = alphamultiply
+					}
+					#animation_attention = {
+					#	visible = "[GetPlayer.CanPlayerChangeMyFocus]"
+					#}
+				}
+
+				progresspie = {
+					name = "progress"
+					size = { 55 55 }
+					texture = "gfx/interface/siege_window/action_progress_thin.dds"
+					framesize = { 124 124 }
+					frame = 2
+					widgetanchor = top|hcenter
+					parentanchor = top|hcenter
+					value = "[GetPlayer.GetLifestyleExperienceProgress( GetPlayer.GetLifestyle.Self )]"
+				}
+
+				# animation_emphasis = {
+				# 	visible = "[Not( GetPlayer.GetLifestyle.IsValid )]"
+				# 	parentanchor = center
+				# }
+
+				icon = {
+					datacontext = "[GetPlayer]"
+					visible = "[And(GreaterThan_int32( Character.GetTotalPerkPoints, '(int32)0' ), Character.IsLocalPlayer)]"
+					parentanchor = bottom|right
+					position = { 7 3 }
+					size = { 30 30 }
+					texture = "gfx/interface/buttons/button_small_round.dds"
+					framesize = { 82 82 }
+					frame = 3
+
+					text_single = {
+						parentanchor = center
+						position = { 0 -4 }
+						datacontext = "[GetPlayer]"
+						text = "[Character.GetTotalPerkPoints]"
+						default_format = "#high"
+						max_width = 180
+						align = center
+
+						# animation_attention = {
+						# 	visible = "[GreaterThan_int32( GetPlayer.GetTotalPerkPoints, '(int32)0' )]"
+						# }
+					}
+				}
+
+				animation_sonar = {
+					visible = "[GreaterThan_int32( GetPlayer.GetTotalPerkPoints, '(int32)0' )]"
+				}
+			}
+
+			button_normal = {
+				name = "education_button"
+				visible = "[Not(GetPlayer.IsAdult)]"
+
+				tooltip = "PLAYER_EDUCATION_FOCUS_TOOLTIP"
+				using = tooltip_ne
+
+				onclick = "[OpenEducationFocusView( GetPlayer )]"
+				size = { 55 55 }
+
+				icon = {
+					texture = "gfx/interface/icons/lifestyles/lifestyle_button_base.dds"
+					size = { 100% 100% }
+				}
+
+				highlight_icon_lifestyle_focus = {
+					texture = "[GetPlayer.GetFocus.GetIcon]"
+					onclick = "[OpenEducationFocusView( GetPlayer )]"
+					size = { 100% 100% }
+					gfxtype = togglepushbuttongfx
+					effectname = "NoHighlight"
+					framesize = { 140 140 }
+
+					modify_texture = {
+						texture = "gfx/interface/icons/focuses/hud_icon_mask.dds"
+						blend_mode = alphamultiply
+					}
+				}
+
+				# animation_emphasis = {
+				# 	visible = "[Not( GetPlayer.GetFocus.IsValid )]"
+				# 	parentanchor = center
+				# }
+			}
+		}
+
+		spacer = {
+			size = { 103 0 }
+		}
+
+		flowcontainer = {
+			parentanchor = bottom
+
+			button_hud_character_bar = {
+				name = "house_button"
+				datacontext = "[GetPlayer.GetHouse]"
+				onclick = "[DefaultOnHouseCoatOfArmsClick(DynastyHouse.GetID)]"
+				parentanchor = bottom
+
+				using = tooltip_ne
+
+				tooltipwidget = {
+					using = dynasty_house_tooltip
+				}
+
+				coa_house_tiny = {
+					parentanchor = center
+					position = { 0 7 }
+					using = tooltip_ne
+					scale = 0.92
+
+					blockoverride "coa_button"
+					{
+						alwaystransparent = yes
+					}
+
+					blockoverride "coa_tooltip"
+					{}
+				}
+			}
+
+			button_hud_character_bar = {
+				name = "faith_button"
+				datacontext = "[GetPlayer.GetFaith]"
+				parentanchor = bottom
+
+				onclick = "[DefaultOnFaithClick(GetPlayer.GetFaith.GetID)]"
+
+				tooltipwidget = {
+					faith_tooltip_click = {}
+				}
+
+				highlight_icon = {
+					texture = "[Faith.GetIcon]"
+					size = { 40 40 }
+					position = { 0 4 }
+					parentanchor = center
+
+					glow = {
+						color = { 0 0 0 0.8 }
+						glow_radius = 3
+						using = Glow_Standard
+					}
+				}
+			}
+
+			button_hud_character_bar = {
+				name = "innovations_button"
+				datacontext = "[GetPlayer.GetCulture]"
+				parentanchor = bottom
+				onclick = "[DefaultOnCultureClick(Culture.GetID)]"
+
+				tooltipwidget = {
+					culture_tooltip_click = {}
+				}
+
+				highlight_icon = {
+					parentanchor = center
+					position = { 0 5}
+					size = { 40 40 }
+					texture = "gfx/interface/icons/icon_culture.dds"
+
+					glow = {
+						color = { 0 0 0 0.8 }
+						glow_radius = 3
+						using = Glow_Standard
+					}
+				}
+			}
+		}
+
+		widget_stress_sounds = {}
+	}
+
+	######################################################
+	################ MAPMODES AND WARS ###################
+	######################################################
+
+	map_modes_debug = {
+		visible = "[And( InDebugMode, And(IsDefaultGUIMode, Not(GetVariableSystem.Exists( 'right_window_open'))))]"
+		parentanchor = bottom|right
+		position = { 0 -210 }
+
+		filter_mouse = all
+		alwaystransparent = no
+		scale = 0.9
+	}
+
+	### WARS SCHEMES AND MAPMODES
+	flowcontainer = {
+		visible = "[And(IsDefaultGUIMode, Not(GetVariableSystem.Exists( 'right_window_open')))]"
+		parentanchor = bottom|right
+		widgetanchor = top|right
+		position = { 0 -170 }
+		alwaystransparent = yes
+		filter_mouse = all
+		allow_outside = yes
+		spacing = 30
+
+		state = {
+			name = _show
+			using = Animation_FadeIn_Quick
+		}
+
+		state = {
+			name = _hide
+			using = Animation_FadeOut_Quick
+		}
+
+		## Wars
+		flowcontainer = {
+			name = "wars_and_schemes"
+			ignoreinvisible = yes
+			margin_top = 35
+
+			flowcontainer = {
+				name = "player_schemes"
+				datamodel = "[InGameBottomBar.GetSchemes]"
+				parentanchor = vcenter
+				spacing = 5
+				margin = { 5 0 }
+
+				item = {
+					button_normal = {
+						name = "tutorial_highlight_lifestyle_HUD_button"
+						onclick = "[BottomBarSchemeItem.OnClick]"
+						datacontext = "[BottomBarSchemeItem.GetScheme]"
+						tooltip = "BOTTOMBAR_SCHEME_TOOLTIP"
+						size = { 60 60 }
+
+						icon = {
+							texture = "gfx/interface/icons/lifestyles/lifestyle_button_base.dds"
+							size = { 100% 100% }
+						}
+
+						icon = {
+							name = "progress_frame"
+							texture = "gfx/interface/siege_window/action_progress_frame.dds"
+							size = { 100% 100% }
+							parentanchor = center
+							alpha = 0.5
+						}
+
+						progresspie = {
+							name = "progress"
+							size = { 60 60 }
+							texture = "gfx/interface/siege_window/action_progress_thin.dds"
+							framesize = { 124 124 }
+							frame = 2
+							widgetanchor = top|hcenter
+							parentanchor = top|hcenter
+							value = "[Scheme.GetProgressBar]"
+						}
+
+						highlight_icon = {
+							visible = "[Not(Scheme.GetSchemeType.IsHostile)]"
+							texture = "gfx/interface/icons/personal_scheme.dds"
+							alwaystransparent = yes
+							size = { 45 45 }
+							parentanchor = center
+						}
+
+						highlight_icon = {
+							visible = "[Scheme.GetSchemeType.IsHostile]"
+							texture = "gfx/interface/icons/icon_scheme.dds"
+							alwaystransparent = yes
+							size = { 45 45 }
+							parentanchor = center
+						}
+					}
+				}
+			}
+
+			button_frontend = {
+				name = "tutorial_highlight_raise_troops"
+				size = { 200 64 }
+				datacontext = "[GetPlayer]"
+				visible = "[And( Character.IsAtWar, Not(Character.HasRaisedRegiments)))]"
+				parentanchor = vcenter
+
+				enabled = "[PlayerCanRaiseAnyRallyPoint]"
+				onclick = "[PlayerRaiseAllRegiments]"
+				clicksound = "event:/SFX/UI/Unit/Army/sfx_ui_raise_army"
+
+				tooltip = "[GetPlayerRaiseAllTooltip]"
+				using = tooltip_ne
+			
+				text = "RAISE_ALL"
+				margin_left = 45
+
+				icon = {
+					texture = "gfx/interface/icons/icon_banner.dds"
+					size = { 40 40 }
+					alwaystransparent = yes
+					parentanchor = left|vcenter
+					position = { 5 0 }
+				}
+
+				# animation_attention_text = {
+				# 	visible = yes
+				# }
+			}
+
+			button_frontend = {
+				size = { 200 64 }
+				datacontext = "[GetPlayer]"
+				visible = "[PlayerShouldDisbandAll]"
+				parentanchor = vcenter
+
+				onclick = "[PlayerDisbandAll]"
+				enabled = "[PlayerCanDisbandAll]"
+				clicksound = "event:/SFX/UI/Unit/Army/sfx_ui_unit_army_disband"
+
+				tooltip = "[GetDisbandAllTooltip]"
+				using = tooltip_ne
+		
+				text = "DISBAND_ALL"
+				margin_left = 45
+
+				icon = {
+					texture = "gfx/interface/icons/icon_banner.dds"
+					size = { 40 40 }
+					alwaystransparent = yes
+					parentanchor = left|vcenter
+					position = { 5 0 }
+				}
+
+				# animation_attention_text = {
+				# 	visible = yes
+				# }
+			}
+
+			flowcontainer = {
+				name = "wars"
+				parentanchor = vcenter
+
+				flowcontainer = {
+					name = "great_holy_wars"
+					parentanchor = vcenter
+					ignoreinvisible = yes
+
+					flowcontainer = {
+						datamodel = "[GetPlayer.GetFaith.GetDefensiveGreatHolyWars]"
+						ignoreinvisible = yes
+						parentanchor = vcenter
+
+						item = {
+							button_ghw_banner = {
+								name = "defensive_ghw"
+								datacontext = "[GreatHolyWarRef.Get]"
+								parentanchor = vcenter
+
+								blockoverride "ghw_tooltip"
+								{
+									tooltip = "GHW_OPEN_TOOLTIP_DEFENDER"
+									using = tooltip_ne
+								}
+							}
+						}
+					}
+
+					button_ghw_banner = {
+						name = "player_faith_ghw"
+						datacontext = "[GetPlayer.GetFaith.GetGreatHolyWar]"
+						visible = "[GetPlayer.GetFaith.HasOffensiveGreatHolyWar]"
+						parentanchor = vcenter
+
+						blockoverride "ghw_tooltip"
+						{
+							tooltip = "GHW_OPEN_TOOLTIP_ATTACKER"
+							using = tooltip_ne
+						}
+					}
+				}
+
+				flowcontainer = {
+					name = "raids_on_me"
+					datamodel = "[GetPlayer.GetHostileRaiders]"
+					parentanchor = vcenter
+
+					item = {
+						button_raid_banner = {
+							parentanchor = vcenter
+							tooltip = "RAID_ON_ME_TOOLTIP"
+						}
+					}
+				}
+
+				flowcontainer = {
+					name = "raids_by_me"
+					datamodel = "[GetPlayer.GetRaidTargets]"
+					parentanchor = vcenter
+
+					item = {
+						button_raid_banner = {
+							parentanchor = vcenter
+							tooltip = "RAID_BY_ME_TOOLTIP"
+						}
+					}
+				}
+
+				flowcontainer = {
+					name = "regular_wars"
+					datamodel = "[InGameBottomBar.GetWarItems]"
+					ignoreinvisible = yes
+
+					item = {
+						button_war_banner = {}
+					}
+				}
+			}
+		}
+
+		## Map Modes
+		map_modes = {
+			filter_mouse = all
+			alwaystransparent = no
+		}
+	}
+}
+
+######################################################
+############# MESSAGES AND NOTIFICATIONS #############
+######################################################
+
+### Message Feed
+notifications_message_feed = {
+	position = { -10 -135 }
+	layer = bottom
+}
+
+### Toasts
+notifications_toasts = {
+	widgetanchor = center
+	parentanchor = top|hcenter
+	position = { 0 165 }
+	layer = middle
+}
+
+### Suggestions / Current Situation
+notifications_suggestions = {
+	layer = middle
+
+	attachto = {
+		widgetid = "suggestions_placer"
+		inherit_visibility = hidden
+	}
+}
+
+######################################################
+################ TYPES AND TEMPLATES #################
+######################################################
+
+types HUD
+{
+	type button_war_banner = button_normal {
+		size = { 78 82 }
+		onclick = "[WarItem.OnClick]"
+		tooltip = "[WarItem.GetTooltip]"
+		using = tooltip_ne
+
+		button_highlight = {
+			name = "enforce_victory_glow"
+			visible = "[WarItem.CanEnforceVictory]"
+			parentanchor = center
+			size = { 100% 100% }
+			scale = 1.2
+			texture = "gfx/interface/war_overview/war_won_glow.dds"
+
+			button = {
+				name = "enforce_victory_icon"
+				visible = "[WarItem.CanEnforceVictory]"
+				parentanchor = hcenter
+				position = { 0 -15 }
+				scale = 0.8
+				texture = "gfx/interface/war_overview/war_won_icon.dds"
+			}
+		}
+
+		highlight_icon = {
+			name = "war_icon"
+			visible = "[WarItem.IsPlayerParticipant]"
+			parentanchor = center
+			size = { 100% 100% }
+			texture = "gfx/interface/war_overview/war_icon.dds"
+		}
+
+		highlight_icon = {
+			name = "war_icon_liege"
+			visible = "[Not(WarItem.IsPlayerParticipant)]"
+			parentanchor = center
+			size = { 100% 100% }
+			texture = "gfx/interface/war_overview/war_icon_liege.dds"
+		}
+
+		coa_realm_small = {
+			name = "enemy_realm"
+			datacontext = "[WarItem.GetWar.GetPrimaryPlayerEnemy]"
+			parentanchor = hcenter
+			scale = 0.9
+			position = { 0 12 }
+			tooltip_enabled = no
+			alwaystransparent = yes
+		}
+
+		text_single = {
+			name = "warscore"
+			parentanchor = bottom|hcenter
+			position = { 0 -7 }
+			size = { 50 10 }
+			align = center
+			text = "[WarItem.GetWarScoreFraction|0%=+]"
+		}
+
+		widget = {
+			visible = "[WarItem.CanEnforceVictory]"
+
+			state = {
+				name = _show
+
+				start_sound = {
+					soundeffect = "event:/SFX/UI/War/sfx_ui_war_enforce_demand"
+					soundparam = {
+						name = StateChange
+						value = 1.5
+					}
+				}
+			}
+		}
+	}
+
+	type button_ghw_banner = button_normal {
+		size = { 78 82 }
+		onclick = "[OpenGreatHolyWarWindow(GreatHolyWar.GetID)]"
+
+		block "ghw_tooltip"
+		{
+			tooltip = "#D no tooltip :(#!"
+		}
+
+		button = {
+			name = "holy_war_icon_started"
+			visible = "[GreatHolyWar.HasWarStarted]"
+			onclick = "[OpenGreatHolyWarWindow(GreatHolyWar.GetID)]"
+			parentanchor = center
+			size = { 100% 100% }
+			texture = "gfx/interface/war_overview/holy_war_icon_started.dds"
+		}
+
+		button = {
+			name = "holy_war_icon_prep"
+			visible = "[Not(GreatHolyWar.HasWarStarted)]"
+			onclick = "[OpenGreatHolyWarWindow(GreatHolyWar.GetID)]"
+			parentanchor = center
+			size = { 100% 100% }
+			texture = "gfx/interface/war_overview/holy_war_icon_prep.dds"
+		}
+
+		button = {
+			name = "faith_icon"
+			datacontext = "[GreatHolyWar.GetFaith]"
+			onclick = "[OpenGreatHolyWarWindow(GreatHolyWar.GetID)]"
+			parentanchor = center
+			position = { 1 -3 }
+			size = { 35 35 }
+			texture = "[Faith.GetIcon]"
+		}
+	}
+
+	type button_raid_banner = button_normal {
+		size = { 78 82 }
+		onclick = "[DefaultOnCharacterClick(Character.GetID)]"
+		using = tooltip_ne
+
+		highlight_icon = {
+			texture = "gfx/interface/war_overview/raid_icon.dds"
+			size = { 100% 100% }
+			parentanchor = center
+		}
+
+		coa_realm_small = {
+			name = "enemy_realm"
+			parentanchor = hcenter
+			scale = 0.9
+			position = { 0 12 }
+			tooltip_enabled = no
+			alwaystransparent = yes
+		}
+
+		text_single = {
+			name = "time_left"
+			parentanchor = bottom|hcenter
+			position = { 0 -7 }
+			size = { 50 10 }
+			align = center
+			text = "[GetPlayer.GetRaidHostilityEnd( Character.Self ).GetTimeDiffFromNow]"
+
+		}
+	}
+
+	type button_hud_character_bar = button_normal {
+		gfxtype = togglepushbuttongfx
+		effectname = "NoHighlight"
+		shaderfile = "gfx/FX/pdxgui_pushbutton.shader"
+
+		framesize = { 102 104}
+		size = { 51 52 }
+		texture = "gfx/interface/hud/button_hud_character_bar.dds"
+		using = tooltip_ne
+
+
+		state = {
+			name = _show
+			frame = 1
+			position_y = 0
+
+			using = Animation_Curve_Default
+			duration = 0.25
+		}
+
+		state = {
+			name = _mouse_hierarchy_enter
+			frame = 2
+
+			#using = Animation_Curve_Default
+			duration = 1
+		}
+
+		state = {
+			name = _mouse_leave
+			frame = 1
+
+			using = Animation_Curve_Default
+			duration = 0.25
+		}
+
+		state = {
+			name = _mouse_press
+			frame = 3
+			position_y = 3
+		}
+
+		state = {
+			name = _mouse_release
+			frame = 2
+			position_y = 0
+
+			using = Animation_Curve_Default
+			duration = 0.25
+		}
+	}
+
+	type button_hud_main_tab = button_normal {
+		size = { 51 42 }
+
+		effectname = "NoHighlight"
+		gfxtype = togglepushbuttongfx
+		upframe = 1
+		uphoverframe = 2
+		uppressedframe = 3
+		downframe = 4
+		downhoverframe = 4
+		downpressedframe = 4
+
+		framesize = { 132 108 }
+		using = tooltip_es
+
+		state = {
+			name = _show
+			duration = 1.0
+			frame = 1
+			#scale = 1.0
+
+			using = Animation_Curve_Default
+		}
+
+		state = {
+			name = _mouse_enter
+			duration = 0.1
+			frame = 2
+			scale = 1.05
+
+			using = Animation_Curve_Default
+		}
+
+		state = {
+			name = _mouse_leave
+			duration = 0.25
+			frame = 1
+			scale = 1.0
+
+			using = Animation_Curve_Default
+		}
+
+		state = {
+			name = _mouse_press
+			duration = 1.0
+			frame = 3
+
+			using = Animation_Curve_Default
+		}
+
+		state = {
+			name = _mouse_release
+			duration = 1.0
+			frame = 2
+
+			using = Animation_Curve_Default
+		}
+	}
+
+	type hotkeys_HUD = widget {
+		# Mapmodes
+		button_normal = {
+			onclick = "[SetMapMode('players')]"
+			shortcut = "map_mode_7"
+			enabled = "[Or(GameIsMultiplayer, InDebugMode)]"
+		}
+
+		button_normal = {
+			onclick = "[SetMapMode('dejure_duchies')]"
+			shortcut = "map_mode_9"
+		}
+
+		button_normal = {
+			onclick = "[SetMapMode('dejure_kingdoms')]"
+			shortcut = "map_mode_10"
+		}
+
+		button_normal = {
+			onclick = "[SetMapMode('dejure_empires')]"
+			shortcut = "map_mode_11"
+		}
+
+		button_normal = {
+			onclick = "[SetMapMode('religions')]"
+			shortcut = "map_mode_3"
+		}
+
+		button_normal = {
+			onclick = "[SetMapMode('cultures')]"
+			shortcut = "map_mode_2"
+		}
+
+		button_normal = {
+			onclick = "[SetMapMode('houses')]"
+			shortcut = "map_mode_4"
+		}
+
+		button_normal = {
+			onclick = "[SetMapMode('realms')]"
+			onclick = "[ClearExploringRealms]"
+			shortcut = "map_mode_1"
+		}
+
+		button_normal = {
+			onclick = "[SetMapMode('government')]"
+			shortcut = "map_mode_5"
+		}
+
+		button_normal = {
+			onclick = "[SetMapMode('dejure_counties')]"
+			shortcut = "map_mode_6"
+		}
+
+		button_normal = {
+			onclick = "[SetMapMode('simple_terrain')]"
+			shortcut = "map_mode_12"
+		}
+
+		button_normal = {
+			onclick = "[SetMapMode('county_development')]"
+			shortcut = "map_mode_13"
+		}
+
+		button_normal = {
+			name = "find_title_shortcut"
+			onclick = "[ToggleGameView( 'find_title' )]"
+			onclick = "[GetVariableSystem.Clear( 'extra_buttons_expand' )]"
+			shortcut = "find_title_shortcut"
+		}
+
+		# 0 size button for shortcut to work
+		button_normal = {
+			name = "find_character_shortcut"
+			onclick = "[ToggleGameView( 'character_finder' )]"
+			onclick = "[GetVariableSystem.Clear( 'extra_buttons_expand' )]"
+			shortcut = "character_finder"
+		}
+
+		# 0 size button for shortcut to work
+		button_normal = {
+			name = "encyclopedia_shortcut"
+			onclick = "[ToggleEncyclopedia]"
+			onclick = "[GetVariableSystem.Clear( 'extra_buttons_expand' )]"
+			shortcut = "encyclopedia"
+		}
+	}
+
+	type button_pause_hud = button_round {
+		size = { 33 33 }
+
+		enabled = "[Not(IsGameOver)]"
+		onclick = "[OnPause]"
+		oversound = "event:/SFX/UI/Generic/sfx_ui_generic_pointer_over"
+		clicksound = "event:/SFX/UI/Generic/sfx_ui_generic_select"
+
+		button_play = {
+			visible = "[IsGamePaused]"
+			size = { 35 35 }
+
+			tooltip = "[SelectLocalization( IsGameOver, 'UNPAUSE_GAME_OVER', 'UNPAUSE_GAME')]"
+			using = tooltip_ne
+			alwaystransparent = yes
+			parentanchor = center
+		}
+
+		button_pause = {
+			visible = "[Not(IsGamePaused)]"
+			size = { 35 35 }
+
+			tooltip = "PAUSE_GAME"
+			using = tooltip_ne
+			alwaystransparent = yes
+			parentanchor = center
+		}
+	}
+
+	type container_resource_balance = container {
+		text_single = {
+			name = "balance_pos"
+			visible = "[GreaterThanOrEqualTo_CFixedPoint(PlayerValueItem.GetBalance, '(CFixedPoint)0')]"
+			text = "[PlayerValueItem.GetBalance|1=]"
+			max_width = 110
+
+			default_format = "#low"
+		}
+
+		text_single = {
+			name = "balance_neg"
+			visible = "[LessThan_CFixedPoint(PlayerValueItem.GetBalance, '(CFixedPoint)0')]"
+			text = "[PlayerValueItem.GetBalance|1=]"
+			max_width = 110
+
+			default_format = "#N"
+		}
+	}
+
+}

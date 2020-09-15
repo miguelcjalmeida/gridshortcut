@@ -1,0 +1,183 @@
+shortcutbindings = {
+# Core
+	close_window = "ESCAPE"
+	close_tooltips = "ESCAPE"
+	confirm = "RETURN"
+	confirm_2 = "E"
+
+	zoom_out = "PAGE_UP"
+	zoom_in = "PAGE_DOWN"
+	
+# Time keeping
+	pause = "SPACE"
+	increase_speed = "KP_PLUS"
+	increase_speed_2 = "+"
+	increase_speed_3 = "["
+	decrease_speed = "KP_MINUS"
+	decrease_speed_2 = "-"
+	decrease_speed_3 = "]"
+	speed_1 = "6"
+	speed_2 = "7"
+	speed_3 = "8"
+	speed_4 = "9"
+	speed_5 = "0"
+
+	action_list = "TAB"
+
+# Menu Tabs
+	character_window = "F1"
+	my_realm_window = "F2"
+	military_window = "F3"
+	council_window = "F4"
+	court_window = "F5"
+	intrigue_window = "F6"
+	factions_window = "F7"
+	decision_window = "F8"
+	encyclopedia = "F9"
+	# F10 is free to use
+	screenshot = "F11"
+
+# Extra Menus
+	character_finder = "C"
+	find_title_shortcut = "V"
+	go_to_capital = "HOME"
+
+# Realm Map Mode
+	map_mode_1 = "Y"
+
+# De Jure Map modes
+	map_mode_9 = "U" # dejure duchies
+	map_mode_10 = "I" # dejure kingdoms
+	map_mode_11 = "O" # dejure empires
+
+# Other Primary Map Modes
+	map_mode_3 = "N" # religions
+	map_mode_2 = "M" # cultures
+	map_mode_4 = "P" # houses
+
+# Other Map Modes
+	map_mode_7 = "KP_1" # player mapmode
+	map_mode_5 = "h" # governments
+	map_mode_6 = "l" # dejure counties
+	map_mode_12 = "k" # simple terrain
+	map_mode_13 = "j" # development
+
+# Many Views
+	go_back = "B"
+
+# Siege View
+	siege_assault = "F"
+
+# County View
+	county_go_to_siege = "H"
+
+# Dynasty View
+	dynasty_tree_pan_to_me = "HOME"
+
+# Dev
+	map_editor_toggle_game_map_mode = "m"
+	editor_toggle = "l"
+
+# Custom 
+# Character
+	character_lifestyle = "Q"
+	character_faith = "R"
+	character_culture = "T"
+	character_realm_shield = "E"
+	character_house = "X"
+	character_liege = "F"
+	character_heir = "G"
+	character_family = "1"
+	character_relations = "2"
+	character_court = "3"
+	character_vassals = "4"
+
+# Faith
+	faith_beliefs = "1"
+	faith_sites = "2"
+	faith_other_faiths = "Q" 
+	faith_convert = "E"
+	faith_create = "E"
+	faith_create_head = "R"
+	faith_toggle_only_my_group = "F"
+
+# County 
+	county_open_siege = "Z"
+	county_open_raid = "X"
+	county_cancel_holding_construction = "E"
+	county_construct_holding = "E"
+	county_upgrade_barony = "Q"
+	county_grant_to_or_find_vassal = "E"
+	county_next_building = "G"
+	county_faith = "R"
+	county_culture = "T"
+	county_holding_slot_1 = "1"
+	county_holding_slot_2 = "2"
+	county_holding_slot_3 = "3"
+	county_holding_slot_4 = "4"
+	county_holding_slot_5 = "5"
+	county_holding_slot_6 = "6"
+	county_holding_slot_7 = "7"
+	county_holding_slot_8 = "8"
+	county_holding_slot_9 = "9"
+
+# My realm
+	my_realm_domain = "1"
+	my_realm_vassals = "2"
+	my_realm_succession = "3"
+
+# Military
+	military_armies = "1"
+	military_mercenaries = "2"
+	military_holy_orders = "3"
+	military_raise_all = "Q"
+	military_raise_raider = "R"
+	military_disband_all = "E"
+	military_create_maa = "T"	
+	military_rally_item = "F"
+	military_show_knights = "Z"
+	military_add_rally_point = "G"
+	military_found_holy_order = "T"
+	military_toggle_reinforcement = "X"
+
+	selected_rally_delete = "G"
+	selected_rally_move = "F"
+	selected_rally_raise_raid = "R"
+	selected_rally_raise_all = "Q"
+	selected_rally_raise_local = "E"
+
+	army_change_commander = "Q"
+	army_merge = "G"
+	army_split_half = "F"
+	army_split_hired = "Z"
+	army_split_for_siege = "R"
+	army_create_new = "T"
+	army_disband = "E"
+	army_toggle_auto_raiding = "X"
+
+# Council
+	council_mine = "1"
+	council_liege = "2"
+
+# Intrigue
+	intrigue_schemes = "1"
+	intrigue_secrets = "2"
+	intrigue_schemes_invite = "Q"
+	intrigue_schemes_agents = "E"
+	intrigue_secrets_hooks_toggle = "Q"
+	intrigue_secrets_visibility_toggle = "E"
+
+# Court
+	court_court = "1"
+	court_prisoners = "2"
+	court_hire_physician = "Q"
+	court_invite_knights = "E"
+	court_invite_claimants = "R"
+	court_prison_mass_ransom = "Q"
+	court_prison_mass_release = "E"
+	court_prison_mass_execute = "R"
+
+# Factions
+	factions_mine = "1"
+	factions_liege = "2"
+}
