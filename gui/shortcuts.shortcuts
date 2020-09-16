@@ -162,7 +162,7 @@ shortcutbindings = {
 	army_create_new = "R"
 	army_disband = "E"
 	army_toggle_auto_raiding = "F"
-	army_undo_raiding_mode = "5"
+	army_undo_raiding_mode = "g"
 
 # Council
 	council_mine = "1"
@@ -176,7 +176,7 @@ shortcutbindings = {
 	intrigue_schemes_invite = "Q"
 	intrigue_schemes_agents = "E"
 	intrigue_secrets_hooks_toggle = "Q"
-	intrigue_secrets_visibility_toggle = "E"
+	intrigue_secrets_visibility_toggle = "F"
 
 # Court
 	court_court = "1"
