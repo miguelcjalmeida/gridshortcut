@@ -455,6 +455,7 @@ types CouncilWindow
 					}
 
 					blockoverride "onclick" {
+						shortcut = "council_hire_empty"
 						onclick = "[GuiCouncilPosition.SelectCouncillor]"
 
 						button_icon = {
@@ -1064,7 +1065,8 @@ types CouncilTaskTypes
 							spacing = 3
 
 							button_standard = {
-								size = { 190 25 }
+								size = { 190 25 }								
+								shortcut = "council_spouse_task"
 								onclick = "[GuiCouncilPosition.ShowHideTasks]"
 								tooltip = "[GuiCouncilPosition.GetShowHideTooltip]"
 								down = "[GuiCouncilPosition.ArePotentialTasksVisible]"

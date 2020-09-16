@@ -93,6 +93,16 @@ shortcutbindings = {
 	character_court = "3"
 	character_vassals = "4"
 
+# Find Character 
+	character_open_filter = "Q"
+	character_reverse_sort = "E"
+	character_sort_by_diplomacy = "1"
+	character_sort_by_martial = "2"
+	character_sort_by_stewardship = "3"
+	character_sort_by_intrigue = "4"
+	character_sort_by_learning = "5"
+	character_filter_reset = "R"
+
 # Faith
 	faith_beliefs = "1"
 	faith_sites = "2"
@@ -135,6 +145,8 @@ shortcutbindings = {
 	military_add_rally_point = "G"
 	military_found_holy_order = "F"
 	military_toggle_reinforcement = "T"
+	military_knights_invite = "E"
+	military_knights_invite_2 = "Q"
 
 	selected_rally_delete = "G"
 	selected_rally_move = "F"
@@ -155,6 +167,8 @@ shortcutbindings = {
 # Council
 	council_mine = "1"
 	council_liege = "2"
+	council_spouse_task = "Q"
+	council_hire_empty = "E"
 
 # Intrigue
 	intrigue_schemes = "1"

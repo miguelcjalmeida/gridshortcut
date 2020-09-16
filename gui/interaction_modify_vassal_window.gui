@@ -628,6 +628,10 @@ window = {
 						shortcut = "my_realm_contract_select_hook"
 						name = "tutorial_highlight_modify_contract_hook_button"
 						visible = "[CharacterInteractionConfirmationWindow.HasOptions]"
+
+						blockoverride "button_checkbox_inner" {
+							shortcut = "my_realm_contract_select_hook"
+						}
 					}
 
 					hbox = {
