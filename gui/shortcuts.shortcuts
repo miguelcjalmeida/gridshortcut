@@ -11,11 +11,11 @@ shortcutbindings = {
 # Time keeping
 	pause = "SPACE"
 	increase_speed = "KP_PLUS"
-	increase_speed_2 = "+"
-	increase_speed_3 = "["
+	increase_speed_2 = "X"
+	increase_speed_3 = "+"
 	decrease_speed = "KP_MINUS"
-	decrease_speed_2 = "-"
-	decrease_speed_3 = "]"
+	decrease_speed_2 = "Z"
+	decrease_speed_3 = "-"
 	speed_1 = "6"
 	speed_2 = "7"
 	speed_3 = "8"
@@ -75,8 +75,8 @@ shortcutbindings = {
 	dynasty_tree_pan_to_me = "HOME"
 
 # Dev
-	map_editor_toggle_game_map_mode = "m"
-	editor_toggle = "l"
+	map_editor_toggle_game_map_mode = "/"
+	editor_toggle = "."
 
 # Custom 
 # Character
@@ -84,9 +84,6 @@ shortcutbindings = {
 	character_faith = "R"
 	character_culture = "T"
 	character_realm_shield = "E"
-	character_house = "X"
-	character_liege = "F"
-	character_heir = "G"
 	character_family = "1"
 	character_relations = "2"
 	character_court = "3"
@@ -102,8 +99,6 @@ shortcutbindings = {
 	faith_toggle_only_my_group = "F"
 
 # County 
-	county_open_siege = "Z"
-	county_open_raid = "X"
 	county_cancel_holding_construction = "E"
 	county_construct_holding = "E"
 	county_upgrade_barony = "Q"
@@ -111,15 +106,6 @@ shortcutbindings = {
 	county_next_building = "G"
 	county_faith = "R"
 	county_culture = "T"
-	county_holding_slot_1 = "1"
-	county_holding_slot_2 = "2"
-	county_holding_slot_3 = "3"
-	county_holding_slot_4 = "4"
-	county_holding_slot_5 = "5"
-	county_holding_slot_6 = "6"
-	county_holding_slot_7 = "7"
-	county_holding_slot_8 = "8"
-	county_holding_slot_9 = "9"
 
 # My realm
 	my_realm_domain = "1"
@@ -133,12 +119,12 @@ shortcutbindings = {
 	military_raise_all = "Q"
 	military_raise_raider = "R"
 	military_disband_all = "E"
-	military_create_maa = "T"	
+	military_create_maa = "5"	
 	military_rally_item = "F"
-	military_show_knights = "Z"
+	military_show_knights = "4"
 	military_add_rally_point = "G"
 	military_found_holy_order = "T"
-	military_toggle_reinforcement = "X"
+	military_toggle_reinforcement = "T"
 
 	selected_rally_delete = "G"
 	selected_rally_move = "F"
@@ -147,13 +133,14 @@ shortcutbindings = {
 	selected_rally_raise_local = "E"
 
 	army_change_commander = "Q"
-	army_merge = "G"
-	army_split_half = "F"
-	army_split_hired = "Z"
-	army_split_for_siege = "R"
-	army_create_new = "T"
+	army_merge = "1"
+	army_split_half = "2"
+	army_split_hired = "3"
+	army_split_for_siege = "4"
+	army_create_new = "R"
 	army_disband = "E"
-	army_toggle_auto_raiding = "X"
+	army_toggle_auto_raiding = "F"
+	army_undo_raiding_mode = "G"
 
 # Council
 	council_mine = "1"
