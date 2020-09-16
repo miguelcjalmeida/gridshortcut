@@ -282,6 +282,10 @@ window = {
 				using = Animation_Character_Window_Refresh
 
 				portrait_head_small = {
+					blockoverride "portrait_button" {
+						shortcut = "character_imprisoner"
+					}
+
 					blockoverride "portrait_transformation"
 					{
 						portrait_scale = { -1 1 }
@@ -309,7 +313,10 @@ window = {
 				using = Animation_Character_Window_Refresh
 
 				portrait_head_small = {
-					shortcut = "character_liege"
+
+					blockoverride "portrait_button" {
+						shortcut = "character_liege"
+					}
 
 					blockoverride "portrait_transformation"
 					{
@@ -411,6 +418,10 @@ window = {
 				using = Animation_Character_Window_Refresh
 
 				portrait_head_small = {
+					blockoverride "portrait_button" {
+						shortcut = "character_host"
+					}
+					
 					blockoverride "portrait_transformation"
 					{
 						portrait_scale = { -1 1 }
@@ -471,7 +482,9 @@ window = {
 				using = Animation_Character_Window_Refresh
 
 				portrait_head_small = {
-					shortcut = "character_heir"
+					blockoverride "portrait_button" {
+						shortcut = "character_heir"
+					}
 
 					blockoverride "portrait_transformation"
 					{
@@ -496,6 +509,10 @@ window = {
 				using = Animation_Character_Window_Refresh
 			
 				portrait_head_small = {
+					blockoverride "portrait_button" {
+						shortcut = "character_heir"
+					}
+
 					blockoverride "portrait_transformation"
 					{
 						portrait_scale = { -1 1 }
@@ -1241,6 +1258,9 @@ window = {
 								frame = "[Character.GetDynastyHeadRelationFrame('(bool)no')]"
 								tooltip = "[Character.GetDynastyHeadTooltip]"
 							}
+						}
+						blockoverride "coa_button_inner" {
+							shortcut = "character_house"
 						}
 					}
 

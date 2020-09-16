@@ -2304,6 +2304,7 @@ types HUD
 			onclick = "[ToggleGameView( 'find_title' )]"
 			onclick = "[GetVariableSystem.Clear( 'extra_buttons_expand' )]"
 			shortcut = "find_title_shortcut"
+			shortcut = "find_title_shortcut_2"
 		}
 
 		# 0 size button for shortcut to work
