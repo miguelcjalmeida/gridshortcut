@@ -1267,6 +1267,7 @@ window = {
 				item = {
 					button_event_letter = {
 						name = "event_option_button"
+						shortcut = "event_confirm"
 						parentanchor = hcenter
 						size = { 592 42 }
 
@@ -1501,6 +1502,7 @@ types Events
 
 	type button_eventoption = button_event_standard
 	{
+		shortcut = "event_confirm"
 		name = "event_option_button"
 		size = { 500 36 }
 

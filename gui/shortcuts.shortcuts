@@ -4,6 +4,7 @@ shortcutbindings = {
 	close_tooltips = "ESCAPE"
 	confirm = "RETURN"
 	confirm_2 = "E"
+	event_confirm = "E"
 	zoom_out = "PAGE_UP"
 	zoom_in = "PAGE_DOWN"
 	
@@ -48,14 +49,12 @@ shortcutbindings = {
 # Siege View
 	siege_assault = "F"
 
-# County View
-
 # Dynasty View
 	dynasty_tree_pan_to_me = "HOME"
 
 # Dev
-	map_editor_toggle_game_map_mode = "/"
-	editor_toggle = "."
+	map_editor_toggle_game_map_mode = "0"
+	editor_toggle = "P"
 
 # Custom 
 # Outliner and menus
