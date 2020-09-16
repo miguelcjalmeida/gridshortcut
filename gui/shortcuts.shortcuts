@@ -79,6 +79,10 @@ shortcutbindings = {
 	editor_toggle = "."
 
 # Custom 
+# Outliner 
+	outliner = "CapsLock"
+	outliner_2 = "F10"
+	
 # Character
 	character_lifestyle = "Q"
 	character_faith = "R"
@@ -103,7 +107,6 @@ shortcutbindings = {
 	county_construct_holding = "E"
 	county_upgrade_barony = "Q"
 	county_grant_to_or_find_vassal = "E"
-	county_next_building = "G"
 	county_faith = "R"
 	county_culture = "T"
 
@@ -111,6 +114,10 @@ shortcutbindings = {
 	my_realm_domain = "1"
 	my_realm_vassals = "2"
 	my_realm_succession = "3"
+	my_realm_liege_contract = "Q"
+	my_realm_succession_designate_heir = "Q"
+	my_realm_succession_toggle_title_loss = "R"
+	my_realm_succession_vote = "F"
 
 # Military
 	military_armies = "1"
@@ -140,7 +147,7 @@ shortcutbindings = {
 	army_create_new = "R"
 	army_disband = "E"
 	army_toggle_auto_raiding = "F"
-	army_undo_raiding_mode = "G"
+	army_undo_raiding_mode = "5"
 
 # Council
 	council_mine = "1"

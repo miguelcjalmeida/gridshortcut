@@ -751,6 +751,7 @@ window = {
 
 							button_standard_clean = {
 								name = "all_governments"
+								shortcut = "my_realm_vassal_filter_all"
 								size = { 60 33 }
 								default_format = "#low"
 
@@ -1004,9 +1005,10 @@ window = {
 										layoutpolicy_horizontal = growing
 									}
 
-									button_standard = {
+									button_primary = {
 										datacontext = "[GuiLawGroup]"
 										size = { 150 32 }
+										shortcut = "my_realm_succession_change_law"
 										onclick = "[OpenSuccessionLawChangeWindow(GuiLawGroup.Self)]"
 										text = "MRW_CHANGE_LAW"
 										tooltip = "MRW_CHANGE_LAW_TT"
@@ -1048,6 +1050,7 @@ window = {
 							}
 
 							button_standard = {
+								shortcut = "my_realm_succession_designate_heir"
 								text = "MY_REALM_WINDOW_DESIGNATE_HEIR"
 								size = { 150 32 }
 								tooltip = "MRW_DESIGNATE_HEIR_TT"
@@ -1183,6 +1186,7 @@ window = {
 									margin = { 5 0 }
 
 									button_group = {
+										shortcut = "my_realm_succession_toggle_title_loss"
 										onclick = "[GetVariableSystem.Toggle( 'expand_partition' )]"
 
 										flowcontainer = {
@@ -1475,6 +1479,7 @@ window = {
 
 															button_standard = {
 																name = "go_to_vote"
+																shortcut = "my_realm_succession_vote"
 																onclick = "[OpenSuccessionElectionWindowForTitle(Title.Self)]"
 
 																text = "MY_REALM_WINDOW_VOTE"
@@ -1738,6 +1743,7 @@ window = {
 							spacing = 10
 
 							button_replace = {
+								shortcut = "my_realm_liege_contract"
 								enabled = "[Character.IsPlayerInteractionValid('vassal_modify_vassal_contract_interaction')]"
 								onclick = "[Character.OpenPlayerInteraction('vassal_modify_vassal_contract_interaction')]"
 								tooltip = "[Character.GetPlayerInteractionTooltip('vassal_modify_vassal_contract_interaction')]"
