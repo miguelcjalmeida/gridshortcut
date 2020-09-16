@@ -419,6 +419,7 @@ window = {
 
 				button_standard = {
 					name = "reset_button"
+					shortcut = "my_realm_contract_reset"
 					onclick = "[ModifyVassalContractInteractionWindow.ResetToCurrent]"
 					enabled = "[Not( ModifyVassalContractInteractionWindow.IsPreviewSameAsCurrent )]"
 					text = "RESET_CONTRACT_CHANGES"
@@ -623,7 +624,8 @@ window = {
 					}
 
 					## Options
-					vbox_interaction_options = {
+					vbox_interaction_options = {						
+						shortcut = "my_realm_contract_select_hook"
 						name = "tutorial_highlight_modify_contract_hook_button"
 						visible = "[CharacterInteractionConfirmationWindow.HasOptions]"
 					}

@@ -115,9 +115,12 @@ shortcutbindings = {
 	my_realm_vassals = "2"
 	my_realm_succession = "3"
 	my_realm_liege_contract = "Q"
+	my_realm_vassal_filter_all = "F"
 	my_realm_succession_designate_heir = "Q"
-	my_realm_succession_toggle_title_loss = "R"
-	my_realm_succession_vote = "F"
+	my_realm_succession_toggle_title_loss = "F"
+	my_realm_succession_vote = "R"
+	my_realm_contract_reset = "Q"
+	my_realm_contract_select_hook = "F"
 
 # Military
 	military_armies = "1"
@@ -130,7 +133,7 @@ shortcutbindings = {
 	military_rally_item = "F"
 	military_show_knights = "4"
 	military_add_rally_point = "G"
-	military_found_holy_order = "T"
+	military_found_holy_order = "F"
 	military_toggle_reinforcement = "T"
 
 	selected_rally_delete = "G"
