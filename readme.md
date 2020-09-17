@@ -163,7 +163,7 @@ _These shortcuts will allow you to dismiss event messages and open pending notif
 | F | When holy order tab is open, create new holy order |
 | E | When knights window is open, invite knights |
 
-## Rally selected window 
+## Rally point selected window 
 | Key | Action |
 | - | - |
 | Q | Raise all armies |
