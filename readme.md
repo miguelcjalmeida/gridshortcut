@@ -43,7 +43,9 @@ _Global actions are not scoped to any window, these shortcuts will work at any t
 
 ## Notifications
 ![Notifications](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/notifications.png?)
+
 _These hotkeys will allow you to open pending notifications in the upper area of the screen and resolve them._
+
 | Key | Action |
 | ------ | ------ |
 | N | Open the next pending action |
@@ -51,7 +53,9 @@ _These hotkeys will allow you to open pending notifications in the upper area of
 | Q | Decline the actions |
 
 ![Notifications](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/eventmessage.png)
+
 _You can dismiss a event messages with the next command_
+
 | Key | Action |
 | ------ | ------ |
 | Q | Dismiss message notifications |
