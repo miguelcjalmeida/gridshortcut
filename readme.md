@@ -3,16 +3,17 @@
 
 This is a mod for Crusader King 3 that adds more than a hundred of shortcuts to the game. The idea is to speed up interactions with interface, by diminishing the mouse usage with scoped shortcuts. They are scoped to the window that is opened, allowing the coverage of many different actions with same hotkeys. 
 
-The frequent used actions are mapped with easy-to-press thinking, meaning they are mapped to the left side of the keyboard, by the keys: **1-5**, **QERT**, **FG**, **ZXCVB**. The more uncommon actions (map view and few windows), are located to the other side. That configuration should help decreasing the mouse usage, allowing you even to combo hotkeys, but keep in mind that there is a learning curse, since it requires memorization. 
+The frequent used actions are mapped with easy-to-reach thinking, meaning they are mapped to the left side of the keyboard, by the keys: **1-5**, **QERT**, **FG**, **ZXCVB**. The more uncommon actions (map view and few windows), are located to the other side. This configuration should help decreasing the mouse usage, allowing you to even combo hotkeys. Just keep in mind that there is a learning curve, since it requires memorization. 
 
-# Download 
-- steam url
-- ck3 mods url
+# Requirement  [Very Important]
+
+Since CK3 still don't support modding the file "*Crusader King III/game/gui/shorcuts.shortcuts*", you will have to replace your version with [mine](https://raw.githubusercontent.com/miguelcjalmeida/gridshortcut/master/gui/shortcuts.shortcuts) manually, otherwise the hotkeys won't work. 
 
 # Hotkeys Map
+_Right below you can learn every mapping added by this mod. Fortunately, most hotkeys you can also discover in-game by hovering buttons, but some just won't show up, like opening portraits ones. For that, it is recommended to check the list below from time to time._
 
-## Common actions
-_Shortcuts change based on the window that is open, but these are common ones you will find among several windows._
+## Common scoped hotkeys
+_Hotkeys change based on the window that is opened, but in order to ease memorization they were chosen with some logic in mind, which you can follow in the list below._
 | Key | Action |
 | ------ | ------ |
 | 1, 2, 3, 4 | Navigate between tabs |
@@ -22,23 +23,23 @@ _Shortcuts change based on the window that is open, but these are common ones yo
 | F | Open portraits, and toggle most checkboxes | 
 | G | Open portraits, and create / Destroy items | 
 | V | Grant land/title to vassal |
-| R | Open county/character religion, and elections |
-| T | Open county/character culture |
+| R | Open county/character religion. Also open elections |
+| T | Open county/character culture. |
 | B | Navigate one step back |
 
-## Global actions
-_Global actions are not scoped to any window, these shortcuts will work at any time_
+## Global hotkeys
+_Global hotkeys are not scoped to any window, existing at any time_
 | Key | Action |
 | ------ | ------ |
-| Space | Pause, even multiplayer games |
+| Space | Pause, **even multiplayer games** |
 | Home | Go to capital |
-| C | Character find window |
-| M | Open find title window |
+| F10 | Open outliner |
+| C | find Character window |
+| M | find title window |
 | Z | (time) Speed down |
 | X | (time) Speed up |
 | Page Up | Zoom in |
 | Page Down | Zoom out |
-| F10 | Open outliner |
 
 
 ## Notifications
@@ -54,14 +55,13 @@ _These hotkeys will allow you to open pending notifications in the upper area of
 
 ![Notifications](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/eventmessage.png)
 
-_You can even dismiss event messages_
+_You can even dismiss event messages like the one above._
 
 | Key | Action |
 | ------ | ------ |
 | Q | Dismiss message notifications |
 
 ## Outliner HUD [F10]
-
 ![Notifications](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/outliner.png)
 
 _Now it is possible to open the outliner by pressing F10. While the outliner is open, you can also select your army by hotkey._
@@ -73,11 +73,16 @@ _Now it is possible to open the outliner by pressing F10. While the outliner is 
 | double V | Go to your army | 
 
 ## Events Window
+![event window](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/events.png)
+
 | Key | Action | 
 | - | - |
 | E | Confirm 1-option events, or select its last option | 
 
 ## Character Profile Window [F1]
+
+![character profile](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/profile.png)
+
 | Key | Action |
 | ----- | ----- |
 | 1, 2, 3, 4 | Navigate between the tabs |
@@ -91,6 +96,8 @@ _Now it is possible to open the outliner by pressing F10. While the outliner is 
 | 5 | Open jailor profile | 
 
 ## Find character window [C]
+![character search](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/character%20finder.png)
+
 | Key | Action |
 | ----- | ----- |
 | Q | Open filters window |
@@ -103,6 +110,9 @@ _Now it is possible to open the outliner by pressing F10. While the outliner is 
 | R | When filter window is open, reset filters
 
 ## Faith Window
+
+![faith](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/faith.png)
+
 | Key | Action |
 | - | - |
 | 1, 2 | Navigate between tabs |
@@ -112,9 +122,12 @@ _Now it is possible to open the outliner by pressing F10. While the outliner is 
 | F | Toggle only my group faiths checkbox |
 
 ## Culture Window 
-***none yet***
+\**none yet*\*
 
 ## House Window
+
+![character house](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/house.png)
+
 | Key | Action |
 | - | - |
 | 1 | Show members |
@@ -124,6 +137,9 @@ _Now it is possible to open the outliner by pressing F10. While the outliner is 
 | E | Open house tree |
 
 ## County Window
+
+![county](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/county.png)
+
 | Key | Action |
 | - | - |
 | Q | go to county location |
@@ -138,6 +154,9 @@ _Now it is possible to open the outliner by pressing F10. While the outliner is 
 | 3 | Go to siege, if any is happening |
 
 ## Title Window 
+
+![title](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/title.png)
+
 | Key | Action |
 | - | - |
 | 1 | Toggle the title history |
@@ -151,6 +170,9 @@ _Now it is possible to open the outliner by pressing F10. While the outliner is 
 | 5 | Make it your primary title |
 
 ## My Realm Window [F2]
+
+![county](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/my_realm.png)
+
 | Key | Action |
 | - | - |
 | 1, 2, 3 | Navigate between tabs |
@@ -160,12 +182,18 @@ _Now it is possible to open the outliner by pressing F10. While the outliner is 
 | R | Open election, if any |
 
 ## Contract with liege/vassal Window
+
+![contract](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/feudal_contract.png)
+
 | Key | Action |
 | - | - |
 | Q | Reset parameters |
 | F | Toggle use hook checkbox |
 
 ## Military Window [F3]
+
+![military](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/military.png)
+
 | Key | Action |
 | - | - |
 | 1, 2, 3 | Navigate between tabs |
@@ -180,7 +208,10 @@ _Now it is possible to open the outliner by pressing F10. While the outliner is 
 | F | When holy order tab is open, create new holy order |
 | E | When knights window is open, invite knights |
 
-## Rally selected window 
+## Rally point selected window 
+
+![rally point](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/rallypoint.png)
+
 | Key | Action |
 | - | - |
 | Q | Raise all armies |
@@ -190,6 +221,9 @@ _Now it is possible to open the outliner by pressing F10. While the outliner is 
 | G | Destroy rally point |
 
 ## Army selected window 
+
+![army](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/armies.png)
+
 | Key | Action |
 | - | - |
 | Q | Change commander |
@@ -201,16 +235,22 @@ _Now it is possible to open the outliner by pressing F10. While the outliner is 
 | E | Disband army |
 | F | Toggle auto raiding checkbox | 
 | G | Turn raiders into normal soldiers |
-| V | Move only the unit from army |
+| V | Select only one unit from army |
 | T | Reorganize two armies
 
 ## Siege window
+
+![siege window](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/siege.png)
+
 | Key | Action |
 | - | - |
 | F | Assault! |
 | 3 | Select the county being sieged | 
 
 ## Council window [F4]
+
+![council](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/council.png)
+
 | Key | Action |
 | - | - |
 | 1, 2 | Navigate between yours and liege council |
@@ -218,6 +258,9 @@ _Now it is possible to open the outliner by pressing F10. While the outliner is 
 | E | Hire councelor for empty spots only |
 
 ## Court Window [F5]
+
+![court](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/court.png)
+
 | Key | Action |
 | - | - | 
 | 1, 2 | Navigate between Court and Prison |
@@ -226,6 +269,9 @@ _Now it is possible to open the outliner by pressing F10. While the outliner is 
 | R | Invite claimants, and mass execution | 
 
 ## Intrigue window [F6]
+
+![intrigue](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/intrigue.png)
+
 | Key | Action |
 | - | - |
 | 1, 2 | Navigate between Schemes and Hooks tabs |
@@ -234,11 +280,17 @@ _Now it is possible to open the outliner by pressing F10. While the outliner is 
 | F | Toggle secrets visibility checkbox
 
 ## Factions window [F7]
+
+![factions](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/factions.png)
+
 | Key | Action |
 | - | - |
 | 1, 2 | Navigate between yours and liege factions |
 
 ## Decisions window [F8]
+
+![decisions](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/decisions.png)
+
 | Key | Action |
 | - | - |
 | F | Toggle important decisions checkbox |
