@@ -299,6 +299,7 @@ _Now it is possible to open the outliner by pressing F10. While the outliner is 
 ## MAP COMMANDS
 
 | Key | Action |
+| - | - |
 | A, W, S, D | Move the camera |
 | Y | Realm view |
 | 6 | Religion view |
