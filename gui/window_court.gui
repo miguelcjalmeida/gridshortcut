@@ -153,6 +153,11 @@ window = {
 													texture = "gfx/interface/buttons/button_icons/plus.dds" 
 												}
 											}
+
+
+											blockoverride "portrait_button" {
+												shortcut = "court_hire_physician"
+											}
 										}
 
 										vbox = {
