@@ -1,0 +1,233 @@
+######################################################
+############## DECISIONS DETAIL VIEW #################
+######################################################
+
+window = {
+	name = "decisiondetail_view"
+	parentanchor = top|right
+	position = { -650 110 }
+	size = { 630 935 }
+	movable = no
+	layer = windows_layer
+
+	using = Window_Background
+	using = Window_Decoration_Spike
+
+	state = {
+		name = _show
+		using = Animation_FadeIn_Quick
+		using = Sound_WindowShow_Standard
+		position = { -650 110 }
+	}
+
+	state = {
+		name = _hide
+		using = Animation_FadeOut_Quick
+		using = Sound_WindowHide_Standard
+		position_x = -600
+	}
+
+	vbox = {
+		datacontext = "[DecisionDetailView.GetDecision]"
+		using = Window_Margins
+
+		state = {
+			name = "decisions_detail_refresh"
+			alpha = 0.5
+			duration = 0.2
+			next = "b"
+			using = Animation_Curve_Default
+		}
+
+		state = {
+			name = "b"
+			alpha = 1
+			duration = 0.2
+			using = Animation_Curve_Default
+		}
+
+		header_pattern = {
+			layoutpolicy_horizontal = expanding
+
+			blockoverride "header_text"
+			{
+				text = "[DecisionDetailView.GetTitle]"
+			}
+
+			blockoverride "button_close"
+			{
+				onclick = "[DecisionDetailView.Close]"
+			}
+		}
+
+		vbox = {
+			layoutpolicy_horizontal = expanding
+			minimumsize = { 550 220 }
+
+			background = {
+				name = "illustrations"
+				texture = "[DecisionDetailView.GetPicture]"
+				margin_top = 10
+				alpha = 0.7
+				using = Mask_Rough_Edges
+			}
+		}
+
+		text_multi = {
+			name = "description"
+			minimumsize = { 515 -1 }
+			maximumsize = { 515 -1 }
+			margin = { 15 15 }
+			autoresize = yes
+			text = "[DecisionDetailView.GetDescription]"
+			using = Font_Size_Small
+		}
+
+		scrollbox = {
+			name = "description_scrollarea"
+			layoutpolicy_horizontal = expanding
+			layoutpolicy_vertical = expanding
+
+			blockoverride "scrollbox_content"
+			{
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					layoutpolicy_vertical = expanding
+					spacing = 10
+
+					vbox = {
+						name = "effect"
+						visible = "[DecisionDetailView.HasEffect]"
+						layoutpolicy_horizontal = expanding
+					
+						background = {
+							name = "illustrations"
+							texture = "gfx/interface/icons/lifestyle_tree_backgrounds/skulduggery.dds"
+							tintcolor = { 0.6 0.8 0.8 0.8 }
+
+							margin = { 0 5 }
+							using = Mask_Rough_Edges
+							alpha = 0.8
+							fittype = centercrop
+							mirror = horizontal
+
+							modify_texture = {
+								texture = "gfx/interface/tiles/tile_fade_mask_inverted.dds"
+								blend_mode = alphamultiply
+								alpha = 0.6
+							}
+
+							modify_texture = {
+								texture = "gfx/interface/tiles/alpha_white.dds"
+								blend_mode = overlay
+								alpha = 0.4
+							}
+						}
+
+						text_label_center = {
+							text = "DECISION_DETAIL_EFFECTS"
+						}
+
+						text_multi = {
+							layoutpolicy_horizontal = expanding
+							margin = { 15 15 }
+							max_width = 515
+							autoresize = yes
+							text = "[DecisionDetailView.GetEffectDescription]"
+						}
+					}
+
+					vbox = {
+						name = "requirements"
+						visible = "[DecisionDetailView.HasRequirements]"
+						layoutpolicy_horizontal = expanding
+
+						text_label_center = {
+							text = "DECISION_DETAIL_REQUIREMENTS"
+						}
+
+						text_multi = {
+							alwaystransparent = no
+							minimumsize = { 515 -1 }
+							maximumsize = { 515 -1 }
+							margin = { 15 15 }
+							autoresize = yes
+							text = "[DecisionDetailView.GetRequirementsDescription]"
+						}
+					}
+
+					expand = {}
+
+				}
+			}
+
+			blockoverride "scrollbox_background_fade" {}
+		}
+
+		vbox = {
+			name = "footer"
+			layoutpolicy_horizontal = expanding
+
+			vbox = {
+				margin_top = 10
+				spacing = 5
+
+				dynamicgridbox = {
+					name = "custom_widgets_container"
+				}
+			}
+
+			vbox = {
+				margin = { 15 0 }
+				margin_bottom = 10
+				spacing = 5
+				maximumsize = { 380 -1}
+
+				text_single = {
+					name = "cost"
+					visible = "[DecisionDetailView.HasCost]"
+					text = "[DecisionDetailView.GetCostDescription]"
+					using = Font_Size_Medium
+					default_format = "#high"
+					align = nobaseline
+				}
+
+				spacer = {
+					size = { 10 2}
+				}
+
+				button_primary = {
+					name = "confirm"
+					size = { 380 50 }
+
+					enabled = "[DecisionDetailView.CanConfirm]"
+					tooltip = "[DecisionDetailView.GetConfirmTooltip]"
+					onclick = "[DecisionDetailView.Confirm]"
+
+					text = "[DecisionDetailView.GetConfirmText]"
+					clicksound = "event:/SFX/UI/Generic/sfx_ui_generic_confirm"
+				}
+
+				hbox = {
+					spacing = 5
+
+					text_single = {
+						text = "DECISIONS_VIEW_MAJOR_TOGGLE"
+						align = nobaseline
+						default_format = "#low"
+					}
+
+					button_checkbox = {
+						shortcut = "decision_toggle_importance"
+						name = "major_checkbox"
+						size = { 32 32 }
+						checked = "[Decision.IsImportantForPlayer]"
+						onclick = "[Decision.OnToggleImportantForPlayer]"
+					}
+				}
+
+				expand = {}
+			}
+		}
+	}
+}

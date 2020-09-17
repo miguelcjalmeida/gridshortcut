@@ -182,6 +182,9 @@ shortcutbindings = {
 	factions_mine = "1"
 	factions_liege = "2"
 
+# Decisions
+	decision_toggle_importance = "F"
+
 # Title
 	title_toggle_history = "1"
 	title_toggle_claimants = "2"
