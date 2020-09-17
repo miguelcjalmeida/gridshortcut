@@ -171,6 +171,7 @@ window = {
 					tooltip = "GOTO_PROVINCE_TT"
 					using = tooltip_ne
 					onclick = "[HoldingView.PanToCountyCapital]"
+					shortcut = "county_go_to_location"
 				}
 
 				blockoverride "button_back"

@@ -106,10 +106,11 @@ shortcutbindings = {
 	faith_toggle_only_my_group = "F"
 
 # County 
+	county_go_to_location = "Q"
 	county_cancel_holding_construction = "E"
 	county_construct_holding = "E"
-	county_upgrade_barony = "Q"
-	county_grant_to_or_find_vassal = "E"
+	county_upgrade_barony = "E"
+	county_grant_to_or_find_vassal = "V"
 	county_faith = "R"
 	county_culture = "T"	
 	county_owner = "F"
@@ -189,4 +190,22 @@ shortcutbindings = {
 # Factions
 	factions_mine = "1"
 	factions_liege = "2"
+
+# Title
+	title_toggle_history = "1"
+	title_toggle_claimants = "2"
+	title_select_county = "T"
+	title_go_to_location = "Q"
+	title_view_de_jure = "3"
+	title_view_allegiance = "4"
+	title_show_election = "R"
+	title_create_title = "E"
+	title_show_add_law = "E"
+	title_find_vassal = "V"
+	title_destroy_title = "G"
+	title_make_primary = "5"
+	title_usurp = "E"
+	title_owner = "F"
+
+
 }
