@@ -1,6 +1,7 @@
 
-# Grid#Shortcut
-This is a mod for Crusader King 3 that adds a bunch of shortcuts to the game. The idea is to speed up interactions with interface, by diminishing the mouse usage with scoped shortcuts. They are scoped to the window that is opened, allowing the coverage of many different actions with same hotkeys. 
+# Grid#Shortcut 
+
+This is a mod for Crusader King 3 that adds more than a hundred of shortcuts to the game. The idea is to speed up interactions with interface, by diminishing the mouse usage with scoped shortcuts. They are scoped to the window that is opened, allowing the coverage of many different actions with same hotkeys. 
 
 The frequent used actions are mapped with easy-to-press thinking, meaning they are mapped to the left side of the keyboard, by the keys: **1-5**, **QERT**, **FG**, **ZXCVB**. The more uncommon actions (map view and few windows), are located to the other side. That configuration should help decreasing the mouse usage, allowing you even to combo hotkeys, but keep in mind that there is a learning curse, since it requires memorization. 
 
@@ -224,9 +225,3 @@ _These shortcuts will allow you to dismiss event messages and open pending notif
 | Key | Action |
 | - | - |
 | F | Toggle important decisions checkbox |
-
-
-
-
-
-
