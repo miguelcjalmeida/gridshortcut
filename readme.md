@@ -10,10 +10,10 @@ The frequent used actions are mapped with easy-to-reach thinking, meaning they a
 Since CK3 still don't support modding the file "*Crusader King III/game/gui/shorcuts.shortcuts*", you will have to replace your version with [mine](https://raw.githubusercontent.com/miguelcjalmeida/gridshortcut/master/gui/shortcuts.shortcuts) manually, otherwise the hotkeys won't work. 
 
 # Hotkeys Map
-_Right below you can learn every mapping added by this mod. Fortunately, most hotkeys you can also discover in-game by hovering buttons, but some just won't show up, like opening portraits ones. For that, it is recommended to check the list below from time to time._
+Right below you can learn every mapping added by this mod. Fortunately, most hotkeys you can also discover in-game by hovering buttons, but some just won't show up, like opening portraits ones. For that, it is recommended to check the list below from time to time.
 
 ## Common scoped hotkeys
-_Hotkeys change based on the window that is opened, but in order to ease memorization they were chosen with some logic in mind, which you can follow in the list below._
+Hotkeys change based on the window that is opened, but in order to ease memorization they were chosen with some logic in mind, which you can follow in the list below.
 | Key | Action |
 | ------ | ------ |
 | 1, 2, 3, 4 | Navigate between tabs |
@@ -28,7 +28,7 @@ _Hotkeys change based on the window that is opened, but in order to ease memoriz
 | B | Navigate one step back |
 
 ## Global hotkeys
-_Global hotkeys are not scoped to any window, existing at any time_
+Global hotkeys are not scoped to any window, existing at any time
 | Key | Action |
 | ------ | ------ |
 | Space | Pause, **even multiplayer games** |
