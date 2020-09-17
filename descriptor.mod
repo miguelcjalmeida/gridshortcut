@@ -1,7 +1,8 @@
 version="1.0.0"
 tags={
+	"Gameplay"
 	"Fixes"
 }
-name="GridShortcut"
+name="Grid#Shortcut"
 supported_version="1.0.3"
-remote_file_id="2229474688"
+remote_file_id="2231258079"

@@ -1,5 +1,0 @@
-Add a bunch of new shortcuts based on a Grid system. Every panel has unique shortcuts with keys ranging from Q, E, R T, A, F, G, Z, X. 
-
-The left side of the keyboard will be used mostly to trigger panel shortcuts, while the other side will contains map related shortcuts such as Realm view (Y), religion view (N), culture view (M).
-
-The mod should help diminishing the use of mouse device. 
