@@ -149,8 +149,10 @@ shortcutbindings = {
 	army_create_new = "R"
 	army_disband = "E"
 	army_toggle_auto_raiding = "F"
-	army_undo_raiding_mode = "g"
-
+	army_undo_raiding_mode = "G"
+	army_select_this_only = "V"
+	army_reorganize = "T"
+	
 	siege_assault = "F"
 
 # Council

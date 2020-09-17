@@ -213,8 +213,9 @@ window = {
 							tooltip = "[ArmyWindow.BuildReorgTooltip]"
 							using = tooltip_ne
 							parentanchor = bottom
-
+							
 							button_army_reorganize = {
+								shortcut = "army_reorganize"
 								onclick = "[ArmyWindow.ToggleReorganizationWindow]"
 								parentanchor = center
 							}
@@ -351,6 +352,7 @@ window = {
 			layoutpolicy_horizontal = expanding
 			minimumsize = { 0 48  }
 			name = "select_this_only"
+			shortcut = "army_select_this_only"
 			visible = "[GreaterThan_int32(GetDataModelSize(ArmyWindow.GetSelectedUnitItems), '(int32)1')]"
 			onclick = "[ArmyWindow.SelectThisUnitOnly]"
 
