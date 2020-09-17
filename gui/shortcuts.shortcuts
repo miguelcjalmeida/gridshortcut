@@ -7,7 +7,11 @@ shortcutbindings = {
 	event_confirm = "E"
 	zoom_out = "PAGE_UP"
 	zoom_in = "PAGE_DOWN"
-	
+	go_back = "B"
+	character_finder = "C"
+	find_title_shortcut = "n"
+	go_to_capital = "HOME"
+
 # Time keeping
 	pause = "SPACE"
 	increase_speed = "KP_PLUS"
@@ -17,46 +21,31 @@ shortcutbindings = {
 	decrease_speed_2 = "Z"
 	decrease_speed_3 = "-"
 	action_list = "TAB"
+	# speed_1 = "1"
+	# speed_2 = "2"
+	# speed_3 = "3"
+	# speed_4 = "4"
+	# speed_5 = "5"
 
-# Extra Menus
-	character_finder = "C"
-	find_title_shortcut = "n"
-	go_to_capital = "HOME"
-
-# Realm Map Mode
-	map_mode_1 = "Y"
-
-# De Jure Map modes
+# Map
+	map_mode_1 = "Y" # Realm Map Mode
 	map_mode_9 = "U" # dejure duchies
 	map_mode_10 = "I" # dejure kingdoms
 	map_mode_11 = "O" # dejure empires
-
-# Other Primary Map Modes
 	map_mode_3 = "6" # religions
 	map_mode_2 = "7" # cultures
 	map_mode_4 = "8" # houses
-
-# Other Map Modes
-	map_mode_7 = "KP_1" # player mapmode
+	map_mode_7 = "M" # player mapmode
 	map_mode_5 = "H" # governments
 	map_mode_6 = "L" # dejure counties
 	map_mode_12 = "K" # simple terrain
 	map_mode_13 = "J" # development
 
-# Many Views
-	go_back = "B"
-
-# Siege View
-	siege_assault = "F"
-
-# Dynasty View
-	dynasty_tree_pan_to_me = "HOME"
 
 # Dev
 	map_editor_toggle_game_map_mode = "0"
 	editor_toggle = "P"
 
-# Custom 
 # Outliner and menus
 	outliner = "CAPSLOCK"
 	outliner_2 = "F10"
@@ -163,6 +152,8 @@ shortcutbindings = {
 	army_toggle_auto_raiding = "F"
 	army_undo_raiding_mode = "g"
 
+	siege_assault = "F"
+
 # Council
 	council_mine = "1"
 	council_liege = "2"
@@ -207,5 +198,11 @@ shortcutbindings = {
 	title_usurp = "E"
 	title_owner = "F"
 
-
+# House
+	house_toggle_members = "1"
+	house_toggle_houses = "2"
+	house_owner = "F"
+	house_tree = "E"
+	house_legacies = "Q"
+	dynasty_tree_pan_to_me = "HOME"
 }
