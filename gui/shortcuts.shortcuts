@@ -49,6 +49,8 @@ shortcutbindings = {
 # Outliner and menus
 	outliner = "CAPSLOCK"
 	outliner_2 = "F10"
+	outliner_unit = "V"
+
 	character_window = "F1"
 	my_realm_window = "F2"
 	military_window = "F3"
