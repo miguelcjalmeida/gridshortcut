@@ -296,7 +296,14 @@ _Now it is possible to open the outliner by pressing F10. While the outliner is 
 | F | Toggle important decisions checkbox |
 
 
+## MAP COMMANDS
 
-
-
-
+| Key | Action |
+| A, W, S, D | Move the camera |
+| Y | Realm view |
+| 6 | Religion view |
+| 7 | Culture view |
+| 8 | House view |
+| U, I, O | Same de jure  views |
+| H, J, K, L | Same other map views |
+| M | Player map view |
