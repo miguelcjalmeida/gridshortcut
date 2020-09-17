@@ -1079,13 +1079,11 @@ window = {
 
 				button_round = {
 					name = "split_for_siege_button"
-					shortcut = "army_split_for_siege"
 					visible = "[Army.IsSieging]"
 					button_army_split_off_besiegers = {
 						parentanchor = center
-
 						onclick = [ArmyWindow.SplitSelectedForSiege]
-						shortcut = army_split_half
+						shortcut = "army_split_for_siege"
 					}
 					enabled = [ArmyWindow.CanSplitSelectedForSiege]
 					tooltip = [ArmyWindow.BuildSplitForSiegeTooltip]
