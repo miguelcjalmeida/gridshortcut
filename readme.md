@@ -42,14 +42,22 @@ _Global actions are not scoped to any window, these shortcuts will work at any t
 
 
 ## Notifications
-_These shortcuts will allow you to dismiss event messages and open pending notifications in the upper area of the screen_
+![Notifications](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/notifications.png?)
+_These hotkeys will allow you to open pending notifications in the upper area of the screen and resolve them._
 | Key | Action |
 | ------ | ------ |
-| N | Open the next pending diplomatic action / notification |
+| N | Open the next pending action |
 | E | Confirm the action |
-| Q | Can decline the actions and dismiss message notifications |
+| Q | Decline the actions |
+
+![Notifications](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/eventmessage.png)
+_You can dismiss a event messages with the next command_
+| Key | Action |
+| ------ | ------ |
+| Q | Dismiss message notifications |
 
 ## Outliner HUD
+![Notifications](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/outliner.png)
 | Key | Action |
 | ----- | ----- |
 | V | select your army | 
@@ -163,7 +171,7 @@ _These shortcuts will allow you to dismiss event messages and open pending notif
 | F | When holy order tab is open, create new holy order |
 | E | When knights window is open, invite knights |
 
-## Rally point selected window 
+## Rally selected window 
 | Key | Action |
 | - | - |
 | Q | Raise all armies |
@@ -225,3 +233,9 @@ _These shortcuts will allow you to dismiss event messages and open pending notif
 | Key | Action |
 | - | - |
 | F | Toggle important decisions checkbox |
+
+
+
+
+
+
