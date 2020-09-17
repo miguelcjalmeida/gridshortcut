@@ -1,0 +1,87 @@
+######################################################
+############## INTERACTION NOTIFICATION ##############
+######################################################
+window = {
+	name = "character_interaction_notification_window"
+	parentanchor = center
+	position = { 0 40 }
+	layer = windows_layer
+
+	using = Window_Background
+	using = Window_Decoration_Spike
+
+	vbox = {
+		using = Window_Margins
+		set_parent_size_to_minimum = yes
+
+		header_standard = {
+			layoutpolicy_horizontal = expanding
+
+			blockoverride "header_text"
+			{
+				text = "[CharacterInteractionNotificationWindow.GetContextName]"
+
+			}
+
+			blockoverride "button_close"
+			{
+				onclick = "[CharacterInteractionNotificationWindow.Close]"
+
+			}
+		}
+
+		vbox_sender_portrait_message  = {
+			layoutpolicy_horizontal = expanding
+
+		}
+
+		vbox_character_interaction_effects = {
+			visible = "[CharacterInteractionNotificationWindow.GetCharacterInteraction.ShowEffectsInNotification]"
+			datacontext = "[CharacterInteractionNotificationWindow.GetEffectsDescription]"
+			layoutpolicy_horizontal = expanding
+		}
+
+		vbox = {
+			spacing = 20
+			margin = { 0 15 }
+
+			hbox = {
+				spacing = 15
+				visible = "[Not( CharacterInteractionNotificationWindow.IsAutoAcceptNotification )]"
+
+				button_standard = {
+					shortcut = "notification_reject_button"
+					name = "reject_button"
+					text = "[CharacterInteractionNotificationWindow.GetAnswerRejectText]"
+					onclick = "[CharacterInteractionNotificationWindow.Reject]"
+					enabled = "[CharacterInteractionNotificationWindow.CanReject]"
+					using = tooltip_ws
+					default_format = "#medium"
+				}
+
+				button_primary = {
+					name = "accept_button"
+					text = "[CharacterInteractionNotificationWindow.GetAnswerAcceptText]"
+					onclick = "[CharacterInteractionNotificationWindow.Accept]"
+					enabled = "[CharacterInteractionNotificationWindow.CanAccept]"
+				}
+			}
+
+			button_primary = {
+				visible = "[CharacterInteractionNotificationWindow.IsAutoAcceptNotification]"
+				name = "acknowledge_button"
+				text = "[CharacterInteractionNotificationWindow.GetAnswerAcknowledgeText]"
+				onclick = "[CharacterInteractionNotificationWindow.Acknowledge]"
+			}
+
+			button_standard = {
+				name = "block_button"
+				text = "[CharacterInteractionNotificationWindow.GetAnswerBlockText]"
+				onclick = "[CharacterInteractionNotificationWindow.Block]"
+				visible = "[CharacterInteractionNotificationWindow.CanPotentiallyBeBlocked]"
+				enabled = "[CharacterInteractionNotificationWindow.CanBeBlocked]"
+				tooltip = "[CharacterInteractionNotificationWindow.GetCanBeBlockedTooltip]"
+			}
+		}
+	}
+}

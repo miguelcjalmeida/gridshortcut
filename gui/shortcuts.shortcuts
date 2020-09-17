@@ -8,9 +8,6 @@ shortcutbindings = {
 	zoom_out = "PAGE_UP"
 	zoom_in = "PAGE_DOWN"
 	go_back = "B"
-	character_finder = "C"
-	find_title_shortcut = "n"
-	go_to_capital = "HOME"
 
 # Time keeping
 	pause = "SPACE"
@@ -211,3 +208,12 @@ shortcutbindings = {
 	house_legacies = "Q"
 	dynasty_tree_pan_to_me = "HOME"
 }
+
+# HUD
+	notification_action = "N"
+	notification_diplomatic = "N"
+	notification_reject_button = "Q"
+	character_finder = "C"
+	find_title_shortcut = "M"
+	go_to_capital = "HOME"
+	notification_dismiss_message = "Q"
