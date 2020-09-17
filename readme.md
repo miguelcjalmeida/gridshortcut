@@ -54,17 +54,22 @@ _These hotkeys will allow you to open pending notifications in the upper area of
 
 ![Notifications](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/eventmessage.png)
 
-_You can dismiss a event messages with the next command_
+_You can even dismiss event messages_
 
 | Key | Action |
 | ------ | ------ |
 | Q | Dismiss message notifications |
 
-## Outliner HUD
+## Outliner HUD [F10]
+
 ![Notifications](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/outliner.png)
+
+_Now it is possible to open the outliner by pressing F10. While the outliner is open, you can also select your army by hotkey._
+
 | Key | Action |
 | ----- | ----- |
-| V | select your army | 
+| F10 | Open outliner | 
+| V | Select your army | 
 | double V | Go to your army | 
 
 ## Events Window
