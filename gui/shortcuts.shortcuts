@@ -71,7 +71,7 @@ shortcutbindings = {
 	character_liege = "F"
 	character_heir = "G"
 	character_imprisoner = "5"
-	character_host = "5"
+	character_host = "F"
 	character_house = "V"
 
 # Find Character 
@@ -209,7 +209,7 @@ shortcutbindings = {
 	house_tree = "E"
 	house_legacies = "Q"
 	dynasty_tree_pan_to_me = "HOME"
-}
+
 
 # HUD
 	notification_action = "N"
@@ -219,3 +219,5 @@ shortcutbindings = {
 	find_title_shortcut = "M"
 	go_to_capital = "HOME"
 	notification_dismiss_message = "Q"
+
+}
