@@ -22,8 +22,8 @@ Hotkeys change based on the window that is opened, but in order to ease memoriza
 | ------ | ------ |
 | 1, 2, 3, 4 | Navigate between tabs |
 | ESCAPE | Cancel most actions |
-| E | Confirm most actions |
-| Q | Decline some actions | 
+| E | Confirm most actions. Also more related to positive actions |
+| Q | Decline most actions. Also more related to negative actions | 
 | F | Open portraits, and toggle most checkboxes | 
 | G | Open portraits, and create / Destroy items | 
 | V | Grant land/title to vassal |
@@ -203,8 +203,8 @@ _Now it is possible to open the outliner by pressing F10. While the outliner is 
 | 1, 2, 3 | Navigate between tabs |
 | 4 | Open knights window
 | 5 | Open men-at-arms window |
-| Q | Raise all armies |
-| E | Raise all / Dispand all armies |
+| E | Raise all armies |
+| Q | Raise all / Dispand all armies |
 | R | Raise all as raiders | 
 | F | Select last created rally point | 
 | G | Create new rally point |
@@ -218,8 +218,8 @@ _Now it is possible to open the outliner by pressing F10. While the outliner is 
 
 | Key | Action |
 | - | - |
-| Q | Raise all armies |
-| E | Raise only local armies |
+| E | Raise all armies |
+| Q | Raise only local armies |
 | R | Raise all armies as raiders |
 | F | Move rally point |
 | G | Destroy rally point |
@@ -230,13 +230,13 @@ _Now it is possible to open the outliner by pressing F10. While the outliner is 
 
 | Key | Action |
 | - | - |
-| Q | Change commander |
+| E | Change commander |
 | 1 | Merge units |
 | 2 | Split units in half |
 | 3 | Split only enough units to complete siege |
 | 4 | Split only mercenaries |
 | R | Split as you want | 
-| E | Disband army |
+| Q | Disband army |
 | F | Toggle auto raiding checkbox | 
 | G | Turn raiders into normal soldiers |
 | V | Select only one unit from army |
@@ -279,8 +279,8 @@ _Now it is possible to open the outliner by pressing F10. While the outliner is 
 | Key | Action |
 | - | - |
 | 1, 2 | Navigate between Schemes and Hooks tabs |
-| Q | Invite for schemes and toggle the all hooks visibility |
-| E | Show scheme agents | 
+| E | Invite for schemes and toggle the all hooks visibility |
+| Q | Show scheme agents | 
 | F | Toggle secrets visibility checkbox
 
 ## Factions window [F7]
