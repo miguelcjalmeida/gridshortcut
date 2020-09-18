@@ -315,4 +315,5 @@ _Now it is possible to open the outliner by pressing F10. While the outliner is 
 
 # Credits 
 
-- Very special thanks to **VidereJP** for contributing with many ideas, testing, and validation.
+- Very special thanks to [VidereJP](https://steamcommunity.com/id/viderejp) for contributing with many ideas, testing, and validation.
+- Thank you [Ovallord](https://steamcommunity.com/id/mertats) for promptly supporting the modding community 
