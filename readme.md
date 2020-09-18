@@ -63,7 +63,7 @@ _You can even dismiss event messages like the one above._
 
 | Key | Action |
 | ------ | ------ |
-| Q | Dismiss message notifications |
+| Q | Dismiss event messages. This shortcut has higher priority than others, meaning it will always close the event messages when other windows are opened |
 
 ## Outliner HUD [F10]
 ![Notifications](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/outliner.png)
