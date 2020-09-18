@@ -315,4 +315,4 @@ _Now it is possible to open the outliner by pressing F10. While the outliner is 
 
 # Credits 
 
-- Very special credits to VidereJP for contributing with many ideas, testing, and validation.
+- Very special thanks to **VidereJP** for contributing with many ideas, testing, and validation.
