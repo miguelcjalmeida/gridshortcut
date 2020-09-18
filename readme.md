@@ -9,6 +9,10 @@ The frequent used actions are mapped with easy-to-reach thinking, meaning they a
 
 Since CK3 still don't support modding the file "*Crusader King III/game/gui/shorcuts.shortcuts*", you will have to replace your version with [mine](https://raw.githubusercontent.com/miguelcjalmeida/gridshortcut/master/gui/shortcuts.shortcuts) manually, otherwise the hotkeys won't work. 
 
+# Steam Download
+
+Download available on [steam workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=2231258079)
+
 # Hotkeys Map
 Right below you can learn every mapping added by this mod. Fortunately, most hotkeys you can also discover in-game by hovering buttons, but some just won't show up, like opening portraits ones. For that, it is recommended to check the list below from time to time.
 
