@@ -1,3 +1,5 @@
+[b]Mod v1.0.1[/b] for [b]CK3 1.0.3[/b]
+
 This is a mod for Crusader King 3 that adds more than a hundred of shortcuts to the game. The idea is to speed up interactions with interface by diminishing the mouse usage with scoped shortcuts. They are scoped to the window that is opened, allowing the coverage of many different actions with same hotkeys.
 
 The most frequent actions are mapped with easy-to-reach thinking, meaning they are mapped to the left side of the keyboard, where the hand rests, by the keys: 1-5, QWERT, ASDFG, ZXCVB. The more uncommon actions (map view and few windows), are located to the other side. This configuration should help decreasing the mouse usage, allowing you to even combo hotkeys. Just keep in mind that there is a learning curve, since it requires memorization.
@@ -7,7 +9,7 @@ The most frequent actions are mapped with easy-to-reach thinking, meaning they a
 Since CK3 still don't support modding the file "Crusader King III/game/gui/shorcuts.shortcuts", you will have to replace your version with mine manually, otherwise the hotkeys won't work. You should find this mod file inside your workshop directory under the ID 2231258079.
 
 If you prefer, you can also find the shortcuts.shortcuts in this link:
-https://raw.githubusercontent.com/miguelcjalmeida/gridshortcut/master/gui/shortcuts.shortcuts
+https://raw.githubusercontent.com/miguelcjalmeida/gridshortcut/master/grid_shortcut/gui/shortcuts.shortcuts
 
 ----- Learning the hotkeys ------
 
