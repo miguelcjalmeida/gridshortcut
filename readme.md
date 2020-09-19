@@ -307,22 +307,20 @@ _Now it is possible to open the outliner by pressing F10. While the outliner is 
 | E | Arrange marriage, find spouse, divorce |
 | F | Allow marriage |
 | R | Declare war, call alies, offer to join war |
-| R | Customize |
-| R | Customize |
-| R | Customize |
-| R | Customize |
-| R | Customize |
-| R | Customize |
-| R | Customize |
-| R | Customize |
-| R | Customize |
-| R | Customize |
-| R | Customize |
-| R | Customize |
-| R | Customize |
-| R | Customize |
-| R | Customize |
-| R | Customize |
+| T | Sway |
+| Z | Murder |
+| X | Fabricate Hook |
+| C | Abduct |
+| V | Grant Title |
+| B | Educate child, offer guardianship |
+| G | Blackmail |
+| 1 | Open diplomacy "more" options |
+| 2 | Open personal "more" options |
+| 3 | Open hostile "more" options |
+| 4 | Open vassalage "more" options |
+| 5 | Open religion "more" options |
+| 6 | Open house-head "more" options |
+| 7 | Open prison "more" options |
 
 ## MAP COMMANDS
 

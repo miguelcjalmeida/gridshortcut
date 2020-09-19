@@ -5,5 +5,5 @@ tags={
 }
 name="Grid#Shortcut"
 supported_version="1.0.3"
-path="C:/Users/Su/Documents/Paradox Interactive/Crusader Kings III/mod/grid_shortcut"
+path="C:/backup/dev/ck3/gs/grid_shortcut"
 remote_file_id="2231258079"
