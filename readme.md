@@ -299,6 +299,30 @@ _Now it is possible to open the outliner by pressing F10. While the outliner is 
 | - | - |
 | F | Toggle important decisions checkbox |
 
+## Context Menu [Right Click]
+| Key | Action |
+| - | - |
+| Q | Go to location |
+| SPACE | Pin character |
+| E | Arrange marriage, find spouse, divorce |
+| F | Allow marriage |
+| R | Declare war, call alies, offer to join war |
+| R | Customize |
+| R | Customize |
+| R | Customize |
+| R | Customize |
+| R | Customize |
+| R | Customize |
+| R | Customize |
+| R | Customize |
+| R | Customize |
+| R | Customize |
+| R | Customize |
+| R | Customize |
+| R | Customize |
+| R | Customize |
+| R | Customize |
+| R | Customize |
 
 ## MAP COMMANDS
 

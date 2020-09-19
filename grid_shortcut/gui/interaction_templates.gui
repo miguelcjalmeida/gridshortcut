@@ -1741,6 +1741,205 @@ types CharacterInteraction
 					}
 				}
 
+				button_normal = {
+					name = "button_marriage"			
+					size = { 0 0 }		
+					shortcut = "context_menu_arrange_marriage"		
+					visible = "[And(Not(InteractionItem.IsMarriageSetting), EqualTo_string(InteractionItem.GetName, SelectLocalization(InteractionItem.IsValid, 'arrange_marriage_interaction', 'arrange_marriage_interaction')))]"					
+					enabled = "[InteractionItem.IsValid]"
+					onclick = "[InteractionItem.OnClick]"
+				}
+
+				button_normal = {
+					name = "button_find_spouse"			
+					size = { 0 0 }		
+					shortcut = "context_menu_find_spouse"		
+					visible = "[And(Not(InteractionItem.IsMarriageSetting), EqualTo_string(InteractionItem.GetName, SelectLocalization(InteractionItem.IsValid, 'marry_off_interaction', 'marry_off_interaction')))]"					
+					enabled = "[InteractionItem.IsValid]"
+					onclick = "[InteractionItem.OnClick]"
+				}
+
+				button_normal = {
+					name = "button_request_divorce"			
+					size = { 0 0 }		
+					shortcut = "context_menu_request_divorce"		
+					visible = "[And(Not(InteractionItem.IsMarriageSetting), EqualTo_string(InteractionItem.GetName, SelectLocalization(InteractionItem.IsValid, 'divorce_character_rel_head_interaction', 'divorce_character_rel_head_interaction')))]"					
+					enabled = "[InteractionItem.IsValid]"
+					onclick = "[InteractionItem.OnClick]"
+				}
+
+				button_normal = {
+					name = "button_request_divorce_2"			
+					size = { 0 0 }		
+					shortcut = "context_menu_request_divorce"		
+					visible = "[And(Not(InteractionItem.IsMarriageSetting), EqualTo_string(InteractionItem.GetName, SelectLocalization(InteractionItem.IsValid, 'divorce_character_interaction', 'divorce_character_interaction')))]"					
+					enabled = "[InteractionItem.IsValid]"
+					onclick = "[InteractionItem.OnClick]"
+				}
+
+				button_normal = {
+					name = "button_sway"			
+					size = { 0 0 }		
+					shortcut = "context_menu_sway"		
+					visible = "[And(Not(InteractionItem.IsMarriageSetting), EqualTo_string(InteractionItem.GetName, SelectLocalization(InteractionItem.IsValid, 'sway_interaction', 'sway_interaction')))]"					
+					enabled = "[InteractionItem.IsValid]"
+					onclick = "[InteractionItem.OnClick]"
+				}
+
+				button_normal = {
+					name = "button_grant_title"			
+					size = { 0 0 }		
+					shortcut = "context_menu_grant_title"		
+					visible = "[And(Not(InteractionItem.IsMarriageSetting), EqualTo_string(InteractionItem.GetName, SelectLocalization(InteractionItem.IsValid, 'grant_titles_interaction', 'grant_titles_interaction')))]"					
+					enabled = "[InteractionItem.IsValid]"
+					onclick = "[InteractionItem.OnClick]"
+				}
+
+				button_normal = {
+					name = "button_declare_war"			
+					size = { 0 0 }		
+					shortcut = "context_menu_declare_war"		
+					visible = "[And(Not(InteractionItem.IsMarriageSetting), EqualTo_string(InteractionItem.GetName, SelectLocalization(InteractionItem.IsValid, 'declare_war_interaction', 'declare_war_interaction')))]"					
+					enabled = "[InteractionItem.IsValid]"
+					onclick = "[InteractionItem.OnClick]"
+				}
+
+				button_normal = {
+					name = "button_offer_to_join_war"			
+					size = { 0 0 }		
+					shortcut = "context_menu_offer_to_join_war"		
+					visible = "[And(Not(InteractionItem.IsMarriageSetting), EqualTo_string(InteractionItem.GetName, SelectLocalization(InteractionItem.IsValid, 'join_war_interaction', 'join_war_interaction')))]"					
+					enabled = "[InteractionItem.IsValid]"
+					onclick = "[InteractionItem.OnClick]"
+				}
+
+				button_normal = {
+					name = "button_call_to_war"			
+					size = { 0 0 }		
+					shortcut = "context_menu_call_to_war"		
+					visible = "[And(Not(InteractionItem.IsMarriageSetting), EqualTo_string(InteractionItem.GetName, SelectLocalization(InteractionItem.IsValid, 'call_ally_interaction', 'call_ally_interaction')))]"					
+					enabled = "[InteractionItem.IsValid]"
+					onclick = "[InteractionItem.OnClick]"
+				}
+
+				button_normal = {
+					name = "button_educate_child"			
+					size = { 0 0 }		
+					shortcut = "context_menu_educate_child"		
+					visible = "[And(Not(InteractionItem.IsMarriageSetting), EqualTo_string(InteractionItem.GetName, SelectLocalization(InteractionItem.IsValid, 'educate_child_interaction', 'educate_child_interaction')))]"					
+					enabled = "[InteractionItem.IsValid]"
+					onclick = "[InteractionItem.OnClick]"
+				}
+
+				button_normal = {
+					name = "button_offer_guardianship"			
+					size = { 0 0 }		
+					shortcut = "context_menu_offer_guardianship"		
+					visible = "[And(Not(InteractionItem.IsMarriageSetting), EqualTo_string(InteractionItem.GetName, SelectLocalization(InteractionItem.IsValid, 'offer_guardianship_interaction', 'offer_guardianship_interaction')))]"					
+					enabled = "[InteractionItem.IsValid]"
+					onclick = "[InteractionItem.OnClick]"
+				}
+
+				button_normal = {
+					name = "button_offer_blackmail"			
+					size = { 0 0 }		
+					shortcut = "context_menu_blackmail"		
+					visible = "[And(Not(InteractionItem.IsMarriageSetting), EqualTo_string(InteractionItem.GetName, SelectLocalization(InteractionItem.IsValid, 'blackmail_interaction', 'blackmail_interaction')))]"					
+					enabled = "[InteractionItem.IsValid]"
+					onclick = "[InteractionItem.OnClick]"
+				}
+
+				button_normal = {
+					name = "button_murder"			
+					size = { 0 0 }		
+					shortcut = "context_menu_murder"		
+					visible = "[And(Not(InteractionItem.IsMarriageSetting), EqualTo_string(InteractionItem.GetName, SelectLocalization(InteractionItem.IsValid, 'start_murder_interaction', 'start_murder_interaction')))]"					
+					enabled = "[InteractionItem.IsValid]"
+					onclick = "[InteractionItem.OnClick]"
+				}
+
+				button_normal = {
+					name = "button_fabricate_hook"			
+					size = { 0 0 }		
+					shortcut = "context_menu_fabricate_hook"		
+					visible = "[And(Not(InteractionItem.IsMarriageSetting), EqualTo_string(InteractionItem.GetName, SelectLocalization(InteractionItem.IsValid, 'fabricate_hook_interaction', 'fabricate_hook_interaction')))]"					
+					enabled = "[InteractionItem.IsValid]"
+					onclick = "[InteractionItem.OnClick]"
+				}
+
+				button_normal = {
+					name = "button_abduct"			
+					size = { 0 0 }		
+					shortcut = "context_menu_abduct"		
+					visible = "[And(Not(InteractionItem.IsMarriageSetting), EqualTo_string(InteractionItem.GetName, SelectLocalization(InteractionItem.IsValid, 'start_abduct', 'start_abduct')))]"					
+					enabled = "[InteractionItem.IsValid]"
+					onclick = "[InteractionItem.OnClick]"
+				}
+
+
+				button_normal = {
+					name = "button_diplomacy_more"			
+					size = { 0 0 }		
+					shortcut = "context_menu_diplomacy_more"		
+					visible = "[And(Not(InteractionItem.IsMarriageSetting), And(InteractionItem.IsMore, EqualTo_string(InteractionCategoryItem.GetName, SelectLocalization(InteractionItem.IsValid, 'interaction_category_diplomacy', 'interaction_category_diplomacy'))))]"					
+					enabled = "[InteractionItem.IsValid]"
+					onclick = "[InteractionItem.OnClick]"
+				}
+
+				button_normal = {
+					name = "button_personal_more"			
+					size = { 0 0 }		
+					shortcut = "context_menu_personal_more"		
+					visible = "[And(Not(InteractionItem.IsMarriageSetting), And(InteractionItem.IsMore, EqualTo_string(InteractionCategoryItem.GetName, SelectLocalization(InteractionItem.IsValid, 'interaction_category_friendly', 'interaction_category_friendly'))))]"					
+					enabled = "[InteractionItem.IsValid]"
+					onclick = "[InteractionItem.OnClick]"
+				}
+
+				button_normal = {
+					name = "button_hostile_more"			
+					size = { 0 0 }		
+					shortcut = "context_menu_hostile_more"		
+					visible = "[And(Not(InteractionItem.IsMarriageSetting), And(InteractionItem.IsMore, EqualTo_string(InteractionCategoryItem.GetName, SelectLocalization(InteractionItem.IsValid, 'interaction_category_hostile', 'interaction_category_hostile'))))]"					
+					enabled = "[InteractionItem.IsValid]"
+					onclick = "[InteractionItem.OnClick]"
+				}
+
+				button_normal = {
+					name = "button_vassalage_more"			
+					size = { 0 0 }		
+					shortcut = "context_menu_vassalage_more"		
+					visible = "[And(Not(InteractionItem.IsMarriageSetting), And(InteractionItem.IsMore, EqualTo_string(InteractionCategoryItem.GetName, SelectLocalization(InteractionItem.IsValid, 'interaction_category_vassal', 'interaction_category_vassal'))))]"					
+					enabled = "[InteractionItem.IsValid]"
+					onclick = "[InteractionItem.OnClick]"
+				}
+
+				button_normal = {
+					name = "button_religion_more"			
+					size = { 0 0 }		
+					shortcut = "context_menu_religion_more"		
+					visible = "[And(Not(InteractionItem.IsMarriageSetting), And(InteractionItem.IsMore, EqualTo_string(InteractionCategoryItem.GetName, SelectLocalization(InteractionItem.IsValid, 'interaction_category_religion', 'interaction_category_religion'))))]"					
+					enabled = "[InteractionItem.IsValid]"
+					onclick = "[InteractionItem.OnClick]"
+				}
+				
+				button_normal = {
+					name = "button_house_head_more"			
+					size = { 0 0 }		
+					shortcut = "context_menu_house_head_more"		
+					visible = "[And(Not(InteractionItem.IsMarriageSetting), And(InteractionItem.IsMore, EqualTo_string(InteractionCategoryItem.GetName, SelectLocalization(InteractionItem.IsValid, 'interaction_category_house_head', 'interaction_category_house_head'))))]"					
+					enabled = "[InteractionItem.IsValid]"
+					onclick = "[InteractionItem.OnClick]"
+				}
+				
+				button_normal = {
+					name = "button_prison_more"			
+					size = { 0 0 }		
+					shortcut = "context_menu_prison_more"		
+					visible = "[And(Not(InteractionItem.IsMarriageSetting), And(InteractionItem.IsMore, EqualTo_string(InteractionCategoryItem.GetName, SelectLocalization(InteractionItem.IsValid, 'interaction_category_prison', 'interaction_category_prison'))))]"					
+					enabled = "[InteractionItem.IsValid]"
+					onclick = "[InteractionItem.OnClick]"
+				}
+				
 				widget = {
 					size = { 35 30 }
 					visible = "[InteractionItem.IsMarriageSetting]"
@@ -1755,6 +1954,7 @@ types CharacterInteraction
 						frame = "[InteractionItem.GetCheckboxFrame]"
 						onclick = "[InteractionItem.OnClickCheckbox]"
 						tooltip = "[InteractionItem.GetCheckboxTooltip]"
+						shortcut = "context_menu_allow_marriage"
 					}
 
 					# important that text is in front for tooltip links inside the text
