@@ -160,6 +160,18 @@ shortcutbindings = {
 	council_liege = "2"
 	council_spouse_task = "Q"
 	council_hire_empty = "E"
+	council_assist_ruler = "R"
+	council_politics = "1"
+	council_chivalry = "2"
+	council_domain = "3"
+	council_intrigue = "4"
+	council_patronage = "5"
+	council_leave_lieges = "E"
+	council_replace_chaplain = "T"
+	council_replace_chancellor = "F"
+	council_replace_steward = "G"
+	council_replace_marshal = "V"
+	council_replace_spymaster = "B"
 
 # Intrigue
 	intrigue_schemes = "1"

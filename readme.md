@@ -259,7 +259,19 @@ _Now it is possible to open the outliner by pressing F10. While the outliner is 
 | - | - |
 | 1, 2 | Navigate between yours and liege council |
 | Q | Open spouse tasks | 
+| 1 | Spouse task - diplomacy |
+| 2 | Spouse task - martial |
+| 3 | Spouse task - steward |
+| 4 | Spouse task - intrigue | 
+| 5 | Spouse task - learning |
+| R | Spouse task - assist | 
 | E | Hire councelor for empty spots only |
+| T | Replace chaplain |
+| F | Replace chancellor |
+| G | Replace Steward |
+| V | Replace Marshal |
+| B | Replace Spymaster |
+| E | On liege's council, leave the council |
 
 ## Court Window [F5]
 

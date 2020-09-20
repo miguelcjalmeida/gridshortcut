@@ -304,6 +304,62 @@ widget = {
 
 types CouncilWindow
 {
+	type councilor_replace_button = button_round {
+		name = "replace"
+		onclick = "[GuiCouncilPosition.SelectCouncillor]"
+		enabled = "[GuiCouncilPosition.CanSelectCouncillor]"
+		tooltip = "[GuiCouncilPosition.GetSelectCouncillorTooltip]" #COUNCILWINDOW_TT_REPLACE
+		using = tooltip_se
+
+		button_change = {
+			alwaystransparent = yes
+			parentanchor = center
+		}
+	}
+	
+	type spouse_task_button = button_standard = {
+		name = "potential_task"
+		datacontext = "[GuiPotentialCouncilTask.GetCouncilTaskType]"
+		datacontext = "[GuiCouncilPosition.GetActiveCouncilTask]"
+		size = { 220 25 }
+
+		enabled = "[GuiPotentialCouncilTask.CanSelect]"
+		onclick = "[GuiPotentialCouncilTask.SelectTaskType]"
+
+		tooltip = "[CouncilTaskType.GetEffectDesc( ActiveCouncilTask.GetScopes )]"
+
+		text_single = {
+			parentanchor = left|vcenter
+			position = { 10 0 }
+			text = "[CouncilTaskType.GetName]"
+			align = nobaseline
+			default_format = "#clickable"
+		}
+
+		container = {
+			visible = "[CouncilTaskType.HasMainSkill]"
+			parentanchor = right|vcenter
+
+
+			skill_icon_label_vertical = {
+				datacontext = "[GuiCouncilPosition.GetSkillItemForTask(CouncilTaskType.Self)]"
+
+				blockoverride "font_size" {
+					min_width = 13
+				}
+
+				blockoverride "value"
+				{
+					text = "[GuiCouncilPosition.GetSkillModifierForTask(CouncilTaskType.Self)|+=]"
+				}
+
+				blockoverride "tooltip"
+				{
+				}
+			}
+		}
+	}
+
 
 	type council_task_info = vbox
 	{
@@ -554,31 +610,44 @@ types CouncilWindow
 				block "replace_councillor"
 				{
 					hbox = {
+						councilor_replace_button = {
+							visible = "[And(GuiCouncilPosition.CanPotentiallySelectCouncillor, EqualTo_string(ActiveCouncilTask.GetPositionType.GetName, SelectLocalization(GuiCouncilPosition.CanPotentiallySelectCouncillor, 'councillor_court_chaplain', 'councillor_court_chaplain')))]"
+							shortcut = "council_replace_chaplain"
+						}
 
-						button_round = {
-							name = "replace"
-							visible = "[GuiCouncilPosition.CanPotentiallySelectCouncillor]"
-							onclick = "[GuiCouncilPosition.SelectCouncillor]"
-							enabled = "[GuiCouncilPosition.CanSelectCouncillor]"
-							tooltip = "[GuiCouncilPosition.GetSelectCouncillorTooltip]" #COUNCILWINDOW_TT_REPLACE
-							using = tooltip_se
+						councilor_replace_button = {
+							visible = "[And(GuiCouncilPosition.CanPotentiallySelectCouncillor, EqualTo_string(ActiveCouncilTask.GetPositionType.GetName, SelectLocalization(GuiCouncilPosition.CanPotentiallySelectCouncillor, 'councillor_marshal', 'councillor_marshal')))]"
+							shortcut = "council_replace_marshal"
+						}
 
-							button_change = {
-								alwaystransparent = yes
-								parentanchor = center
-							}
+						councilor_replace_button = {
+							visible = "[And(GuiCouncilPosition.CanPotentiallySelectCouncillor, EqualTo_string(ActiveCouncilTask.GetPositionType.GetName, SelectLocalization(GuiCouncilPosition.CanPotentiallySelectCouncillor, 'councillor_steward', 'councillor_steward')))]"
+							shortcut = "council_replace_steward"
+						}
+
+						councilor_replace_button = {
+							visible = "[And(GuiCouncilPosition.CanPotentiallySelectCouncillor, EqualTo_string(ActiveCouncilTask.GetPositionType.GetName, SelectLocalization(GuiCouncilPosition.CanPotentiallySelectCouncillor, 'councillor_chancellor', 'councillor_chancellor')))]"
+							shortcut = "council_replace_chancellor"
+						}
+						
+						councilor_replace_button = {
+							visible = "[And(GuiCouncilPosition.CanPotentiallySelectCouncillor, EqualTo_string(ActiveCouncilTask.GetPositionType.GetName, SelectLocalization(GuiCouncilPosition.CanPotentiallySelectCouncillor, 'councillor_spymaster', 'councillor_spymaster')))]"
+							shortcut = "council_replace_spymaster"
 						}
 
 						button_round = {
 							name = "leave"
 							visible = "[ObjectsEqual( GetPlayer.Self, Character.Self )]"
 							onclick = "[CouncilWindow.OnLeaveCouncil]"
+							shortcut = "council_leave_lieges"
 							tooltip = "DECISIONS_VIEW_LEAVE_COUNCIL_TT"
 							using = tooltip_se
 
 							button_leave_council = {
 								mirror = horizontal
 								parentanchor = center
+								onclick = "[CouncilWindow.OnLeaveCouncil]"
+								shortcut = "council_leave_lieges"
 							}
 						}
 					}
@@ -650,47 +719,35 @@ types CouncilWindow
 					alwaystransparent = no
 
 					item = {
-						button_standard = {
-							name = "potential_task"
-							datacontext = "[GuiPotentialCouncilTask.GetCouncilTaskType]"
-							datacontext = "[GuiCouncilPosition.GetActiveCouncilTask]"
-							visible = "[GuiPotentialCouncilTask.IsVisible]"
-							size = { 220 25 }
-
-							enabled = "[GuiPotentialCouncilTask.CanSelect]"
-							onclick = "[GuiPotentialCouncilTask.SelectTaskType]"
-
-							tooltip = "[CouncilTaskType.GetEffectDesc( ActiveCouncilTask.GetScopes )]"
-
-							text_single = {
-								parentanchor = left|vcenter
-								position = { 10 0 }
-								text = "[CouncilTaskType.GetName]"
-								align = nobaseline
-								default_format = "#clickable"
+						container = {
+							spouse_task_button = {
+								shortcut = "council_assist_ruler"
+								visible = "[And(GuiPotentialCouncilTask.IsVisible, EqualTo_string(GuiPotentialCouncilTask.GetCouncilTaskType.GetName, SelectLocalization(GuiPotentialCouncilTask.IsVisible, 'task_spouse_default', 'task_spouse_default')))]"						
+							}
+							
+							spouse_task_button = {
+								shortcut = "council_politics"
+								visible = "[And(GuiPotentialCouncilTask.IsVisible, EqualTo_string(GuiPotentialCouncilTask.GetCouncilTaskType.GetName, SelectLocalization(GuiPotentialCouncilTask.IsVisible, 'task_court_politics', 'task_court_politics')))]"						
+							}
+							
+							spouse_task_button = {
+								shortcut = "council_chivalry"
+								visible = "[And(GuiPotentialCouncilTask.IsVisible, EqualTo_string(GuiPotentialCouncilTask.GetCouncilTaskType.GetName, SelectLocalization(GuiPotentialCouncilTask.IsVisible, 'task_chivalry', 'task_chivalry')))]"						
+							}
+							
+							spouse_task_button = {
+								shortcut = "council_domain"
+								visible = "[And(GuiPotentialCouncilTask.IsVisible, EqualTo_string(GuiPotentialCouncilTask.GetCouncilTaskType.GetName, SelectLocalization(GuiPotentialCouncilTask.IsVisible, 'task_manage_domain', 'task_manage_domain')))]"						
 							}
 
-							container = {
-								visible = "[CouncilTaskType.HasMainSkill]"
-								parentanchor = right|vcenter
-
-
-								skill_icon_label_vertical = {
-									datacontext = "[GuiCouncilPosition.GetSkillItemForTask(CouncilTaskType.Self)]"
-
-									blockoverride "font_size" {
-										min_width = 13
-									}
-
-									blockoverride "value"
-									{
-										text = "[GuiCouncilPosition.GetSkillModifierForTask(CouncilTaskType.Self)|+=]"
-									}
-
-									blockoverride "tooltip"
-									{
-									}
-								}
+							spouse_task_button = {
+								shortcut = "council_intrigue"
+								visible = "[And(GuiPotentialCouncilTask.IsVisible, EqualTo_string(GuiPotentialCouncilTask.GetCouncilTaskType.GetName, SelectLocalization(GuiPotentialCouncilTask.IsVisible, 'task_court_intrigue', 'task_court_intrigue')))]"						
+							}
+							
+							spouse_task_button = {
+								shortcut = "council_patronage"
+								visible = "[And(GuiPotentialCouncilTask.IsVisible, EqualTo_string(GuiPotentialCouncilTask.GetCouncilTaskType.GetName, SelectLocalization(GuiPotentialCouncilTask.IsVisible, 'task_patronage', 'task_patronage')))]"						
 							}
 						}
 					}
