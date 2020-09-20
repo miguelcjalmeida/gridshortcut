@@ -294,6 +294,7 @@ widget = {
 			onclick = "[PotentialTaskLocationWindow.Close]"
 			tooltip = "COUNCIL_TASK_CANCEL_ASSIGNMENT"
 			shortcut = "close_window"
+			shortcut = "event_decline"
 		}
 	}
 }
