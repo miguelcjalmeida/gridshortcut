@@ -182,6 +182,7 @@ Different from the hotkeys above, all the next ones are bound to a window.
 | Key | Action | 
 | - | - |
 | E | Confirm 1-option events, or select its last option | 
+
 (_watch out not to end up selecting an unwanted option with the hotkey_)
 
 ### Character Window
@@ -372,11 +373,11 @@ Different from the hotkeys above, all the next ones are bound to a window.
 | 4 | Spouse task - intrigue ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)| 
 | 5 | Spouse task - learning ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
 | R | Spouse task - assist ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)| 
-| F > 5 | Replace chaplain ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
 | F > 1 | Replace chancellor ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
-| F > 3 | Replace Steward ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
 | F > 2 | Replace Marshal ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
+| F > 3 | Replace Steward ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
 | F > 4 | Replace Spymaster ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png) |
+| F > 5 | Replace chaplain ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
 | E | On liege's council, leave the council ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png) |
 
 ### Court Window
