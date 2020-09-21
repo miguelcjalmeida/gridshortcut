@@ -295,7 +295,7 @@ window = {
 
 														text_multi = {
 															name = "name_clickable"
-															text = "p[CultureInnovation.GetNameNoTooltip]p"
+															text = "[CultureInnovation.GetNameNoTooltip]"
 															layoutpolicy_horizontal = expanding
 															align = left
 															margin_left = 8
@@ -305,7 +305,7 @@ window = {
 
 														text_multi = {
 															name = "name_unlocked"
-															text = "x[CultureInnovation.GetNameNoTooltip]x"
+															text = "[CultureInnovation.GetNameNoTooltip]"
 															layoutpolicy_horizontal = expanding
 															max_width = 150
 															align = left
@@ -317,7 +317,7 @@ window = {
 
 														text_multi = {
 															name = "name_blocked"
-															text = "k[CultureInnovation.GetNameNoTooltip]k"
+															text = "[CultureInnovation.GetNameNoTooltip]"
 															layoutpolicy_horizontal = expanding
 															max_width = 150
 															align = left
