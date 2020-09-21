@@ -90,7 +90,7 @@ Below you can check all the available global hotkeys.
 
 | Key | Action |
 | ------ | ------ |
-| SPACE > 1 | Raise all armies when at war or Disband all when at peace | 
+| SPACE > 1 | Raise all armies when at war or Disband all when at peace ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)| 
 
 ### Notifications
 ![Notifications](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/notifications.png?)
