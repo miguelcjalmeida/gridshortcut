@@ -22,7 +22,7 @@ Hotkeys can be either global or window-scoped, meaning they change based on the 
 | Key | Action |
 | ------ | ------ |
 | 1, 2, 3, 4 | Navigate between tabs |
-| SPACE | Trigger sequential global hotkeys ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg) |
+| SPACE | Trigger sequential global hotkeys ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png) |
 | ESCAPE | Cancel most actions |
 | E | Confirm most actions. Also more related to positive actions |
 | Q | Decline most actions. Also more related to negative actions | 
@@ -41,7 +41,7 @@ Below you can check all the available global hotkeys.
 
 | Key | Action |
 | ------ | ------ |
-| SPACE > SPACE | Pause, **even multiplayer games** ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg) |
+| SPACE > SPACE | Pause, **even multiplayer games** ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png) |
 | Z | (time) Speed down |
 | X | (time) Speed up |
 | B | Go back |
@@ -51,12 +51,12 @@ Below you can check all the available global hotkeys.
 
 | Key | Action |
 | ------ | ------ |
-| SPACE > W | Open focus and lifestyle window ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg)|
-| SPACE > R | Open religion panel ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg)|
-| SPACE > T | Open culture panel ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg)|
-| SPACE > F | Open your character panel ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg)|
-| SPACE > G | Open primary title panel ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg)|
-| SPACE > V | Open your house panel ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg)|
+| SPACE > W | Open focus and lifestyle window ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
+| SPACE > R | Open religion panel ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
+| SPACE > T | Open culture panel ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
+| SPACE > F | Open your character panel ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
+| SPACE > G | Open primary title panel ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
+| SPACE > V | Open your house panel ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
 
 ### Opening windows
 ![Opening windows](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/suggestionbutton.png)
@@ -65,14 +65,14 @@ Below you can check all the available global hotkeys.
 | Key | Action |
 | ------ | ------ |
 | TAB | Suggestions panel |
-| SPACE > TAB | Outliner panel ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg) |
-| SPACE > A | Your realm panel ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg) |
-| SPACE > S | Military panel ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg) |
-| SPACE > D | Council panel ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg) |
-| SPACE > Z | Court panel ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg) |
-| SPACE > X | Intrigue panel ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg) |
-| SPACE > C | Factions panel ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg) |
-| SPACE > B | Decisions panel ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg) |
+| SPACE > TAB | Outliner panel ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png) |
+| SPACE > A | Your realm panel ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png) |
+| SPACE > S | Military panel ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png) |
+| SPACE > D | Council panel ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png) |
+| SPACE > Z | Court panel ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png) |
+| SPACE > X | Intrigue panel ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png) |
+| SPACE > C | Factions panel ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png) |
+| SPACE > B | Decisions panel ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png) |
 
 ### More windows & actions
 ![more windows](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/more.png)
@@ -80,9 +80,9 @@ Below you can check all the available global hotkeys.
 | Key | Action |
 | ------ | ------ |
 | C | Find character window |
-| SPACE > Q | Go to capital ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg)|
-| SPACE > 3 | Find title ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg)|
-| SPACE > 4 | encyclopedia ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg)|
+| SPACE > Q | Go to capital ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
+| SPACE > 3 | Find title ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
+| SPACE > 4 | encyclopedia ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
 
 ### Notifications
 ![Notifications](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/notifications.png?)
@@ -91,7 +91,7 @@ _These hotkeys will allow you to open pending notifications in the upper area of
 
 | Key | Action |
 | ------ | ------ |
-| SPACE > 2 | Open the next pending action ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg)|
+| SPACE > 2 | Open the next pending action ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
 | N | Also open the next pending action |
 | E | Confirm the action |
 | Q | Decline the actions |
@@ -112,22 +112,22 @@ _All map views can be toggle by pressing a combination of buttons. All the seque
 
 | Key | Action |
 | ----- | ----- |
-| SPACE > E > E | Realm view ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg) |
-| SPACE > E > A | Duchies, de jure view ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg) | 
-| SPACE > E > S | Kingdoms, de jure view ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg) |
-| SPACE > E > D | Empire, de jure view ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg) |
-| SPACE > E > F | Counties, de jure view ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg)  |
-| SPACE > E > G | Baronies, de jure view ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg)  |
-| SPACE > E > Q | Governments view ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg) |
-| SPACE > E > W | Development view ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg) |
-| SPACE > E > R | Religions view ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg) |
-| SPACE > E > T | Cultures view ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg) |
-| SPACE > E > 1 | Terrain 2D view ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg) |
-| SPACE > E > 2 | Terrain 3D view ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg) |
-| SPACE > E > 3 | No icons realm view ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg) |
-| SPACE > E > Z | Areas of realm view ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg) |
-| SPACE > E > X | Diplomacy view ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg) |
-| SPACE > E > C | Player view ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg) |
+| SPACE > E > E | Realm view ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png) |
+| SPACE > E > A | Duchies, de jure view ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png) | 
+| SPACE > E > S | Kingdoms, de jure view ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png) |
+| SPACE > E > D | Empire, de jure view ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png) |
+| SPACE > E > F | Counties, de jure view ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)  |
+| SPACE > E > G | Baronies, de jure view ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)  |
+| SPACE > E > Q | Governments view ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png) |
+| SPACE > E > W | Development view ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png) |
+| SPACE > E > R | Religions view ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png) |
+| SPACE > E > T | Cultures view ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png) |
+| SPACE > E > 1 | Terrain 2D view ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png) |
+| SPACE > E > 2 | Terrain 3D view ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png) |
+| SPACE > E > 3 | No icons realm view ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png) |
+| SPACE > E > Z | Areas of realm view ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png) |
+| SPACE > E > X | Diplomacy view ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png) |
+| SPACE > E > C | Player view ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png) |
 
 ## Window Scoped Hotkeys
 Different from the hotkeys above, all the next ones are bound to a window.
@@ -139,7 +139,7 @@ Different from the hotkeys above, all the next ones are bound to a window.
 | Key | Action |
 | ----- | ----- |
 | TAB | Toggle suggestion panel | 
-| V | Select the last pending suggestion ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg) | 
+| V | Select the last pending suggestion ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png) | 
 | E | Confirm an opened suggestion | 
 | Q | Decline an opened suggestion | 
 
@@ -148,7 +148,7 @@ Different from the hotkeys above, all the next ones are bound to a window.
 
 | Key | Action |
 | ----- | ----- |
-| SPACE > TAB | Open outliner ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg) | 
+| SPACE > TAB | Open outliner ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png) | 
 | V | Select your army | 
 | V > V | Go to your army | 
 
@@ -157,24 +157,24 @@ Different from the hotkeys above, all the next ones are bound to a window.
 | Key | Action | 
 | - | - |
 | TAB | Pin character | 
-| Q | Go to location ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg)| 
-| E | Arrange marriage, find spouse, request divorce ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg)| 
-| R | Declare war, call ally to war, offer to join war ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg)| 
-| B | Educate child, offer guardianship ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg)| 
-| T | Sway ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg)| 
-| Z | Murder ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg)| 
-| X | Fabricate hook ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg)| 
-| C | Abduct ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg)| 
-| G | Blackmail ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg)| 
-| F | Toggle allow marriage checkbox  ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg)| 
-| V | Grant titles ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg)| 
-| 1 | Open the option "more" from diplomacy category ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg)| 
-| 2 | Open the option "more" from personal category ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg)| 
-| 3 | Open the option "more" from hostile category ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg)| 
-| 4 | Open the option "more" from vassalage category ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg)| 
-| 5 | Open the option "more" from religion category ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg)| 
-| 6 | Open the option "more" from house head category ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg)| 
-| 7 | Open the option "more" from prison category ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg)| 
+| Q | Go to location ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)| 
+| E | Arrange marriage, find spouse, request divorce ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)| 
+| R | Declare war, call ally to war, offer to join war ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)| 
+| B | Educate child, offer guardianship ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)| 
+| T | Sway ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)| 
+| Z | Murder ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)| 
+| X | Fabricate hook ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)| 
+| C | Abduct ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)| 
+| G | Blackmail ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)| 
+| F | Toggle allow marriage checkbox  ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)| 
+| V | Grant titles ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)| 
+| 1 | Open the option "more" from diplomacy category ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)| 
+| 2 | Open the option "more" from personal category ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)| 
+| 3 | Open the option "more" from hostile category ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)| 
+| 4 | Open the option "more" from vassalage category ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)| 
+| 5 | Open the option "more" from religion category ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)| 
+| 6 | Open the option "more" from house head category ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)| 
+| 7 | Open the option "more" from prison category ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)| 
 
 ### Events Window
 ![event window](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/events.png)
@@ -205,7 +205,7 @@ Different from the hotkeys above, all the next ones are bound to a window.
 | Key | Action |
 | ----- | ----- |
 | Q | Open filters window |
-| T | Reverse the sorting ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg) |
+| T | Reverse the sorting ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png) |
 | 1 | Sort by diplomacy
 | 2 | Sort by martial
 | 3 | Sort by stewardship
@@ -231,8 +231,8 @@ Different from the hotkeys above, all the next ones are bound to a window.
 
 | Key | Action |
 | - | - |
-| 1, 2, 3, 4 | Navigate between the Era tabs ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg)|
-| F | Go to culture head profile ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg) |
+| 1, 2, 3, 4 | Navigate between the Era tabs ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
+| F | Go to culture head profile ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png) |
 
 ### House Window
 
@@ -309,8 +309,8 @@ Different from the hotkeys above, all the next ones are bound to a window.
 | 1, 2, 3 | Navigate between tabs |
 | 4 | Open knights window
 | 5 | Open men-at-arms window |
-| E | Raise all armies ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg) |
-| Q | Disband all / Raise all armies ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg) |
+| E | Raise all armies ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png) |
+| Q | Disband all / Raise all armies ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png) |
 | R | Raise all as raiders | 
 | F | Select last created rally point | 
 | G | Create new rally point |
@@ -366,18 +366,18 @@ Different from the hotkeys above, all the next ones are bound to a window.
 | 1, 2 | Navigate between yours and liege council |
 | Q | Open spouse tasks | 
 | E | Hire councelor for empty spots only |
-| 1 | Spouse task - diplomacy ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg)|
-| 2 | Spouse task - martial ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg)|
-| 3 | Spouse task - steward ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg)|
-| 4 | Spouse task - intrigue ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg)| 
-| 5 | Spouse task - learning ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg)|
-| R | Spouse task - assist ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg)| 
-| F > 5 | Replace chaplain ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg)|
-| F > 1 | Replace chancellor ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg)|
-| F > 3 | Replace Steward ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg)|
-| F > 2 | Replace Marshal ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg)|
-| F > 4 | Replace Spymaster ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg) |
-| E | On liege's council, leave the council ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.jpg) |
+| 1 | Spouse task - diplomacy ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
+| 2 | Spouse task - martial ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
+| 3 | Spouse task - steward ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
+| 4 | Spouse task - intrigue ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)| 
+| 5 | Spouse task - learning ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
+| R | Spouse task - assist ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)| 
+| F > 5 | Replace chaplain ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
+| F > 1 | Replace chancellor ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
+| F > 3 | Replace Steward ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
+| F > 2 | Replace Marshal ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
+| F > 4 | Replace Spymaster ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png) |
+| E | On liege's council, leave the council ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png) |
 
 ### Court Window
 
