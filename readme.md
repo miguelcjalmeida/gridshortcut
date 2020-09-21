@@ -84,6 +84,14 @@ Below you can check all the available global hotkeys.
 | SPACE > 3 | Find title ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
 | SPACE > 4 | encyclopedia ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
 
+### Disband / Raise all at war
+
+![more windows](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/disbandall.png)
+
+| Key | Action |
+| ------ | ------ |
+| SPACE > 1 | Raise all armies when at war or Disband all when at peace | 
+
 ### Notifications
 ![Notifications](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/notifications.png?)
 
