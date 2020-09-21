@@ -20,6 +20,7 @@ window = {
 
 		on_start = "[GetVariableSystem.Set( 'right_window_open', 'true' )]"
 		on_start = "[GetVariableSystem.Set( 'council_tabs', 'my_council' )]"
+		on_start = "[GetVariableSystem.Clear('council_replace_on')]"
 	}
 
 	state = {
@@ -612,28 +613,65 @@ types CouncilWindow
 				{
 					hbox = {
 						councilor_replace_button = {
-							visible = "[And(GuiCouncilPosition.CanPotentiallySelectCouncillor, EqualTo_string(ActiveCouncilTask.GetPositionType.GetName, SelectLocalization(GuiCouncilPosition.CanPotentiallySelectCouncillor, 'councillor_court_chaplain', 'councillor_court_chaplain')))]"
-							shortcut = "council_replace_chaplain"
 						}
 
-						councilor_replace_button = {
-							visible = "[And(GuiCouncilPosition.CanPotentiallySelectCouncillor, EqualTo_string(ActiveCouncilTask.GetPositionType.GetName, SelectLocalization(GuiCouncilPosition.CanPotentiallySelectCouncillor, 'councillor_marshal', 'councillor_marshal')))]"
-							shortcut = "council_replace_marshal"
+						button_normal = {
+							size = { 0 0 }
+							shortcut = "council_replace_activator"
+							onclick = "[GetVariableSystem.Clear('council_replace_on')]"
+							onclick = "[GetVariableSystem.Toggle('council_replace_on')]"
 						}
 
-						councilor_replace_button = {
-							visible = "[And(GuiCouncilPosition.CanPotentiallySelectCouncillor, EqualTo_string(ActiveCouncilTask.GetPositionType.GetName, SelectLocalization(GuiCouncilPosition.CanPotentiallySelectCouncillor, 'councillor_steward', 'councillor_steward')))]"
-							shortcut = "council_replace_steward"
-						}
+						widget = {
+							name = "council_position_wgt"
+							visible = "[EqualTo_string(GetVariableSystem.Get( 'council_replace_on' ), 'true')]"
+							size = { 0 0 }
+							
+							button_normal = {
+								visible = "[And(GuiCouncilPosition.CanPotentiallySelectCouncillor, EqualTo_string(ActiveCouncilTask.GetPositionType.GetName, SelectLocalization(GuiCouncilPosition.CanPotentiallySelectCouncillor, 'councillor_court_chaplain', 'councillor_court_chaplain')))]"
+								shortcut = "council_replace_chaplain"
+								onclick = "[GuiCouncilPosition.SelectCouncillor]"
+								enabled = "[GuiCouncilPosition.CanSelectCouncillor]"
+								size = { 0 0 }
+							}
 
-						councilor_replace_button = {
-							visible = "[And(GuiCouncilPosition.CanPotentiallySelectCouncillor, EqualTo_string(ActiveCouncilTask.GetPositionType.GetName, SelectLocalization(GuiCouncilPosition.CanPotentiallySelectCouncillor, 'councillor_chancellor', 'councillor_chancellor')))]"
-							shortcut = "council_replace_chancellor"
-						}
-						
-						councilor_replace_button = {
-							visible = "[And(GuiCouncilPosition.CanPotentiallySelectCouncillor, EqualTo_string(ActiveCouncilTask.GetPositionType.GetName, SelectLocalization(GuiCouncilPosition.CanPotentiallySelectCouncillor, 'councillor_spymaster', 'councillor_spymaster')))]"
-							shortcut = "council_replace_spymaster"
+							button_normal = {
+								visible = "[And(GuiCouncilPosition.CanPotentiallySelectCouncillor, EqualTo_string(ActiveCouncilTask.GetPositionType.GetName, SelectLocalization(GuiCouncilPosition.CanPotentiallySelectCouncillor, 'councillor_marshal', 'councillor_marshal')))]"
+								shortcut = "council_replace_marshal"
+								onclick = "[GuiCouncilPosition.SelectCouncillor]"
+								enabled = "[GuiCouncilPosition.CanSelectCouncillor]"
+								size = { 0 0 }
+							}
+
+							button_normal = {
+								visible = "[And(GuiCouncilPosition.CanPotentiallySelectCouncillor, EqualTo_string(ActiveCouncilTask.GetPositionType.GetName, SelectLocalization(GuiCouncilPosition.CanPotentiallySelectCouncillor, 'councillor_steward', 'councillor_steward')))]"
+								shortcut = "council_replace_steward"
+								onclick = "[GuiCouncilPosition.SelectCouncillor]"
+								enabled = "[GuiCouncilPosition.CanSelectCouncillor]"
+								size = { 0 0 }
+							}
+
+							button_normal = {
+								visible = "[And(GuiCouncilPosition.CanPotentiallySelectCouncillor, EqualTo_string(ActiveCouncilTask.GetPositionType.GetName, SelectLocalization(GuiCouncilPosition.CanPotentiallySelectCouncillor, 'councillor_chancellor', 'councillor_chancellor')))]"
+								shortcut = "council_replace_chancellor"
+								onclick = "[GuiCouncilPosition.SelectCouncillor]"
+								enabled = "[GuiCouncilPosition.CanSelectCouncillor]"
+								size = { 0 0 }
+							}
+							
+							button_normal = {
+								visible = "[And(GuiCouncilPosition.CanPotentiallySelectCouncillor, EqualTo_string(ActiveCouncilTask.GetPositionType.GetName, SelectLocalization(GuiCouncilPosition.CanPotentiallySelectCouncillor, 'councillor_spymaster', 'councillor_spymaster')))]"
+								shortcut = "council_replace_spymaster"
+								onclick = "[GuiCouncilPosition.SelectCouncillor]"
+								enabled = "[GuiCouncilPosition.CanSelectCouncillor]"
+								size = { 0 0 }
+							}
+
+							state = {
+								name = _show
+								duration = 1
+								on_finish = "[GetVariableSystem.Clear( 'council_replace_on' )]"
+							}
 						}
 
 						button_round = {

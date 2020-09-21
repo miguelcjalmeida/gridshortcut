@@ -45,8 +45,7 @@ shortcutbindings = {
 	editor_toggle = "P"
 
 # Outliner
-	outliner = "CAPSLOCK"
-	outliner_2 = "F10"
+	outliner = "F10"
 	outliner_unit = "V"
 
 # Suggestion	
@@ -172,11 +171,12 @@ shortcutbindings = {
 	council_intrigue = "4"
 	council_patronage = "5"
 	council_leave_lieges = "E"
-	council_replace_chaplain = "T"
-	council_replace_chancellor = "F"
-	council_replace_steward = "G"
-	council_replace_marshal = "V"
-	council_replace_spymaster = "B"
+	council_replace_activator = "F"
+	council_replace_chaplain = "5"
+	council_replace_chancellor = "1"
+	council_replace_steward = "3"
+	council_replace_marshal = "2"
+	council_replace_spymaster = "4"
 
 # Intrigue
 	intrigue_schemes = "1"
@@ -292,16 +292,15 @@ shortcutbindings = {
 # Map Sequence
 	sequence_map_activator = "E"
 	sequence_map_realm = "E"
-	sequence_map_simple_terrain = "Q"
+	sequence_map_simple_terrain = "2"
 	sequence_map_religions = "R"
 	sequence_map_cultures = "T"
-	sequence_map_government = "W"
-
+	sequence_map_government = "Q"
 	sequence_map_barony = "G"
 	sequence_map_county = "F"
 	sequence_map_terrain = "1"
 	sequence_map_simplerealm = "3"
-	sequence_map_develop = "2"
+	sequence_map_develop = "W"
 	sequence_map_houses = "4"
 	sequence_map_areas = "Z"
 	sequence_map_diplomacy = "X"
