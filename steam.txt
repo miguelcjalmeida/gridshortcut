@@ -1,5 +1,5 @@
 [h1] What about it [/h1]
-[b]Mod v1.0.1[/b] for [b]CK3 v1.0.3[/b]
+[b]Mod v1.1.2[/b] for [b]CK3 v1.0.3[/b]
 
 This is a mod for Crusader King 3 that adds more than a hundred of shortcuts to the game. The idea is to speed up interactions with interface by diminishing the mouse usage with scoped shortcuts. They are scoped to the window that is opened, allowing the coverage of many different actions with same hotkeys.
 
