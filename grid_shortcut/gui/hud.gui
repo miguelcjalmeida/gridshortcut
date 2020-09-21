@@ -10,6 +10,12 @@ widget = {
 
 	using = Animation_ShowHide_Standard
 
+	state = { 
+		name = "_show"
+		on_start = "[GetVariableSystem.Clear( 'basic_sequence_combining' )]"
+		on_start = "[GetVariableSystem.Clear( 'map_sequence_combining' )]"
+	}
+	
 	flowcontainer = {
 		name = "observer_status"
 		visible = "[IsObserver]"
@@ -1013,12 +1019,10 @@ icon = {
 
 				button_pause_hud = {
 					visible = "[Not( GameIsMultiplayer )]"
-					shortcut = "pause"
 				}
 
 				button_pause_hud = {
 					visible = "[GameIsMultiplayer]"
-					shortcut = "pause"
 				}
 
 				vbox = {
@@ -1033,7 +1037,6 @@ icon = {
 							tooltip = "[GetIncreaseSpeedTooltip]"
 
 							shortcut = "increase_speed"
-							shortcut = "increase_speed_2"
 							shortcut = "increase_speed_3"
 							onclick = "[OnIncreaseGameSpeed]"
 
@@ -1051,7 +1054,6 @@ icon = {
 							tooltip = "[GetDecreaseSpeedTooltip]"
 
 							shortcut = "decrease_speed"
-							shortcut = "decrease_speed_2"
 							shortcut = "decrease_speed_3"
 							onclick = "[OnDecreaseGameSpeed]"
 						}
@@ -1223,6 +1225,10 @@ icon = {
 								alpha = 0
 							}
 						}
+
+						grid_shortcut_combo = {
+
+						}
 					}
 				}
 			}
@@ -1237,7 +1243,7 @@ icon = {
 				size = { 0 0 }
 
 				shortcut = "increase_speed"
-				shortcut = "increase_speed_2"
+				shortcut = "increase_speed_3"
 				onclick = "[OnIncreaseGameSpeed]"
 				oversound = "event:/SFX/UI/Generic/sfx_ui_generic_pointer_over"
 			}
@@ -1247,7 +1253,7 @@ icon = {
 				size = { 0 0 }
 
 				shortcut = "decrease_speed"
-				shortcut = "decrease_speed_2"
+				shortcut = "decrease_speed_3"
 				onclick = "[OnDecreaseGameSpeed]"
 				clicksound = "event:/SFX/UI/Generic/sfx_ui_generic_decrement"
 			}
@@ -1979,6 +1985,351 @@ notifications_suggestions = {
 
 types HUD
 {
+	type grid_shortcut_combo = widget {
+		name = "grid_shortcut_widget"
+        visible = "[Not(SinglePlayerShowingPausedSuccession)]"
+        allow_outside = yes
+		size = { 0 0 }
+		
+		button_normal = {			
+			shortcut = "increase_speed_2"
+			onclick = "[OnIncreaseGameSpeed]"
+			size = {0 0}		
+		}
+
+		button_normal = {			
+			shortcut = "decrease_speed_2"
+			onclick = "[OnDecreaseGameSpeed]"
+			size = {0 0}		
+		}
+
+		button_normal = {
+			shortcut = "pause"
+			enabled = "[Not(IsGameOver)]"
+			onclick = "[OnPause]"
+			size = {0 0}
+		}
+		
+		button_normal = {
+			shortcut = "sequence_activator"
+			visible = "[And(Not( SinglePlayerShowingPausedSuccession ))]"
+			onclick = "[GetVariableSystem.Toggle( 'basic_sequence_combining' )]"
+			size = {0 0}			
+		}
+
+		widget = {
+			name = "basic_sequences"
+			visible = "[EqualTo_string(GetVariableSystem.Get( 'basic_sequence_combining' ), 'true')]"
+			size = { 0 0 }
+			
+			button_normal = {
+				shortcut = "sequence_go_to_location"
+				onclick = "[OnGoToPlayerCapital]"
+				onclick = "[GetVariableSystem.Clear( 'basic_sequence_combining' )]"
+				size = {0 0}	
+			}
+			
+			button_normal = {
+				shortcut = "sequence_lifestyle"
+				onclick = "[OpenLifestyleView( GetPlayer )]"
+				onclick = "[GetVariableSystem.Clear( 'basic_sequence_combining' )]"
+				size = {0 0}	
+			}
+			
+			button_normal = {
+				datacontext = "[GetPlayer.GetCulture]"
+				shortcut = "sequence_culture"
+				onclick = "[DefaultOnCultureClick(Culture.GetID)]"
+				onclick = "[GetVariableSystem.Clear( 'basic_sequence_combining' )]"
+				size = {0 0}	
+			}
+			
+			button_normal = {
+				datacontext = "[GetPlayer.GetHouse]"
+				shortcut = "sequence_house"
+				onclick = "[DefaultOnHouseCoatOfArmsClick(DynastyHouse.GetID)]"
+				onclick = "[GetVariableSystem.Clear( 'basic_sequence_combining' )]"
+				size = {0 0}	
+			}
+
+			button_normal = {
+				datacontext = "[GetPlayer.GetFaith]"
+				shortcut = "sequence_faith"
+				onclick = "[DefaultOnFaithClick(GetPlayer.GetFaith.GetID)]"
+				onclick = "[GetVariableSystem.Clear( 'basic_sequence_combining' )]"
+				size = {0 0}	
+			}
+
+			button_normal = {
+				shortcut = "sequence_outliner"
+				onclick = "[ToggleGameView('outliner')]"
+				onclick = "[GetVariableSystem.Clear( 'basic_sequence_combining' )]"
+				size = {0 0}	
+			}
+
+			button_normal = {
+				datacontext = "[GetPlayer]"
+				shortcut = "sequence_disband"
+				visible = "[PlayerShouldDisbandAll]"
+				enabled = "[PlayerCanDisbandAll]"
+				onclick = "[PlayerDisbandAll]"
+				onclick = "[GetVariableSystem.Clear( 'basic_sequence_combining' )]"
+				size = {0 0}	
+				clicksound = "event:/SFX/UI/Unit/Army/sfx_ui_unit_army_disband"
+			}
+
+			button_normal = {
+				datacontext = "[GetPlayer]"
+				shortcut = "sequence_raise_all"
+				visible = "[And( Character.IsAtWar, Not(Character.HasRaisedRegiments)))]"
+				enabled = "[PlayerCanRaiseAnyRallyPoint]"
+				clicksound = "event:/SFX/UI/Unit/Army/sfx_ui_raise_army"
+				onclick = "[PlayerRaiseAllRegiments]"
+				onclick = "[GetVariableSystem.Clear( 'basic_sequence_combining' )]"
+				size = {0 0}	
+			}
+
+			button_normal = {
+				shortcut = "sequence_my_realm"
+				onclick = "[ToggleGameView('my_realm')]"
+				onclick = "[GetVariableSystem.Clear( 'basic_sequence_combining' )]"
+				size = {0 0}	
+			}
+
+			button_normal = {
+				shortcut = "sequence_military"
+				onclick = "[ToggleGameViewData('military', GetPlayer.GetID)]"
+				onclick = "[GetVariableSystem.Clear( 'basic_sequence_combining' )]"
+				size = {0 0}	
+			}
+
+			button_normal = {
+				shortcut = "sequence_council"
+				onclick = "[ToggleGameViewData('council_window', GetPlayer.GetID)]"
+				onclick = "[GetVariableSystem.Clear( 'basic_sequence_combining' )]"
+				size = {0 0}	
+			}
+
+			button_normal = {
+				shortcut = "sequence_court"
+				onclick = "[ToggleGameViewData( 'court_window', GetPlayer.GetID )]"
+				onclick = "[GetVariableSystem.Clear( 'basic_sequence_combining' )]"
+				size = {0 0}	
+			}
+
+			button_normal = {
+				shortcut = "sequence_intrigue"
+				onclick = "[ToggleGameViewData('intrigue_window', GetPlayer.GetID)]"
+				onclick = "[GetVariableSystem.Clear( 'basic_sequence_combining' )]"
+				size = {0 0}	
+			}
+
+			button_normal = {
+				shortcut = "sequence_factions"
+				onclick = "[ToggleGameView('factions_window')]"
+				onclick = "[GetVariableSystem.Clear( 'basic_sequence_combining' )]"
+				size = {0 0}	
+			}
+
+			button_normal = {
+				shortcut = "sequence_decisions"
+				onclick = "[ToggleGameView('decisions')]"
+				onclick = "[GetVariableSystem.Clear( 'basic_sequence_combining' )]"
+				size = {0 0}	
+			}
+
+			button_normal = {
+				shortcut = "sequence_character"
+				onclick = "[ToggleCharacter( GetPlayer.GetID )]"
+				onclick = "[GetVariableSystem.Clear( 'basic_sequence_combining' )]"
+				size = {0 0}	
+			}
+
+			button_normal = {
+				shortcut = "sequence_primary_title"
+				onclick = "[DefaultOnCoatOfArmsClick(GetPlayer.GetPrimaryTitle.GetID)]"
+				onclick = "[GetVariableSystem.Clear( 'basic_sequence_combining' )]"
+				size = {0 0}	
+			}
+
+			button_normal = {
+				shortcut = "sequence_find_title"
+				onclick = "[ToggleGameView( 'find_title' )]"
+				onclick = "[GetVariableSystem.Clear( 'basic_sequence_combining' )]"
+				size = {0 0}	
+			}
+
+			button_normal = {
+				shortcut = "sequence_encyclopedia"
+				onclick = "[ToggleEncyclopedia]"
+				onclick = "[GetVariableSystem.Clear( 'basic_sequence_combining' )]"
+				size = {0 0}	
+			}
+
+			button_normal = {
+				shortcut = "sequence_pause"
+				enabled = "[Not(IsGameOver)]"
+				onclick = "[OnPause]"
+				onclick = "[GetVariableSystem.Clear( 'basic_sequence_combining' )]"
+				size = {0 0}
+			}
+
+			button_normal = {
+				shortcut = "sequence_map_activator"
+				onclick = "[GetVariableSystem.Clear( 'basic_sequence_combining' )]"
+				onclick = "[GetVariableSystem.Clear( 'map_sequence_combining' )]"
+				onclick = "[GetVariableSystem.Toggle( 'map_sequence_combining' )]"
+				size = {0 0}
+			}
+
+			state = {
+				name = _show
+				duration = 1
+                on_finish = "[GetVariableSystem.Clear( 'basic_sequence_combining' )]"
+			}
+		} 
+
+		widget = {
+			name = "map_sequences"
+			visible = "[EqualTo_string(GetVariableSystem.Get( 'map_sequence_combining' ), 'true')]"
+			size = { 0 0 }
+			
+			button_normal = {
+				shortcut = "sequence_map_realm"
+				onclick = "[SetMapMode('realms')]"
+				onclick = "[ClearExploringRealms]"
+				onclick = "[GetVariableSystem.Clear( 'map_sequence_combining' )]"
+				size = {0 0}	
+			}
+
+			button_normal = {
+				shortcut = "sequence_map_government"
+				onclick = "[SetMapMode('government')]"
+				onclick = "[GetVariableSystem.Clear( 'map_sequence_combining' )]"
+				size = {0 0}	
+			}
+
+			button_normal = {
+				shortcut = "sequence_map_simple_terrain"
+				onclick = "[SetMapMode('simple_terrain')]"
+				onclick = "[GetVariableSystem.Clear( 'map_sequence_combining' )]"
+				size = {0 0}	
+			}
+			
+			button_normal = {
+				shortcut = "sequence_map_religions"
+				onclick = "[SetMapMode('religions')]"
+				onclick = "[GetVariableSystem.Clear( 'map_sequence_combining' )]"
+				size = {0 0}	
+			}
+			
+			button_normal = {
+				shortcut = "sequence_map_cultures"
+				onclick = "[SetMapMode('cultures')]"
+				onclick = "[GetVariableSystem.Clear( 'map_sequence_combining' )]"
+				size = {0 0}	
+			}
+			
+			button_normal = {
+				shortcut = "sequence_map_duchies"
+				onclick = "[SetMapMode('dejure_duchies')]"
+				onclick = "[GetVariableSystem.Clear( 'map_sequence_combining' )]"
+				size = {0 0}	
+			}
+			
+			button_normal = {
+				shortcut = "sequence_map_kingdoms"
+				onclick = "[SetMapMode('dejure_kingdoms')]"
+				onclick = "[GetVariableSystem.Clear( 'map_sequence_combining' )]"
+				size = {0 0}	
+			}
+			
+			button_normal = {
+				shortcut = "sequence_map_empire"
+				onclick = "[SetMapMode('dejure_empires')]"
+				onclick = "[GetVariableSystem.Clear( 'map_sequence_combining' )]"
+				size = {0 0}	
+			}
+			
+			button_normal = {
+				shortcut = "sequence_map_county"
+				onclick = "[SetMapMode('dejure_counties')]"
+				onclick = "[GetVariableSystem.Clear( 'map_sequence_combining' )]"
+				size = {0 0}	
+			}
+
+			button_normal = {
+				shortcut = "sequence_map_barony"
+				onclick = "[SetMapMode('baronies')]"
+				onclick = "[GetVariableSystem.Clear( 'map_sequence_combining' )]"
+				size = {0 0}	
+			}
+
+			button_normal = {
+				shortcut = "sequence_map_simplerealm"
+				onclick = "[SetMapMode('simple_realms')]"
+				onclick = "[GetVariableSystem.Clear( 'map_sequence_combining' )]"
+				size = {0 0}	
+			}
+
+			button_normal = {
+				shortcut = "sequence_map_terrain"
+				onclick = "[SetMapMode('terrain')]"
+				onclick = "[GetVariableSystem.Clear( 'map_sequence_combining' )]"
+				size = {0 0}	
+			}
+						
+			button_normal = {
+				shortcut = "sequence_map_player"
+				onclick = "[SetMapMode('players')]"
+				onclick = "[GetVariableSystem.Clear( 'map_sequence_combining' )]"
+				size = {0 0}	
+			}
+
+			button_normal = {
+				shortcut = "sequence_map_areas"
+				onclick = "[SetMapMode('realm_areas')]"
+				onclick = "[GetVariableSystem.Clear( 'map_sequence_combining' )]"
+				size = {0 0}	
+			}
+
+			button_normal = {
+				shortcut = "sequence_map_diplomacy"
+				onclick = "[SetMapMode('diplomacy')]"
+				onclick = "[GetVariableSystem.Clear( 'map_sequence_combining' )]"
+				size = {0 0}	
+			}
+			
+			button_normal = {
+				shortcut = "sequence_map_develop"
+				onclick = "[SetMapMode('county_development')]"
+				onclick = "[GetVariableSystem.Clear( 'map_sequence_combining' )]"
+				size = {0 0}	
+			}
+			
+			button_normal = {
+				shortcut = "sequence_map_houses"
+				onclick = "[SetMapMode('houses')]"
+				onclick = "[GetVariableSystem.Clear( 'map_sequence_combining' )]"
+				size = {0 0}	
+			}
+
+			button_normal = {
+				shortcut = "sequence_activator"
+				onclick = "[GetVariableSystem.Clear( 'map_sequence_combining' )]"
+				onclick = "[GetVariableSystem.Clear( 'basic_sequence_combining' )]"
+				onclick = "[GetVariableSystem.Toggle( 'basic_sequence_combining' )]"
+				size = {0 0}	
+			}
+
+			state = {
+				name = _show
+				duration = 1
+                on_finish = "[GetVariableSystem.Clear( 'map_sequence_combining' )]"
+			}
+		}
+	}
+
 	type button_war_banner = button_normal {
 		size = { 78 82 }
 		onclick = "[WarItem.OnClick]"

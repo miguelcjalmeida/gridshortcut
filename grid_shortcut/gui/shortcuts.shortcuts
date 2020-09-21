@@ -234,7 +234,7 @@ shortcutbindings = {
 	notification_dismiss_message = "Q"
 
 # Context Menu
-	context_menu_pin = "SPACE"
+	context_menu_pin = "TAB"
 	context_menu_go_to_location = "Q"
 	context_menu_arrange_marriage = "E"
 	context_menu_find_spouse = "E"
@@ -258,4 +258,52 @@ shortcutbindings = {
 	context_menu_religion_more = "5"
 	context_menu_house_head_more = "6"
 	context_menu_prison_more = "7"
+
+# Global sequences
+	sequence_activator = "SPACE"
+	sequence_go_to_location = "Q"
+	sequence_lifestyle = "W"
+	sequence_faith = "R"
+	sequence_culture = "T"
+	sequence_house = "V"
+	sequence_outliner = "TAB"
+	sequence_disband = "1"
+	sequence_raise_all = "1"
+	sequence_pause = "SPACE"
+
+	sequence_character = "F"
+	sequence_primary_title = "G"
+	sequence_my_realm = "A"
+	sequence_military = "S"
+	sequence_council = "D"
+	sequence_court = "Z"
+	sequence_intrigue = "X"
+	sequence_factions = "C"
+	sequence_decisions = "B"
+	sequence_find_title = "3"
+	sequence_encyclopedia = "4"
+
+	sequence_notification = "2"
+
+# Map Sequence
+	sequence_map_activator = "E"
+	sequence_map_realm = "E"
+	sequence_map_simple_terrain = "Q"
+	sequence_map_religions = "R"
+	sequence_map_cultures = "T"
+	sequence_map_government = "W"
+
+	sequence_map_barony = "G"
+	sequence_map_county = "F"
+	sequence_map_terrain = "1"
+	sequence_map_simplerealm = "3"
+	sequence_map_develop = "2"
+	sequence_map_houses = "4"
+	sequence_map_areas = "Z"
+	sequence_map_diplomacy = "X"
+	sequence_map_player = "C"	
+	sequence_map_empire = "D"
+	sequence_map_duchies = "A"
+	sequence_map_kingdoms = "S"
+	
 }

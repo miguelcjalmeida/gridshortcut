@@ -240,6 +240,14 @@ types Notifications {
                             start_sound = {soundeffect = "event:/SFX/UI/Notifications/Alerts/sfx_ui_notification_alert_action_mouse_release"}
                         }
                     }
+
+                    button_normal = {
+                        size = { 0 0 }
+                        shortcut = "sequence_notification"
+                        visible = "[EqualTo_string(GetVariableSystem.Get( 'basic_sequence_combining' ), 'true')]"
+                        onclick = "[GUIAlertItem.OnClick]"
+                        onrightclick = "[GUIAlertItem.OnRightClick]"
+                    }
                 }
             }
         }
@@ -479,6 +487,14 @@ types Notifications {
                             scale = 1
                             start_sound = {soundeffect = "event:/SFX/UI/Notifications/Alerts/sfx_ui_notification_alert_action_mouse_release"}
                         }
+                    }
+
+                    button_normal = {
+                        size = { 0 0 }
+                        shortcut = "sequence_notification"
+                        visible = "[EqualTo_string(GetVariableSystem.Get( 'basic_sequence_combining' ), 'true')]"                        
+                        onclick = "[DiplomaticItem.OnClick]"
+                        onrightclick = "[GUIAlertItem.OnRightClick]"
                     }
                 }
             }
@@ -1197,7 +1213,7 @@ types Notifications {
 
                         blockoverride "scrollbox_content" {
                             name = "current_situation"
-                            datamodel = "[ActionItemHandler.GetGuiActionItems]"
+                            datamodel = "[ActionItemHandler.GetGuiActionItems]" 
                             layoutpolicy_horizontal = expanding
                             set_parent_size_to_minimum = yes
                             spacing = 5
