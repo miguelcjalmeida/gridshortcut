@@ -1,0 +1,652 @@
+######################################################
+##################### CULTURE ########################
+######################################################
+
+window = {
+	name = "culture_window"
+	datacontext = "[CultureWindow.GetCulture]"
+	widgetid = "culture_window_id"
+	layer = windows_layer
+	movable = no
+
+	using = Window_Size_Sidebar
+	using = Window_Background_Sidebar
+
+	state = {
+		name = _show
+		using = Animation_FadeIn_Quick
+
+		position = { 0 0 }
+		on_start = "[GetVariableSystem.Set( 'left_sidebar_open', 'true' )]"
+		on_start = "[GetVariableSystem.Set( 'culture_tab', 'early' )]"
+		on_start = "[GetVariableSystem.Set( 'hide_bottom_left_HUD', 'true' )]"
+	}
+
+	state = {
+		name = _hide
+		using = Animation_FadeOut_Quick
+
+		position = { -90 0 }
+		on_start = "[GetVariableSystem.Clear( 'hide_bottom_left_HUD' )]"
+	}
+
+	vbox = {
+		using = Window_Margins_Sidebar
+
+		header_pattern = {
+			layoutpolicy_horizontal = expanding
+
+			blockoverride "header_text"
+			{
+				text = "CULTURE_WINDOW_CULTURE"
+			}
+
+			blockoverride "button_close"
+			{
+				onclick = "[CultureWindow.Close]"
+				# shortcut = "innovations_window"
+			}
+
+			blockoverride "button_back"
+			{
+				visible = "[HasViewHistory]"
+				onclick = "[OpenFromViewHistory]"
+				tooltip = "[GetViewHistoryTooltip]"
+			}
+		}
+
+		hbox = {
+			margin = { 0 5 }
+
+			text_single = {
+				text = "CULTURE_RELATION_MY_CULTURE"
+				visible = "[Culture.IsPlayerCulture]"
+			}
+
+			text_single = {
+				text = "CULTURE_RELATION_MY_CULTURE_GROUP"
+				visible = "[And(Culture.IsPlayerCultureGroup, Not(Culture.IsPlayerCulture))]"
+			}
+
+			text_single = {
+				text = "CULTURE_RELATION_FOREIGN_CULTURE"
+				visible = "[And(Not(Culture.IsPlayerCulture), Not(Culture.IsPlayerCultureGroup))]"
+			}
+
+			text_single = {
+				datacontext = "[Culture.GetGroup]"
+				text = "CULTURE_WINDOW_GROUPS"
+			}
+		}
+
+		vbox = {
+			layoutpolicy_horizontal = expanding
+			margin = { 0 10 }
+			text_label_center = {
+				text = "CULTURE_WINDOW_INNOVATIONS"
+				using = Font_Size_Medium
+			}
+		}
+
+		hbox = {
+			layoutpolicy_horizontal = expanding
+
+			datamodel = "[CultureWindow.GetCultureEras]"
+			item = {
+				vbox_era_tab = {}
+			}
+		}
+
+		scrollbox = {
+			name = "selected_culture_era"
+			layoutpolicy_horizontal = expanding
+			layoutpolicy_vertical = expanding
+			datacontext = "[CultureWindow.GetSelectedCultureEra]"
+
+			blockoverride "scrollbox_content"
+			{
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					datacontext = "[GuiCultureEra.GetCultureEra]"
+					spacing = 8
+
+					hbox = {
+						layoutpolicy_horizontal = expanding
+
+						text_single = {
+							visible = "[GuiCultureEra.GetCultureEra.GetType.IsInvalidForPlayerGovernment]"
+
+							layoutpolicy_horizontal = expanding
+							margin = { 10 10 }
+							text = "CULTURE_WINDOW_ERA_INNOVATION_BLOCKED_FOR_PLAYER_GOVERNMENT"
+						}
+
+						spacer = {
+							size = { 70 10 }
+						}
+					}
+
+					hbox = {
+						layoutpolicy_horizontal = expanding
+
+						vbox = {
+							layoutpolicy_horizontal = expanding
+							visible = "[Not(CultureEra.IsActive)]"
+
+							background = {
+								using = Background_Area
+								margin = { 10 5 }
+							}
+
+							hbox = {
+								layoutpolicy_horizontal = expanding
+
+								text_multi = {
+									layoutpolicy_horizontal = expanding
+									max_width = 550
+									text = "CULTURE_ERA_BLOCKED_BLOCKED_TILE"
+									autoresize = yes
+
+									background = {
+										using = Background_Area_Dark
+										alpha = 0.6
+										margin = { 10 5 }
+									}
+								}
+
+								expand = {}
+							}
+
+							hbox = {
+								layoutpolicy_horizontal = expanding
+								margin_left = 10
+								margin_top = 10
+
+								text_multi = {
+									visible = "[Not(CultureEra.CanGainProgress)]"
+									text = "[CultureEra.GetCantGainProgressReason]"
+									max_width = 500
+									autoresize = yes
+								}
+
+								expand = {}
+							}
+
+							vbox = {
+								layoutpolicy_horizontal = expanding
+								margin_top = 10
+								spacing = 3
+
+								visible = "[CultureEra.CanGainProgress]"
+								tooltip = "[CultureEra.GetProgressAndGainBreakdown]"
+
+								progressbar_standard = {
+									layoutpolicy_horizontal = expanding
+									minimumsize = { 0 25 }
+									min = 0
+									max = 100
+									value = "[FixedPointToFloat(CultureEra.GetProgress)]"
+								}
+
+								hbox = {
+									layoutpolicy_horizontal = expanding
+
+									text_label_left = {
+										text = "[CultureEra.GetCultureEraProgressEstimation]"
+									}
+
+									expand = {}
+								}
+							}
+						}
+
+						spacer = {
+							size = { 70 10 }
+						}
+					}
+
+
+					vbox = {
+						name = "era_groups"
+						datamodel = "[GuiCultureEra.GetCultureEraGroups]"
+						layoutpolicy_horizontal = expanding
+						spacing = 30
+
+						item = {
+							vbox = {
+								visible = "[GuiCultureEraGroup.HasInnovations]"
+								layoutpolicy_horizontal = expanding
+								spacing = 10
+
+								text_label_left = {
+									layoutpolicy_horizontal = expanding
+									align = left
+									margin = { 0 3 }
+									text = "[GuiCultureEraGroup.GetName]"
+								}
+
+								dynamicgridbox = {
+									datamodel = "[GuiCultureEraGroup.GetInnovations]"
+									datamodel_wrap = 2
+									flipdirection = yes
+
+									item = {
+										flowcontainer = {
+											margin_top = 10
+											margin_right = 70
+
+											flowcontainer = {
+												datacontext = "[GuiCultureInnovation.GetCultureInnovation]"
+												direction = horizontal
+
+												allow_outside = yes
+												tooltip_offset = { -70 22 }
+												using = tooltip_es
+												ignoreinvisible = yes
+
+												tooltipwidget = {
+													using = culture_innovation_tooltip
+
+													blockoverride "AfterDescription"
+													{
+														container = {
+															minimumsize = { 100% 0 }
+															name = "can_select_as_fascination"
+															visible = "[And(CultureInnovation.CanPlayerSetAsFascination, Not(CultureInnovation.IsFascination) )]"
+															textbox = {
+																text = "INNOVATION_CLICK_TO_SELECT_FASCINATION"
+																autoresize = yes
+																fonttintcolor = "[TooltipInfo.GetTintColor]"
+																using = DefaultTooltipText
+																multiline = yes
+															}
+														}
+													}
+												}
+
+												button_group = {
+													visible = "[And(CultureInnovation.GetCulture.IsPlayerCultureHead, Not(CultureInnovation.IsActive))]"
+													enabled = "[CultureInnovation.CanBeFascination]"
+													onclick = "[CultureInnovation.SelectAsFascination]"
+													icon_innovation = {}
+												}
+
+												icon_innovation = {
+													visible = "[And(CultureInnovation.GetCulture.IsPlayerCultureHead, CultureInnovation.IsActive)]"
+												}
+
+												icon_innovation = {
+													visible = "[And(CultureInnovation.GetCulture.IsPlayerCultureHead, Not(CultureInnovation.GetCulture.IsPlayerCultureHead))]"
+												}
+
+												icon_innovation = {
+													visible = "[Not(CultureInnovation.GetCulture.IsPlayerCultureHead)]"
+												}
+
+												widget = {
+													size = { 150 60 }
+
+													vbox = {
+														ignoreinvisible = yes
+
+														background = {
+															using = Background_Area
+														}
+
+														text_multi = {
+															name = "name_clickable"
+															text = "p[CultureInnovation.GetNameNoTooltip]p"
+															layoutpolicy_horizontal = expanding
+															align = left
+															margin_left = 8
+															visible = "[CultureInnovation.CanBeFascination]"
+															default_format = "#clickable"
+														}
+
+														text_multi = {
+															name = "name_unlocked"
+															text = "x[CultureInnovation.GetNameNoTooltip]x"
+															layoutpolicy_horizontal = expanding
+															max_width = 150
+															align = left
+															margin = {8 0 }
+															visible = "[CultureInnovation.IsActive]"
+															default_format = "#P"
+															alpha = 0.7
+														}
+
+														text_multi = {
+															name = "name_blocked"
+															text = "k[CultureInnovation.GetNameNoTooltip]k"
+															layoutpolicy_horizontal = expanding
+															max_width = 150
+															align = left
+															margin = {8 0 }
+															visible = "[And(Not(CultureInnovation.CanBeFascination),Not(CultureInnovation.IsActive))]"
+															default_format = "#low"
+														}
+
+														hbox = {
+															visible = "[And(CultureInnovation.CanGainProgress, Not(CultureInnovation.IsActive))]"
+															layoutpolicy_horizontal = expanding
+															margin = { 3 0 }
+
+															progressbar_standard = {
+																visible = "[And(CultureInnovation.CanGainProgress, Not(CultureInnovation.IsActive))]"
+																layoutpolicy_horizontal = expanding
+																size = { 90 15 }
+																min = 0
+																max = 100
+																value = "[FixedPointToFloat(CultureInnovation.GetProgress)]"
+															}
+														}
+
+														spacer = {
+															visible = "[Not(And(CultureInnovation.CanGainProgress, Not(CultureInnovation.IsActive)))]"
+															size = { 0 15 }
+														}
+
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+
+					background = {
+						name = "gray_overlay"
+						visible = "[GuiCultureEra.GetCultureEra.GetType.IsInvalidForPlayerGovernment]"
+						using = Background_Area_Border_Solid
+						tintcolor = { 0.5 0.5 0.5 0.3 }
+						alwaystransparent = no
+						margin = { 10 10 }
+					}
+
+				}
+			}
+		}
+
+		hbox = {
+			name = "culture_head"
+			datacontext = "[Culture.GetCultureHead]"
+			visible = "[Culture.HasCultureHead]"
+			layoutpolicy_horizontal = expanding
+			margin = { 10 5 }
+			spacing = 10
+
+			portrait_shoulders = {
+				name = "culture_head_portrait"
+
+				blockoverride "portrait_button" {
+					shortcut = "culture_head"
+				}
+			}
+
+			vbox = {
+				layoutpolicy_horizontal = expanding
+				layoutpolicy_vertical = expanding
+				margin = { 10 5 }
+
+
+				text_multi = {
+					layoutpolicy_horizontal = expanding
+					autoresize = yes
+					max_width = 400
+
+					text = "CULTURE_WINDOW_CULTURE_HEAD_TITLE"
+				}
+
+				spacer = {
+					size = { -1 30}
+					visible = "[Not(EqualTo_uint32( CultureWindow.GetCulture.GetID, GetPlayer.GetCulture.GetID ))]"
+				}
+
+				vbox = {
+					name = "culture_head_influence_info"
+					visible = "[EqualTo_uint32( CultureWindow.GetCulture.GetID, GetPlayer.GetCulture.GetID )]"
+					layoutpolicy_horizontal = expanding
+
+					text_multi = {
+						layoutpolicy_horizontal = expanding
+						visible = "[Not(CultureWindow.ShouldShowMyCultureInfo)]"
+						text = "[CultureWindow.GetCultureHeadInfo]"
+						autoresize = yes
+						max_width = 400
+						align = left
+					}
+
+					text_multi = {
+						layoutpolicy_horizontal = expanding
+						visible = "[CultureWindow.ShouldShowMyCultureInfo]"
+						text = "CULTURE_WINDOW_CULTURE_HEAD_NOTPLAYER"
+						default_format = "#low"
+						autoresize = yes
+						max_width = 400
+						align = left
+					}
+				}
+
+				hbox = {
+					name = "fascination_info"
+					layoutpolicy_horizontal = expanding
+					spacing = 10
+					margin_left = 5
+
+					datacontext = "[CultureWindow.GetCulture]"
+
+					visible = "[Culture.HasFascination]"
+
+					vbox = {
+						text_single = {
+							name = "current_fascination"
+							text = "CULTURE_WINDOW_HEAD_FASCINATION"
+						}
+
+						hbox = {
+							layoutpolicy_horizontal = expanding
+							skill_icon_label = {
+								datacontext = "[CultureWindow.GetLearningLevel]"
+							}
+
+							expand = {}
+						}
+
+					}
+
+					icon_innovation = {
+						datacontext = "[CultureWindow.GetCulture.GetFascination]"
+						size = { 90 60 }
+
+						tooltipwidget = {
+							using = culture_innovation_tooltip
+						}
+					}
+
+					expand = {}
+				}
+			}
+		}
+	}
+}
+######################################################
+################ TYPES AND TEMPLATES #################
+######################################################
+
+types CultureWindow
+{
+	type vbox_era_tab = vbox {
+		layoutpolicy_horizontal = expanding
+		datacontext = "[GuiCultureEra.GetCultureEra]"
+		tooltipwidget = {
+			using = culture_era_tooltip
+		}
+		using = tooltip_se
+
+		spacer = {
+			visible = "[GuiCultureEra.IsSelected]"
+			size = { 150 0 }
+
+			state = {
+				name = _show
+				size = { 150 0 }
+				duration = 0.3
+			}
+
+			state = {
+				name = _hide
+				size = { 0 0 }
+				duration = 0.3
+			}
+		}
+
+		button_tab = {
+			layoutpolicy_horizontal = expanding
+			size = { 0 140 }
+			onclick = "[GuiCultureEra.Select]"
+			scissor = yes
+
+			icon = {
+				parentanchor = center
+				size = { 250 128 }
+				texture = "[CultureEra.GetType.GetIllustration]"
+
+				modify_texture = {
+					# texture = "gfx/interface/temp/temp_culture_illustration_mask.dds"
+					texture = "gfx/interface/tiles/mask_culture_era_tab.dds"
+					blend_mode = alphamultiply
+				}
+			}
+
+			icon = {
+				parentanchor = center
+				size = { 250 128 }
+				visible = "[Not(CultureEra.IsActive)]"
+				texture = "[CultureEra.GetType.GetIllustration]"
+				tintcolor = { 0 0 0 0.7 }
+
+				modify_texture = {
+					texture = "gfx/interface/tiles/mask_culture_era_tab.dds"
+					blend_mode = alphamultiply
+				}
+			}
+
+			text_multi = {
+				margin = { 5 10 }
+				size = { 100% 100% }
+				autoresize = no
+				text = "[CultureEra.GetNameNoTooltip]"
+				visible = "[GuiCultureEra.IsSelected]"
+				align = top|hcenter
+
+				default_format = "#low"
+
+				state = {
+					name = _show
+					using = Animation_FadeIn_Standard
+				}
+
+				state = {
+					name = _hide
+					using = Animation_FadeOut_Standard
+				}
+			}
+
+			text_label_center = {
+				parentanchor = bottom|hcenter
+				visible = "[Not(CultureEra.IsActive)]"
+				position = { 0 -8 }
+				text = "CULTURE_ERA_INNOVATION_COUNT"
+				default_format = "#low"
+			}
+
+			text_label_center = {
+				parentanchor = bottom|hcenter
+				visible = "[CultureEra.IsActive]"
+				position = { 0 -8 }
+				text = "CULTURE_ERA_INNOVATION_COUNT_JOIN_LEAVE"
+				default_format = "#high"
+			}
+		}
+
+		button_normal = {
+			size = { 0 0 }
+			shortcut = "culture_tribal"
+			onclick = "[GuiCultureEra.Select]"
+			visible = "[EqualTo_string(CultureEra.GetNameNoTooltip, SelectLocalization(GuiCultureEra.IsSelected, 'culture_era_tribal', 'culture_era_tribal'))]"
+		}
+
+		button_normal = {
+			size = { 0 0 }
+			shortcut = "culture_early_medieval"
+			onclick = "[GuiCultureEra.Select]"
+			visible = "[EqualTo_string(CultureEra.GetNameNoTooltip, SelectLocalization(GuiCultureEra.IsSelected, 'culture_era_early_medieval', 'culture_era_early_medieval'))]"
+		}
+
+		button_normal = {
+			size = { 0 0 }
+			shortcut = "culture_high_medieval"
+			onclick = "[GuiCultureEra.Select]"
+			visible = "[EqualTo_string(CultureEra.GetNameNoTooltip, SelectLocalization(GuiCultureEra.IsSelected, 'culture_era_high_medieval', 'culture_era_high_medieval'))]"
+		}
+
+		button_normal = {
+			size = { 0 0 }
+			shortcut = "culture_late_medieval"
+			onclick = "[GuiCultureEra.Select]"
+			visible = "[EqualTo_string(CultureEra.GetNameNoTooltip, SelectLocalization(GuiCultureEra.IsSelected, 'culture_era_late_medieval', 'culture_era_late_medieval'))]"
+		}
+	}
+
+	type icon_innovation = icon {
+		size = { 90 60 }
+
+		icon = {
+			texture = "[CultureInnovation.GetType.GetIcon]"
+			size = { 90 60 }
+
+		}
+
+		icon = {
+			texture = "[CultureInnovation.GetType.GetCultureEraType.GetFrame]"
+			size = { 96 63 }
+			position = { -3 0 }
+		}
+
+		highlight_icon = {
+			visible = "[Not(CultureInnovation.IsActive)]"
+			texture = "[CultureInnovation.GetType.GetIcon]"
+			tintcolor = { 0 0 0 0.5 }
+			size = { 100% 100% }
+		}
+
+		highlight_icon = {
+			visible = "[Not(CultureInnovation.CanGainProgress)]"
+			texture = "[CultureInnovation.GetType.GetIcon]"
+			tintcolor = { 0 0 0 0.5 }
+			size = { 100% 100% }
+		}
+
+		highlight_icon = {
+			name = "fascination"
+			visible = "[CultureInnovation.IsFascination]"
+			texture = "gfx/interface/icons/culture_innovations/innovation_glow.dds"
+			tintcolor = { 1 0.8 0.6 1 }
+			size = { 90 60 }
+			scale = 1.1
+			position = { -5 -3 }
+		}
+
+		highlight_icon = {
+			name = "exposure"
+			visible = "[CultureInnovation.HasExposureMarker]"
+			texture = "gfx/interface/icons/culture_innovations/innovation_glow.dds"
+			color = { 0.6 0.6 0.8 1 }
+			size = { 90 60 }
+			scale = 1.1
+			position = { -5 -3 }
+		}
+	}
+}

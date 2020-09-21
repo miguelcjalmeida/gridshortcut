@@ -99,6 +99,13 @@ shortcutbindings = {
 	faith_create_head = "R"
 	faith_toggle_only_my_group = "F"
 
+# Culture
+	culture_tribal = "1"
+	culture_early_medieval = "2"
+	culture_high_medieval = "3"
+	culture_late_medieval = "4"
+	culture_head = "F"
+
 # County 
 	county_go_to_location = "Q"
 	county_cancel_holding_construction = "E"
