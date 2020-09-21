@@ -141,6 +141,7 @@ window = {
 			### SIEGE AND RAID GOTO BUTTON ###
 			button_group = {
 				name = "open_siege_button"
+				shortcut = "county_open_siege"
 				datacontext = "[HoldingView.GetProvince.GetSiege]"
 				visible = "[HoldingView.GetProvince.HasActiveSiege]"
 				onclick = "[DefaultOnSiegeClick(Siege.GetID)]"
@@ -152,6 +153,7 @@ window = {
 
 			button_group = {
 				name = "open_raid_button"
+				shortcut = "county_open_raid"
 				datacontext = "[HoldingView.GetProvince.GetRaid]"
 				visible = "[HoldingView.GetProvince.HasActiveRaid]"
 				onclick = "[DefaultOnRaidClick( Raid.Self )]"

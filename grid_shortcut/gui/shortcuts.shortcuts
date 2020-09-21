@@ -222,7 +222,7 @@ shortcutbindings = {
 	title_make_primary = "5"
 	title_usurp = "E"
 	title_owner = "F"
-	title_remove_law = "5"
+	title_remove_law = "6"
 
 # House
 	house_toggle_members = "1"

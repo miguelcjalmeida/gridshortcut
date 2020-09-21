@@ -575,7 +575,6 @@ widget = {
 	button_outliner = {
 		name = "outliner_button"
 		shortcut = "outliner"
-		shortcut = "outliner_2"
 		visible = "[And( Not( IsPauseMenuShown ), And(Not(GetVariableSystem.Exists( 'right_window_open')), IsDefaultGUIMode))]"
 		parentanchor = top|right
 		position = { -5 45 }
