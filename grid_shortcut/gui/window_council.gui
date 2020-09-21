@@ -319,7 +319,7 @@ types CouncilWindow
 		}
 	}
 	
-	type spouse_task_button = button_standard = {
+	type spouse_task_button = button_standard {
 		name = "potential_task"
 		datacontext = "[GuiPotentialCouncilTask.GetCouncilTaskType]"
 		datacontext = "[GuiCouncilPosition.GetActiveCouncilTask]"

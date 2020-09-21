@@ -621,7 +621,6 @@ types Lists
 
     type dropDown_sort = dropDown {
         name = "sort_options"
-        shortcut = "character_sort_criterias"
         size = { 225 33 }
 
         active_item = {

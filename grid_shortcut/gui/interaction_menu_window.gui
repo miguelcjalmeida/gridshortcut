@@ -86,7 +86,6 @@ window = {
 						}
 
 						button_barbershop = {
-							shortcut = "context_menu_customize"
 							name = "customize_portrait"
 							visible = "[Character.CanCustomizePortrait]"
 							onclick = "[Character.OnCustomizePortrait]"

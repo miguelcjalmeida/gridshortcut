@@ -19,11 +19,13 @@ shortcutbindings = {
 	decrease_speed_2 = "Z"
 	decrease_speed_3 = "-"
 	action_list = "TAB"
-	# speed_1 = "1"
-	# speed_2 = "2"
-	# speed_3 = "3"
-	# speed_4 = "4"
-	# speed_5 = "5"
+
+# Disabled 
+	speed_1 = "P"
+	speed_2 = "P"
+	speed_3 = "P"
+	speed_4 = "P"
+	speed_5 = "P"
 
 # Map
 	map_mode_1 = "Y" # Realm Map Mode
@@ -110,6 +112,8 @@ shortcutbindings = {
 	county_owner_title = "1"
 	county_holding_owner_title = "2"
 	county_go_to_siege = "3"
+	county_open_siege = "3"
+	county_open_raid = "3"
 
 # My realm
 	my_realm_domain = "1"
@@ -218,6 +222,7 @@ shortcutbindings = {
 	title_make_primary = "5"
 	title_usurp = "E"
 	title_owner = "F"
+	title_remove_law = "5"
 
 # House
 	house_toggle_members = "1"

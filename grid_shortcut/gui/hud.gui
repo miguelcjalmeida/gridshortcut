@@ -2012,7 +2012,7 @@ types HUD
 		
 		button_normal = {
 			shortcut = "sequence_activator"
-			visible = "[And(Not( SinglePlayerShowingPausedSuccession ))]"
+			visible = "[Not( SinglePlayerShowingPausedSuccession )]"
 			onclick = "[GetVariableSystem.Toggle( 'basic_sequence_combining' )]"
 			size = {0 0}			
 		}
@@ -2655,7 +2655,6 @@ types HUD
 			onclick = "[ToggleGameView( 'find_title' )]"
 			onclick = "[GetVariableSystem.Clear( 'extra_buttons_expand' )]"
 			shortcut = "find_title_shortcut"
-			shortcut = "find_title_shortcut_2"
 		}
 
 		# 0 size button for shortcut to work
