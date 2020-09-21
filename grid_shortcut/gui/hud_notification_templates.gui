@@ -1234,6 +1234,7 @@ types Notifications {
                                         minimumsize = { 340 0 }
                                         visible = "[GuiActionItem.HasMultipleActions]"
 
+                                        shortcut = "suggestion_open"
                                         onclick = "[GuiActionItem.OnClick]"
                                         onrightclick = "[GuiActionItem.Dismiss]"
                                         button_ignore = none
@@ -1723,7 +1724,8 @@ types Suggestions
     type button_current_situation_item = button_standard_list {
         visible = "[ImportantActionItem.IsVisible]"
         minimumsize = { 350 0 }
-
+        
+        shortcut = "suggestion_open"
         onclick = "[ImportantActionItem.OnClick]"
         onrightclick = "[ImportantActionItem.Dismiss]"
         button_ignore = none
@@ -1776,6 +1778,7 @@ types Suggestions
 
     type button_current_situation_item_combined = button_standard_list {
         visible = "[ImportantActionItem.IsVisible]"
+        shortcut = "suggestion_open"
         onclick = "[ImportantActionItem.OnClick]"
         onrightclick = "[ImportantActionItem.Dismiss]"
         button_ignore = none

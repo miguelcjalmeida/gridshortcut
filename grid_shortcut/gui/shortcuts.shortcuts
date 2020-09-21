@@ -44,11 +44,15 @@ shortcutbindings = {
 	map_editor_toggle_game_map_mode = "0"
 	editor_toggle = "P"
 
-# Outliner and menus
+# Outliner
 	outliner = "CAPSLOCK"
 	outliner_2 = "F10"
 	outliner_unit = "V"
 
+# Suggestion	
+	suggestion_open = "V"
+
+# Old menus
 	character_window = "F1"
 	my_realm_window = "F2"
 	military_window = "F3"
