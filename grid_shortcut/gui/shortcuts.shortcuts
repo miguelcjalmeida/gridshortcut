@@ -82,7 +82,7 @@ shortcutbindings = {
 
 # Find Character 
 	character_open_filter = "Q"
-	character_reverse_sort = "E"
+	character_reverse_sort = "T"
 	character_sort_by_diplomacy = "1"
 	character_sort_by_martial = "2"
 	character_sort_by_stewardship = "3"
