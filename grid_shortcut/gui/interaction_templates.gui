@@ -1841,6 +1841,15 @@ types CharacterInteraction
 				}
 
 				button_normal = {
+					name = "button_remove_guardian"			
+					size = { 0 0 }		
+					shortcut = "context_menu_remove_guardian"		
+					visible = "[And(Not(InteractionItem.IsMarriageSetting), EqualTo_string(InteractionItem.GetName, SelectLocalization(InteractionItem.IsValid, 'remove_guardian_interaction', 'remove_guardian_interaction')))]"					
+					enabled = "[InteractionItem.IsValid]"
+					onclick = "[InteractionItem.OnClick]"
+				}
+
+				button_normal = {
 					name = "button_offer_blackmail"			
 					size = { 0 0 }		
 					shortcut = "context_menu_blackmail"		

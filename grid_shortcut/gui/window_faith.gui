@@ -637,6 +637,14 @@ window = {
 
 						blockoverride "coa" {}
 						blockoverride "opinion_box"{}
+
+						blockoverride "portrait_button" {
+							shortcut = "faith_head"
+						}
+
+						blockoverride "portrait_options_button" {
+							shortcut = "faith_head_options"
+						}
 					}
 
 					hbox = {

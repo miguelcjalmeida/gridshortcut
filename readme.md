@@ -57,6 +57,7 @@ Below you can check all the available global hotkeys.
 | SPACE > F | Open your character panel ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
 | SPACE > G | Open primary title panel ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
 | SPACE > V | Open your house panel ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
+| SPACE > C | Open your interaction menu ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
 
 ### Opening windows
 ![Opening windows](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/suggestionbutton.png)
@@ -79,10 +80,10 @@ Below you can check all the available global hotkeys.
 
 | Key | Action |
 | ------ | ------ |
-| C | Find character window |
 | SPACE > Q | Go to capital ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
-| SPACE > 3 | Find title ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
-| SPACE > 4 | encyclopedia ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
+| SPACE > 3 | Find character window ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png) |
+| SPACE > 4 | Find title ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
+| SPACE > 5 | encyclopedia ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
 
 ### Disband / Raise all at war
 
@@ -206,7 +207,9 @@ Different from the hotkeys above, all the next ones are bound to a window.
 | V | Open house | 
 | F | Open Liege / Host profile |
 | G | Open Heir profile |
-| 5 | Open jailor profile | 
+| 6 | Open jailor profile ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png) | 
+| 5 | Open spouse ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png) |
+| C | Open the interaction menu ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png) | 
 
 ### Find character window
 ![character search](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/character%20finder.png)
@@ -233,6 +236,8 @@ Different from the hotkeys above, all the next ones are bound to a window.
 | E | Reform / Convert to religion | 
 | R | Create head of faith | 
 | F | Toggle only my group faiths checkbox |
+| F | Open head of faith profile, if any ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png) |
+| C | Open head of faith interaction menu, if any ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png) |
 
 ### Culture Window 
 
@@ -242,6 +247,7 @@ Different from the hotkeys above, all the next ones are bound to a window.
 | - | - |
 | 1, 2, 3, 4 | Navigate between the Era tabs ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
 | F | Go to culture head profile ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png) |
+| C | Open culture head interaction menu ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)| 
 
 ### House Window
 
@@ -252,6 +258,7 @@ Different from the hotkeys above, all the next ones are bound to a window.
 | 1 | Show members |
 | 2 | Show house branches | 
 | F | Open house head profile | 
+| C | Open house head interaction menu ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)| 
 | Q | Open legacies | 
 | E | Open house tree |
 
@@ -268,6 +275,7 @@ Different from the hotkeys above, all the next ones are bound to a window.
 | T | Open county culture |
 | F | Open county owner profile | 
 | G | Open holding owner profile | 
+| C | Open holding owner interaction menu ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)| 
 | 1 | Open county title | 
 | 2 | Open holding title |
 | 3 | Go to siege, if any is happening |
@@ -286,6 +294,7 @@ Different from the hotkeys above, all the next ones are bound to a window.
 | T | If it is a county/holding title, select the barony |
 | V | If yours, grant title to a vassal |
 | F | Select profile of title owner |
+| C | Open title owner interaction menu ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)| 
 | 5 | Make it your primary title |
 
 ### My Realm Window

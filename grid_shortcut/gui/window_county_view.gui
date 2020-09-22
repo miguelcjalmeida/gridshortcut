@@ -351,6 +351,10 @@ window = {
 					blockoverride "portrait_button" {
 						shortcut = "county_owner"
 					}
+					
+					blockoverride "portrait_options_button" {
+						shortcut = "county_holding_owner_options"
+					}
 				}
 
 				vbox = {
@@ -987,6 +991,9 @@ window = {
 						portrait_head_small = {
 							blockoverride "portrait_button" {
 								shortcut = "county_holding_owner"
+							}
+							blockoverride "portrait_options_button" {
+								shortcut = "county_holding_owner_options"
 							}
 							blockoverride "opinion_box" {}
 						}

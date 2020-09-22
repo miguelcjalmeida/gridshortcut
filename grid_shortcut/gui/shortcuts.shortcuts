@@ -27,6 +27,7 @@ shortcutbindings = {
 	speed_4 = "P"
 	speed_5 = "P"
 	character_finder = "P"
+	siege_assault = "P"
 
 # Map
 	map_mode_1 = "Y" # Realm Map Mode
@@ -101,6 +102,8 @@ shortcutbindings = {
 	faith_create = "E"
 	faith_create_head = "R"
 	faith_toggle_only_my_group = "F"
+	faith_head = "F"
+	faith_head_options = "C"
 
 # Culture
 	culture_tribal = "1"
@@ -120,6 +123,7 @@ shortcutbindings = {
 	county_culture = "T"	
 	county_owner = "F"
 	county_holding_owner = "G"
+	county_holding_owner_options = "C"
 	county_owner_title = "1"
 	county_holding_owner_title = "2"
 	county_go_to_siege = "3"
@@ -171,8 +175,6 @@ shortcutbindings = {
 	army_undo_raiding_mode = "G"
 	army_select_this_only = "V"
 	army_reorganize = "T"
-	
-	siege_assault = "F"
 
 # Council
 	council_mine = "1"
@@ -272,6 +274,7 @@ shortcutbindings = {
 	context_menu_call_to_war = "R"
 	context_menu_educate_child = "B"
 	context_menu_offer_guardianship = "B"
+	context_menu_remove_guardian = "C"
 	context_menu_blackmail = "G"
 	context_menu_diplomacy_more = "1"
 	context_menu_personal_more = "2"
