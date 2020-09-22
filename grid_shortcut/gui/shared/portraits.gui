@@ -892,7 +892,7 @@ types PortraitTypes
         button_ignore = none
 
         button = { 
-            size = { 0, 0 }
+            size = { 0 0 }
             onclick = "[DefaultOnCharacterRightClick(Character.GetID)]"
             block "portrait_options_button" { }
         }
@@ -1322,7 +1322,7 @@ template portrait_base
     }
     
     button = { 
-        size = { 0, 0 }
+        size = { 0 0 }
         onclick = "[DefaultOnCharacterRightClick(Character.GetID)]"
         block "portrait_options_button" { }
     }
