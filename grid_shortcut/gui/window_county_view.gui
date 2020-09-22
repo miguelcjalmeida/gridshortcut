@@ -583,7 +583,6 @@ window = {
 
 				item = {
 					button_tab_dark = {
-						shortcut = "county_holding_slot"
 						datacontext = "[GUICountyHolding.GetHolding]"
 						size = { 45 45  }
 						down = "[GUICountyHolding.IsSelected]"

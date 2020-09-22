@@ -1683,7 +1683,6 @@ template Feed_Message_Header
 types Suggestions
 {
     type button_suggestion_item = button_standard_list {
-        shortcut = "notification_icon"
         onclick = "[SuggestionItem.OnClick]"
         onrightclick = "[SuggestionItem.Dismiss]"
         button_ignore = none
