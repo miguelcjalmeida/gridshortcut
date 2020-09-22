@@ -231,6 +231,7 @@ _The HUD window shortcuts are only triggered when there is no other window opene
 
 | Key | Action |
 | ----- | ----- |
+| SPACE > 3 | Open/close finder window ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png) |
 | Q | Open filters window |
 | T | Reverse the sorting ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png) |
 | 1 | Sort by diplomacy
