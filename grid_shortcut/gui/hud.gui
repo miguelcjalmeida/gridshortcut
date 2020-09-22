@@ -2143,6 +2143,13 @@ types HUD
 				onclick = "[GetVariableSystem.Clear( 'basic_sequence_combining' )]"
 				size = {0 0}	
 			}
+			
+			button_normal = {
+				shortcut = "sequence_character_options"
+				onclick = "[DefaultOnCharacterRightClick(GetPlayer.GetID)]"
+				onclick = "[GetVariableSystem.Clear( 'basic_sequence_combining' )]"
+				size = {0 0}	
+			}
 
 			button_normal = {
 				shortcut = "sequence_primary_title"
@@ -2154,6 +2161,13 @@ types HUD
 			button_normal = {
 				shortcut = "sequence_find_title"
 				onclick = "[ToggleGameView( 'find_title' )]"
+				onclick = "[GetVariableSystem.Clear( 'basic_sequence_combining' )]"
+				size = {0 0}	
+			}
+
+			button_normal = {
+				shortcut = "sequence_find_character"
+				onclick = "[ToggleGameView( 'character_finder' )]"
 				onclick = "[GetVariableSystem.Clear( 'basic_sequence_combining' )]"
 				size = {0 0}	
 			}

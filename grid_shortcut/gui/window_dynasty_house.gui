@@ -255,6 +255,10 @@ window = {
 								mask = "gfx/portraits/portrait_mask_council.dds"
 								shortcut = "house_owner"
 							}
+
+							blockoverride "portrait_options_button" {
+								shortcut = "house_owner_options"
+							}
 						}
 					}
 

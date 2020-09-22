@@ -158,6 +158,10 @@ window = {
 											blockoverride "portrait_button" {
 												shortcut = "court_hire_physician"
 											}
+
+											blockoverride "portrait_options_button" {
+												shortcut = "court_hire_physician_options"
+											}
 										}
 
 										vbox = {

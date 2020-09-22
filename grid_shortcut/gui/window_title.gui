@@ -735,6 +735,10 @@ window = {
 								blockoverride "portrait_button" {
 									shortcut = "title_owner"
 								}
+
+								blockoverride "portrait_options_button" {
+									shortcut = "title_owner_options"
+								}
 							}
 
 							text_label_center = {

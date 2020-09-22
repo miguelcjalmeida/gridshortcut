@@ -383,6 +383,10 @@ window = {
 				blockoverride "portrait_button" {
 					shortcut = "culture_head"
 				}
+
+				blockoverride "portrait_options_button" {
+					shortcut = "culture_head_options"
+				}
 			}
 
 			vbox = {

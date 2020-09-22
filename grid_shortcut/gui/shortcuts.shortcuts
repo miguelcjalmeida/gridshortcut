@@ -26,6 +26,7 @@ shortcutbindings = {
 	speed_3 = "P"
 	speed_4 = "P"
 	speed_5 = "P"
+	character_finder = "P"
 
 # Map
 	map_mode_1 = "Y" # Realm Map Mode
@@ -76,9 +77,11 @@ shortcutbindings = {
 	character_vassals = "4"
 	character_liege = "F"
 	character_heir = "G"
-	character_imprisoner = "5"
+	character_imprisoner = "6"
 	character_host = "F"
+	character_spouse = "5"
 	character_house = "V"
+	character_options = "C"
 
 # Find Character 
 	character_open_filter = "Q"
@@ -105,6 +108,7 @@ shortcutbindings = {
 	culture_high_medieval = "3"
 	culture_late_medieval = "4"
 	culture_head = "F"
+	culture_head_options = "C"
 
 # County 
 	county_go_to_location = "Q"
@@ -201,6 +205,7 @@ shortcutbindings = {
 	court_court = "1"
 	court_prisoners = "2"
 	court_hire_physician = "Q"
+	court_hire_physician_options = "C"
 	court_invite_knights = "E"
 	court_invite_claimants = "R"
 	court_prison_mass_ransom = "Q"
@@ -229,12 +234,14 @@ shortcutbindings = {
 	title_make_primary = "5"
 	title_usurp = "E"
 	title_owner = "F"
+	title_owner_options = "C"
 	title_remove_law = "6"
 
 # House
 	house_toggle_members = "1"
 	house_toggle_houses = "2"
 	house_owner = "F"
+	house_owner_options = "C"
 	house_tree = "E"
 	house_legacies = "Q"
 	dynasty_tree_pan_to_me = "HOME"
@@ -244,7 +251,6 @@ shortcutbindings = {
 	notification_action = "N"
 	notification_diplomatic = "N"
 	notification_reject_button = "Q"
-	character_finder = "C"
 	find_title_shortcut = "M"
 	go_to_capital = "HOME"
 	notification_dismiss_message = "Q"
@@ -286,6 +292,7 @@ shortcutbindings = {
 	sequence_disband = "1"
 	sequence_raise_all = "1"
 	sequence_pause = "SPACE"
+	sequence_character_options = "C"
 
 	sequence_character = "F"
 	sequence_primary_title = "G"
@@ -296,9 +303,9 @@ shortcutbindings = {
 	sequence_intrigue = "X"
 	sequence_factions = "C"
 	sequence_decisions = "B"
-	sequence_find_title = "3"
-	sequence_encyclopedia = "4"
-
+	sequence_find_title = "4"
+	sequence_encyclopedia = "5"
+	sequence_find_character = "3"
 	sequence_notification = "2"
 
 # Map Sequence
