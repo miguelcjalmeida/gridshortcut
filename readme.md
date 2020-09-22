@@ -3,7 +3,7 @@
 
 This is a mod for Crusader King 3 (**v1.0.3**) that adds more than a hundred of shortcuts to the game. The idea is to speed up interactions with interface by diminishing the mouse usage with scoped shortcuts. They are scoped to the window that is opened, allowing the coverage of many different actions with same hotkeys.
 
-The frequent used actions are mapped with easy-to-reach thinking, meaning they are mapped to the left side of the keyboard, where the hand rests, by the keys: 1-5, QWERT, ASDFG, ZXCVB, TAB and SPACE. The more uncommon actions (map view and few windows), are located to the other side. This configuration should help decreasing the mouse usage, allowing you to even combo hotkeys. Just keep in mind that there is a learning curve, since it requires memorization.
+The most frequent actions are mapped with easy-to-reach thinking, meaning they are mapped to the left side of the keyboard, where the hand rests, by the keys: 1-5, QWERT, ASDFG, ZXCVB, TAB and SPACE. The more uncommon actions (map view and few windows), are mapped to sequences which is usually initiated by SPACE. This configuration should help decreasing the mouse usage, allowing you to even combo hotkeys. Just keep in mind that there is a learning curve, since it requires memorization.
 
 # Requirement  [Very Important]
 
@@ -141,6 +141,21 @@ _All map views can be toggle by pressing a combination of buttons. All the seque
 ## Window Scoped Hotkeys
 Different from the hotkeys above, all the next ones are bound to a window.
 
+### HUD Window
+_The HUD window shortcuts are only triggered when there is no other window opened._
+
+![army unit](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/hudarmy.png)
+
+| Key | Action |
+| ----- | ----- |
+| C | Select an army you control that is visible in your screen ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png) | 
+
+![rally point](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/hudrally.png)
+
+| Key | Action |
+| ----- | ----- |
+| V | Select an rally point you control that is visible in your screen ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)| 
+
 ### Suggestions 
 
 ![Suggestions](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/suggestion.png)
@@ -237,7 +252,7 @@ Different from the hotkeys above, all the next ones are bound to a window.
 | F | Open head of faith profile, if any ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png) |
 | C | Open head of faith interaction menu, if any ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png) |
 
-### Culture Window 
+### Culture Window ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)
 
 ![faith](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/culture.png)
 
