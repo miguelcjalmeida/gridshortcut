@@ -1,9 +1,9 @@
 [h1] What about it [/h1]
 [b]Mod v1.1.2[/b] for [b]CK3 v1.0.3[/b]
 
-This is a mod for Crusader King 3 that adds more than a hundred of shortcuts to the game. The idea is to speed up interactions with interface by diminishing the mouse usage with scoped shortcuts. They are scoped to the window that is opened, allowing the coverage of many different actions with same hotkeys.
+This is a mod for Crusader King 3 that adds more than a hundred of shortcuts to the game. The idea is to speed up interface interactions by diminishing the mouse usage with scoped shortcuts. They are scoped to the window that is opened, allowing the coverage of many different actions with same hotkeys.
 
-The most frequent actions are mapped with easy-to-reach thinking, meaning they are mapped to the left side of the keyboard, where the hand rests, by the keys: 1-5, QWERT, ASDFG, ZXCVB. The more uncommon actions (map view and few windows), are located to the other side. This configuration should help decreasing the mouse usage, allowing you to even combo hotkeys. Just keep in mind that there is a learning curve, since it requires memorization.
+The most frequent actions are mapped with easy-to-reach thinking, meaning they are mapped to the left side of the keyboard, where the hand rests, by the keys: 1-5, QWERT, ASDFG, ZXCVB, TAB and SPACE. The more uncommon actions (map view and few windows), are mapped to sequences which is usually initiated by SPACE. This configuration should help decreasing the mouse usage, allowing you to even combo hotkeys. Just keep in mind that there is a learning curve, since it requires memorization.
 
 [h1] Requirement [Very Important] [/h1]
 
@@ -11,6 +11,8 @@ Since CK3 still don't support modding the file "Crusader King III/game/gui/shorc
 
 If you prefer, you can also find the shortcuts.shortcuts in this link:
 https://drive.google.com/file/d/1967OPPwgwkOLpnaE4MgoSpNGza2x_V2g/view?usp=sharing
+
+[b]NOTE: When updating your mod version, you must again manually update the 'shortcuts.shortcuts'.[/b]
 
 [h1] Learning the hotkeys [/h1]
 
