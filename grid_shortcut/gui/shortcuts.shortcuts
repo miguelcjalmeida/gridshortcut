@@ -50,7 +50,6 @@ shortcutbindings = {
 
 # Outliner
 	outliner = "F10"
-	outliner_unit = "V"
 
 # Suggestion	
 	suggestion_open = "V"
@@ -174,6 +173,7 @@ shortcutbindings = {
 	army_toggle_auto_raiding = "F"
 	army_undo_raiding_mode = "G"
 	army_select_this_only = "V"
+	army_select_one_unit_highlighted = "C"
 	army_reorganize = "T"
 
 # Council
@@ -256,6 +256,8 @@ shortcutbindings = {
 	find_title_shortcut = "M"
 	go_to_capital = "HOME"
 	notification_dismiss_message = "Q"
+	hud_rally_point = "V"
+	hud_my_army = "C"
 
 # Context Menu
 	context_menu_pin = "TAB"

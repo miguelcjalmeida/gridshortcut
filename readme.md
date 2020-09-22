@@ -3,7 +3,7 @@
 
 This is a mod for Crusader King 3 (**v1.0.3**) that adds more than a hundred of shortcuts to the game. The idea is to speed up interactions with interface by diminishing the mouse usage with scoped shortcuts. They are scoped to the window that is opened, allowing the coverage of many different actions with same hotkeys.
 
-The frequent used actions are mapped with easy-to-reach thinking, meaning they are mapped to the left side of the keyboard, where the hand rests, by the keys: 1-5, QWERT, ASDFG, ZXCVB. The more uncommon actions (map view and few windows), are located to the other side. This configuration should help decreasing the mouse usage, allowing you to even combo hotkeys. Just keep in mind that there is a learning curve, since it requires memorization.
+The frequent used actions are mapped with easy-to-reach thinking, meaning they are mapped to the left side of the keyboard, where the hand rests, by the keys: 1-5, QWERT, ASDFG, ZXCVB, TAB and SPACE. The more uncommon actions (map view and few windows), are located to the other side. This configuration should help decreasing the mouse usage, allowing you to even combo hotkeys. Just keep in mind that there is a learning curve, since it requires memorization.
 
 # Requirement  [Very Important]
 
@@ -22,7 +22,7 @@ Hotkeys can be either global or window-scoped, meaning they change based on the 
 | Key | Action |
 | ------ | ------ |
 | 1, 2, 3, 4 | Navigate between tabs |
-| SPACE | Trigger sequential global hotkeys ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png) |
+| SPACE | Start sequential global hotkeys ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png) |
 | ESCAPE | Cancel most actions |
 | E | Confirm most actions. Also more related to positive actions |
 | Q | Decline most actions. Also more related to negative actions | 
@@ -158,8 +158,6 @@ Different from the hotkeys above, all the next ones are bound to a window.
 | Key | Action |
 | ----- | ----- |
 | SPACE > TAB | Open outliner ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png) | 
-| V | Select your army | 
-| V > V | Go to your army | 
 
 ### Interactions menu
 ![event window](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/contextmenu.png)
@@ -363,7 +361,8 @@ Different from the hotkeys above, all the next ones are bound to a window.
 | Q | Disband army |
 | F | Toggle auto raiding checkbox | 
 | G | Turn raiders into normal soldiers |
-| V | Select only one unit from army |
+| V | Select apart one unit from army |
+| C | Cicle the selected unit from army ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
 | T | Reorganize two armies
 
 ### Siege window

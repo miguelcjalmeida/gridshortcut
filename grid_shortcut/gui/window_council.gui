@@ -308,6 +308,7 @@ types CouncilWindow
 {
 	type councilor_replace_button = button_round {
 		name = "replace"
+		visible = "[GuiCouncilPosition.CanPotentiallySelectCouncillor]"
 		onclick = "[GuiCouncilPosition.SelectCouncillor]"
 		enabled = "[GuiCouncilPosition.CanSelectCouncillor]"
 		tooltip = "[GuiCouncilPosition.GetSelectCouncillorTooltip]" #COUNCILWINDOW_TT_REPLACE

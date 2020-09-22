@@ -369,7 +369,6 @@ widget = {
 						item = {
 							button_list = {
 								name = "unit_item"
-								shortcut = "outliner_unit"
 								datacontext = "[UnitItem.GetArmy]"
 								layoutpolicy_horizontal = expanding
 								size = { 0 28 }
