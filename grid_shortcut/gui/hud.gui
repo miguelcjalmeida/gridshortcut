@@ -2349,6 +2349,27 @@ types HUD
 		tooltip = "[WarItem.GetTooltip]"
 		using = tooltip_ne
 
+		button_normal = {
+			size = { 0 0 }
+			shortcut = "hud_war_mine"
+			onclick = "[WarItem.OnClick]"
+			visible = "[WarItem.IsPlayerParticipant]"
+		}
+
+		button_normal = {
+			size = { 0 0 }
+			shortcut = "hud_war_can_enforce"
+			onclick = "[WarItem.OnClick]"
+			visible = "[WarItem.CanEnforceVictory]"
+		}
+
+		button_normal = {
+			size = { 0 0 }
+			shortcut = "hud_war_lieges"
+			onclick = "[WarItem.OnClick]"
+			visible = "[Not(WarItem.IsPlayerParticipant)]"
+		}
+
 		button_highlight = {
 			name = "enforce_victory_glow"
 			visible = "[WarItem.CanEnforceVictory]"

@@ -259,6 +259,9 @@ shortcutbindings = {
 	notification_dismiss_message = "Q"
 	hud_rally_point = "V"
 	hud_my_army = "C"
+	hud_war_mine = "R"
+	hud_war_can_enforce = "T"
+	hud_war_lieges = "G"
 
 # War 
 	war_portrait_left_options = "C"
