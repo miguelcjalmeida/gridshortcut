@@ -185,6 +185,7 @@ _The HUD window shortcuts are only triggered when there is no other window opene
 | E | Arrange marriage, find spouse, request divorce ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)| 
 | R | Declare war, call ally to war, offer to join war ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)| 
 | B | Educate child, offer guardianship ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)| 
+| C | Remove Guardian ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)| 
 | T | Sway ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)| 
 | Z | Murder ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)| 
 | X | Fabricate hook ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)| 
