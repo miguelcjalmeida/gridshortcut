@@ -260,6 +260,18 @@ shortcutbindings = {
 	hud_rally_point = "V"
 	hud_my_army = "C"
 
+# War 
+	war_portrait_left_options = "C"
+	war_portrait_left = "F"
+	war_portrait_right_options = "V"
+	war_portrait_right = "G"
+	war_left_allies = "Q"
+	war_right_allies = "R"
+	war_change_beneficiary = "T"
+	war_surrender = "1"
+	war_white_peace = "2"
+	war_enforce_demands = "3"
+
 # Context Menu
 	context_menu_pin = "TAB"
 	context_menu_go_to_location = "Q"
