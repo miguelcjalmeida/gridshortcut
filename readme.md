@@ -346,9 +346,10 @@ _The HUD window shortcuts are only triggered when there is no other window opene
 | E | Raise all armies ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png) |
 | Q | Disband all / Raise all armies ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png) |
 | R | Raise all as raiders | 
+| T | Raise one mercenary army. ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png) |
 | F | Select last created rally point | 
 | G | Create new rally point |
-| T | Toggle reinforcement checkbox | 
+| V | Toggle reinforcement checkbox ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)| 
 | F | When holy order tab is open, create new holy order |
 | E | When knights window is open, invite knights |
 

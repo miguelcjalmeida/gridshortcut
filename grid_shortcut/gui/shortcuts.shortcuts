@@ -11,7 +11,6 @@ shortcutbindings = {
 	go_back = "B"
 
 # Time keeping
-	pause = "SPACE"
 	increase_speed = "KP_PLUS"
 	increase_speed_2 = "X"
 	increase_speed_3 = "+"
@@ -28,6 +27,7 @@ shortcutbindings = {
 	speed_5 = "P"
 	character_finder = "P"
 	siege_assault = "P"
+	pause = "P"
 
 # Map
 	map_mode_1 = "Y" # Realm Map Mode
@@ -153,9 +153,10 @@ shortcutbindings = {
 	military_show_knights = "4"
 	military_add_rally_point = "G"
 	military_found_holy_order = "F"
-	military_toggle_reinforcement = "T"
 	military_knights_invite = "E"
 	military_knights_invite_2 = "Q"
+	military_raise_mercenary = "T"
+	military_toggle_reinforcement = "V"
 
 	selected_rally_delete = "G"
 	selected_rally_move = "F"

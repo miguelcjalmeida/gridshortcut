@@ -1347,6 +1347,13 @@ types HiredTroops
 			}
 		}
 
+		button_normal = {
+			size = { 0 0 }
+			onclick = "[RaiseMercenaryCompany(MercenaryCompany.Self)]"
+			visible = "[MercenaryCompany.CanBeRaised]"
+			shortcut = "military_raise_mercenary"
+		}
+
 		hbox = {
 
 			vbox = {
