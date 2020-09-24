@@ -18,6 +18,7 @@ window = {
 		using = Animation_FadeIn_Quick
 		using = Sound_WindowShow_Standard
 		position = { -650 110 }
+		on_start = "[GetVariableSystem.Set( 'decision_detail_open', 'true' )]"
 	}
 
 	state = {
@@ -25,6 +26,7 @@ window = {
 		using = Animation_FadeOut_Quick
 		using = Sound_WindowHide_Standard
 		position_x = -600
+		on_start = "[GetVariableSystem.Clear( 'decision_detail_open' )]"
 	}
 
 	vbox = {

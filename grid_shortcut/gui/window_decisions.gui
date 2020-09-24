@@ -1,0 +1,616 @@
+window = {
+	name = "decisions_view"
+	parentanchor = top|right
+	layer = windows_layer
+	movable = no
+
+	using = Window_Size_MainTab
+
+	state = {
+		name = _show
+		using = Animation_FadeIn_Quick
+		using = Sound_WindowShow_Standard
+		using = Window_Position_MainTab
+
+		on_start = "[GetVariableSystem.Set( 'right_window_open', 'true' )]"
+		on_start = "[GetVariableSystem.Clear( 'decision_detail_open' )]"
+	}
+
+	state = {
+		name = _hide
+		using = Animation_FadeOut_Quick
+		using = Sound_WindowHide_Standard
+		using = Window_Position_MainTab_Hide
+
+		on_start = "[GetVariableSystem.Clear( 'right_window_open' )]"
+	}
+
+	margin_widget = {
+		size = { 100% 100% }
+		margin = { 0 26 }
+		margin_right = 20
+
+		widget = {
+			size = { 100% 100% }
+
+			using = Window_Background
+			using = Window_Decoration_Thin
+
+			vbox = {
+				using = Window_Margins
+
+				header_pattern = {
+					layoutpolicy_horizontal = expanding
+
+					blockoverride "header_text"
+					{
+						text = "DECISIONS_VIEW_TITLE"
+					}
+
+					blockoverride "button_close"
+					{
+						onclick = "[DecisionsView.Close]"
+						enabled = "[Not(GetVariableSystem.Exists( 'decision_detail_open'))]"
+					}
+				}
+
+
+				scrollbox = {
+					name = "decision_scrollarea"
+					layoutpolicy_horizontal = expanding
+					layoutpolicy_vertical = expanding
+
+					background = {
+						texture = "gfx/interface/illustrations/event_scenes/councilchamber.dds"
+						margin = { -5 0 }
+						fittype = end
+						alpha = 0.8
+						framesize = { 1200 848 }
+
+						modify_texture = {
+							texture = "gfx/interface/tiles/stretch_bottom_fade.dds"
+							blend_mode = alphamultiply
+						}
+					}
+
+					blockoverride "scrollbox_content"
+					{
+						name = "decisions_main_container"
+						spacing = 20
+
+						vbox = {
+							layoutpolicy_horizontal = expanding
+							spacing = 10
+
+							text_label_center = {
+								text = "DECISIONS_VIEW_MAJOR_DECISIONS"
+							}
+
+							text_single = {
+								visible = "[IsDataModelEmpty(DecisionsView.GetDecisions)]"
+								text = "DECISIONS_VIEW_MAJOR_NOT_AVAILABLE"
+								default_format = "#low;italic"
+							}
+
+							vbox = {
+								name = "major_decisions"
+								datamodel = "[DecisionsView.GetDecisions]"
+								layoutpolicy_horizontal = expanding
+								spacing = 5
+
+								item = {
+									button_decision_entry = {
+										datacontext = "[DecisionsViewItem.GetDecision]"
+										visible = "[Decision.IsMajor]"
+										layoutpolicy_horizontal = expanding
+										size = { -1 55 }
+
+										blockoverride "size_illustration" {
+											size = { 250 53 }
+										}
+
+										onclick = "[DecisionsViewItem.OnSelect]"
+										onclick = "[PdxGuiTriggerAllAnimations('decisions_detail_refresh')]"
+										down = "[DecisionsViewItem.IsSelected]"
+
+										blockoverride "default_format" {
+											default_format = "#medium"
+										}
+									}
+								}
+							}
+
+						}
+
+						divider_light = {
+							layoutpolicy_horizontal = expanding
+						}
+
+						vbox = {
+							name = "decisions_container"
+							layoutpolicy_horizontal = expanding
+							spacing = 10
+
+							text_label_center = {
+								text = "DECISIONS_VIEW_DECISIONS"
+							}
+
+							vbox = {
+								name = "regular_decisions"
+								datamodel = "[DecisionsView.GetDecisions]"
+								layoutpolicy_horizontal = expanding
+								spacing = 5
+
+								item = {
+									button_decision_entry = {
+										datacontext = "[DecisionsViewItem.GetDecision]"
+										visible = "[Not(Decision.IsMajor)]"
+										layoutpolicy_horizontal = expanding
+
+										onclick = "[DecisionsViewItem.OnSelect]"
+										onclick = "[PdxGuiTriggerAllAnimations('decisions_detail_refresh')]"
+										down = "[DecisionsViewItem.IsSelected]"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+types Decisions
+{
+	type button_decision_entry = button_standard {
+		size = { 300 45 }
+		tooltip = SHOW_DECISION_TOOLTIP
+
+		# special
+
+		button_normal = {
+			size = {0 0}
+			shortcut = "decision_possible"
+			onclick = "[DecisionsViewItem.OnSelect]"
+			onclick = "[PdxGuiTriggerAllAnimations('decisions_detail_refresh')]"
+			visible = "[And(And(Decision.IsPossibleForPlayer, Not(Decision.IsMajor)), Not(GetVariableSystem.Exists( 'decision_detail_open')))]"
+		}
+
+		button_normal = {
+			size = {0 0}
+			shortcut = "decision_possible_favorite"
+			onclick = "[DecisionsViewItem.OnSelect]"
+			onclick = "[PdxGuiTriggerAllAnimations('decisions_detail_refresh')]"
+			visible = "[And(And(And(Decision.IsPossibleForPlayer, Not(Decision.IsMajor)), Decision.IsImportantForPlayer), Not(GetVariableSystem.Exists( 'decision_detail_open')))]"
+		}
+		
+		# basic
+
+		button_normal = {
+			size = {0 0}
+			shortcut = "decision_commit_suicide"
+			onclick = "[DecisionsViewItem.OnSelect]"
+			onclick = "[PdxGuiTriggerAllAnimations('decisions_detail_refresh')]"
+			visible = "[EqualTo_string(Decision.GetTitleForPlayer, SelectLocalization(Decision.IsPossibleForPlayer, 'commit_suicide_decision', 'commit_suicide_decision'))]"
+		}
+
+		button_normal = {
+			size = {0 0}
+			shortcut = "decision_convert_to_local_culture"
+			onclick = "[DecisionsViewItem.OnSelect]"
+			onclick = "[PdxGuiTriggerAllAnimations('decisions_detail_refresh')]"
+			visible = "[EqualTo_string(Decision.GetTitleForPlayer, SelectLocalization(Decision.IsPossibleForPlayer, 'convert_to_local_culture_decision', 'convert_to_local_culture_decision'))]"
+		}
+
+		button_normal = {
+			size = {0 0}
+			shortcut = "decision_invite_claimants"
+			onclick = "[DecisionsViewItem.OnSelect]"
+			onclick = "[PdxGuiTriggerAllAnimations('decisions_detail_refresh')]"
+			visible = "[EqualTo_string(Decision.GetTitleForPlayer, SelectLocalization(Decision.IsPossibleForPlayer, 'invite_claimants_decision', 'invite_claimants_decision'))]"	
+		}
+
+		button_normal = {
+			size = {0 0}
+			shortcut = "decision_invite_champion"
+			onclick = "[DecisionsViewItem.OnSelect]"
+			onclick = "[PdxGuiTriggerAllAnimations('decisions_detail_refresh')]"
+			visible = "[EqualTo_string(Decision.GetTitleForPlayer, SelectLocalization(Decision.IsPossibleForPlayer, 'invite_knights_decision', 'invite_knights_decision'))]"	
+		}
+		
+		button_normal = {
+			size = {0 0}
+			shortcut = "decision_search_for_physician"
+			onclick = "[DecisionsViewItem.OnSelect]"
+			onclick = "[PdxGuiTriggerAllAnimations('decisions_detail_refresh')]"
+			visible = "[EqualTo_string(Decision.GetTitleForPlayer, SelectLocalization(Decision.IsPossibleForPlayer, 'hire_physician_decision', 'hire_physician_decision'))]"
+		}
+
+		button_normal = {
+			size = {0 0}
+			shortcut = "decision_pet_dog"
+			onclick = "[DecisionsViewItem.OnSelect]"
+			onclick = "[PdxGuiTriggerAllAnimations('decisions_detail_refresh')]"
+			visible = "[EqualTo_string(Decision.GetTitleForPlayer, SelectLocalization(Decision.IsPossibleForPlayer, 'pet_dog_decision', 'pet_dog_decision'))]"
+		}
+
+		button_normal = {
+			size = {0 0}
+			shortcut = "decision_pet_cat"
+			onclick = "[DecisionsViewItem.OnSelect]"
+			onclick = "[PdxGuiTriggerAllAnimations('decisions_detail_refresh')]"
+			visible = "[EqualTo_string(Decision.GetTitleForPlayer, SelectLocalization(Decision.IsPossibleForPlayer, 'pet_cat_decision', 'pet_cat_decision'))]"
+		}
+
+		# activities 
+
+		button_normal = {
+			size = {0 0}
+			shortcut = "decision_go_on_pilgrimage"
+			onclick = "[DecisionsViewItem.OnSelect]"
+			onclick = "[PdxGuiTriggerAllAnimations('decisions_detail_refresh')]"
+			visible = "[EqualTo_string(Decision.GetTitleForPlayer, SelectLocalization(Decision.IsPossibleForPlayer, 'go_on_pilgrimage_decision', 'go_on_pilgrimage_decision'))]"
+		}
+
+		button_normal = {
+			size = {0 0}
+			shortcut = "decision_go_on_pilgrimage"
+			onclick = "[DecisionsViewItem.OnSelect]"
+			onclick = "[PdxGuiTriggerAllAnimations('decisions_detail_refresh')]"
+			visible = "[EqualTo_string(Decision.GetTitleForPlayer, SelectLocalization(Decision.IsPossibleForPlayer, 'go_on_hajj_decision', 'go_on_hajj_decision'))]"
+		}
+		
+		button_normal = {
+			size = {0 0}
+			shortcut = "decision_host_feast"
+			onclick = "[DecisionsViewItem.OnSelect]"
+			onclick = "[PdxGuiTriggerAllAnimations('decisions_detail_refresh')]"
+			visible = "[EqualTo_string(Decision.GetTitleForPlayer, SelectLocalization(Decision.IsPossibleForPlayer, 'host_feast_decision', 'host_feast_decision'))]"
+		}
+		
+		button_normal = {
+			size = {0 0}
+			shortcut = "decision_call_hunt"
+			onclick = "[DecisionsViewItem.OnSelect]"
+			onclick = "[PdxGuiTriggerAllAnimations('decisions_detail_refresh')]"
+			visible = "[EqualTo_string(Decision.GetTitleForPlayer, SelectLocalization(Decision.IsPossibleForPlayer, 'start_hunt_decision', 'start_hunt_decision'))]"
+		}
+
+		button_normal = {
+			size = {0 0}
+			shortcut = "decision_meditate_in_seclusion"
+			onclick = "[DecisionsViewItem.OnSelect]"
+			onclick = "[PdxGuiTriggerAllAnimations('decisions_detail_refresh')]"
+			visible = "[EqualTo_string(Decision.GetTitleForPlayer, SelectLocalization(Decision.IsPossibleForPlayer, 'meditate_in_seclusion_decision', 'meditate_in_seclusion_decision'))]"
+		}
+
+		# tenets 
+
+		button_normal = {
+			size = {0 0}
+			shortcut = "decision_meditate_in_seclusion"
+			onclick = "[DecisionsViewItem.OnSelect]"
+			onclick = "[PdxGuiTriggerAllAnimations('decisions_detail_refresh')]"
+			visible = "[And(Decision.IsPossibleForPlayer, EqualTo_string(Decision.GetTitleForPlayer, SelectLocalization(Decision.IsPossibleForPlayer, 'meditate_in_seclusion_decision', 'meditate_in_seclusion_decision')))]"
+		}
+
+		button_normal = {
+			size = {0 0}
+			shortcut = "decision_take_vow_of_poverty"
+			onclick = "[DecisionsViewItem.OnSelect]"
+			onclick = "[PdxGuiTriggerAllAnimations('decisions_detail_refresh')]"
+			visible = "[And(Decision.IsPossibleForPlayer, EqualTo_string(Decision.GetTitleForPlayer, SelectLocalization(Decision.IsPossibleForPlayer, 'take_vow_of_poverty_decision', 'take_vow_of_poverty_decision')))]"
+		}
+
+		button_normal = {
+			size = {0 0}
+			shortcut = "decision_renounce_vow_of_poverty"
+			onclick = "[DecisionsViewItem.OnSelect]"
+			onclick = "[PdxGuiTriggerAllAnimations('decisions_detail_refresh')]"
+			visible = "[And(Decision.IsPossibleForPlayer, EqualTo_string(Decision.GetTitleForPlayer, SelectLocalization(Decision.IsPossibleForPlayer, 'renounce_vow_of_poverty_decision', 'renounce_vow_of_poverty_decision')))]"
+		}
+
+		button_normal = {
+			size = {0 0}
+			shortcut = "decision_initiate_consolamentum"
+			onclick = "[DecisionsViewItem.OnSelect]"
+			onclick = "[PdxGuiTriggerAllAnimations('decisions_detail_refresh')]"
+			visible = "[And(Decision.IsPossibleForPlayer, EqualTo_string(Decision.GetTitleForPlayer, SelectLocalization(Decision.IsPossibleForPlayer, 'initiate_consolamentum_decision', 'initiate_consolamentum_decision')))]"
+		}
+
+		button_normal = {
+			size = {0 0}
+			shortcut = "decision_seek_aid_of_the_spirits"
+			onclick = "[DecisionsViewItem.OnSelect]"
+			onclick = "[PdxGuiTriggerAllAnimations('decisions_detail_refresh')]"
+			visible = "[And(Decision.IsPossibleForPlayer, EqualTo_string(Decision.GetTitleForPlayer, SelectLocalization(Decision.IsPossibleForPlayer, 'seek_aid_of_the_spirits_decision', 'seek_aid_of_the_spirits_decision')))]"
+		}
+
+		button_normal = {
+			size = {0 0}
+			shortcut = "decision_select_personal_deity"
+			onclick = "[DecisionsViewItem.OnSelect]"
+			onclick = "[PdxGuiTriggerAllAnimations('decisions_detail_refresh')]"
+			visible = "[And(Decision.IsPossibleForPlayer, EqualTo_string(Decision.GetTitleForPlayer, SelectLocalization(Decision.IsPossibleForPlayer, 'select_personal_deity_decision', 'select_personal_deity_decision')))]"
+		}
+
+		button_normal = {
+			size = {0 0}
+			shortcut = "decision_give_sky_burial"
+			onclick = "[DecisionsViewItem.OnSelect]"
+			onclick = "[PdxGuiTriggerAllAnimations('decisions_detail_refresh')]"
+			visible = "[And(Decision.IsPossibleForPlayer, EqualTo_string(Decision.GetTitleForPlayer, SelectLocalization(Decision.IsPossibleForPlayer, 'give_sky_burial_decision', 'give_sky_burial_decision')))]"
+		}
+
+		button_normal = {
+			size = {0 0}
+			shortcut = "decision_raise_runestone"
+			onclick = "[DecisionsViewItem.OnSelect]"
+			onclick = "[PdxGuiTriggerAllAnimations('decisions_detail_refresh')]"
+			visible = "[And(Decision.IsPossibleForPlayer, EqualTo_string(Decision.GetTitleForPlayer, SelectLocalization(Decision.IsPossibleForPlayer, 'raise_runestone_decision', 'raise_runestone_decision')))]"
+		}
+
+		button_normal = {
+			size = {0 0}
+			shortcut = "decision_divine_the_stars"
+			onclick = "[DecisionsViewItem.OnSelect]"
+			onclick = "[PdxGuiTriggerAllAnimations('decisions_detail_refresh')]"
+			visible = "[And(Decision.IsPossibleForPlayer, EqualTo_string(Decision.GetTitleForPlayer, SelectLocalization(Decision.IsPossibleForPlayer, 'divine_the_stars_decision', 'divine_the_stars_decision')))]"
+		}
+
+		# lifestyle 
+
+		button_normal = {
+			size = {0 0}
+			shortcut = "decision_embrace_celibacy"
+			onclick = "[DecisionsViewItem.OnSelect]"
+			onclick = "[PdxGuiTriggerAllAnimations('decisions_detail_refresh')]"
+			visible = "[And(Decision.IsPossibleForPlayer, EqualTo_string(Decision.GetTitleForPlayer, SelectLocalization(Decision.IsPossibleForPlayer, 'embrace_celibacy_decision', 'embrace_celibacy_decision')))]"
+		}
+
+		button_normal = {
+			size = {0 0}
+			shortcut = "decision_abandon_celibacy"
+			onclick = "[DecisionsViewItem.OnSelect]"
+			onclick = "[PdxGuiTriggerAllAnimations('decisions_detail_refresh')]"
+			visible = "[And(Decision.IsPossibleForPlayer, EqualTo_string(Decision.GetTitleForPlayer, SelectLocalization(Decision.IsPossibleForPlayer, 'abandon_celibacy_decision', 'abandon_celibacy_decision')))]"
+		}
+
+		button_normal = {
+			size = {0 0}
+			shortcut = "decision_sale_of_titles"
+			onclick = "[DecisionsViewItem.OnSelect]"
+			onclick = "[PdxGuiTriggerAllAnimations('decisions_detail_refresh')]"
+			visible = "[And(Decision.IsPossibleForPlayer, EqualTo_string(Decision.GetTitleForPlayer, SelectLocalization(Decision.IsPossibleForPlayer, 'sale_of_titles_decision', 'sale_of_titles_decision')))]"
+		}
+
+		button_normal = {
+			size = {0 0}
+			shortcut = "decision_extort_subjects"
+			onclick = "[DecisionsViewItem.OnSelect]"
+			onclick = "[PdxGuiTriggerAllAnimations('decisions_detail_refresh')]"
+			visible = "[And(Decision.IsPossibleForPlayer, EqualTo_string(Decision.GetTitleForPlayer, SelectLocalization(Decision.IsPossibleForPlayer, 'extort_subjects_decision', 'extort_subjects_decision')))]"
+		}
+
+		button_normal = {
+			size = {0 0}
+			shortcut = "decision_commission_epic"
+			onclick = "[DecisionsViewItem.OnSelect]"
+			onclick = "[PdxGuiTriggerAllAnimations('decisions_detail_refresh')]"
+			visible = "[And(Decision.IsPossibleForPlayer, EqualTo_string(Decision.GetTitleForPlayer, SelectLocalization(Decision.IsPossibleForPlayer, 'commission_epic_decision', 'commission_epic_decision')))]"
+		}
+
+		button_normal = {
+			size = {0 0}
+			shortcut = "decision_hold_mystical_communion"
+			onclick = "[DecisionsViewItem.OnSelect]"
+			onclick = "[PdxGuiTriggerAllAnimations('decisions_detail_refresh')]"
+			visible = "[And(Decision.IsPossibleForPlayer, EqualTo_string(Decision.GetTitleForPlayer, SelectLocalization(Decision.IsPossibleForPlayer, 'hold_mystical_communion_decision', 'hold_mystical_communion_decision')))]"
+		}
+
+		# coping
+
+		button_normal = {
+			size = {0 0}
+			shortcut = "decision_stress_loss_drunkard"
+			onclick = "[DecisionsViewItem.OnSelect]"
+			onclick = "[PdxGuiTriggerAllAnimations('decisions_detail_refresh')]"
+			visible = "[And(Decision.IsPossibleForPlayer, EqualTo_string(Decision.GetTitleForPlayer, SelectLocalization(Decision.IsPossibleForPlayer, 'stress_loss_drunkard_decision', 'stress_loss_drunkard_decision')))]"
+		}
+
+		button_normal = {
+			size = {0 0}
+			shortcut = "decision_stress_loss_rakish"
+			onclick = "[DecisionsViewItem.OnSelect]"
+			onclick = "[PdxGuiTriggerAllAnimations('decisions_detail_refresh')]"
+			visible = "[And(Decision.IsPossibleForPlayer, EqualTo_string(Decision.GetTitleForPlayer, SelectLocalization(Decision.IsPossibleForPlayer, 'stress_loss_rakish_decision', 'stress_loss_rakish_decision')))]"
+		}
+
+		button_normal = {
+			size = {0 0}
+			shortcut = "decision_stress_loss_reclusive"
+			onclick = "[DecisionsViewItem.OnSelect]"
+			onclick = "[PdxGuiTriggerAllAnimations('decisions_detail_refresh')]"
+			visible = "[And(Decision.IsPossibleForPlayer, EqualTo_string(Decision.GetTitleForPlayer, SelectLocalization(Decision.IsPossibleForPlayer, 'stress_loss_reclusive_decision', 'stress_loss_reclusive_decision')))]"
+		}
+
+		button_normal = {
+			size = {0 0}
+			shortcut = "decision_stress_loss_flagellant"
+			onclick = "[DecisionsViewItem.OnSelect]"
+			onclick = "[PdxGuiTriggerAllAnimations('decisions_detail_refresh')]"
+			visible = "[And(Decision.IsPossibleForPlayer, EqualTo_string(Decision.GetTitleForPlayer, SelectLocalization(Decision.IsPossibleForPlayer, 'stress_loss_flagellant_decision', 'stress_loss_flagellant_decision')))]"
+		}
+
+		button_normal = {
+			size = {0 0}
+			shortcut = "decision_stress_loss_profligate"
+			onclick = "[DecisionsViewItem.OnSelect]"
+			onclick = "[PdxGuiTriggerAllAnimations('decisions_detail_refresh')]"
+			visible = "[And(Decision.IsPossibleForPlayer, EqualTo_string(Decision.GetTitleForPlayer, SelectLocalization(Decision.IsPossibleForPlayer, 'stress_loss_profligate_decision', 'stress_loss_profligate_decision')))]"
+		}
+
+		button_normal = {
+			size = {0 0}
+			shortcut = "decision_stress_loss_improvident"
+			onclick = "[DecisionsViewItem.OnSelect]"
+			onclick = "[PdxGuiTriggerAllAnimations('decisions_detail_refresh')]"
+			visible = "[And(Decision.IsPossibleForPlayer, EqualTo_string(Decision.GetTitleForPlayer, SelectLocalization(Decision.IsPossibleForPlayer, 'stress_loss_improvident_decision', 'stress_loss_improvident_decision')))]"
+		}
+
+		button_normal = {
+			size = {0 0}
+			shortcut = "decision_stress_loss_contrite"
+			onclick = "[DecisionsViewItem.OnSelect]"
+			onclick = "[PdxGuiTriggerAllAnimations('decisions_detail_refresh')]"
+			visible = "[And(Decision.IsPossibleForPlayer, EqualTo_string(Decision.GetTitleForPlayer, SelectLocalization(Decision.IsPossibleForPlayer, 'stress_loss_contrite_decision', 'stress_loss_contrite_decision')))]"
+		}
+
+		button_normal = {
+			size = {0 0}
+			shortcut = "decision_stress_loss_comfort_eater"
+			onclick = "[DecisionsViewItem.OnSelect]"
+			onclick = "[PdxGuiTriggerAllAnimations('decisions_detail_refresh')]"
+			visible = "[And(Decision.IsPossibleForPlayer, EqualTo_string(Decision.GetTitleForPlayer, SelectLocalization(Decision.IsPossibleForPlayer, 'stress_loss_comfort_eater_decision', 'stress_loss_comfort_eater_decision')))]"
+		}
+
+		button_normal = {
+			size = {0 0}
+			shortcut = "decision_stress_loss_inappetetic"
+			onclick = "[DecisionsViewItem.OnSelect]"
+			onclick = "[PdxGuiTriggerAllAnimations('decisions_detail_refresh')]"
+			visible = "[And(Decision.IsPossibleForPlayer, EqualTo_string(Decision.GetTitleForPlayer, SelectLocalization(Decision.IsPossibleForPlayer, 'stress_loss_inappetetic_decision', 'stress_loss_inappetetic_decision')))]"
+		}
+
+		button_normal = {
+			size = {0 0}
+			shortcut = "decision_stress_loss_journaller"
+			onclick = "[DecisionsViewItem.OnSelect]"
+			onclick = "[PdxGuiTriggerAllAnimations('decisions_detail_refresh')]"
+			visible = "[And(Decision.IsPossibleForPlayer, EqualTo_string(Decision.GetTitleForPlayer, SelectLocalization(Decision.IsPossibleForPlayer, 'stress_loss_journaller_decision', 'stress_loss_journaller_decision')))]"
+		}
+
+		button_normal = {
+			size = {0 0}
+			shortcut = "decision_stress_loss_confider"
+			onclick = "[DecisionsViewItem.OnSelect]"
+			onclick = "[PdxGuiTriggerAllAnimations('decisions_detail_refresh')]"
+			visible = "[And(Decision.IsPossibleForPlayer, EqualTo_string(Decision.GetTitleForPlayer, SelectLocalization(Decision.IsPossibleForPlayer, 'stress_loss_confider_decision', 'stress_loss_confider_decision')))]"
+		}
+
+		button_normal = {
+			size = {0 0}
+			shortcut = "decision_stress_loss_athletic"
+			onclick = "[DecisionsViewItem.OnSelect]"
+			onclick = "[PdxGuiTriggerAllAnimations('decisions_detail_refresh')]"
+			visible = "[And(Decision.IsPossibleForPlayer, EqualTo_string(Decision.GetTitleForPlayer, SelectLocalization(Decision.IsPossibleForPlayer, 'stress_loss_athletic_decision', 'stress_loss_athletic_decision')))]"
+		}
+
+		button_normal = {
+			size = {0 0}
+			shortcut = "decision_stress_loss_hashishiyah"
+			onclick = "[DecisionsViewItem.OnSelect]"
+			onclick = "[PdxGuiTriggerAllAnimations('decisions_detail_refresh')]"
+			visible = "[And(Decision.IsPossibleForPlayer, EqualTo_string(Decision.GetTitleForPlayer, SelectLocalization(Decision.IsPossibleForPlayer, 'stress_loss_hashishiyah_decision', 'stress_loss_hashishiyah_decision')))]"
+		}
+
+		button_normal = {
+			size = {0 0}
+			shortcut = "decision_stress_loss_irritable"
+			onclick = "[DecisionsViewItem.OnSelect]"
+			onclick = "[PdxGuiTriggerAllAnimations('decisions_detail_refresh')]"
+			visible = "[And(Decision.IsPossibleForPlayer, EqualTo_string(Decision.GetTitleForPlayer, SelectLocalization(Decision.IsPossibleForPlayer, 'stress_loss_irritable_decision', 'stress_loss_irritable_decision')))]"
+		}
+
+		highlight_icon = {
+			name = "icon"
+			position = { 5 5 }
+			size = { 40 40 }
+			texture = "[Decision.GetIcon]"
+			visible = no
+		}
+
+		widget = {
+			scissor = yes
+			parentanchor = right|top
+
+			block "size_illustration" {
+				size = { 250 43 }
+			}
+
+			icon = {
+				name = "illustration"
+				parentanchor = right|top
+				size = { 250 100 }
+
+				mirror = horizontal
+				texture = "[Decision.GetPicture]"
+				alpha = 0.7
+
+				visible = "[Decision.IsPossibleForPlayer]"
+
+				using = Mask_Rough_Edges
+
+				modify_texture = {
+					texture = "gfx/interface/effects/fade_right.dds"
+					blend_mode = alphamultiply
+				}
+			}
+
+			highlight_icon = {
+				parentanchor = right|top
+				size = { 250 100 }
+
+				mirror = horizontal
+				texture = "[Decision.GetPicture]"
+				alpha = 0.7
+
+				visible = "[Not(Decision.IsPossibleForPlayer)]"
+
+				effectname = "GreyedOut"
+
+				tintcolor = { 0.6 0.6 0.6 0.7 }
+
+				using = Mask_Rough_Edges
+
+				modify_texture = {
+					texture = "gfx/interface/effects/fade_right.dds"
+					blend_mode = alphamultiply
+				}
+			}
+		}
+
+		hbox = {
+			margin = { 20 0 }
+			margin_right = 10
+
+			text_single = {
+				layoutpolicy_horizontal = growing
+				name = "title"
+				text = "[Decision.GetTitleForPlayer]"
+				visible = "[Decision.IsPossibleForPlayer]"
+				default_format = "#clickable"
+				align = nobaseline
+			}
+
+			text_single = {
+				layoutpolicy_horizontal = growing
+				name = "title2"
+				text = "[Decision.GetTitleForPlayer]"
+				visible = "[Not(Decision.IsPossibleForPlayer)]"
+				block "default_format" {
+					default_format = "#low"
+				}
+				align = nobaseline
+			}
+
+			highlight_icon = {
+				size = { 30 30 }
+				name = "not_possible"
+				texture = "gfx/interface/icons/icon_cross.dds"
+				visible = "[Not(Decision.IsPossibleForPlayer)]"
+			}
+		}
+	}
+}

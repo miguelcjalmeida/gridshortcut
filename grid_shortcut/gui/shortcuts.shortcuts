@@ -28,7 +28,7 @@ shortcutbindings = {
 	character_finder = "P"
 	siege_assault = "P"
 	pause = "P"
-
+	sequence_character_options = "P"
 # Map
 	map_mode_1 = "Y" # Realm Map Mode
 	map_mode_9 = "U" # dejure duchies
@@ -221,6 +221,58 @@ shortcutbindings = {
 
 # Decisions
 	decision_toggle_importance = "F"
+	decision_possible = "E"
+	decision_possible_favorite = "F"
+	
+	# basic
+	decision_invite_champion = "1"
+	decision_invite_claimants = "2"
+	decision_search_for_physician = "V"
+	decision_commit_suicide = "G"
+	decision_pet_dog = "T"
+	decision_pet_cat = "T"
+	decision_convert_to_local_culture = "B"
+	
+	# activities 
+	decision_host_feast = "4"
+	decision_call_hunt = "5"
+	decision_go_on_pilgrimage = "3"
+
+	# tenets
+	decision_meditate_in_seclusion = "R"
+	decision_take_vow_of_poverty = "R"
+	decision_renounce_vow_of_poverty = "R"
+	decision_initiate_consolamentum = "R"
+	decision_seek_aid_of_the_spirits = "R"
+	decision_select_personal_deity = "R"
+	decision_meditate_in_seclusion = "R"
+	decision_give_sky_burial = "R"
+	decision_raise_runestone = "R"
+	decision_divine_the_stars = "R"
+
+	# lifestyles
+	decision_embrace_celibacy = "Q"
+	decision_abandon_celibacy = "Q"
+	decision_sale_of_titles = "Q"
+	decision_extort_subjects = "Q"
+	decision_commission_epic = "Q"
+	decision_hold_mystical_communion = "Q"
+
+	# coping
+	decision_stress_loss_drunkard = "C"
+	decision_stress_loss_hashishiyah = "C"
+	decision_stress_loss_rakish = "C"
+	decision_stress_loss_reclusive = "C"
+	decision_stress_loss_flagellant = "C"
+	decision_stress_loss_profligate = "C"
+	decision_stress_loss_improvident = "C"
+	decision_stress_loss_contrite = "C"
+	decision_stress_loss_comfort_eater = "C"
+	decision_stress_loss_irritable = "C"
+	decision_stress_loss_inappetetic = "C"
+	decision_stress_loss_journaller = "C"
+	decision_stress_loss_confider = "C"
+	decision_stress_loss_athletic = "C"
 
 # Title
 	title_toggle_history = "1"
@@ -308,13 +360,11 @@ shortcutbindings = {
 	sequence_lifestyle = "W"
 	sequence_faith = "R"
 	sequence_culture = "T"
-	sequence_house = "V"
+	sequence_house = "B"
 	sequence_outliner = "TAB"
 	sequence_disband = "1"
 	sequence_raise_all = "1"
 	sequence_pause = "SPACE"
-	sequence_character_options = "C"
-
 	sequence_character = "F"
 	sequence_primary_title = "G"
 	sequence_my_realm = "A"
@@ -323,7 +373,7 @@ shortcutbindings = {
 	sequence_court = "Z"
 	sequence_intrigue = "X"
 	sequence_factions = "C"
-	sequence_decisions = "B"
+	sequence_decisions = "V"
 	sequence_find_title = "4"
 	sequence_encyclopedia = "5"
 	sequence_find_character = "3"
