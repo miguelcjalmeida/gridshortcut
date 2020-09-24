@@ -7,7 +7,7 @@ window = {
 	parentanchor = center
 	size = { 1120 580 }
 	position = { 220 0 }
-	layer = middle
+	layer = top
 	alpha = 0
 
 	widget = {
