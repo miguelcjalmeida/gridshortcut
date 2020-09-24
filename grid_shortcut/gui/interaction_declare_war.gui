@@ -1,5 +1,5 @@
 ######################################################
-#################### DECLARE WAR "####################
+#################### DECLARE WAR ####################
 ######################################################
 
 # These ~50 first lines are a placeholder way to show who will defend
@@ -11,6 +11,11 @@ window = {
 	allow_outside = yes
 	size = { 600 960 }
 
+	state = {
+		name = "_show"
+		on_start = "[GetVariableSystem.Clear( 'war_cb_combining' )]"
+	}
+	
 	using = Animation_ShowHide_Standard
 
 	scrollarea = {
@@ -34,7 +39,7 @@ window = {
 						datacontext = "[WarAllyItem.GetCharacter]"
 
 						tooltip = "[WarAllyItem.GetAllianceReason]"
-
+				
 						blockoverride "opinion_box" {}
 
 						blockoverride "portrait_button_template_tooltip"
@@ -97,10 +102,12 @@ window = {
 
 						blockoverride "portrait_button" {
 							shortcut = "war_portrait_left"
+							enabled = "[Not(GetVariableSystem.Exists('war_cb_combining'))]"
 						}
 						
 						blockoverride "portrait_options_button" {
 							shortcut = "war_portrait_left_options"
+							enabled = "[Not(GetVariableSystem.Exists('war_cb_combining'))]"
 						}
 					}
 				}
@@ -127,9 +134,10 @@ window = {
 						button_standard = {
 							name = "view_allies_attacker"
 							size = { 100 25 }
-							enabled = "[GreaterThan_int32( DeclareWarInteractionWindow.GetAllyCountForAttacker, '(int32)0' )]"
+							enabled = "[And(GreaterThan_int32( DeclareWarInteractionWindow.GetAllyCountForAttacker, '(int32)0' ), Not(GetVariableSystem.Exists('war_cb_combining')))]"
 							onclick = "[DeclareWarInteractionWindow.ShowAllyListSubviewForAttacker( '(bool)yes' )]"
 							shortcut = "war_left_allies"
+							
 							hbox = {
 								margin = { 20 0 }
 								margin_right = 10
@@ -158,7 +166,7 @@ window = {
 						button_standard = {
 							name = "view_allies_defender"
 							size = { 100 25 }
-							enabled = "[GreaterThan_int32( DeclareWarInteractionWindow.GetAllyCountForDefender, '(int32)0' )]"
+							enabled = "[And(GreaterThan_int32( DeclareWarInteractionWindow.GetAllyCountForDefender, '(int32)0' ), Not(GetVariableSystem.Exists('war_cb_combining')))]"
 							onclick = "[DeclareWarInteractionWindow.ShowAllyListSubviewForAttacker( '(bool)no' )]"
 							shortcut = "war_right_allies"
 							
@@ -201,44 +209,211 @@ window = {
 						addrow = 39
 						addcolumn = 508
 
+						button_normal = {
+							size = { 0 0 }
+							onclick = "[GetVariableSystem.Clear( 'war_cb_combining' )]"
+							onclick = "[GetVariableSystem.Toggle( 'war_cb_combining' )]"
+							shortcut = "war_cb_activator"
+						}
+
+						button_normal = {
+							size = { 0 0 }
+							visible = "[GetVariableSystem.Exists('war_cb_combining')]"
+							state = {
+								name = "_show"
+								delay = 1
+								on_start = "[GetVariableSystem.Clear( 'war_cb_combining' )]"
+							}
+						}
+
 						item = {
-							button_standard = {
-								name = "background_button"
-								size = { 500 35 }
-								down = "[CasusBelliItem.IsSelected]"
-								onclick = "[CasusBelliItem.OnClick]"
-								onclick = "[PdxGuiTriggerAllAnimations('declare_war_goal_refresh')]"
+							container = {
+								widget = {									
+									parentanchor = top|right
 
-								using = tooltip_es
-
-								hbox = {
-									name = "tutorial_highlight_cb_button"
-									margin = { 5 0 }
-									spacing = 5
-									alwaystransparent = yes
-
-									icon = {
-										name = "icon"
-										texture = "[CasusBelliItem.GetType.GetIcon]"
-										size = { 33 33 }
-										alwaystransparent = yes
+									button_normal = {
+										size = { 0 0 }
+										onclick = "[CasusBelliItem.OnClick]"
+										onclick = "[PdxGuiTriggerAllAnimations('declare_war_goal_refresh')]"
+										onclick = "[GetVariableSystem.Clear( 'war_cb_combining' )]"
+										shortcut = "war_cb_invasion"
+										visible = "[And(GetVariableSystem.Exists('war_cb_combining'), EqualTo_string(CasusBelliItem.GetLabel, SelectLocalization(CasusBelliItem.IsSelected, 'INVASION_CB_NAME', 'INVASION_CB_NAME')))]"
 									}
 
-									text_single = {
-										name = "name"
-										layoutpolicy_horizontal = expanding
-										text = "[CasusBelliItem.GetLabel]"
-										align = nobaseline
-										autoresize = no
-										alwaystransparent = yes
+									button_normal = {
+										size = { 0 0 }
+										onclick = "[CasusBelliItem.OnClick]"
+										onclick = "[PdxGuiTriggerAllAnimations('declare_war_goal_refresh')]"
+										onclick = "[GetVariableSystem.Clear( 'war_cb_combining' )]"
+										shortcut = "war_cb_de_jure_duchy"
+										visible = "[And(GetVariableSystem.Exists('war_cb_combining'), EqualTo_string(CasusBelliItem.GetLabel, SelectLocalization(CasusBelliItem.IsSelected, 'DEJURE_CB_DUCHY_NAME_GENERIC', 'DEJURE_CB_DUCHY_NAME_GENERIC')))]"
 									}
 
-									icon = {
-										visible = "[Not( CasusBelliItem.IsValid )]"
-										size = { 25 25 }
-										texture = "gfx/interface/icons/icon_warning.dds"
+									button_normal = {
+										size = { 0 0 }
+										onclick = "[CasusBelliItem.OnClick]"
+										onclick = "[PdxGuiTriggerAllAnimations('declare_war_goal_refresh')]"
+										onclick = "[GetVariableSystem.Clear( 'war_cb_combining' )]"
+										shortcut = "war_cb_de_jure_county"
+										visible = "[And(GetVariableSystem.Exists('war_cb_combining'), EqualTo_string(CasusBelliItem.GetLabel, SelectLocalization(CasusBelliItem.IsSelected, 'DEJURE_CB_COUNTY_NAME_GENERIC', 'DEJURE_CB_COUNTY_NAME_GENERIC')))]"
+									}
+
+									button_normal = {
+										size = { 0 0 }
+										onclick = "[CasusBelliItem.OnClick]"
+										onclick = "[PdxGuiTriggerAllAnimations('declare_war_goal_refresh')]"
+										onclick = "[GetVariableSystem.Clear( 'war_cb_combining' )]"
+										shortcut = "war_cb_conquest_county"
+										visible = "[And(GetVariableSystem.Exists('war_cb_combining'), EqualTo_string(CasusBelliItem.GetLabel, SelectLocalization(CasusBelliItem.IsSelected, 'CONQUEST_COUNTY_CB_NAME', 'CONQUEST_COUNTY_CB_NAME')))]"
+									}
+
+									button_normal = {
+										size = { 0 0 }
+										onclick = "[CasusBelliItem.OnClick]"
+										onclick = "[PdxGuiTriggerAllAnimations('declare_war_goal_refresh')]"
+										onclick = "[GetVariableSystem.Clear( 'war_cb_combining' )]"
+										shortcut = "war_cb_conquest_duchy"
+										visible = "[And(GetVariableSystem.Exists('war_cb_combining'), EqualTo_string(CasusBelliItem.GetLabel, SelectLocalization(CasusBelliItem.IsSelected, 'CONQUEST_DUCHY_CB_NAME', 'CONQUEST_DUCHY_CB_NAME')))]"
+									}
+
+									button_normal = {
+										size = { 0 0 }
+										onclick = "[CasusBelliItem.OnClick]"
+										onclick = "[PdxGuiTriggerAllAnimations('declare_war_goal_refresh')]"
+										onclick = "[GetVariableSystem.Clear( 'war_cb_combining' )]"
+										shortcut = "war_cb_independence_war"
+										visible = "[And(GetVariableSystem.Exists('war_cb_combining'), EqualTo_string(CasusBelliItem.GetLabel, SelectLocalization(CasusBelliItem.IsSelected, 'INDEPENDENCE_WAR_NAME', 'INDEPENDENCE_WAR_NAME')))]"
+									}
+
+									button_normal = {
+										size = { 0 0 }
+										onclick = "[CasusBelliItem.OnClick]"
+										onclick = "[PdxGuiTriggerAllAnimations('declare_war_goal_refresh')]"
+										onclick = "[GetVariableSystem.Clear( 'war_cb_combining' )]"
+										shortcut = "war_cb_claim"
+										visible = "[And(GetVariableSystem.Exists('war_cb_combining'), EqualTo_string(CasusBelliItem.GetType.GetName, SelectLocalization(CasusBelliItem.IsSelected, 'claim_cb', 'claim_cb')))]"
+									}
+
+									button_normal = {
+										size = { 0 0 }
+										onclick = "[CasusBelliItem.OnClick]"
+										onclick = "[PdxGuiTriggerAllAnimations('declare_war_goal_refresh')]"
+										onclick = "[GetVariableSystem.Clear( 'war_cb_combining' )]"
+										shortcut = "war_cb_claim"
+										visible = "[And(GetVariableSystem.Exists('war_cb_combining'), EqualTo_string(CasusBelliItem.GetLabel, Concatenate('Your', SelectLocalization(CasusBelliItem.IsSelected, 'CLAIM_CB_NAME', 'CLAIM_CB_NAME'))))]"
+									}
+
+									button_normal = {
+										size = { 0 0 }
+										onclick = "[CasusBelliItem.OnClick]"
+										onclick = "[PdxGuiTriggerAllAnimations('declare_war_goal_refresh')]"
+										onclick = "[GetVariableSystem.Clear( 'war_cb_combining' )]"
+										shortcut = "war_cb_subjugation"
+										visible = "[And(GetVariableSystem.Exists('war_cb_combining'), EqualTo_string(CasusBelliItem.GetType.GetName, SelectLocalization(CasusBelliItem.IsSelected, 'tribal_subjugation_cb', 'tribal_subjugation_cb')))]"
+									}
+
+									button_normal = {
+										size = { 0 0 }
+										onclick = "[CasusBelliItem.OnClick]"
+										onclick = "[PdxGuiTriggerAllAnimations('declare_war_goal_refresh')]"
+										onclick = "[GetVariableSystem.Clear( 'war_cb_combining' )]"
+										shortcut = "war_cb_raid_captives"
+										visible = "[And(GetVariableSystem.Exists('war_cb_combining'), EqualTo_string(CasusBelliItem.GetType.GetName, SelectLocalization(CasusBelliItem.IsSelected, 'flowery_war_cb', 'flowery_war_cb')))]"
+									}
+
+									button_normal = {
+										size = { 0 0 }
+										onclick = "[CasusBelliItem.OnClick]"
+										onclick = "[PdxGuiTriggerAllAnimations('declare_war_goal_refresh')]"
+										onclick = "[GetVariableSystem.Clear( 'war_cb_combining' )]"
+										shortcut = "war_cb_holy_war_county"
+										visible = "[And(GetVariableSystem.Exists('war_cb_combining'), EqualTo_string(CasusBelliItem.GetLabel, SelectLocalization(CasusBelliItem.IsSelected, 'HOLY_WAR_COUNTY_NAME', 'HOLY_WAR_COUNTY_NAME')))]"
+									}
+
+									button_normal = {
+										size = { 0 0 }
+										onclick = "[CasusBelliItem.OnClick]"
+										onclick = "[PdxGuiTriggerAllAnimations('declare_war_goal_refresh')]"
+										onclick = "[GetVariableSystem.Clear( 'war_cb_combining' )]"
+										shortcut = "war_cb_holy_war_duchy"
+										visible = "[And(GetVariableSystem.Exists('war_cb_combining'), EqualTo_string(CasusBelliItem.GetLabel, SelectLocalization(CasusBelliItem.IsSelected, 'HOLY_WAR_DUCHY_NAME', 'HOLY_WAR_DUCHY_NAME')))]"
+									}
+
+									button_normal = {
+										size = { 0 0 }
+										onclick = "[CasusBelliItem.OnClick]"
+										onclick = "[PdxGuiTriggerAllAnimations('declare_war_goal_refresh')]"
+										onclick = "[GetVariableSystem.Clear( 'war_cb_combining' )]"
+										shortcut = "war_cb_holy_war_kingdom"
+										visible = "[And(GetVariableSystem.Exists('war_cb_combining'), EqualTo_string(CasusBelliItem.GetLabel, SelectLocalization(CasusBelliItem.IsSelected, 'HOLY_WAR_KINGDOM_NAME', 'HOLY_WAR_KINGDOM_NAME')))]"
+									}
+
+									button_normal = {
+										size = { 0 0 }
+										onclick = "[CasusBelliItem.OnClick]"
+										onclick = "[PdxGuiTriggerAllAnimations('declare_war_goal_refresh')]"
+										onclick = "[GetVariableSystem.Clear( 'war_cb_combining' )]"
+										shortcut = "war_cb_crusade"
+										visible = "[And(GetVariableSystem.Exists('war_cb_combining'), EqualTo_string(CasusBelliItem.GetType.GetName, SelectLocalization(CasusBelliItem.IsSelected, 'directed_great_holy_war', 'directed_great_holy_war')))]"
+									}
+
+									button_normal = {
+										size = { 0 0 }
+										onclick = "[CasusBelliItem.OnClick]"
+										onclick = "[PdxGuiTriggerAllAnimations('declare_war_goal_refresh')]"
+										onclick = "[GetVariableSystem.Clear( 'war_cb_combining' )]"
+										shortcut = "war_cb_excomunication"
+										visible = "[And(GetVariableSystem.Exists('war_cb_combining'), EqualTo_string(CasusBelliItem.GetType.GetName, SelectLocalization(CasusBelliItem.IsSelected, 'excommunication_war', 'excommunication_war')))]"
+									}
+
+									button_normal = {
+										size = { 0 0 }
+										onclick = "[CasusBelliItem.OnClick]"
+										onclick = "[PdxGuiTriggerAllAnimations('declare_war_goal_refresh')]"
+										onclick = "[GetVariableSystem.Clear( 'war_cb_combining' )]"
+										shortcut = "war_cb_depose"
+										visible = "[And(GetVariableSystem.Exists('war_cb_combining'), EqualTo_string(CasusBelliItem.GetType.GetName, SelectLocalization(CasusBelliItem.IsSelected, 'depose_war', 'depose_war')))]"
+									}
+								}
+								
+								button_standard = {
+									name = "background_button"
+									size = { 500 35 }
+									down = "[CasusBelliItem.IsSelected]"
+									onclick = "[CasusBelliItem.OnClick]"
+									onclick = "[PdxGuiTriggerAllAnimations('declare_war_goal_refresh')]"
+								
+									using = tooltip_es
+
+									hbox = {
+										name = "tutorial_highlight_cb_button"
+										margin = { 5 0 }
+										spacing = 5
 										alwaystransparent = yes
-										tooltip = "[CasusBelliItem.GetInvalidText]"
+
+										icon = {
+											name = "icon"
+											texture = "[CasusBelliItem.GetType.GetIcon]"
+											size = { 33 33 }
+											alwaystransparent = yes
+										}
+
+										text_single = {
+											name = "name"
+											layoutpolicy_horizontal = expanding
+											text = "[CasusBelliItem.GetLabel]"
+											align = nobaseline
+											autoresize = no
+											alwaystransparent = yes
+										}
+
+										icon = {
+											visible = "[Not( CasusBelliItem.IsValid )]"
+											size = { 25 25 }
+											texture = "gfx/interface/icons/icon_warning.dds"
+											alwaystransparent = yes
+											tooltip = "[CasusBelliItem.GetInvalidText]"
+										}
 									}
 								}
 							}
@@ -302,6 +477,7 @@ window = {
 							visible = "[DeclareWarInteractionWindow.CanShowWarGoalSubview]"
 							onclick = "[DeclareWarInteractionWindow.GetWarGoal.Toggle]"
 							shortcut = "war_change_beneficiary"
+							enabled = "[Not(GetVariableSystem.Exists('war_cb_combining'))]"
 							down = "[DeclareWarInteractionWindow.GetWarGoal.IsShown]"
 	
 							tooltip = "DECLARE_WAR_CHANGE_WAR_GOAL_TOOLTIP"
@@ -337,6 +513,7 @@ window = {
 								down = "[DeclareWarInteractionWindow.IsEffectsTabDefeat]"
 								onclick = "[DeclareWarInteractionWindow.SetEffectsTabDefeat]"
 								shortcut = "war_surrender"
+								enabled = "[Not(GetVariableSystem.Exists('war_cb_combining'))]"
 								tooltip = "TAB_DEFEAT"
 								using = tooltip_se
 
@@ -355,6 +532,7 @@ window = {
 								onclick = "[DeclareWarInteractionWindow.SetEffectsTabWhitePeace]"
 								shortcut = "war_white_peace"
 								visible = "[DeclareWarInteractionWindow.GetCbType.IsWhitePeacePossible]"
+								enabled = "[Not(GetVariableSystem.Exists('war_cb_combining'))]"
 								tooltip = "TAB_WHITE_PEACE"
 								using = tooltip_se
 
@@ -370,6 +548,7 @@ window = {
 								down = "[DeclareWarInteractionWindow.IsEffectsTabVictory]"
 								onclick = "[DeclareWarInteractionWindow.SetEffectsTabVictory]"
 								shortcut = "war_enforce_demands"
+								enabled = "[Not(GetVariableSystem.Exists('war_cb_combining'))]"
 								tooltip = "TAB_VICTORY"
 								using = tooltip_se
 
@@ -540,7 +719,7 @@ window = {
 
 				button_standard_big = {
 					name = "send_button"
-					enabled = "[DeclareWarInteractionWindow.CanSend]"
+					enabled = "[And(DeclareWarInteractionWindow.CanSend, Not(GetVariableSystem.Exists('war_cb_combining')))]"
 					onclick = "[DeclareWarInteractionWindow.Send]"
 					shortcut = "confirm"
 					shortcut = "confirm_2"

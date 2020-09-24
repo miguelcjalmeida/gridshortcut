@@ -1039,7 +1039,7 @@ window = {
 					}
 				}
 
-				button_primary = {
+				button_standard = {
 					name = "victory_button"
 					layoutpolicy_horizontal = expanding
 					minimumsize = { 200 45 }
@@ -1047,9 +1047,16 @@ window = {
 					onclick = "[PdxGuiTriggerAllAnimations('war_end_terms_refresh')]"
 					onclick = "[WarOverviewWindow.SetEffectsTabVictory]"
 					shortcut = "war_enforce_demands"
-					shortcut = "confirm"
-					shortcut = "confirm_2"
 					down = "[WarOverviewWindow.IsEffectsTabVictory]"
+
+					button = { 
+						size = { 0 0 }
+						shortcut = "confirm"
+						shortcut = "confirm_2"
+						onclick = "[PdxGuiTriggerAllAnimations('war_end_terms_refresh')]"
+						onclick = "[WarOverviewWindow.SetEffectsTabVictory]"
+						enabled = "[Not(Or(WarOverviewWindow.IsEffectsTabDefeat,Or(WarOverviewWindow.IsEffectsTabWhitePeace,WarOverviewWindow.IsEffectsTabVictory)))]"
+					}
 
 					text = "TAB_VICTORY"
 

@@ -241,7 +241,6 @@ shortcutbindings = {
 	decision_go_on_pilgrimage = "3"
 
 	# tenets
-	decision_meditate_in_seclusion = "R"
 	decision_take_vow_of_poverty = "R"
 	decision_renounce_vow_of_poverty = "R"
 	decision_initiate_consolamentum = "R"
@@ -325,11 +324,29 @@ shortcutbindings = {
 	war_portrait_right_options = "V"
 	war_portrait_right = "G"
 	war_left_allies = "Q"
-	war_right_allies = "R"
-	war_change_beneficiary = "T"
+	war_right_allies = "T"
+	war_change_beneficiary = "4"
 	war_surrender = "1"
 	war_white_peace = "2"
 	war_enforce_demands = "3"
+
+	war_cb_activator = "R"
+	war_cb_de_jure_duchy = "S"
+	war_cb_de_jure_county = "A"
+	war_cb_conquest_county = "Q"
+	war_cb_conquest_duchy = "W"
+	war_cb_invasion = "E"
+	war_cb_independence_war = "C"
+	war_cb_subjugation = "C"
+	war_cb_depose = "C"
+	war_cb_raid_captives = "F"
+	war_cb_claim = "R"
+	war_cb_holy_war_county = "1"
+	war_cb_holy_war_duchy = "2"
+	war_cb_holy_war_kingdom = "3"
+	war_cb_crusade = "4"
+	war_cb_excomunication = "5"
+
 
 # Context Menu
 	context_menu_pin = "TAB"
