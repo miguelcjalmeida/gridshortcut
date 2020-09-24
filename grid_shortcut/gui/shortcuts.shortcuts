@@ -316,6 +316,8 @@ shortcutbindings = {
 	hud_war_mine = "R"
 	hud_war_can_enforce = "T"
 	hud_war_lieges = "G"
+	war_tab_accept = "1"
+	war_tab_decline = "2"
 
 # War 
 	war_portrait_left_options = "C"

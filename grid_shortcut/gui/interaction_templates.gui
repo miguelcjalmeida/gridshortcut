@@ -865,6 +865,7 @@ types CharacterInteraction
 
 			button_tab = {
 				name = "show_accept_effects"
+				shortcut = "war_tab_accept"
 				layoutpolicy_horizontal = expanding
 				text = "INTERACTION_SHOW_ACCEPT_EFFECTS"
 				onclick = "[InteractionEffectsDescription.ShowOnAcceptEffect]"
@@ -874,6 +875,7 @@ types CharacterInteraction
 
 			button_tab = {
 				name = "show_decline_effects"
+				shortcut = "war_tab_decline"
 				layoutpolicy_horizontal = expanding
 				text = "INTERACTION_SHOW_DECLINE_EFFECTS"
 				onclick = "[InteractionEffectsDescription.ShowOnDeclineEffect]"
