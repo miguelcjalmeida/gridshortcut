@@ -518,9 +518,9 @@ _The next shortcuts will allow you to access almost any minor decision by hotkey
 | F | On details, toggle important decisions checkbox |
 | E | Select a possible minor decision ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
 | F | Select **important** possible minor decision ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)| 
-| Q | Select a available lifestyle decision ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)| 
-| R | Select a available tenet decision ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
-| C | Select a available coping decision (stress relievers) ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
+| Q | Select an available lifestyle decision ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)| 
+| R | Select an available tenet decision ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
+| C | Select an available coping decision (stress relievers) ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
 | 1 | Invite Knights ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)| 
 | 2 | Invite claimants ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
 | 3 | Go on pilgrimage / hajj ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
