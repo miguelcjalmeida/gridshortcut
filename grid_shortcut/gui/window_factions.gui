@@ -637,6 +637,20 @@ types  FactionWindow
 					tooltip = "[FactionItem.GetShowHideMembersTooltip]"
 				}
 
+				button_normal = {
+					size = {0 0}
+					onclick = "[FactionItem.ShowHideMembersFrame]"
+					shortcut = "faction_show_members"
+					visible = "[EqualTo_int32(FactionItem.GetShowMembersFrame, '(int32)1')]"
+				}
+
+				button_normal = {
+					size = {0 0}
+					onclick = "[FactionItem.ShowHideMembersFrame]"
+					shortcut = "faction_hide_members"
+					visible = "[EqualTo_int32(FactionItem.GetShowMembersFrame, '(int32)2')]"
+				}
+
 				text_single = {
 					text = "[FactionItem.GetMembersString]"
 					align = nobaseline

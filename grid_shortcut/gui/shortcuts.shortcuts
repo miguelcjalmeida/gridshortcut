@@ -218,12 +218,14 @@ shortcutbindings = {
 # Factions
 	factions_mine = "1"
 	factions_liege = "2"
+	faction_show_members = "E"
+	faction_hide_members = "Q"
 
 # Decisions
 	decision_toggle_importance = "F"
 	decision_possible = "E"
 	decision_possible_favorite = "F"
-	
+
 	# basic
 	decision_invite_champion = "1"
 	decision_invite_claimants = "2"
