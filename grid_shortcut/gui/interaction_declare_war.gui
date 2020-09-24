@@ -296,11 +296,11 @@ window = {
 
 									button_normal = {
 										size = { 0 0 }
-										onclick = "[CasusBelliItem.OnClick]"
-										onclick = "[PdxGuiTriggerAllAnimations('declare_war_goal_refresh')]"
-										onclick = "[GetVariableSystem.Clear( 'war_cb_combining' )]"
-										shortcut = "war_cb_claim"
-										visible = "[And(GetVariableSystem.Exists('war_cb_combining'), EqualTo_string(CasusBelliItem.GetLabel, Concatenate('Your', SelectLocalization(CasusBelliItem.IsSelected, 'CLAIM_CB_NAME', 'CLAIM_CB_NAME'))))]"
+										# onclick = "[CasusBelliItem.OnClick]"
+										# onclick = "[PdxGuiTriggerAllAnimations('declare_war_goal_refresh')]"
+										# onclick = "[GetVariableSystem.Clear( 'war_cb_combining' )]"
+										# shortcut = "war_cb_claim"
+										# visible = "[And(GetVariableSystem.Exists('war_cb_combining'), EqualTo_string(CasusBelliItem.GetLabel, Concatenate('Your', SelectLocalization(CasusBelliItem.IsSelected, 'CLAIM_CB_NAME', 'CLAIM_CB_NAME'))))]"
 									}
 
 									button_normal = {

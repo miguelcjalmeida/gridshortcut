@@ -232,7 +232,7 @@ types Decisions
 			shortcut = "decision_pet_dog"
 			onclick = "[DecisionsViewItem.OnSelect]"
 			onclick = "[PdxGuiTriggerAllAnimations('decisions_detail_refresh')]"
-			visible = "[EqualTo_string(Decision.GetTitleForPlayer, SelectLocalization(Decision.IsPossibleForPlayer, 'pet_dog_decision', 'pet_dog_decision'))]"
+			visible = "[EqualTo_string(Decision.GetShortDescForPlayer, SelectLocalization(Decision.IsPossibleForPlayer, 'pet_dog_decision_tooltip', 'pet_dog_decision_tooltip'))]"
 		}
 
 		button_normal = {
@@ -240,7 +240,7 @@ types Decisions
 			shortcut = "decision_pet_cat"
 			onclick = "[DecisionsViewItem.OnSelect]"
 			onclick = "[PdxGuiTriggerAllAnimations('decisions_detail_refresh')]"
-			visible = "[EqualTo_string(Decision.GetTitleForPlayer, SelectLocalization(Decision.IsPossibleForPlayer, 'pet_cat_decision', 'pet_cat_decision'))]"
+			visible = "[EqualTo_string(Decision.GetShortDescForPlayer, SelectLocalization(Decision.IsPossibleForPlayer, 'pet_cat_decision_tooltip', 'pet_cat_decision_tooltip'))]"
 		}
 
 		# activities 
@@ -340,7 +340,7 @@ types Decisions
 			shortcut = "decision_give_sky_burial"
 			onclick = "[DecisionsViewItem.OnSelect]"
 			onclick = "[PdxGuiTriggerAllAnimations('decisions_detail_refresh')]"
-			visible = "[And(Decision.IsPossibleForPlayer, EqualTo_string(Decision.GetTitleForPlayer, SelectLocalization(Decision.IsPossibleForPlayer, 'give_sky_burial_decision', 'give_sky_burial_decision')))]"
+			visible = "[And(Decision.IsPossibleForPlayer, EqualTo_string(Decision.GetShortDescForPlayer, SelectLocalization(Decision.IsPossibleForPlayer, 'give_sky_burial_decision_tooltip', 'give_sky_burial_decision_tooltip')))]"
 		}
 
 		button_normal = {
