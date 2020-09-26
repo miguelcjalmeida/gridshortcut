@@ -794,7 +794,6 @@ window = {
 										datacontext = "[RallyPointItem.GetRallyPoint]"
 										size = { 50 50 }
 										onclick = "[RallyPointItem.OnClick]"
-										onclick = "[RallyPointItem.OnClick]"
 										tooltip = "MV_RALLY_POINT_TT"
 										using = tooltip_ne
 										texture = "gfx/interface/edit_banners/banner_icon.dds"
