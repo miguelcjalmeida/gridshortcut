@@ -249,7 +249,6 @@ types MapIcons {
 				size = { 0 0 }
 				shortcut = "hud_my_army"
 				onclick = "[UnitMapIcon.OnClickArmyGroup( Army.Self )]"
-				# onclick = "[UnitItem.PanToUnit]"
 				visible = "[UnitItem.IsUnitItemMine]"
 			}
 
@@ -257,7 +256,8 @@ types MapIcons {
 				size = { 0 0 }
 				shortcut = "army_select_one_unit_highlighted"
 				onclick = "[UnitMapIcon.OnClickArmyGroup( Army.Self )]"
-				visible = "[UnitItem.IsSelected]"
+				onclick = "[UnitItem.PanToUnit]"
+				visible = "[And(UnitItem.IsUnitItemMine, UnitItem.IsSelected)]"
 			}
 
 			button_group = {

@@ -29,6 +29,7 @@ shortcutbindings = {
 	siege_assault = "P"
 	pause = "P"
 	sequence_character_options = "P"
+	
 # Map
 	map_mode_1 = "Y" # Realm Map Mode
 	map_mode_9 = "U" # dejure duchies
@@ -50,6 +51,8 @@ shortcutbindings = {
 
 # Outliner
 	outliner = "F10"
+	outliner_cycle_army = "V"
+	outliner_go_to_army = "C"
 
 # Suggestion	
 	suggestion_open = "V"
@@ -193,9 +196,9 @@ shortcutbindings = {
 	army_disband = "Q"
 	army_toggle_auto_raiding = "F"
 	army_undo_raiding_mode = "G"
-	army_select_this_only = "V"
-	army_select_one_unit_highlighted = "C"
-	army_reorganize = "T"
+	army_select_one_unit_highlighted = "V"
+	army_select_this_only = "P"
+	army_reorganize = "5"
 
 # Council
 	council_mine = "1"
@@ -330,11 +333,11 @@ shortcutbindings = {
 	find_title_shortcut = "M"
 	go_to_capital = "HOME"
 	notification_dismiss_message = "Q"
-	hud_rally_point = "V"
-	hud_my_army = "C"
+	hud_rally_point = "C"
+	hud_my_army = "V"
 	hud_war_mine = "R"
-	hud_war_can_enforce = "T"
-	hud_war_lieges = "G"
+	hud_war_can_enforce = "F"
+	hud_war_lieges = "T"
 	war_tab_accept = "1"
 	war_tab_decline = "2"
 

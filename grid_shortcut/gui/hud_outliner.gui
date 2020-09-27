@@ -1,10 +1,17 @@
-widget = {
+window = {
 	name = "outliner_window"
 	parentanchor = top|right
-	position = { -50 45 }
+	position = { -40 45 }
 	alwaystransparent = no
+	movable = yes
 	filter_mouse = all
 	layer = windows_layer
+	visible = "[Not( IsPauseMenuShown )]"
+
+	state = { 
+		name = "_show"
+		on_start = "[GetVariableSystem.Set( 'cycle_army_selected', 'true' )]"
+	}
 
 	state = {
 		name = _show
@@ -52,7 +59,6 @@ widget = {
 	}
 
 	flowcontainer = {
-		visible = "[Not(GetVariableSystem.Exists( 'right_window_open'))]"
 		resizeparent = yes
 		margin = { 10 10 }
 		margin_bottom = 15
@@ -97,8 +103,8 @@ widget = {
 		scrollarea = {
 			autoresizescrollarea = yes
 			scrollbarpolicy_horizontal = always_off
-			maximumsize = { -1 500 }
-			size = { 300 0 }
+			maximumsize = { -1 800 }
+			size = { 335 0 }
 
 			scrollbar_vertical = {
 				using = Scrollbar_Vertical
@@ -107,7 +113,7 @@ widget = {
 			scrollwidget = {
 				vbox = {
 					set_parent_size_to_minimum = yes
-					min_width = 275
+					min_width = 310
 					margin = { 10 0 }
 					margin_right = 15
 					spacing = 2
@@ -115,6 +121,7 @@ widget = {
 					button_outliner_header = {
 						name = "pinned_characters_header"
 						layoutpolicy_horizontal = expanding
+						visible = "[Or(GameHasMultiplePlayers,Not(GetVariableSystem.Exists('pinned_character_is_simple')))]"
 
 						blockoverride "button_expand_frame"
 						{
@@ -124,7 +131,9 @@ widget = {
 						blockoverride "oh_button"
 						{
 							onclick = "[Outliner.ToggleCategory('pinned_character')]"
+							onrightclick = "[GetVariableSystem.Toggle('pinned_character_is_simple')]"
 							tooltip = "[SelectLocalization( Outliner.IsCategoryShown('pinned_character'), 'OUTLINER_COLLAPSE', 'OUTLINER_EXPAND' )]"
+							button_ignore = none
 						}
 
 						blockoverride "oh_toggle_frame"
@@ -150,15 +159,15 @@ widget = {
 
 					vbox = {
 						name = "pinned_characters"
-						visible = "[Outliner.IsCategoryShown('pinned_character')]"
+						visible = "[And(Outliner.IsCategoryShown('pinned_character'),Or(GameHasMultiplePlayers,Not(GetVariableSystem.Exists('pinned_character_is_simple'))))]"
 						datamodel = "[Outliner.GetPinnedCharacters]"
 						layoutpolicy_horizontal = expanding
-						margin = { 18 5 }
+						margin = { 8 5 }
 						margin_bottom = 10
-						spacing = 5
 
 						hbox = {
 							layoutpolicy_horizontal = expanding
+							margin_left = 5
 
 							text_single = {
 								visible = "[And(Outliner.IsCategoryShown('pinned_character'), IsDataModelEmpty(Outliner.GetPinnedCharacters))]"
@@ -180,6 +189,224 @@ widget = {
 
 								button_list = {
 									name = "character_button"
+									layoutpolicy_horizontal = expanding
+									size = { 0 50 }
+
+									onclick = "[DefaultOnCharacterClick(Character.GetID)]"
+									down = "[Character.IsShownInCharacterWindow]"
+									onrightclick = "[DefaultOnCharacterRightClick(Character.GetID)]"
+									button_ignore = none
+
+									background = {
+										using = Background_Area
+									}
+
+									hbox = {
+										layoutpolicy_horizontal = expanding
+										margin = { 0 -15 }
+
+										hbox = {
+											min_width = 35
+											margin = { 0 5 }
+											scale = 0.9
+
+											coa_realm_tiny_crown = {
+												visible = "[Character.HasLandedTitles]"
+											}
+										}
+
+										vbox = {
+											layoutpolicy_horizontal = expanding
+
+											hbox = {
+												layoutpolicy_horizontal = expanding
+
+												text_single = {
+													align = top|left
+													layoutpolicy_horizontal = expanding
+													autoresize = no
+													text = "[Character.GetShortUINameNotMeNoTooltip], [Character.GetAge]"
+													default_format = "#high"
+												}
+
+												expand = {}
+
+												hbox = {
+													min_width = 80
+
+													icon = {
+														visible = "[Character.IsDeadAndValid]"
+														size = { 20 20 }
+														texture = "[Character.GetDeathReasonIcon]"
+														tooltip = "CHARACTER_DEAD_TOOLTIP"
+													}
+
+													icon = {
+														visible = "[Not(Character.IsDeadAndValid)]"
+														size = { 20 20 }
+														framesize = { 60 60 }
+														frame = "[Character.GetHealthIconFrame]"
+														texture = "gfx/interface/icons/icon_health.dds"
+														tooltip = "[Character.GetHealthInfo]"
+													}
+
+													text_single = {
+														align = top|right
+														size = { 40 20 }
+														layoutpolicy_horizontal = fixed
+														autoresize = no
+														text = "[Character.GetOpinionOf(GetPlayer)|=]"
+														fonttintcolor = "[Character.GetOpinionOfTint(GetPlayer)]"
+														default_format = "#high"
+													}
+
+													expand = {}
+
+													button_pin = {
+														size = { 20 20 }
+														onclick = "[Character.ToggleCharacterPinned]"
+														tooltip = "PIN_TT"
+													}
+												}
+											}
+
+											hbox = {
+												layoutpolicy_horizontal = expanding
+
+												text_single = {
+													visible = "[Character.HasRelationTo(GetPlayer)]"
+													align = top|left
+													layoutpolicy_horizontal = expanding
+													autoresize = no
+													text = "[Character.GetRelationToString(GetPlayer)]"
+													default_format = "#medium"
+												}
+
+												text_single = {
+													visible = "[And(Not(Character.HasRelationTo(GetPlayer)),Character.HasLandedTitles)]"
+													align = top|left
+													layoutpolicy_horizontal = expanding
+													autoresize = no
+													text = "[Character.GetPrimaryTitle.GetNameNoTooltip]"
+													default_format = "#medium"
+												}
+
+												text_single = {
+													visible = "[And(Not(Character.HasRelationTo(GetPlayer)),Not(Character.HasLandedTitles))]"
+													align = top|left
+													layoutpolicy_horizontal = expanding
+													autoresize = yes
+													text = "CV_NO_RELATIONS"
+												}
+
+												expand = {}
+
+												hbox = {
+													min_width = 80
+
+													icon = {
+														visible = "[Character.HasLandedTitles]"
+														size = { 20 20 }
+														texture = "gfx/interface/icons/icon_soldier.dds"
+													}
+
+													text_single = {
+														visible = "[Character.HasLandedTitles]"
+														align = top|right
+														size = { 40 20 }
+														layoutpolicy_horizontal = fixed
+														autoresize = no
+														text = "[Character.GetMilitaryStrengthText]"
+														default_format = "#high"
+													}
+
+													expand = {}
+
+													icon = {
+														visible = "[Character.PlayerHasHooksOrHookableSecrets]"
+														size = { 20 20 }
+														framesize = { 40 40 }
+														texture = "gfx/interface/icons/portraits/hook_secret.dds"
+														frame = "[Character.GetHookOrHookableSecretsFrame]"
+														tooltip = "[Character.HookTooltip]"
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+
+					button_outliner_header = {
+						layoutpolicy_horizontal = expanding
+						visible = "[And(Not(GameHasMultiplePlayers),GetVariableSystem.Exists('pinned_character_is_simple'))]"
+
+						blockoverride "button_expand_frame"
+						{
+							frame = "[BoolTo1And2(Outliner.IsCategoryShown('pinned_character'))]"
+						}
+
+						blockoverride "oh_button"
+						{
+							onclick = "[Outliner.ToggleCategory('pinned_character')]"
+							onrightclick = "[GetVariableSystem.Toggle('pinned_character_is_simple')]"
+							tooltip = "[SelectLocalization( Not(Outliner.IsCategoryShown('players')), 'OUTLINER_COLLAPSE', 'OUTLINER_EXPAND' )]"
+							button_ignore = none
+						}
+
+						blockoverride "oh_toggle_frame"
+						{
+							frame = "[BoolTo1And2(Outliner.IsCategoryShown('pinned_character'))]"
+						}
+
+						blockoverride "oh_name"
+						{
+							text = "OUTLINER_PINNED_CHARACTERS"
+						}
+
+						blockoverride "oh_count"
+						{
+							text = "[Outliner.GetCategoryItemsCount('pinned_character')|V]"
+						}
+
+						blockoverride "expanded"
+						{
+							frame = "[BoolTo1And2(Outliner.IsCategoryShown('pinned_character'))]"
+						}
+					}
+
+					vbox = {
+						visible = "[And(Outliner.IsCategoryShown('pinned_character'),And(Not(GameHasMultiplePlayers),GetVariableSystem.Exists('pinned_character_is_simple')))]"
+						datamodel = "[Outliner.GetPinnedCharacters]"
+						layoutpolicy_horizontal = expanding
+						margin = { 8 5 }
+						margin_bottom = 10
+						spacing = 5
+
+						hbox = {
+							layoutpolicy_horizontal = expanding
+
+							text_single = {
+								visible = "[And(Outliner.IsCategoryShown('pinned_character'), IsDataModelEmpty(Outliner.GetPinnedCharacters))]"
+								name = "no_pinned_characters"
+								text = "OUTLINER_NO_PINNED_CHARACTERS"
+								autoresize = yes
+								default_format = "#medium;italic"
+							}
+
+							expand = {}
+						}
+
+						item = {
+							hbox = {
+								datacontext = "[CharacterRef.Get]"
+								layoutpolicy_horizontal = expanding
+								using = character_tooltip
+
+								button_list = {
+									name = "character_button"
 									size = { 0 20 }
 									layoutpolicy_horizontal = expanding
 
@@ -188,31 +415,63 @@ widget = {
 									onrightclick = "[DefaultOnCharacterRightClick(Character.GetID)]"
 									button_ignore = none
 
-									hbox = {
+									vbox = {
 										layoutpolicy_horizontal = expanding
-										spacing = 5
 
-										icon = {
-											visible = "[Character.IsDeadAndValid]"
-											size = { 20 20 }
-											texture = "[Character.GetDeathReasonIcon]"
-											tooltip = "CHARACTER_DEAD_TOOLTIP"
+										background = {
+											using = Background_Area
 										}
 
-										text_single = {
-											align = top|left
+										hbox = {
 											layoutpolicy_horizontal = expanding
-											autoresize = no
-											text = "[Character.GetShortUINameNotMeNoTooltip]"
-											default_format = "#high"
-										}
 
-										expand = {}
+											text_single = {
+												align = top|left
+												layoutpolicy_horizontal = expanding
+												autoresize = no
+												text = "[Character.GetShortUINameNotMeNoTooltip], [Character.GetAge]"
+												default_format = "#high"
+											}
 
-										button_pin = {
-											size = { 20 20 }
-											onclick = "[Character.ToggleCharacterPinned]"
-											tooltip = "PIN_TT"
+											expand = {}
+
+											hbox = {
+												min_width = 80
+
+												icon = {
+													visible = "[Character.IsDeadAndValid]"
+													size = { 20 20 }
+													texture = "[Character.GetDeathReasonIcon]"
+													tooltip = "CHARACTER_DEAD_TOOLTIP"
+												}
+
+												icon = {
+													visible = "[Not(Character.IsDeadAndValid)]"
+													size = { 20 20 }
+													framesize = { 60 60 }
+													frame = "[Character.GetHealthIconFrame]"
+													texture = "gfx/interface/icons/icon_health.dds"
+													tooltip = "[Character.GetHealthInfo]"
+												}
+
+												text_single = {
+													align = top|right
+													size = { 40 20 }
+													layoutpolicy_horizontal = fixed
+													autoresize = no
+													text = "[Character.GetOpinionOf(GetPlayer)|=]"
+													fonttintcolor = "[Character.GetOpinionOfTint(GetPlayer)]"
+													default_format = "#high"
+												}
+
+												expand = {}
+
+												button_pin = {
+													size = { 20 20 }
+													onclick = "[Character.ToggleCharacterPinned]"
+													tooltip = "PIN_TT"
+												}
+											}
 										}
 									}
 								}
@@ -262,7 +521,7 @@ widget = {
 						datamodel = "[Outliner.GetPlayers]"
 						visible = "[And( Outliner.IsCategoryShown('players'), GameHasMultiplePlayers )]"
 						layoutpolicy_horizontal = expanding
-						margin = { 8 5 }
+						margin = { 3 5 }
 						margin_bottom = 10
 						spacing = 5
 
@@ -345,11 +604,28 @@ widget = {
 					}
 
 					vbox = {
+						layoutpolicy_horizontal = expanding
+						name = "hidden_unit"
+						datamodel = "[Outliner.GetUnitItems]"
+						visible = "[And(Outliner.IsCategoryShown('unit'), GetPlayer.IsValid)]"
+						size = { 0 0 }
+						item = {
+							button_normal  = {
+								size = { 0 0 }
+								shortcut = "outliner_cycle_army"
+								onclick = "[GetVariableSystem.Toggle( 'cycle_army_selected' )]"
+								onclick = "[UnitItem.SelectAndPanUnit]"
+								onclick = "[GetVariableSystem.Toggle(Concatenate('cycle_army_', UnitItem.GetArmy.GetNameNoTooltip))]"
+							}
+						}
+					}
+
+					vbox = {
 						name = "units"
 						datamodel = "[Outliner.GetUnitItems]"
 						visible = "[And(Outliner.IsCategoryShown('unit'), GetPlayer.IsValid)]"
 						layoutpolicy_horizontal = expanding
-						margin = { 8 5 }
+						margin = { 3 5 }
 						margin_bottom = 10
 
 						hbox = {
@@ -376,23 +652,139 @@ widget = {
 								onclick = "[UnitItem.SelectAndPanUnit]"
 								onrightclick = "[UnitItem.PanToUnit]"
 								down = "[UnitItem.IsSelected]"
+								
+								button_normal = {
+									size = { 0 0 }
+									shortcut = "outliner_cycle_army"
+									onclick = "[UnitItem.SelectAndPanUnit]"
+									onclick = "[GetVariableSystem.Toggle(Concatenate('cycle_army_', Army.GetNameNoTooltip))]"
+									visible = "[EqualTo_string(GetVariableSystem.Get(Concatenate('cycle_army_', Army.GetNameNoTooltip)), GetVariableSystem.Get('cycle_army_selected'))]"
+								}
+
+								button_normal = {
+									size = { 0 0 }
+									shortcut = "outliner_go_to_army"
+									onclick = "[UnitItem.PanToUnit]"
+									visible = "[UnitItem.IsSelected]"
+								}
 
 								hbox = {
-									margin_left = 10
-									layoutpolicy_horizontal = expanding
-
-									text_single = {
+									hbox = {
+										margin_left = 10
 										layoutpolicy_horizontal = expanding
-										autoresize = no
-										text = "[Army.GetNameNoTooltip]"
-										default_format = "#high"
-										align = nobaseline
+										max_width = 170
+
+										text_single = {
+											layoutpolicy_horizontal = expanding
+											autoresize = no
+											text = "[Army.GetNameNoTooltip]"
+											default_format = "#high"
+											align = nobaseline
+										}
 									}
 
-									text_single = {
-										text = "[Army.GetSoldierCountString]"
-										default_format = "#high"
-										align = nobaseline
+									expand = {}
+
+									hbox = {
+										margin_right = 0
+
+										hbox = {
+											min_width = 20
+											visible = "[EqualTo_string(UnitItem.GetStatusDescription, SelectLocalization(Army.IsMoving, 'UNIT_STATE_COMBAT', 'UNIT_STATE_COMBAT'))]"
+
+											icon = {
+												size = { 20 20 }
+												texture = "gfx/interface/mapitems/combat_map_icon.dds"
+											}
+										}
+
+										hbox = {
+											min_width = 20
+											visible = "[Not(EqualTo_string(UnitItem.GetStatusDescription, SelectLocalization(Army.IsMoving, 'UNIT_STATE_COMBAT', 'UNIT_STATE_COMBAT')))]"
+
+											button = {
+												visible = "[And(Army.IsMoving,Not(UnitItem.IsRetreating))]"
+												size = { 20 20 }
+												texture = "gfx/interface/icons/combat_effects/moving_army.dds"
+												onclick = "[UnitItem.SelectAndPanUnit]"
+												tooltip = "[Army.GetMovementInfoForTooltip]"
+											}
+
+											button = {
+												visible = "[And(Army.IsMoving,UnitItem.IsRetreating)]"
+												size = { 20 20 }
+												texture = "gfx/interface/mapitems/army_retreating.dds"
+												onclick = "[UnitItem.SelectAndPanUnit]"
+												tooltip = "[Army.GetMovementInfoForTooltip]"
+											}
+
+											button = {
+												visible = "[Army.IsSieging]"
+												size = { 20 20 }
+												texture = "gfx/interface/mapitems/onmap_siege_icon.dds"
+												onclick = "[DefaultOnSiegeClick(Army.GetLocation.GetSiege.GetID)]"
+												tooltip = "[Army.GetLocation.GetSiege.GetSiegeDescription]"
+											}
+
+											button = {
+												visible = "[Army.GetLocation.HasActiveRaid]"
+												size = { 20 20 }
+												texture = "gfx/interface/mapitems/onmap_raid_icon.dds"
+												onclick = "[DefaultOnRaidClick(Army.GetLocation.GetRaid.Self)]"
+												tooltip = "MAP_RAID_TOOLTIP"
+											}
+										}
+
+										hbox = {
+											min_width = 20
+
+											button = {
+												visible = "[And(Army.GetCommander.IsValid,Not(UnitItem.IsRulerCommander))]"
+												size = { 20 20 }
+												texture = "gfx/interface/icons/icon_commander.dds"
+												onclick = "[DefaultOnCharacterClick(Army.GetCommander.GetID)]"
+											}
+
+											button = {
+												visible = "[And(Army.GetCommander.IsValid,UnitItem.IsRulerCommander)]"
+												size = { 20 20 }
+												texture = "gfx/interface/mapitems/commander_is_leader.dds"
+												onclick = "[DefaultOnCharacterClick(Army.GetCommander.GetID)]"
+											}
+										}
+
+										hbox = {
+											min_width = 20
+
+											icon = {
+												size = { 20 20 }
+												texture = "gfx/interface/icons/army_quality_icon.dds"
+												framesize = { 32 32 }
+												frame = "[UnitItem.GetQualityLevel]"
+											}
+										}
+
+#										hbox = {
+#											min_width = 20
+#
+#											icon = {
+#												parentanchor = vcenter
+#												size = { 20 20 }
+#												texture = "gfx/interface/icons/icon_supplies_small.dds"
+#												framesize = { 30 30 }
+#												frame = "[UnitItem.GetSupplyStateFrame]"
+#											}
+#										}
+
+										hbox = {
+											min_width = 50
+
+											text_single = {
+												text = "[Army.GetSoldierCountString]"
+												default_format = "#high"
+												align = nobaseline
+											}
+										}
 									}
 								}
 
@@ -479,7 +871,7 @@ widget = {
 						datamodel = "[Outliner.GetHoldingItems]"
 						visible = "[Outliner.IsCategoryShown('holding')]"
 						layoutpolicy_horizontal = expanding
-						margin = { 8 5 }
+						margin = { 3 5 }
 						margin_bottom = 10
 
 						item = {
@@ -513,7 +905,7 @@ widget = {
 										margin_left = 10
 
 										text_single = {
-											max_width = 85
+											max_width = 115
 											name = "holding_name"
 											layoutpolicy_horizontal = expanding
 											text = "[Holding.GetProvince.GetNameNoTooltip]"
@@ -526,13 +918,65 @@ widget = {
 
 									hbox = {
 										margin_right = 10
-										text_single = {
-											max_width = 120
-											name = "construction_name"
-											visible = "[Holding.IsConstructionInProgress]"
-											text = "[Holding.GetConstructionBuilding.GetName]"
-											align = right|nobaseline
 
+										hbox = {
+											margin_right = 0
+
+											hbox = {
+												min_width = 10
+
+												icon = {
+													visible = "[Holding.IsLowControl]"
+													parentanchor = vcenter
+													size = { 20 20 }
+													texture = "gfx/interface/mapitems/low_control.dds"
+													tooltip = "MY_REALM_WINDOW_MAP_ICON_LOW_CONTROL"
+												}
+
+												icon = {
+													visible = "[Holding.CanConstructAnyBuilding(GetPlayer)]"
+													parentanchor = vcenter
+													size = { 20 20 }
+													texture = "gfx/interface/mapitems/building_available.dds"
+													tooltip = "MY_REALM_WINDOW_CONSTRUCT_BUILDING"
+												}
+											}
+
+											hbox = {
+												min_width = 50
+
+												icon = {
+													margin_left = 0
+													parentanchor = vcenter
+													size = { 20 20 }
+													texture = "gfx/interface/icons/icon_gold.dds"
+												}
+
+												text_single = {
+													margin_right = 0
+													text = "[Holding.GetIncome|1]"
+													default_format = "#high"
+													align = nobaseline
+												}
+											}
+
+											hbox = {
+												min_width = 55
+
+												icon = {
+													margin_left = 0
+													parentanchor = vcenter
+													size = { 20 20 }
+													texture = "gfx/interface/icons/icon_soldier.dds"
+												}
+
+												text_single = {
+													margin_right = 0
+													text = "[Holding.GetMaxLevySize]"
+													default_format = "#high"
+													align = nobaseline
+												}
+											}
 										}
 									}
 								}
