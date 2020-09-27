@@ -8,7 +8,7 @@ window = {
 	position = { -650 110 }
 	size = { 630 935 }
 	movable = no
-	layer = windows_layer
+	layer = top
 
 	using = Window_Background
 	using = Window_Decoration_Spike
