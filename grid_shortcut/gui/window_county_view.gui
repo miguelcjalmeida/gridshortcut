@@ -14,6 +14,66 @@ window = {
 	datacontext = "[HoldingView.GetProvince]"
 	datacontext = "[Province.GetCounty]"
 
+	state = { 
+		name = "_show"
+		on_start = "[GetVariableSystem.Clear( 'county_combining' )]"
+		on_start = "[GetVariableSystem.Clear( 'county_county_combining' )]"
+		on_start = "[GetVariableSystem.Clear( 'county_baron_combining' )]"
+	}
+
+	button_normal = {
+		size = { 0 0 }
+		shortcut = "county_activator"
+		onclick = "[GetVariableSystem.Clear( 'county_combining' )]"
+		onclick = "[GetVariableSystem.Toggle( 'county_combining' )]"
+	}
+
+	button_normal = {
+		size = { 0 0 }
+		shortcut = "county_county_activator"
+		onclick = "[GetVariableSystem.Clear( 'county_county_combining' )]"
+		onclick = "[GetVariableSystem.Toggle( 'county_county_combining' )]"
+	}
+
+	button_normal = {
+		size = { 0 0 }
+		shortcut = "county_baron_activator"
+		onclick = "[GetVariableSystem.Clear( 'county_baron_combining' )]"
+		onclick = "[GetVariableSystem.Toggle( 'county_baron_combining' )]"
+	}
+
+	button_normal = {
+		size = { 0 0 }
+		visible = "[GetVariableSystem.Exists('county_combining')]" 
+		state = {
+			name = "_show"
+			delay = 1
+			on_start = "[GetVariableSystem.Clear( 'county_combining' )]"
+		}
+	}
+
+	button_normal = {
+		size = { 0 0 }
+		visible = "[GetVariableSystem.Exists('county_county_combining')]" 
+		state = {
+			name = "_show"
+			duration = 1
+			on_start = "[GetVariableSystem.Clear( 'county_combining' )]"
+			on_finish = "[GetVariableSystem.Clear( 'county_county_combining' )]"
+		}
+	}
+
+	button_normal = {
+		size = { 0 0 }
+		visible = "[GetVariableSystem.Exists('county_baron_combining')]" 
+		state = {
+			name = "_show"
+			duration = 1
+			on_start = "[GetVariableSystem.Clear( 'county_combining' )]"
+			on_finish = "[GetVariableSystem.Clear( 'county_baron_combining' )]"
+		}
+	}
+	
 	background = {
 		texture = "gfx/interface/tiles/tile_window_background_subwindow.dds"
 		spriteType = Corneredtiled
@@ -74,7 +134,12 @@ window = {
 			coa_title_small = {
 				datacontext = "[HoldingView.GetCountyTitle]"
 				blockoverride "coa_button_inner" {
-					shortcut = "county_owner_title"
+					button_normal = {
+						onclick = "[DefaultOnCoatOfArmsClick(Title.GetID)]"
+						shortcut = "county_county_title"
+						visible = "[GetVariableSystem.Exists('county_county_combining')]"					
+						size = { 0 0 }
+					}
 				}
 			}
 
@@ -148,6 +213,7 @@ window = {
 				tooltip = "[Siege.GetSiegeDescription]"
 				using = tooltip_se
 				shortcut = county_go_to_siege
+				enabled = "[Not(GetVariableSystem.Exists('county_combining'))]"
 				using = siege_goto_template
 			}
 
@@ -159,6 +225,7 @@ window = {
 				onclick = "[DefaultOnRaidClick( Raid.Self )]"
 				tooltip = "MAP_RAID_TOOLTIP"
 				shortcut = county_go_to_siege
+				enabled = "[Not(GetVariableSystem.Exists('county_combining'))]"
 				using = tooltip_se
 				using = raid_goto_template
 				blockoverride "tooltip" {}
@@ -172,6 +239,7 @@ window = {
 					using = tooltip_ne
 					onclick = "[HoldingView.PanToCountyCapital]"
 					shortcut = "county_go_to_location"
+					enabled = "[Not(GetVariableSystem.Exists('county_combining'))]"
 				}
 
 				blockoverride "button_back"
@@ -349,11 +417,17 @@ window = {
 				## Holder
 				portrait_head = {
 					blockoverride "portrait_button" {
-						shortcut = "county_owner"
+						button_normal = {
+							onclick = "[DefaultOnCharacterClick(Character.GetID)]"
+							shortcut = "county_county_profile"
+							visible = "[GetVariableSystem.Exists('county_county_combining')]"					
+							size = { 0 0 }
+						}
 					}
 					
 					blockoverride "portrait_options_button" {
-						shortcut = "county_holding_owner_options"
+						shortcut = "county_county_options"
+						visible = "[GetVariableSystem.Exists('county_county_combining')]"
 					}
 				}
 
@@ -500,6 +574,7 @@ window = {
 					button_group = {
 						shortcut = "county_culture"
 						onclick = "[DefaultOnCultureClick(Culture.GetID)]"
+						enabled = "[Not(GetVariableSystem.Exists('county_combining'))]"
 
 						text_single = {
 							text = "[Culture.GetNameNoTooltip]"
@@ -553,6 +628,7 @@ window = {
 					button_group = {
 						shortcut = "county_faith"
 						onclick = "[DefaultOnFaithClick(Faith.GetID)]"
+						enabled = "[Not(GetVariableSystem.Exists('county_combining'))]"
 
 						text_single = {
 							text = "[Faith.GetNameNoTooltip]"
@@ -591,6 +667,55 @@ window = {
 						onclick = "[PdxGuiTriggerAllAnimations('holding_view_refresh')]"
 						using = tooltip_ne
 						tooltipwidget = { holding_tooltip_click = {} }
+
+						button_normal = {
+							size = { 0 0 }
+							enabled = "[Not(GUICountyHolding.IsSelected)]"
+							visible = "[And(Not(GetVariableSystem.Exists('county_combining')), EqualTo_string(GUICountyHolding.GetHolding.GetType.GetName, Localize('building_type_castle_01')))]"
+							shortcut = "county_select_castle"
+							onclick = "[GUICountyHolding.OnClick]"
+							onclick = "[PdxGuiTriggerAllAnimations('holding_view_refresh')]"
+							onclick = "[GetVariableSystem.Clear('county_combining')]"
+						}
+
+						button_normal = {
+							size = { 0 0 }
+							enabled = "[Not(GUICountyHolding.IsSelected)]"
+							visible = "[And(Not(GetVariableSystem.Exists('county_combining')), EqualTo_string(GUICountyHolding.GetHolding.GetType.GetName, Localize('building_type_city_01')))]"
+							shortcut = "county_select_city"
+							onclick = "[GUICountyHolding.OnClick]"
+							onclick = "[PdxGuiTriggerAllAnimations('holding_view_refresh')]"
+							onclick = "[GetVariableSystem.Clear('county_combining')]"
+						}
+
+						button_normal = {
+							size = { 0 0 }
+							enabled = "[Not(GUICountyHolding.IsSelected)]"
+							visible = "[And(Not(GetVariableSystem.Exists('county_combining')), EqualTo_string(GUICountyHolding.GetHolding.GetType.GetName, Localize('building_type_temple_01')))]"
+							shortcut = "county_select_temple"
+							onclick = "[GUICountyHolding.OnClick]"
+							onclick = "[PdxGuiTriggerAllAnimations('holding_view_refresh')]"
+							onclick = "[GetVariableSystem.Clear('county_combining')]"
+						}
+
+						button_normal = {
+							size = { 0 0 }
+							enabled = "[Not(GUICountyHolding.IsSelected)]"
+							visible = "[And(Not(GetVariableSystem.Exists('county_combining')), Not(Or(EqualTo_string(GUICountyHolding.GetHolding.GetType.GetName, Localize('building_type_castle_01')), Or(EqualTo_string(GUICountyHolding.GetHolding.GetType.GetName, Localize('building_type_city_01')), EqualTo_string(GUICountyHolding.GetHolding.GetType.GetName, Localize('building_type_temple_01'))))))]"
+							shortcut = "county_select_empty"
+							onclick = "[GUICountyHolding.OnClick]"
+							onclick = "[PdxGuiTriggerAllAnimations('holding_view_refresh')]"
+							onclick = "[GetVariableSystem.Clear('county_combining')]"
+						}
+
+						button_normal = {
+							size = { 0 0 }
+							visible = "[And(GetVariableSystem.Exists('county_combining'), GUICountyHolding.GetHolding.GetProvince.GetTitle.IsCountyCapital)]"
+							shortcut = "county_action_select_capital"
+							onclick = "[GUICountyHolding.OnClick]"
+							onclick = "[PdxGuiTriggerAllAnimations('holding_view_refresh')]"
+							onclick = "[GetVariableSystem.Clear('county_combining')]"
+						}
 
 						icon_building_tab = {
 							parentanchor = center
@@ -706,12 +831,19 @@ window = {
 				}
 
 				button_standard_big = {
-					shortcut = "county_cancel_holding_construction"
 					name = "cancel_holding_construction"
 					size = { 300 30 }
 					text = "CANCEL_HOLDING_CONSTRUCTION"
 					onclick = "[HoldingView.CancelHoldingConstruction]"
 					tooltip = "CANCEL_HOLDING_CONSTRUCTION_TOOLTIP"
+						
+					button_normal = {
+						size = { 0 0 }
+						visible = "[GetVariableSystem.Exists('county_combining')]"
+						shortcut = "county_action_cancel_construction"
+						onclick = "[HoldingView.CancelHoldingConstruction]"
+						onclick = "[GetVariableSystem.Clear('county_combining')]"
+					}
 				}
 
 				expand = {}
@@ -765,7 +897,6 @@ window = {
 
 			button_standard_big = {
 				name = "construct_holding"
-				shortcut = "county_construct_holding"
 				visible = "[And(Not(HoldingView.HasHolding), Not(HoldingView.IsBeingConstructed))]"
 				parentanchor = bottom|hcenter
 				position = { 0 -10 }
@@ -774,6 +905,14 @@ window = {
 				onclick = "[HoldingView.OnConstructHoldingClick]"
 				tooltip = "[HoldingView.GetHoldingConstructionTooltip]"
 				enabled = "[And(HoldingView.CanNewHoldingBeConstructed, Not(HoldingView.IsSelectingHoldingType))]"
+
+				button_normal = {
+					size = { 0 0 }
+					visible = "[GetVariableSystem.Exists('county_combining')]"
+					shortcut = "county_action_construct"
+					onclick = "[HoldingView.OnConstructHoldingClick]"
+					onclick = "[GetVariableSystem.Clear('county_combining')]"
+				}
 			}
 
 
@@ -788,7 +927,12 @@ window = {
 					visible = "[HoldingView.GetTitle.HasHolder]"
 					
 					blockoverride "coa_button_inner" {
-						shortcut = "county_holding_owner_title"
+						button_normal = {
+							onclick = "[DefaultOnCoatOfArmsClick(Title.GetID)]"
+							shortcut = "county_baron_title"
+							visible = "[GetVariableSystem.Exists('county_baron_combining')]"					
+							size = { 0 0 }
+						}
 					}
 				}
 
@@ -960,22 +1104,36 @@ window = {
 
 						button_standard = {
 							name = "toggle_find_vassal"
-							shortcut = "county_grant_to_or_find_vassal"
 							visible = "[And( And( And( ObjectsEqual( HoldingView.GetTitle.GetHolder, GetPlayer ), HoldingView.GetTitle.CanUseFindVassal( GetPlayer ) ), Not( HoldingView.GetTitle.IsBarony ) ), Not(HoldingView.GetTitle.IsLeasedOut))]"
 							text = "FIND_VASSAL_HEADER"
 							default_format = "#clickable"
 							onclick = "[HoldingView.ToggleFindVassalListWindow]"
 							tooltip = "FIND_VASSAL_BUTTON_HOLDING_VIEW_TOOLTIP"
+
+							button_normal = {
+								size = { 0 0 }
+								shortcut = "county_action_grant_title"
+								onclick = "[HoldingView.ToggleFindVassalListWindow]"
+								onclick = "[GetVariableSystem.Clear('county_combining')]"
+								visible = "[GetVariableSystem.Exists('county_combining')]"
+							}
 						}
 
 						button_standard = {
 							name = "grant_to_local_noble"
-							shortcut = "county_grant_to_or_find_vassal"
 							visible = "[And( And( And( ObjectsEqual( HoldingView.GetTitle.GetHolder, GetPlayer ), HoldingView.GetTitle.CanUseFindVassal( GetPlayer ) ), HoldingView.GetTitle.IsBarony ), Not(HoldingView.GetTitle.IsLeasedOut))]"
 							text = "GRANT_TO_LOCAL_NOBLE_HEADER"
 							default_format = "#clickable"
 							onclick = "[HoldingView.CreateHolderForBarony]"
 							tooltip = "GRANT_TO_LOCAL_NOBLE_BUTTON_HOLDING_VIEW_TOOLTIP"
+							
+							button_normal = {
+								size = { 0 0 }
+								shortcut = "county_action_grant_title"
+								onclick = "[HoldingView.CreateHolderForBarony]"
+								onclick = "[GetVariableSystem.Clear('county_combining')]"
+								visible = "[GetVariableSystem.Exists('county_combining')]"
+							}
 						}
 
 						expand = {}
@@ -989,10 +1147,16 @@ window = {
 
 						portrait_head_small = {
 							blockoverride "portrait_button" {
-								shortcut = "county_holding_owner"
+								button_normal = {
+									onclick = "[DefaultOnCharacterClick(Character.GetID)]"
+									shortcut = "county_baron_profile"
+									visible = "[GetVariableSystem.Exists('county_baron_combining')]"					
+									size = { 0 0 }
+								}
 							}
 							blockoverride "portrait_options_button" {
-								shortcut = "county_holding_owner_options"
+								shortcut = "county_baron_options"
+								visible = "[GetVariableSystem.Exists('county_baron_combining')]"					
 							}
 							blockoverride "opinion_box" {}
 						}
@@ -1301,11 +1465,18 @@ window = {
 					parentanchor = right
 					size = { 145 65 }
 					allow_outside = yes
-					shortcut = "county_upgrade_barony"
 					onclick = "[GUIBuildingItem.OnClick]"
 					down = "[GUIBuildingItem.IsHighlighted]"
 					enabled = "[GUIBuildingItem.IsBuildingButtonEnabled]"
 					tooltip = "[GUIBuildingItem.GetTooltip]"
+
+					button_normal = {
+						size = { 0 0 }
+						shortcut = "county_action_upgrade_barony"
+						onclick = "[GUIBuildingItem.OnClick]"
+						onclick = "[GetVariableSystem.Clear('county_combining')]"
+						visible = "[GetVariableSystem.Exists('county_combining')]"
+					}
 
 					vbox = {
 						margin = { 4 1 }
@@ -1485,6 +1656,16 @@ window = {
 								alwaystransparent = yes
 								spriteborder = { 20 20 }
 							}
+
+							blockoverride "building_shortcuts" {
+								button_normal = {
+									size = { 0 0 }
+									shortcut = "county_action_select_duchy_building"
+									onclick = "[GUIBuildingItem.OnClick]"
+									onclick = "[GetVariableSystem.Clear('county_combining')]"
+									visible = "[GetVariableSystem.Exists('county_combining')]"
+								}
+							}
 						}
 
 						widget_building_item = {
@@ -1497,6 +1678,16 @@ window = {
 								texture = "gfx/interface/buttons/button_special_building.dds"
 								alwaystransparent = yes
 								spriteborder = { 20 20 }
+							}
+
+							blockoverride "building_shortcuts" {
+								button_normal = {
+									size = { 0 0 }
+									shortcut = "county_action_select_special_building"
+									onclick = "[GUIBuildingItem.OnClick]"
+									onclick = "[GetVariableSystem.Clear('county_combining')]"
+									visible = "[GetVariableSystem.Exists('county_combining')]"
+								}
 							}
 						}
 
@@ -1525,7 +1716,7 @@ window = {
 	#position = { 605 -1000 }
 	size = { 100% 100% }
 	movable = no
-	layer = windows_layer
+	layer = top
 
 	state = {
 		name = _show
@@ -2331,6 +2522,7 @@ window = {
 													button_round  = {
 														name = "abort_button"
 														parentanchor = center
+														shortcut = "county_replace_building"
 														visible = "[GUITrackItem.CanReplaceOrCancel]"
 														onclick = "[GUITrackItem.ReplaceOrCancel]"
 														tooltip = "[GUITrackItem.GetReplaceOrCancelTooltip]"
@@ -2385,6 +2577,7 @@ window = {
 
 											button_round = {
 												name = "replace_button"
+												shortcut = "county_replace_building"
 												onclick = "[GUITrackItem.ReplaceOrCancel]"
 												tooltip = "[GUITrackItem.GetReplaceOrCancelTooltip]"
 												visible = "[GUITrackItem.IsCurrentBuildingSelected]"
@@ -2558,6 +2751,27 @@ window = {
 						tooltip = "[HoldingTypeItem.GetTooltip]"
 						datacontext = "[HoldingTypeItem.GetProvince]"
 
+						button_normal = {
+							size = { 0 0 }
+							visible = "[EqualTo_string(HoldingTypeItem.GetHoldingType.GetName, Localize('building_type_castle_01'))]"
+							shortcut = "county_construct_castle"
+							onclick = "[HoldingTypeItem.OnClick]"
+						}
+						
+						button_normal = {
+							size = { 0 0 }
+							visible = "[EqualTo_string(HoldingTypeItem.GetHoldingType.GetName, Localize('building_type_city_01'))]"
+							shortcut = "county_construct_city"
+							onclick = "[HoldingTypeItem.OnClick]"
+						}
+
+						button_normal = {
+							size = { 0 0 }
+							visible = "[EqualTo_string(HoldingTypeItem.GetHoldingType.GetName, Localize('building_type_temple_01'))]"
+							shortcut = "county_construct_temple"
+							onclick = "[HoldingTypeItem.OnClick]"
+						}
+
 						highlight_icon = {
 							size = { 100% 100% }
 							gfxtype = framedbuttongfx
@@ -2607,6 +2821,24 @@ types CountyViewTypes
 			size = { 100% 100% }
 			onclick = "[GUIBuildingItem.OnClick]"
 			down = "[GUIBuildingItem.IsHighlighted]"
+
+			block "building_shortcuts" {
+				button_normal = {
+					size = { 0 0 }
+					shortcut = "county_action_build_holding"
+					onclick = "[GUIBuildingItem.OnClick]"
+					onclick = "[GetVariableSystem.Clear('county_combining')]"
+					visible = "[And(GetVariableSystem.Exists('county_combining'), Not(GUIBuildingItem.HasLevel))]"
+				}
+
+				button_normal = {
+					size = { 0 0 }
+					shortcut = "county_action_upgrade_holding"
+					onclick = "[GUIBuildingItem.OnClick]"
+					onclick = "[GetVariableSystem.Clear('county_combining')]"
+					visible = "[And(GetVariableSystem.Exists('county_combining'), And( And(GUIBuildingItem.IsBuildNewIconShown, GUIBuildingItem.IsBuildingButtonEnabled), GUIBuildingItem.HasLevel ))]"
+				}
+			}
 
 			highlight_icon = {
 				name = "build_new_icon"

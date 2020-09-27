@@ -326,6 +326,12 @@ window = {
 
 							expand = {}
 
+							button_normal = {
+								size = { 0 0 }
+								shortcut = "title_select_county"
+								onclick = "[DefaultOnCoatOfArmsClick(TitleViewWindow.GetTitle.GetPreferredCapital.GetID)]"
+							}
+
 							button_standard_list = {
 								maximumsize = { 180 -1 }
 								minimumsize = { 0 50 }
@@ -562,7 +568,7 @@ window = {
 					margin = { 20 5 }
 					datacontext = "[TitleViewWindow.GetTitle.GetPreferredCapital]"
 					visible = "[And( Title.IsValid, Not( TitleViewWindow.GetTitle.HasFaction ) )]"
-
+					
 					text_single = {
 						text = "TITLE_VIEW_DE_JURE_CAPITAL"
 					}
