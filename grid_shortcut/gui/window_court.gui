@@ -286,6 +286,12 @@ window = {
 												visible = no
 											}	
 										}
+
+										button_normal = {
+											size = { 0 0 }			
+											shortcut = "court_prisoners"
+											onclick = "[CourtWindow.SetShowPrison]"
+										}
 									}
 
 									vbox = {
