@@ -8,7 +8,7 @@ window = {
 	position = { 270 -400 }
 	size = { 600 700 } # Doesn't do much cause of the set_parent_size_to_minimum below
 
-	layer = middle
+	layer = top
 
 	using = Window_Background
 	using = Window_Decoration

@@ -6,7 +6,7 @@ window = {
 	name = "call_ally_interaction_notification_window"
 	parentanchor = top|hcenter
 	position = { 0 90 }
-	layer = windows_layer
+	layer = top
 
 	using = Window_Background
 	using = Window_Decoration_Spike

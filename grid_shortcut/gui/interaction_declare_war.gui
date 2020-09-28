@@ -10,6 +10,7 @@ window = {
 	position = { -15 65 }
 	allow_outside = yes
 	size = { 600 960 }
+	layer = top
 
 	state = {
 		name = "_show"
