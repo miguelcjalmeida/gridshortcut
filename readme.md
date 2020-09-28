@@ -11,9 +11,9 @@ Since CK3 still don't support modding the file "*Crusader King III/game/gui/shor
 
 **NOTE: When updating your mod version, you must again manually update the 'shortcuts.shortcuts'.**
 
-# Steam Download
+# Download
 
-Download available on [steam workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=2231258079)
+Download available on [steam workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=2231258079).
 
 # Mods incorporated
 - [Extended Outliner](https://steamcommunity.com/sharedfiles/filedetails/?id=2219611817): Amazing quality of life mod which was added and slightly modified to display income and war status of pinned characters. Cycling through armies shortcut was added as well.
@@ -153,13 +153,13 @@ _The HUD window shortcuts are only triggered when there is no other window opene
 
 | Key | Action |
 | ----- | ----- |
-| C | Select an army you control that is visible in your screen ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png) | 
+| V | Select an army you control that is visible in your screen ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png) | 
 
 ![rally point](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/hudrally.png)
 
 | Key | Action |
 | ----- | ----- |
-| V | Select an rally point you control that is visible in your screen ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)| 
+| C | Select an rally point you control that is visible in your screen ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)| 
 
 ![rally point](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/waremblems.png)
 
@@ -404,7 +404,7 @@ _The HUD window shortcuts are only triggered when there is no other window opene
 | Q | Disband army |
 | F | Toggle auto raiding checkbox | 
 | G | Turn raiders into normal soldiers |
-| V | Cicle the selected unit from army ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
+| V | Cycle the selected unit from army ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
 | 5 | Reorganize two armies ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)
 | T | Go to siege, if happening ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)
 ### Siege window
@@ -413,9 +413,9 @@ _The HUD window shortcuts are only triggered when there is no other window opene
 
 | Key | Action |
 | - | - |
-| 5 | Select the county being sieged | 
-| T | Select the sieging army | 
-| G | Assault! | 
+| 5 | Select the county being sieged ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)| 
+| T | Select the sieging army ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png) | 
+| G | Assault! ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)| 
 
 ### War overview
 
@@ -423,7 +423,7 @@ _The HUD window shortcuts are only triggered when there is no other window opene
 
 | Key | Action |
 | - | - |
-| 1, 2, 3 | Navigate between Surrender, whie piece and enforce demands | 
+| 1, 2, 3 | Navigate between Surrender, whie piece and enforce demands ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png) | 
 | Q | Toggle allies ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
 | T | Toggle enemies ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)| 
 | F | Open left primary member profile ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
