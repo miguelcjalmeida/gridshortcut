@@ -40,7 +40,11 @@ Hotkeys can be either global or window-scoped, meaning they change based on the 
 
 ## Global hotkeys
 Below you can check all the available global hotkeys. Many of them are bound to sequences, which are keys you must press 
-in a giving order with no more than one second of interval. For example, to pause the game you must press PAUSE, then PAUSE again. Such kind of hotkey will be noted in the following pattern through all the guide: "PAUSE > PAUSE"
+in a giving order with no more than one second of interval. For example, to pause the game you must press PAUSE, then PAUSE again. Such kind of hotkey will be noted in the following pattern through all the guide: 
+
+```
+PAUSE > PAUSE
+```
 
 ### Time control & history
 ![time controls](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/player.png)
