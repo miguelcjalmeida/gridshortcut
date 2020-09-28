@@ -16,9 +16,9 @@ Since CK3 still don't support modding the file "*Crusader King III/game/gui/shor
 Download available on [steam workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=2231258079).
 
 # Mods incorporated
-- [Extended Outliner](https://steamcommunity.com/sharedfiles/filedetails/?id=2219611817): Amazing quality of life mod which was added and slightly modified to display income and war status of pinned characters. Cycling through armies shortcut was added as well.
+- [Extended Outliner](https://steamcommunity.com/sharedfiles/filedetails/?id=2219611817): Amazing quality of life mod which was added and slightly modified to display income and war status of pinned characters. The 'cycling through armies' shortcut was added to it as well.
 
-# Hotkeys Map
+# Hotkeys Guide
 Right below you can learn every mapping added by this mod. Fortunately, most hotkeys you can also discover in-game by hovering buttons, but some just won't show up, like the opening portraits ones. For that, it is recommended to check the list below from time to time, while playing.
 
 ## General Idea
@@ -39,7 +39,8 @@ Hotkeys can be either global or window-scoped, meaning they change based on the 
 | B | Navigate one step back |
 
 ## Global hotkeys
-Below you can check all the available global hotkeys.
+Below you can check all the available global hotkeys. Many of them are bound to sequences, which are keys you must press 
+in a giving order with no more than one second of interval. For example, to pause the game you must press PAUSE, then PAUSE again. Such kind of hotkey will be noted in the following pattern through all the guide: "PAUSE > PAUSE"
 
 ### Time control & history
 ![time controls](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/player.png)
