@@ -1,0 +1,1309 @@
+### SIEGE WINDOW
+window = {
+	name = "siege_window"
+	size = { 625 610 }
+	parentanchor = bottom|left
+	movable = no
+	layer = middle
+	datacontext = "[SiegeWindow.GetSiege]"
+	datacontext = "[Siege.GetProvince]"
+
+	background = {
+		texture = "gfx/interface/tiles/tile_window_background_subwindow.dds"
+		spriteType = Corneredtiled
+		spriteborder = { 18 18 }
+		margin = { -23 -17 }
+		margin_left = 20
+		margin_bottom = 20
+
+		modify_texture = {
+			name = "overlay"
+			texture = "gfx/interface/tiles/tile_overlay_effect_02.dds"
+			spriteType = Corneredstretched
+			spriteborder = { 0 0 }
+			blend_mode = overlay
+		}
+	}
+
+	state = {
+		name = _show
+		on_start = "[GetVariableSystem.Set( 'siege_view_open', 'true' )]"
+		on_start = "[GetVariableSystem.Set( 'hide_bottom_left_HUD', 'true' )]"
+
+		using = Animation_FadeIn_Standard
+		using = Sound_WindowShow_Standard
+
+		position = { 0 0 }
+	}
+
+	state = {
+		name = _hide
+		on_start = "[GetVariableSystem.Clear( 'siege_view_open' )]"
+		on_start = "[GetVariableSystem.Clear( 'hide_bottom_left_HUD' )]"
+
+		using = Animation_FadeOut_Standard
+		using = Sound_WindowHide_Standard
+		position = { -60 60 }
+	}
+
+	vbox = {
+		name = "window_content"
+		margin_right = 35
+		margin_top = 30
+
+		##Header###
+		hbox = {
+			layoutpolicy_horizontal = expanding
+			margin_right = 15
+			margin_left = 5
+			margin_top = 5
+			margin_bottom = 5
+
+			background = {
+				using = Background_Area_Dark
+				margin_left = 5
+			}
+
+			highlight_icon = {
+				size = { 40 40 }
+				name = "blocked_icon"
+				texture = "gfx/interface/mapitems/icon_siege.dds"
+				tooltip = "[Siege.GetSiegeDescription]"
+			}
+
+			text_single = {
+				name = "title"
+				text = "[SiegeWindow.GetSiege.GetName]"
+				margin_left = 5
+				margin_bottom = 4
+				using = Font_Size_Big
+				font = TitleFont
+			}
+
+			expand = {}
+
+			button_group = {
+
+				onclick = "[SiegeWindow.OpenArmyWindow]"
+				visible = "[SiegeWindow.HasPlayerOwnedArmies]"
+				shortcut = army_to_siege
+				tooltip = "SW_TT_OPEN_ARMY_WINDOW"
+				using = tooltip_ne
+
+				highlight_icon = {
+					parentanchor = vcenter
+					widgetanchor = vcenter
+					size = { 40 40 }
+					name = "blocked_icon"
+					texture = "gfx/interface/mapitems/onmap_army_icon.dds"
+				}
+			}
+
+			button_group = {
+				onclick = "[SiegeWindow.OpenHoldingView]"
+				tooltip = "SW_TT_SHOW_HOLDING"
+				shortcut = county_go_to_siege
+				using = tooltip_ne
+
+				highlight_icon = {
+					parentanchor = vcenter
+					widgetanchor = vcenter
+					size = { 40 40 }
+					name = "blocked_icon"
+					texture = "gfx/interface/mapitems/onmap_holding_icon.dds"
+				}
+			}
+
+			buttons_window_control = {
+
+				blockoverride "button_go_to"
+				{
+					onclick = "[DefaultOnCoatOfArmsRightClick( SiegeWindow.GetSiege.GetProvince.GetCounty.GetTitle.GetID)]"
+					tooltip = "GOTO_PROVINCE_TT"
+					using = tooltip_ne
+					oversound = "event:/SFX/UI/Generic/sfx_ui_generic_icon_pointer_over"
+					clicksound = "event:/SFX/UI/Generic/sfx_ui_generic_icon_select"
+				}
+
+				blockoverride "button_close"
+				{
+					onclick = "[SiegeWindow.Close]"
+				}
+			}
+		}
+
+		####################################
+		########### SIEGE INFO ############
+		####################################
+
+		vbox = {
+			layoutpolicy_horizontal = expanding
+
+			#### DARK AREA ###
+			vbox = {
+				layoutpolicy_horizontal = expanding
+				margin_top = 10
+
+				background = {
+					using = Background_Area
+				}
+
+				#### PROGRESSBAR ###
+				hbox = {
+					name = "progressbar_area"
+					allow_outside = yes
+
+					datacontext = "[SiegeWindow.GetSiege.GetSiegingRealmCharacter]"
+
+					widget = {
+						size = { 64 50 }
+						allow_outside = yes
+
+						coa_realm_medium = {
+							name = "occupant_realm"
+							visible = "[SiegeWindow.GetSiege.HasSiegingRealm]"
+							tooltip = "SW_TT_SIEGING_REALM_TOOLTIP"
+							using = tooltip_ws
+							parentanchor = top
+						}
+					}
+
+					vbox = {
+						layoutpolicy_vertical = expanding
+
+						widget = {
+							layoutpolicy_horizontal = expanding
+							size = { -1 15 }
+							allow_outside = yes
+
+							text_label_center = {
+								name = "time_left"
+								visible = "[Not(SiegeWindow.GetSiege.IsBlocked)]"
+								parentanchor = top|hcenter
+								text = "[SiegeWindow.GetTimeLeftShort]"
+								tooltip = "SW_TIME_LEFT_TT"
+							}
+						}
+
+
+
+						hbox = {
+							layoutpolicy_horizontal = expanding
+							margin_top = 5
+
+							tooltip = "[SiegeWindow.GetSiegeProgressTooltip]"
+							using = tooltip_above
+
+							widget = {
+								size = { 342 45 }
+
+								progressbar = {
+									name = "progress_bar_attacker"
+									visible = "[And(SiegeWindow.GetSiege.IsPlayerInAttackerSide, Not(SiegeWindow.GetSiege.IsBlocked))]"
+									parentanchor = top
+									size = { 342 40 }
+									position = { 0 8 }
+
+									progresstexture = "gfx/interface/tiles/tile_siege_bar_attacker.dds"
+
+									noprogresstexture = "gfx/interface/tiles/tile_siege_bar_noprogress.dds"
+
+									value = "[SiegeWindow.GetSiege.GetProgress]"
+
+									direction = horizontal
+									alwaystransparent = yes
+								}
+
+								progressbar = {
+									name = "progress_bar_defender"
+									visible = "[And(Not(SiegeWindow.GetSiege.IsPlayerInAttackerSide), Not(SiegeWindow.GetSiege.IsBlocked))]"
+									parentanchor = top
+									size = { 342 40 }
+									position = { 0 8 }
+
+									progresstexture = "gfx/interface/tiles/tile_siege_bar_defender.dds"
+
+									noprogresstexture = "gfx/interface/tiles/tile_siege_bar_noprogress.dds"
+
+									value = "[SiegeWindow.GetSiege.GetProgress]"
+
+									direction = horizontal
+									alwaystransparent = yes
+								}
+
+								progressbar = {
+									name = "progress_bar_blocked"
+									visible = "[SiegeWindow.GetSiege.IsBlocked]"
+									parentanchor = top
+									size = { 342 40 }
+									position = { 0 8 }
+
+									progresstexture = "gfx/interface/tiles/tile_siege_bar_blocked.dds"
+
+									noprogresstexture = "gfx/interface/tiles/tile_siege_bar_noprogress.dds"
+
+									value = "[SiegeWindow.GetSiege.GetProgress]"
+
+									direction = horizontal
+									alwaystransparent = yes
+								}
+
+								widget = {
+									name = "power_bar_frame"
+									parentanchor = top
+									position = { 0 4 }
+									size = { 342 46 }
+									alwaystransparent = yes
+
+									background = {
+										texture = "gfx/interface/tiles/tile_siege_bar_frame.dds"
+										spriteType = Corneredstretched
+										spriteborder = { 10 10 }
+										margin = { 5 0 }
+									}
+								}
+							}
+						}
+
+						expand = {}
+					}
+
+					widget = {
+						size = { 64 50 }
+						allow_outside = yes
+
+						coa_realm_medium = {
+							name = "defending_realm"
+							datacontext = "[SiegeWindow.GetSiege.GetProvince.GetController]"
+							tooltip = "SW_TT_DEFENDING_REALM_TOOLTIP"
+							parentanchor = top
+							position = { -5 0}
+						}
+					}
+				}
+
+				#### Textstring info ####
+				vbox = {
+					name = "time_and_assault"
+					margin = { 0 3 }
+					datacontext = "[SiegeWindow.GetSiege]"
+
+					expand = {
+						size = { 10 26 }
+						visible = "[And(Not(SiegeWindow.GetSiege.IsAssaultInProgress), Not(Siege.IsBlocked))]"
+					}
+
+					text_single = {
+						name = "desc"
+						visible = "[Siege.IsBlocked]"
+						datacontext = "[SiegeWindow.GetSiege]"
+						tooltip = "[Siege.GetBlockedReason]"
+						text = "[Siege.GetBlockedReasonShort]"
+					}
+
+					text_label_center = {
+						name = "assault_attacker"
+						visible = "[And(SiegeWindow.GetSiege.IsAssaultInProgress, SiegeWindow.GetSiege.IsPlayerInAttackerSide)]"
+						text = "SW_ASSAULTING_TEXT_ATTACKER"
+						default_format = "#high"
+						
+						tooltip = "SIEGE_ASSAULT_TT_INFO_ACTIVE"
+					}
+
+					text_label_center = {
+						name = "assault_not_attacker"
+						visible = "[And(SiegeWindow.GetSiege.IsAssaultInProgress, Not(SiegeWindow.GetSiege.IsPlayerInAttackerSide))]"
+						text = "SW_ASSAULTING_TEXT_DEFENDER"
+						default_format = "#N"
+
+						tooltip = "SIEGE_ASSAULT_TT_INFO_ACTIVE"
+					}
+				}
+
+				### MAA ILLUSTRATION AND DAILY PROGRESS ###
+				hbox = {
+					layoutpolicy_horizontal = expanding
+
+					expand = {}
+
+					vbox = {
+						widget = {
+							name = "no_machine_icon"
+							size = { 176 108 }
+							visible = "[Not(DataModelHasItems(SiegeWindow.GetSiegeMachinesRegiments))]"
+
+							text_single = {
+								text = "SW_SIEGE_WEAPON_NON"
+								default_format = "#low"
+								parentanchor = center
+							}
+
+							background = {
+								using = Background_Area
+							}
+						}
+
+						### SIEGE MACHINES
+						widget = {
+							name = "siege_machine_box"
+							visible = "[DataModelHasItems(SiegeWindow.GetSiegeMachinesRegiments)]"
+							datacontext = "[SiegeWindow.GetStrongestSiegeRegiment.GetMAAType]"
+							datacontext = "[GetPlayer]"
+							size = { 176 108 }
+
+							background = {
+								name = "image"
+								texture = "[RegimentType.GetHorizontalImage]"
+								using = Mask_Rough_Edges
+							}
+
+							tooltipwidget = {
+								overlappingitembox = {
+									name = "siege_machines_box"
+									alwaystransparent = no
+									size = { 180 40 }
+									using = DefaultTooltipBackground
+
+									vbox = {
+										layoutpolicy_horizontal = expanding
+										set_parent_size_to_minimum = yes
+										margin = { 10 5 }
+										spacing = 10
+
+
+										text_label_left = {
+											layoutpolicy_horizontal = expanding
+											name = "header"
+											text = "[siege_weapons|E]:"
+											maximumsize = { 400 -1 }
+										}
+
+										dynamicgridbox = {
+											datamodel = "[SiegeWindow.GetSiegeMachinesRegiments]"
+											layoutpolicy_horizontal = expanding
+											flipdirection = yes
+
+											item = {
+
+												widget = {
+													datacontext = "[Regiment.GetMAAType]"
+													datacontext = "[GetPlayer]"
+													size = { 40 40 }
+
+													icon = {
+														name = "machine_icon"
+
+														block "overlay_size"
+														{
+															size = { 40 40 }
+														}
+
+														alwaystransparent = yes
+														texture = "[RegimentType.GetIcon]"
+													}
+
+													tooltipwidget = {
+														using = maa_type_container_tooltip
+													}
+
+													using = tooltip_nw
+												}
+											}
+
+											expand = {}
+
+										}
+									}
+								}
+							}
+
+							vbox = {
+								expand = {}
+
+								hbox = {
+									layoutpolicy_horizontal = expanding
+									margin_bottom = 5
+									margin_left = 10
+									margin_right = 5
+
+
+									background = {
+										using = Background_Area
+									}
+
+									text_single = {
+										# text = "[SiegeWindow.GetStrongestSiegeRegiment.GetNameNoTooltip]"
+										text = "SW_SIEGE_WEAPON"
+										margin_bottom = -10
+									}
+
+									expand = {}
+
+									### weapon counter
+									text_label_right = {
+										margin = { 5 0 }
+
+										text = "[SiegeWindow.GetSiegeMachinesCount]"
+										default_format = "#high"
+										using = Font_Size_Big
+									}
+								}
+							}
+
+							using = tooltip_nw
+						}
+					}
+
+					### DAILY PROGRESS
+					vbox = {
+						minimumsize = { 176 108 }
+						layoutpolicy_vertical = expanding
+						margin = { 10 0 }
+						margin_bottom = 10
+
+						background = {
+							using = Background_Area
+						}
+
+						tooltip = "[SiegeWindow.GetDailyProgressTooltip]"
+
+						expand = {}
+
+						hbox = {
+							layoutpolicy_horizontal = expanding
+							spacing = 3
+
+							icon = {
+								size = { 52 52 }
+								texture = "gfx/interface/icons/regimenttypes/unit_stat_siege_progress.dds"
+							}
+
+							vbox = {
+								layoutpolicy_vertical = expanding
+								expand = {}
+
+								text_multi = {
+									align = nobaseline
+									autoresize = yes
+									max_width = 110
+									text = SW_DAILY_SIEGE_PROGRESS
+								}
+							}
+
+							expand = {}
+						}
+
+
+						hbox = {
+							layoutpolicy_horizontal = expanding
+							expand = {}
+
+							text_single = {
+								text = "SW_DAILY_PROGRESS"
+								using = Font_Size_Medium
+							}
+						}
+					}
+
+					expand = {}
+				}
+			}
+
+			divider = {
+				layoutpolicy_horizontal = expanding
+			}
+
+			### GARRISON
+			hbox = {
+				datacontext = "[SiegeWindow.GetSiege]"
+				spacing = 10
+				margin_bottom = 3
+				minimumsize = { 0 45 }
+
+				tooltip = "[SiegeWindow.GetNumberOfTroopsTooltip]"
+				using = tooltip_above
+
+				hbox = {
+					spacing = 5
+
+					icon = {
+						texture = "gfx/interface/icons/icon_soldier.dds"
+						size = { 35 35 }
+					}
+
+					text_single = {
+						name = "attacker_side"
+						text = "[Siege.GetAttackerMen]"
+					}
+				}
+
+				container = {
+					name = "men_balance"
+
+					progressbar_standard_transparent = {
+						size = { 200 20 }
+						value = "[Siege.GetSiegeMenBalance]"
+						parentanchor = center
+					}
+
+					progress_threshold = {
+						parentanchor = top|hcenter
+						size = { 5 20 }
+					}
+				}
+
+				hbox = {
+					spacing = 5
+
+					text_single = {
+						name = "defender_side"
+						text = "[Siege.GetDefenderMen]"
+					}
+
+					icon = {
+						texture = "gfx/interface/icons/icon_garrison.dds"
+						size = { 45 45 }
+					}
+				}
+
+				hbox = {
+					visible = "[SiegeWindow.GetSiege.FortLevelHasImpact]"
+					layoutpolicy_horizontal = expanding
+					minimumsize = { 95 0}
+
+					expand = {}
+
+					container = {
+						tooltip = "[SiegeWindow.GetFortLevelImpactTooltip]"
+
+						icon = {
+							name = "holding_level_high"
+							texture = "gfx/interface/siege_window/fort_icon.dds"
+							alwaystransparent = yes
+							size = { 30 25 }
+						}
+
+						icon = {
+							name = "fort_level_bad"
+							parentanchor = bottom|right
+							position = { 8 2 }
+
+							block "overlay_size"
+							{
+								size = { 20 20 }
+							}
+							alwaystransparent = yes
+							texture = "gfx/interface/icons/icon_cross.dds"
+							visible = "[SiegeWindow.GetSiege.IsPlayerInAttackerSide]"
+						}
+
+						icon = {
+							name = "fort_level_good"
+							parentanchor = bottom|right
+							position = { 10 0 }
+							block "overlay_size"
+							{
+								size = { 20 20 }
+							}
+							alwaystransparent = yes
+							texture = "gfx/interface/icons/icon_check.dds"
+							visible = "[Not(SiegeWindow.GetSiege.IsPlayerInAttackerSide)]"
+						}
+					}
+				}
+			}
+		}
+
+		####################################
+		########### HOLDING INFO ###########
+		####################################
+
+		margin_widget = {
+			name = "holding_info"
+			layoutpolicy_horizontal = expanding
+			layoutpolicy_vertical = expanding
+			minimumsize = { 0 200 }
+			scissor = yes
+
+			background = {
+				using = Background_Area_Dark
+				margin_left = 5
+				margin_top = 3
+			}
+
+			background = {
+				texture = "[SiegeWindow.GetSiege.GetProvince.GetHolding.GetIllustration]"
+
+				modify_texture = {
+					texture = "gfx/interface/tiles/holding_view_illustration_mask.dds"
+					blend_mode = alphamultiply
+					alpha = 0.95
+				}
+			}
+
+			### TOP LEFT
+			flowcontainer = {
+				ignoreinvisible = yes
+				spacing = 5
+				margin = { 10 10 }
+
+				coa_title_medium = {
+					datacontext = "[SiegeWindow.GetSiege.GetProvince.GetCoATitle]"
+				}
+
+				flowcontainer = {
+					direction = vertical
+					ignoreinvisible = yes
+					margin_top = 5
+
+					flowcontainer = {
+						ignoreinvisible = yes
+
+						text_single = {
+							text = "[SiegeWindow.GetSiege.GetProvince.GetHolding.GetNameNoTooltip]"
+							tooltip = "[SiegeWindow.GetSiege.GetProvince.GetTitle.GetNameNoTierNoTooltip]"
+							default_format = "#high"
+							align = nobaseline
+							using = Font_Size_Big
+							max_width = 190
+							fontsize_min = 16
+						}
+
+						spacer = {
+							size = { 3 3 }
+						}
+
+						widget = {
+							size = { 32 32 }
+
+							icon = {
+								name = "county_capital_icon"
+								visible = "[And(SiegeWindow.GetSiege.GetProvince.GetTitle.IsCountyCapital, Not(SiegeWindow.GetSiege.GetProvince.IsRealmCapital))]"
+								size = { 40 40 }
+								texture = "gfx/interface/icons/icon_capital.dds"
+								framesize = { 63 63 }
+								frame = 1
+
+								tooltip = "COUNTY_CAPITAL_TOOLTIP"
+							}
+
+							icon = {
+								name = "realm_capital_icon"
+								visible = "[SiegeWindow.GetSiege.GetProvince.IsRealmCapital]"
+								parentanchor = center
+								size = { 40 40 }
+								framesize = { 63 63 }
+								texture = "gfx/interface/icons/icon_capital.dds"
+								frame = 2
+								tooltip = "REALM_CAPITAL_TOOLTIP"
+							}
+						}
+					}
+
+					text_label_left = {
+						text = "[SiegeWindow.GetSiege.GetProvince.GetHolding.GetType.GetConceptName]"
+					}
+				}
+			}
+
+			hbox = {
+				margin_left = 10
+				margin_top = 10
+
+				vbox = {
+					layoutpolicy_vertical = expanding
+					layoutpolicy_horizontal = expanding
+
+					hbox = {
+						layoutpolicy_horizontal = expanding
+						margin_top = 5
+						margin_right = 5
+
+						expand = {}
+
+						icon = {
+							datacontext = "[SiegeWindow.GetSiege.GetProvince.GetTerrain]"
+							texture = "[Terrain.GetIcon]"
+							tooltip = "HOLDING_TERRAIN_TOOLTIP"
+							size = { 35 35 }
+						}
+					}
+
+					expand = {}
+
+					### ROUND PROGRESSBAR ###
+					hbox = {
+						layoutpolicy_horizontal = expanding
+						spacing = 10
+
+						expand = {
+							layoutpolicy_horizontal = expanding
+						}
+
+						vbox = {
+
+							widget = {
+								name = "action_progress"
+								size = { 70 70 }
+
+								using = tooltip_ne
+								datacontext = "[SiegeWindow.GetSiege]"
+
+								widget = {
+									name = "recent_action_and_progress"
+									size = { 70 70 }
+									using = tooltip_ne
+									tooltip = "[SiegeWindow.GetActionHistoryTooltip('0')]"
+
+									icon = {
+										texture = "gfx/interface/siege_window/action_progress_background.dds"
+										alpha = 0.8
+
+										size = { 100% 100% }
+									}
+
+									icon = {
+										name = "progress_frame"
+										texture = "gfx/interface/siege_window/action_progress_frame.dds"
+										size = { 100% 100% }
+									}
+
+									progresspie = {
+										name = "progress"
+										size = { 70 70 }
+										texture = "gfx/interface/siege_window/action_progress.dds"
+										framesize = { 124 124 }
+										frame = "[SiegeWindow.GetPhaseTimerFrame]"
+										value = "[Siege.GetPhaseProgress]"
+									}
+
+									icon = {
+										name = "latest_action"
+										size = { 56 56 }
+										parentanchor = center
+										widgetanchor = center
+										visible = "[SiegeWindow.HasActionHistory('0')]"
+										frame = "[SiegeWindow.GetActionHistoryFrame('0')]"
+										texture = "gfx/interface/siege_window/siege_actions.dds"
+										framesize = { 92 92 }
+									}
+								}
+							}
+
+							text_label_center = {
+								name = "label"
+								text = "[SiegeWindow.GetSiegePhaseLength]"
+								tooltip = "[SiegeWindow.GetSiegePhaseTooltip]"
+								align = nobaseline
+							}
+						}
+
+						### SQUARE ILLUSTRATIONS ###
+						hbox = {
+							name = "fort_state"
+							spacing = 2
+
+							icon = {
+								size = { 80 110 }
+								texture = "gfx/interface/tiles/generic_dark_rectangle.dds"
+								spriteType = Corneredtiled
+								spriteborder = { 2 2 }
+								using = Mask_Rough_Edges
+							
+								icon = {
+									name = "starvation"
+									parentanchor = center
+									widgetanchor = center
+									frame = "[SiegeWindow.GetStarvationStateFrame]"
+									texture = "gfx/interface/siege_window/starvation_state.dds"
+									framesize = { 74 104 }
+									tooltip = "[SiegeWindow.GetStarvationStateTooltip]"
+									using = tooltip_ne
+									using = Mask_Rough_Edges
+								}
+							}
+
+							icon = {
+								size = { 80 110 }
+								texture = "gfx/interface/tiles/generic_dark_rectangle.dds"
+								spriteType = Corneredtiled
+								spriteborder = { 2 2 }
+								using = Mask_Rough_Edges
+								
+								icon = {
+									name = "disease"
+									parentanchor = center
+									widgetanchor = center
+									frame = "[SiegeWindow.GetDiseaseStateFrame]"
+									texture = "gfx/interface/siege_window/disease_state.dds"
+									framesize = { 74 104 }
+									tooltip = "[SiegeWindow.GetDiseaseStateTooltip]"
+									using = tooltip_ne
+									using = Mask_Rough_Edges
+								}
+							}
+						}
+					}
+				}
+
+				vbox = {
+					layoutpolicy_vertical = expanding
+					margin_left = 10
+					spacing = 5
+					min_width = 150
+					margin_right = 15
+
+					background = {
+						using = Background_Area_Dark
+						alpha = 0.7
+						margin_right = -5
+					}
+
+					vbox = {
+						layoutpolicy_horizontal = expanding
+						margin = { 2 0 }
+
+						### Raid loot
+						hbox = {
+							name = "tutorial_highlight_holding_view_loot_box"
+							layoutpolicy_horizontal = expanding
+							tooltip = "[Province.GetRaidLootTooltip]"
+							datacontext = "[SiegeWindow.GetSiege]"
+
+							text_single = {
+								layoutpolicy_horizontal = expanding
+								text = "HOLDING_LOOT"
+								default_format = "#high"
+							}
+
+							text_single = {
+								text = "@gold_icon! [Siege.GetProvince.GetRaidLoot|0]"
+								default_format = "#high"
+							}
+						}
+
+						### Fort Info
+						hbox = {
+							layoutpolicy_horizontal = expanding
+
+							text_single = {
+								layoutpolicy_horizontal = expanding
+								text = "HOLDING_FORT_LEVEL"
+								default_format = "#high"
+							}
+
+							hbox = {
+								spacing = 7
+								tooltip = "[Province.GetFortLevelTooltip]"
+
+								icon = {
+									name = "icon_fort"
+									texture = "gfx/interface/siege_window/fort_icon.dds"
+									size = { 30 25 }
+								}
+
+								text_single = {
+									text = "[SiegeWindow.GetSiege.GetProvince.GetFortLevel]"
+									default_format = "#high"
+									align = nobaseline
+								}
+							}
+
+						}
+					}
+
+					expand = {}
+
+					### ASSAULT BUTTON
+					button_standard = {
+						size = { 150 40 }
+						text = "[SelectLocalization( Siege.IsAssaultInProgress, 'SW_STOP_ASSAULT', 'SW_START_ASSAULT' )]"
+						name = "assault"
+						# datacontext = "[SiegeWindow.GetSiege]"
+						visible = "[Siege.ShowAssaultButton]"
+						enabled = "[Siege.EnableAssaultButton]"
+						tooltip = "[Siege.GetAssaultButtonTooltip]"
+						onclick = "[SiegeWindow.StartStopAssault]"
+						shortcut = siege_assault
+
+						icon = {
+							visible = "[Siege.EnableAssaultButton]"
+							size = { 22 43 }
+							name = "assault_icon"
+							texture = "gfx/interface/siege_window/assault_icon_big.dds"
+						}
+
+						modify_texture = {
+							name = overlay
+							texture = "gfx/interface/mapitems/ally_war_icon_modify_icon.dds"
+							blend_mode = colordodge
+							rotate_uv = 0
+						}
+
+						state = {
+							name = right
+							next = left
+
+							duration = 15
+							#bezier = { 0 0 0 0}
+
+							modify_texture = {
+								name = overlay
+								rotate_uv = 360
+							}
+						}
+
+						state = {
+							name = left
+							next = right
+
+							duration = 0
+							delay = 0
+
+
+							modify_texture = {
+								name = overlay
+								rotate_uv = 0
+							}
+						}
+
+						state = {
+							trigger_on_create = yes
+							name = start
+							next = right
+
+							duration = 0.0
+
+							modify_texture = {
+								name = overlay
+								rotate_uv = 0
+							}
+						}
+
+						modify_texture = {
+							name = overlay2
+							texture = "gfx/interface/mapitems/ally_war_icon_modify_icon.dds"
+							blend_mode = colordodge
+							rotate_uv = 0
+						}
+
+						state = {
+							name = right2
+							next = left2
+
+							duration = 15
+							#bezier = { 0 0 0 0}
+
+							modify_texture = {
+								name = overlay2
+								rotate_uv = -360
+							}
+						}
+
+						state = {
+							name = left2
+							next = right2
+
+							duration = 0
+							delay = 0
+
+
+							modify_texture = {
+								name = overlay2
+								rotate_uv = 0
+							}
+						}
+
+						state = {
+							trigger_on_create = yes
+							name = start
+							next = right
+
+							duration = 0.0
+
+							modify_texture = {
+								name = overlay2
+								rotate_uv = 0
+							}
+						}
+					}
+
+					container = {
+						tooltip = "SW_WALLS_TT"
+
+						icon = {
+							name = "breach"
+							size = { 160 110 }
+							frame = "[SiegeWindow.GetBreachStateFrame]"
+							texture = "gfx/interface/siege_window/breach_state.dds"
+							framesize = { 118 110 }
+							using = tooltip_ne
+							using = Mask_Rough_Edges
+						}
+
+						container = {
+							visible = "[IsDataModelEmpty(SiegeWindow.GetSiegeMachinesRegiments)]"
+
+							button = {
+								enabled = no
+								name = "cant_breach_defender"
+								visible = "[Not(SiegeWindow.GetSiege.IsPlayerInAttackerSide)]"
+								using = tooltip_ne
+								using = Mask_Rough_Edges
+								size = { 160 110 }
+
+								icon = {
+									# Added Texture Outline
+									size = { 160 110 }
+									texture = "gfx/interface/tiles/generic_dark_rectangle.dds"
+									spriteType = Corneredtiled
+									spriteborder = { 2 2 }
+									using = Mask_Rough_Edges
+
+									icon = {
+										name = "breach"
+										parentanchor = center
+										widgetanchor = center										
+										size = { 154 104 }
+										framesize = { 154 104 }
+										frame = "[SiegeWindow.GetBreachStateFrame]"
+										texture = "gfx/interface/siege_window/breach_state.dds"
+										using = tooltip_ne
+										using = Mask_Rough_Edges
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+
+			# ### ACTION HISTORY PUT IN TOOLTIP #####
+			# widget = {
+			# 	size = { 100 100}
+			# 	flowcontainer = {
+			# 		name = "action_history"
+			# 		direction = horizontal
+			# 		spacing = 5
+
+			# 		icon = {
+			# 			name = "old_action_1"
+			# 			size = { 45 45 }
+			# 			visible = "[SiegeWindow.HasActionHistory('1')]"
+			# 			frame = "[SiegeWindow.GetActionHistoryFrame('1')]"
+			# 			tooltip = "[SiegeWindow.GetActionHistoryTooltip('1')]"
+			# 			using = tooltip_ws
+			# 			texture = "gfx/interface/siege_window/siege_actions.dds"
+			# 			framesize = { 92 92 }
+			# 		}
+
+			# 		icon = {
+			# 			name = "old_action_2"
+			# 			size = { 45 45 }
+			# 			visible = "[SiegeWindow.HasActionHistory('2')]"
+			# 			frame = "[SiegeWindow.GetActionHistoryFrame('2')]"
+			# 			tooltip = "[SiegeWindow.GetActionHistoryTooltip('2')]"
+			# 			using = tooltip_ws
+			# 			texture = "gfx/interface/siege_window/siege_actions.dds"
+			# 			framesize = { 92 92 }
+			# 		}
+
+			# 		icon = {
+			# 			name = "old_action_3"
+			# 			size = { 45 45 }
+			# 			visible = "[SiegeWindow.HasActionHistory('3')]"
+			# 			frame = "[SiegeWindow.GetActionHistoryFrame('3')]"
+			# 			tooltip = "[SiegeWindow.GetActionHistoryTooltip('3')]"
+			# 			using = tooltip_ws
+			# 			texture = "gfx/interface/siege_window/siege_actions.dds"
+			# 			framesize = { 92 92 }
+			# 		}
+			# 	}
+			# }
+
+
+			###
+			# Sounds Fort State
+			###
+
+			### Disease State 1
+
+			widget = {
+				visible = "[EqualTo_int32( SiegeWindow.GetDiseaseStateFrame, '(int32)1')]"
+				state = {
+					name = _show
+					start_sound = {
+						soundeffect = "event:/SFX/UI/War/Siege/Fortstate/sfx_ui_war_siege_fortstate_disease"
+						soundparam = {
+							name = StateChange
+							value = 1
+						}
+					}
+				}
+			}
+
+			### Disease State 2
+
+			widget = {
+				visible = "[EqualTo_int32( SiegeWindow.GetDiseaseStateFrame, '(int32)2')]"
+				state = {
+					name = _show
+					start_sound = {
+						soundeffect = "event:/SFX/UI/War/Siege/Fortstate/sfx_ui_war_siege_fortstate_disease"
+						soundparam = {
+							name = StateChange
+							value = 1.5
+						}
+					}
+				}
+			}
+
+			### Disease State 3
+
+			widget = {
+				visible = "[EqualTo_int32( SiegeWindow.GetDiseaseStateFrame, '(int32)3')]"
+				state = {
+					name = _show
+					start_sound = {
+						soundeffect = "event:/SFX/UI/War/Siege/Fortstate/sfx_ui_war_siege_fortstate_disease"
+						soundparam = {
+							name = StateChange
+							value = 2
+						}
+					}
+				}
+			}
+
+			### Breach State 1
+
+			widget = {
+				visible = "[EqualTo_int32( SiegeWindow.GetBreachStateFrame, '(int32)1')]"
+				state = {
+					name = _show
+					start_sound = {
+						soundeffect = "event:/SFX/UI/War/Siege/Fortstate/sfx_ui_war_siege_fortstate_breach"
+						soundparam = {
+							name = StateChange
+							value = 1
+						}
+					}
+				}
+			}
+
+			### Breach State 2
+
+			widget = {
+				visible = "[EqualTo_int32( SiegeWindow.GetBreachStateFrame, '(int32)2')]"
+				state = {
+					name = _show
+					start_sound = {
+						soundeffect = "event:/SFX/UI/War/Siege/Fortstate/sfx_ui_war_siege_fortstate_breach"
+						soundparam = {
+							name = StateChange
+							value = 1.5
+						}
+					}
+				}
+			}
+
+			### Breach State 3
+
+			widget = {
+				visible = "[EqualTo_int32( SiegeWindow.GetBreachStateFrame, '(int32)3')]"
+				state = {
+					name = _show
+					start_sound = {
+						soundeffect = "event:/SFX/UI/War/Siege/Fortstate/sfx_ui_war_siege_fortstate_breach"
+						soundparam = {
+							name = StateChange
+							value = 2
+						}
+					}
+				}
+			}
+
+			### Starvation State 1
+
+			widget = {
+				visible = "[EqualTo_int32( SiegeWindow.GetStarvationStateFrame, '(int32)1')]"
+				state = {
+					name = _show
+					start_sound = {
+						soundeffect = "event:/SFX/UI/War/Siege/Fortstate/sfx_ui_war_siege_fortstate_starvation"
+						soundparam = {
+							name = StateChange
+							value = 1
+						}
+					}
+				}
+			}
+
+			### Starvation State 2
+
+			widget = {
+				visible = "[EqualTo_int32( SiegeWindow.GetStarvationStateFrame, '(int32)2')]"
+				state = {
+					name = _show
+					start_sound = {
+						soundeffect = "event:/SFX/UI/War/Siege/Fortstate/sfx_ui_war_siege_fortstate_starvation"
+						soundparam = {
+							name = StateChange
+							value = 1.5
+						}
+					}
+				}
+			}
+			### Sarvation State 3
+
+			widget = {
+				visible = "[EqualTo_int32( SiegeWindow.GetStarvationStateFrame, '(int32)3')]"
+				state = {
+					name = _show
+					start_sound = {
+						soundeffect = "event:/SFX/UI/War/Siege/Fortstate/sfx_ui_war_siege_fortstate_starvation"
+						soundparam = {
+							name = StateChange
+							value = 2
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+
+# # Move these somewhere?
+# types Shared
+# {
+# 	type icon_and_label = widget {
+# 		size = { 130 50 }
+# 		tooltip = "Add tooltip..."#Set Tooltip
+
+# 		icon = {
+# 			name = "icon"
+# 			block "icon"
+# 			{
+# 				texture = "gfx/interface/prototype/generic_icon.png"#Set texture
+# 			}
+# 			size = { 40 40 }
+# 			parentanchor = vcenter|left
+# 		}
+
+# 		textbox = {
+# 			name = "label"
+# 			block "label"
+# 			{
+# 				size = { 65 35 }#Increase width here
+# 				text = "Add text..."#Set Text
+# 			}
+
+# 			layoutpolicy_horizontal = growing
+# 			position = { 40 0 }
+# 			using = FontValue
+# 			align = left|nobaseline
+# 			widgetanchor = vcenter|left
+# 			parentanchor = vcenter|left
+# 		}
+# 	}
+# }

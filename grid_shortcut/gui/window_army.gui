@@ -987,6 +987,9 @@ window = {
 						visible = "[Army.IsTakingRaidAction]"
 						datacontext = "[Army.GetRaid]"
 						using = raid_goto_template
+						blockoverride "raid_button" {							
+							shortcut = "army_to_siege"
+						}
 					}
 
 					vbox = {
@@ -994,6 +997,9 @@ window = {
 						visible = "[Army.IsSieging]"
 						datacontext = "[Army.GetLocation.GetSiege]"
 						using = siege_goto_template
+						blockoverride "siege_button" {							
+							shortcut = "army_to_siege"
+						}
 					}
 				}
 			}

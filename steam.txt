@@ -1,7 +1,7 @@
 [h1] What about it [/h1]
-[b]Mod v1.1.2[/b] for [b]CK3 v1.0.3[/b]
+[b]Mod v1.2.3[/b] for [b]CK3 v1.0.3[/b]
 
-This is a mod for Crusader King 3 that adds more than a hundred of shortcuts to the game. The idea is to speed up interface interactions by diminishing the mouse usage with scoped shortcuts. They are scoped to the window that is opened, allowing the coverage of many different actions with same hotkeys.
+This is a mod for Crusader King 3 (**v1.0.3**) that adds more than four hundred shortcuts to the game. The idea is to speed up interface interactions by diminishing the mouse usage with scoped shortcuts. They are scoped to the window that is opened, allowing the coverage of many different actions with same hotkeys.
 
 The most frequent actions are mapped with easy-to-reach thinking, meaning they are mapped to the left side of the keyboard, where the hand rests, by the keys: 1-5, QWERT, ASDFG, ZXCVB, TAB and SPACE. The more uncommon actions (map view and few windows), are mapped to sequences which is usually initiated by SPACE. This configuration should help decreasing the mouse usage, allowing you to even combo hotkeys. Just keep in mind that there is a learning curve, since it requires memorization.
 
@@ -14,7 +14,16 @@ https://drive.google.com/file/d/1967OPPwgwkOLpnaE4MgoSpNGza2x_V2g/view?usp=shari
 
 [b]NOTE: When updating your mod version, you must again manually update the 'shortcuts.shortcuts'.[/b]
 
+[h1] Mods incorporated [/h1]
+- [Extended Outliner](https://steamcommunity.com/sharedfiles/filedetails/?id=2219611817): Amazing quality of life mod which was added and slightly modified to display income and war status of pinned characters. Cycling through armies shortcut was added as well.
+
 [h1] Learning the hotkeys [/h1]
 
 Check the link below to learn about every hotkey:
 https://github.com/miguelcjalmeida/gridshortcut
+
+# Credits 
+
+- Very special thanks to [VidereJP](https://steamcommunity.com/id/viderejp) for contributing with many ideas, testing, and validation.
+- Thank you [Ovallord](https://steamcommunity.com/id/mertats) for promptly supporting the modding community 
+- Thanks 'FUN' for publishing this amazing quality of life mod [Extended Outliner](https://steamcommunity.com/sharedfiles/filedetails/?id=2219611817&searchtext=).

@@ -26,7 +26,6 @@ shortcutbindings = {
 	speed_4 = "P"
 	speed_5 = "P"
 	character_finder = "P"
-	siege_assault = "P"
 	pause = "P"
 	sequence_character_options = "P"
 	
@@ -199,6 +198,8 @@ shortcutbindings = {
 	army_select_one_unit_highlighted = "V"
 	army_select_this_only = "P"
 	army_reorganize = "5"
+	army_to_siege = "T"	
+	siege_assault = "G"
 
 # Council
 	council_mine = "1"

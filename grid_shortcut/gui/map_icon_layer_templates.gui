@@ -609,6 +609,8 @@ template siege_goto_template
 			name = "blocked_icon"
 			texture = "gfx/interface/mapitems/onmap_siege_icon.dds"
 		}
+		
+		block "siege_button" {}
 	}
 }
 
@@ -631,6 +633,7 @@ template raid_goto_template
 			name = "blocked_icon"
 			texture = "gfx/interface/mapitems/onmap_raid_icon.dds"
 		}
+		block "raid_button" {}
 	}
 }
 

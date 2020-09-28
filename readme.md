@@ -1,7 +1,7 @@
 
-# Grid#Shortcut **v1.1.2**
+# Grid#Shortcut **v1.2.3**
 
-This is a mod for Crusader King 3 (**v1.0.3**) that adds more than a hundred of shortcuts to the game. The idea is to speed up interface interactions by diminishing the mouse usage with scoped shortcuts. They are scoped to the window that is opened, allowing the coverage of many different actions with same hotkeys.
+This is a mod for Crusader King 3 (**v1.0.3**) that adds more than four hundred shortcuts to the game. The idea is to speed up interface interactions by diminishing the mouse usage with scoped shortcuts. They are scoped to the window that is opened, allowing the coverage of many different actions with same hotkeys.
 
 The most frequent actions are mapped with easy-to-reach thinking, meaning they are mapped to the left side of the keyboard, where the hand rests, by the keys: 1-5, QWERT, ASDFG, ZXCVB, TAB and SPACE. The more uncommon actions (map view and few windows), are mapped to sequences which is usually initiated by SPACE. This configuration should help decreasing the mouse usage, allowing you to even combo hotkeys. Just keep in mind that there is a learning curve, since it requires memorization.
 
@@ -15,10 +15,13 @@ Since CK3 still don't support modding the file "*Crusader King III/game/gui/shor
 
 Download available on [steam workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=2231258079)
 
+# Mods incorporated
+- [Extended Outliner](https://steamcommunity.com/sharedfiles/filedetails/?id=2219611817): Amazing quality of life mod which was added and slightly modified to display income and war status of pinned characters. Cycling through armies shortcut was added as well.
+
 # Hotkeys Map
 Right below you can learn every mapping added by this mod. Fortunately, most hotkeys you can also discover in-game by hovering buttons, but some just won't show up, like the opening portraits ones. For that, it is recommended to check the list below from time to time, while playing.
 
-### General Idea
+## General Idea
 Hotkeys can be either global or window-scoped, meaning they change based on the window that is opened. The global ones should not be difficult to learn, but the scoped ones might be tricky. However, in order to ease memorization, the hotkeys were constructed with some logic in mind, which you can follow in the list below. Reading this a few times should get you going. 
 
 | Key | Action |
@@ -35,7 +38,7 @@ Hotkeys can be either global or window-scoped, meaning they change based on the 
 | T | Open county/character culture. |
 | B | Navigate one step back |
 
-### Global hotkeys
+## Global hotkeys
 Below you can check all the available global hotkeys.
 
 ### Time control & history
@@ -183,6 +186,8 @@ _The HUD window shortcuts are only triggered when there is no other window opene
 | Key | Action |
 | ----- | ----- |
 | SPACE > TAB | Open outliner ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png) | 
+| V | Cycle to the next army ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png) | 
+| C | Pan to the selected army ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png) | 
 
 ### Interactions menu
 ![event window](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/contextmenu.png)
@@ -293,17 +298,27 @@ _The HUD window shortcuts are only triggered when there is no other window opene
 
 | Key | Action |
 | - | - |
+| 1 | select castle holding ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
+| 2 | select city holding ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
+| 3 | select temple holding ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
+| 4 | select empty holding ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
 | Q | go to county location |
-| E | upgrade / cancel / construct barony
-| V | Grant land/title to vassal |
-| R | Open county religion |
+| E > Q | select capital holding ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
+| E > E | upgrade holding ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
+| E > W | build new construction ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
+| E > R | upgrade available construction ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
+| E > F | build or upgrade duchy construction ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
+| E > C | build or upgrade special construction ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
+| E > V | Grant land/title to vassal ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
+| F > F | Open county owner profile ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
+| F > C | Open county owner options menu ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
+| F > E | Open county title ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
+| G > G | Open holding owner profile ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
+| G > C | Open holding owner options menu ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
+| G > E | Open holding title ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
+| R | Open county faith |
 | T | Open county culture |
-| F | Open county owner profile | 
-| G | Open holding owner profile | 
-| C | Open holding owner interaction menu ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)| 
-| 1 | Open county title | 
-| 2 | Open holding title |
-| 3 | Go to siege, if any is happening |
+| 5 | Go to siege, if any is happening ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
 
 ### Title Window 
 
@@ -316,7 +331,7 @@ _The HUD window shortcuts are only triggered when there is no other window opene
 | Q | Go to title location |
 | E | Create/usurp title or show its laws | 
 | R | Open title elections, if any |
-| T | If it is a county/holding title, select the barony |
+| T | Select the title holding |
 | V | If yours, grant title to a vassal |
 | F | Select profile of title owner |
 | C | Open title owner interaction menu ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)| 
@@ -389,17 +404,18 @@ _The HUD window shortcuts are only triggered when there is no other window opene
 | Q | Disband army |
 | F | Toggle auto raiding checkbox | 
 | G | Turn raiders into normal soldiers |
-| V | Select apart one unit from army |
-| C | Cicle the selected unit from army ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
-| T | Reorganize two armies
-
+| V | Cicle the selected unit from army ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)|
+| 5 | Reorganize two armies ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)
+| T | Go to siege, if happening ![](https://github.com/miguelcjalmeida/gridshortcut/raw/patch1/pics/new.png)
 ### Siege window
 
 ![siege window](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/siege.png)
 
 | Key | Action |
 | - | - |
-| 3 | Select the county being sieged | 
+| 5 | Select the county being sieged | 
+| T | Select the sieging army | 
+| G | Assault! | 
 
 ### War overview
 
@@ -535,3 +551,4 @@ _The next shortcuts will allow you to access almost any minor decision by hotkey
 
 - Very special thanks to [VidereJP](https://steamcommunity.com/id/viderejp) for contributing with many ideas, testing, and validation.
 - Thank you [Ovallord](https://steamcommunity.com/id/mertats) for promptly supporting the modding community 
+- Thanks 'FUN' for publishing this amazing quality of life mod [Extended Outliner](https://steamcommunity.com/sharedfiles/filedetails/?id=2219611817&searchtext=).
