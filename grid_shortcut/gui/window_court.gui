@@ -31,11 +31,12 @@ window = {
 		margin = { 0 26 }
 		margin_right = 20
 
+		using = Window_Background
+
 		widget = {
 			size = { 100% 100% }
 
-			using = Window_Background
-			using = Window_Decoration_Thin
+			# using = Window_Decoration_Thin
 
 			vbox = {
 				using = Window_Margins
@@ -46,7 +47,6 @@ window = {
 					blockoverride "header_text"
 					{
 						text = "COURT_WINDOW_TITLE"
-						using = Font_Size_Medium
 					}
 
 					blockoverride "button_close"
@@ -119,6 +119,8 @@ window = {
 								vbox = {
 									layoutpolicy_horizontal = expanding
 									spacing = 5
+									
+									datacontext = "[CourtWindow.GetCourtOwner.GetRelationOfType( GetRelation( 'court_physician' ) )]"
 
 									text_label_center = {
 										text = "COUNCIL_WINDOW_MINOR_TITLES"
@@ -136,8 +138,6 @@ window = {
 										}
 
 										portrait_shoulders = {
-											datacontext = "[CourtWindow.GetPhysician]"
-
 											background = {
 												using = Background_Area
 											}
@@ -150,7 +150,7 @@ window = {
 													alwaystransparent = yes
 													size = { 40 40 }
 													position = {-5 -5}
-													texture = "gfx/interface/buttons/button_icons/plus.dds" 
+													texture = "gfx/interface/icons/flat_icons/plus.dds" 
 												}
 											}
 
@@ -174,8 +174,8 @@ window = {
 
 											text_single = {
 												layoutpolicy_horizontal = expanding
-												visible = "[CourtWindow.GetPhysician.IsValid]"
-												text = "[CourtWindow.GetPhysician.GetFullName]"
+												visible = "[Character.IsValid]"
+												text = "[Character.GetFullName]"
 												autoresize = no
 											}
 
@@ -187,7 +187,7 @@ window = {
 													name = "hire_physician_decision"
 													shortcut = "court_hire_physician"
 													datacontext = "[GetDecisionWithKey( 'hire_physician_decision' )]"
-													visible = "[And( Not( CourtWindow.GetPhysician.IsValid ), Decision.IsShownForPlayer )]"
+													visible = "[And( Not( Character.IsValid ), Decision.IsShownForPlayer )]"
 													onclick = "[OpenDecisionDetailView( Decision.Self )]"
 
 													size = { 250 40 }
@@ -248,7 +248,7 @@ window = {
 										spacing = 10
 
 										button_decision_entry = {
-											name = "invite_knights_decision"											
+											name = "invite_knights_decision"
 											shortcut = "court_invite_knights"
 											datacontext = "[GetDecisionWithKey('invite_knights_decision')]"
 											visible = "[Decision.IsShownForPlayer]"
@@ -406,7 +406,7 @@ window = {
 						frame = 2
 
 						modify_texture = {
-							texture = "gfx/interface/tiles/stretch_bottom_fade.dds"
+							texture = "gfx/interface/component_masks/mask_fade_vertical_up.dds"
 							blend_mode = alphamultiply
 						}
 					}
@@ -419,7 +419,7 @@ window = {
 						alpha = 0.7
 
 						modify_texture = {
-							texture = "gfx/interface/tiles/stretch_bottom_fade.dds"
+							texture = "gfx/interface/component_masks/mask_fade_vertical_up.dds"
 							blend_mode = alphamultiply
 						}
 					}
@@ -569,6 +569,7 @@ window = {
 
 								button_round  = {
 									name = "ransom"
+									enabled = "[CourtWindow.CanDoMassPrisonerAction('ransom')]"
 
 									button_prison_ransom = {
 										shortcut = "court_prison_mass_ransom"
@@ -582,6 +583,7 @@ window = {
 
 								button_round  = {
 									name = "release"
+									enabled = "[CourtWindow.CanDoMassPrisonerAction('release')]"
 
 									button_prison_release = {
 										shortcut = "court_prison_mass_release"
@@ -595,6 +597,7 @@ window = {
 
 								button_round  = {
 									name = "execute"
+									enabled = "[CourtWindow.CanDoMassPrisonerAction('execute')]"
 
 									button_prison_execute = {
 										shortcut = "court_prison_mass_execute"

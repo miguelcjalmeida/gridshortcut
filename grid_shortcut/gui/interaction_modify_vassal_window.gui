@@ -47,7 +47,7 @@ window = {
 				fittype = end
 
 				modify_texture = {
-					texture = "gfx/interface/tiles/stretch_bottom_fade.dds"
+					texture = "gfx/interface/component_masks/mask_fade_vertical_up.dds"
 					blend_mode = alphamultiply
 				}
 			}
@@ -199,38 +199,27 @@ window = {
 									spacing = 20
 									margin = { 10 12 }
 									item = {
-										hbox = {
-											button_radio = {
-												size = { 30 30 }
-												frame = "[BoolTo1And2( ModifyVassalContractInteractionWindowObligationLevelOption.IsSelected )]"
-												onclick = "[ModifyVassalContractInteractionWindowObligationLevelOption.Select]"
-												visible = "[ModifyVassalContractInteractionWindowObligationLevelOption.IsEnabled]"
-											}
 
-											button_radio = {
-												size = { 30 30 }
-												frame = "[BoolTo1And2( ModifyVassalContractInteractionWindowObligationLevelOption.IsSelected )]"
+										hbox = {
+
+											button_radio_label = {
 												onclick = "[ModifyVassalContractInteractionWindowObligationLevelOption.Select]"
-												visible = "[Not(ModifyVassalContractInteractionWindowObligationLevelOption.IsEnabled)]"
 												enabled = "[ModifyVassalContractInteractionWindowObligationLevelOption.IsEnabled]"
 
-												modify_texture = {
-													texture = "gfx/interface/tiles/alpha_white.dds"
-													blend_mode = overlay
-													alpha = 0.3
+												blockoverride "radio" 
+												{ 
+												    frame = "[BoolTo1And2( ModifyVassalContractInteractionWindowObligationLevelOption.IsSelected )]"
 												}
-											}
+												blockoverride "text"
+												{
+												    text = "[ModifyVassalContractInteractionWindowObligationLevelOption.GetName]"
+												    default_format = "#light_background"
+												}
 
-											text_single = {
-												margin_left = 5
-												text = "[ModifyVassalContractInteractionWindowObligationLevelOption.GetName]"
-												default_format = "#light_background"
-												align = nobaseline
+												tooltip = "[ModifyVassalContractInteractionWindowObligationLevelOption.GetTooltip]"
 											}
 
 											expand = {}
-
-											tooltip = "[ModifyVassalContractInteractionWindowObligationLevelOption.GetTooltip]"
 										}
 									}
 								}
@@ -277,19 +266,22 @@ window = {
 
 										datacontext = "[ObligationLevelCheckbox.GetLevel( '(int32)1' )]" # First one is always no effect/disabled option
 
-										button_checkbox = {
-											checked = "[ModifyVassalContractInteractionWindowObligationLevelOption.IsSelected]"
-											enabled = "[ModifyVassalContractInteractionWindowObligationLevelOption.IsEnabled]"
-
+										button_checkbox_label = {
 											# Order dependent, first select the unselected level then set it as the new selected one
 											onclick = "[ObligationLevelCheckbox.AccessLevel( ObligationLevelCheckbox.GetUnselectedLevelIndex ).Select]"
 											onclick = "[ObligationLevelCheckbox.ToggleSelection]"
-										}
 
-										text_single = {
-											text = "[ModifyVassalContractInteractionWindowObligationLevelOption.GetName]"
-											default_format = "#light_background"
-											align = nobaseline
+											blockoverride "checkbox"
+											{
+												checked = "[ModifyVassalContractInteractionWindowObligationLevelOption.IsSelected]"
+												enabled = "[ModifyVassalContractInteractionWindowObligationLevelOption.IsEnabled]" 
+											}
+
+											blockoverride "text"
+											{
+												text = "[ModifyVassalContractInteractionWindowObligationLevelOption.GetName]"
+												default_format = "#light_background"
+											}
 										}
 
 										expand = {}
@@ -315,7 +307,7 @@ window = {
 							icon = {
 								name = "sigil_bg"
 								size = { 80 80 }
-								texture = "gfx/interface/event_window/sigil_bg.dds"
+								texture = "gfx/interface/window_event/sigil_bg.dds"
 								alwaystransparent = yes
 								parentanchor = center
 							}
@@ -331,7 +323,7 @@ window = {
 								datacontext = "[Character.GetSealCoA]"
 								coat_of_arms_slot = "[CoatOfArms.GetSlot('(int32)88','(int32)88')]"
 								coat_of_arms = "[CoatOfArms.GetTexture('(int32)88','(int32)88')]"
-								coat_of_arms_mask = "gfx/interface/event_window/sigil_center.dds"
+								coat_of_arms_mask = "gfx/interface/window_event/sigil_center.dds"
 								parentanchor = center
 							}
 
@@ -339,7 +331,7 @@ window = {
 								name = "sigil_lowborn"
 								visible = "[Not( Character.HasSealCoA )]"
 								size = { 34 34 }
-								texture = "gfx/interface/event_window/sigil_center_lowborn.dds"
+								texture = "gfx/interface/window_event/sigil_center_lowborn.dds"
 								alwaystransparent = yes
 								parentanchor = center
 							}
@@ -369,7 +361,7 @@ window = {
 							icon = {
 								name = "sigil_bg"
 								size = { 80 80 }
-								texture = "gfx/interface/event_window/sigil_bg.dds"
+								texture = "gfx/interface/window_event/sigil_bg.dds"
 								alwaystransparent = yes
 								parentanchor = center
 							}
@@ -385,7 +377,7 @@ window = {
 								datacontext = "[Character.GetSealCoA]"
 								coat_of_arms_slot = "[CoatOfArms.GetSlot('(int32)88','(int32)88')]"
 								coat_of_arms = "[CoatOfArms.GetTexture('(int32)88','(int32)88')]"
-								coat_of_arms_mask = "gfx/interface/event_window/sigil_center.dds"
+								coat_of_arms_mask = "gfx/interface/window_event/sigil_center.dds"
 								parentanchor = center
 							}
 
@@ -393,7 +385,7 @@ window = {
 								name = "sigil_lowborn"
 								visible = "[Not( Character.HasSealCoA )]"
 								size = { 34 34 }
-								texture = "gfx/interface/event_window/sigil_center_lowborn.dds"
+								texture = "gfx/interface/window_event/sigil_center_lowborn.dds"
 								alwaystransparent = yes
 								parentanchor = center
 							}
@@ -624,11 +616,11 @@ window = {
 					}
 
 					## Options
-					vbox_interaction_options = {						
+					vbox_interaction_options = {
 						shortcut = "my_realm_contract_select_hook"
 						name = "tutorial_highlight_modify_contract_hook_button"
 						visible = "[CharacterInteractionConfirmationWindow.HasOptions]"
-
+					
 						blockoverride "button_checkbox_inner" {
 							shortcut = "my_realm_contract_select_hook"
 						}

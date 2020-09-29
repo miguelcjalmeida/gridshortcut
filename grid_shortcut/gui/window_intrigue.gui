@@ -35,11 +35,12 @@ window = {
 		margin = { 0 26 }
 		margin_right = 20
 
+		using = Window_Background
+
 		widget = {
 			size = { 100% 100% }
 
-			using = Window_Background
-			using = Window_Decoration_Thin
+			# using = Window_Decoration_Thin
 
 			vbox = {
 				using = Window_Margins
@@ -119,10 +120,10 @@ window = {
 							texture = "gfx/interface/illustrations/council/bg_council_spymaster.dds"
 							margin = { -5 0 }
 							fittype = end
-							alpha = 0.5
+							alpha = 0.3
 
 							modify_texture = {
-								texture = "gfx/interface/tiles/stretch_bottom_fade.dds"
+								texture = "gfx/interface/component_masks/mask_fade_vertical_up.dds"
 								blend_mode = alphamultiply
 							}
 						}
@@ -229,7 +230,7 @@ window = {
 										name = "discovered_icon"
 										position = { 5 -5 }
 										size = { 35 35 }
-										texture = "gfx/interface/icons/icon_discovered_scheme.dds"
+										texture = "gfx/interface/icons/schemes/icon_discovered_scheme.dds"
 									}
 								}
 
@@ -288,7 +289,7 @@ window = {
 							alpha = 0.6
 
 							modify_texture = {
-								texture = "gfx/interface/buttons/background_button_fade.dds"
+								texture = "gfx/interface/component_masks/mask_fade_vertical_up.dds"
 								blend_mode = alphamultiply
 							}
 						}
@@ -674,7 +675,7 @@ window = {
 												tooltip = "[Secret.GetTooltipDesc]"
 
 												icon = {
-													texture = "[Secret.GetCategoryIcon]"
+													texture = "[Secret.GetType.GetIcon]"
 													size = { 30 30 }
 												}
 
@@ -695,7 +696,6 @@ window = {
 
 												blockoverride "portrait_context"
 												{
-													datacontext = "[CharacterRef.Get]"
 												}
 											}
 										}
@@ -788,7 +788,7 @@ types IntrigueWindow
 						name = success_icon
 						size = { 30 30 }
 
-						texture = "gfx/interface/icons/success_icon.dds"
+						texture = "gfx/interface/icons/schemes/icon_scheme_success.dds"
 					}
 
 					text_single = {
@@ -807,7 +807,7 @@ types IntrigueWindow
 					icon = {
 						name = "secrecy_icon"
 						size = { 30 30 }
-						texture = "gfx/interface/icons/secrecy_icon.dds"
+						texture = "gfx/interface/icons/schemes/icon_secrecy.dds"
 					}
 
 					text_single = {
@@ -822,7 +822,7 @@ types IntrigueWindow
 				icon = {
 					visible = "[Scheme.IsExposed]"
 					size = { 35 35 }
-					texture = "gfx/interface/icons/icon_discovered_scheme.dds"
+					texture = "gfx/interface/icons/schemes/icon_discovered_scheme.dds"
 					tooltip = "SCHEME_WINDOW_EXPOSED_TOOLTIP"
 				}
 			}
@@ -840,70 +840,70 @@ types IntrigueWindow
 					spacing = 2
 
 					icon = {
-						texture = "gfx/interface/tiles/tile_progress_scheme.dds"
+						texture = "gfx/interface/progressbars/progress_scheme.dds"
 						size = { 25 25 }
 						framesize = { 45 45 }
 						frame = "[Scheme.GetProgressFrame('(int32)1')]"
 					}
 
 					icon = {
-						texture = "gfx/interface/tiles/tile_progress_scheme.dds"
+						texture = "gfx/interface/progressbars/progress_scheme.dds"
 						size = { 25 25 }
 						framesize = { 45 45 }
 						frame = "[Scheme.GetProgressFrame('(int32)2')]"
 					}
 
 					icon = {
-						texture = "gfx/interface/tiles/tile_progress_scheme.dds"
+						texture = "gfx/interface/progressbars/progress_scheme.dds"
 						size = { 25 25 }
 						framesize = { 45 45 }
 						frame = "[Scheme.GetProgressFrame('(int32)3')]"
 					}
 
 					icon = {
-						texture = "gfx/interface/tiles/tile_progress_scheme.dds"
+						texture = "gfx/interface/progressbars/progress_scheme.dds"
 						size = { 25 25 }
 						framesize = { 45 45 }
 						frame = "[Scheme.GetProgressFrame('(int32)4')]"
 					}
 
 					icon = {
-						texture = "gfx/interface/tiles/tile_progress_scheme.dds"
+						texture = "gfx/interface/progressbars/progress_scheme.dds"
 						size = { 25 25 }
 						framesize = { 45 45 }
 						frame = "[Scheme.GetProgressFrame('(int32)5')]"
 					}
 
 					icon = {
-						texture = "gfx/interface/tiles/tile_progress_scheme.dds"
+						texture = "gfx/interface/progressbars/progress_scheme.dds"
 						size = { 25 25 }
 						framesize = { 45 45 }
 						frame = "[Scheme.GetProgressFrame('(int32)6')]"
 					}
 
 					icon = {
-						texture = "gfx/interface/tiles/tile_progress_scheme.dds"
+						texture = "gfx/interface/progressbars/progress_scheme.dds"
 						size = { 25 25 }
 						framesize = { 45 45 }
 						frame = "[Scheme.GetProgressFrame('(int32)7')]"
 					}
 
 					icon = {
-						texture = "gfx/interface/tiles/tile_progress_scheme.dds"
+						texture = "gfx/interface/progressbars/progress_scheme.dds"
 						size = { 25 25 }
 						framesize = { 45 45 }
 						frame = "[Scheme.GetProgressFrame('(int32)8')]"
 					}
 
 					icon = {
-						texture = "gfx/interface/tiles/tile_progress_scheme.dds"
+						texture = "gfx/interface/progressbars/progress_scheme.dds"
 						size = { 25 25 }
 						framesize = { 45 45 }
 						frame = "[Scheme.GetProgressFrame('(int32)9')]"
 					}
 
 					icon = {
-						texture = "gfx/interface/tiles/tile_progress_scheme.dds"
+						texture = "gfx/interface/progressbars/progress_scheme.dds"
 						size = { 25 25 }
 						framesize = { 45 45 }
 						frame = "[Scheme.GetProgressFrame('(int32)10')]"
@@ -1030,7 +1030,7 @@ types IntrigueWindow
 								parentanchor = top|right
 								size = { 25 25 }
 								alwaystransparent = yes
-								texture = "gfx/interface/icons/icon_discovered_scheme.dds"
+								texture = "gfx/interface/icons/schemes/icon_discovered_scheme.dds"
 							}
 						}
 
@@ -1054,7 +1054,7 @@ types IntrigueWindow
 									icon = {
 										name = success_icon
 										size = { 25 25 }
-										texture = "gfx/interface/icons/success_icon.dds"
+										texture = "gfx/interface/icons/schemes/icon_scheme_success.dds"
 										tooltip = "[SchemeAgentItem.GetSuccessDesc]"
 									}
 
@@ -1073,7 +1073,7 @@ types IntrigueWindow
 									icon = {
 										name = power_icon
 										size = { 25 25 }
-										texture = "gfx/interface/icons/scheme_power_icon.dds"
+										texture = "gfx/interface/icons/schemes/icon_scheme_power.dds"
 										tooltip = "INTRIGUE_WINDOW_SCHEME_POWER_TT"
 									}
 
@@ -1128,14 +1128,14 @@ types IntrigueWindow
 				direction = vertical
 
 				flowcontainer = {
-					tooltip = "SCHEME_WINDOW_SUCCESS_TOOLTIP"
+					tooltip = "SCHEME_WINDOW_SUCCESS_DISCOVERED_TOOLTIP"
 					spacing = 5
 
 					icon = {
 						name = success_icon
 						size = { 30 30 }
 
-						texture = "gfx/interface/icons/success_icon.dds"
+						texture = "gfx/interface/icons/schemes/icon_scheme_success.dds"
 					}
 
 					text_single = {
@@ -1150,12 +1150,12 @@ types IntrigueWindow
 				flowcontainer = {
 					visible = "[Scheme.IsSecret]"
 					spacing = 5
-					tooltip = "SCHEME_WINDOW_SECRECY_TOOLTIP"
+					tooltip = "SCHEME_WINDOW_SECRECY_DISCOVERED_TOOLTIP"
 
 					icon = {
 						name = "secrecy_icon"
 						size = { 30 30 }
-						texture = "gfx/interface/icons/secrecy_icon.dds"
+						texture = "gfx/interface/icons/schemes/icon_secrecy.dds"
 					}
 
 					text_single = {
@@ -1292,7 +1292,7 @@ types IntrigueWindowTypes
 								
 
 								icon = {
-									texture = "[Secret.GetCategoryIcon]"
+									texture = "[Secret.GetType.GetIcon]"
 									size = { 30 30 }
 									tooltip = "INTRIGUE_WINDOW_SECRET_TOOLTIP"
 								}
@@ -1328,7 +1328,7 @@ types IntrigueWindowTypes
 
 								icon = {
 									size = { 20 20 }
-									texture = "gfx/interface/icons/icon_warning.dds"
+									texture = "gfx/interface/icons/symbols/icon_warning.dds"
 									visible = "[Not( Character.IsPlayerInteractionWithTargetSecretValid( 'blackmail_interaction', Secret.Self ) )]"
 									tooltip = "[Character.GetPlayerInteractionWithTargetSecretTooltip( 'blackmail_interaction', Secret.Self )]"
 								}

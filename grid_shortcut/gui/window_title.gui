@@ -67,14 +67,14 @@ window = {
 				layoutpolicy_horizontal = expanding
 
 				background = {
-					texture = "gfx/interface/tiles/tile_title_big_top_01.dds"
+					texture = "gfx/interface/component_tiles/tile_title_big_top_01.dds"
 					margin_bottom = 10
 					spriteType = Corneredtiled
 					spriteborder = { 0 18 }
 
 					modify_texture = {
 						name = "mask"
-						texture = "gfx/interface/tiles/tile_title_big_top_01_mask.dds"
+						texture = "gfx/interface/component_masks/mask_title_big_top.dds"
 						spriteType = Corneredtiled
 						spriteborder = { 160 0 }
 						blend_mode = alphamultiply
@@ -83,7 +83,7 @@ window = {
 
 					modify_texture = {
 						name = "overlay"
-						texture = "gfx/interface/tiles/tile_title_big_top_01_overlay.dds"
+						texture = "gfx/interface/component_overlay/overlay_title_big_top.dds"
 						spriteType = Corneredstretched
 						spriteborder = { 0 0 }
 						blend_mode = overlay
@@ -103,7 +103,7 @@ window = {
 							visible = "[And( InDebugMode, TitleViewWindow.GetTitle.HasLaws) ]"
 							parentanchor = bottom|right
 							size = { 42 42 }
-							texture = "gfx/interface/icons/icon_title_law.dds"
+							texture = "gfx/interface/icons/title_status/icon_title_law.dds"
 						}
 
 						blockoverride "coa_button_inner" {
@@ -257,7 +257,7 @@ window = {
 								}
 							}
 
-							button_group = {
+							button_sidepanel_right = {
 								name = "view_claimants"
 								shortcut = "title_toggle_claimants"
 								onclick = "[TitleViewWindow.ToggleClaimants]"
@@ -266,15 +266,10 @@ window = {
 								visible = "[Title.CanHaveClaim]"
 								enabled = "[GreaterThan_int32( TitleViewWindow.GetNumberOfClaimants, '(int32)0' )]"
 
-								hbox = {
-									text_single = {
-										text = "TITLE_VIEW_CLAIMANTS"
-										align = nobaseline
-										default_format = "#clickable"
-									}
-
-									button_expand = {}
-								}
+								blockoverride "button_text"
+                                {
+                                    text = "TITLE_VIEW_CLAIMANTS"
+                                }
 							}
 
 							text_single = {
@@ -315,10 +310,7 @@ window = {
 											datacontext = "[TitleItem.GetTitle]"
 											position = { 0 -10 }
 
-											blockoverride "Tooltip"
-											{
-												tooltip = "[Title.GetCOADeJureTooltip]"
-											}
+											using = tooltip_se
 										}
 									}
 								}
@@ -332,30 +324,33 @@ window = {
 								onclick = "[DefaultOnCoatOfArmsClick(TitleViewWindow.GetTitle.GetPreferredCapital.GetID)]"
 							}
 
-							button_standard_list = {
-								maximumsize = { 180 -1 }
-								minimumsize = { 0 50 }
-
+							vbox = {
 								visible = "[And(TitleViewWindow.GetTitle.HasHolder,TitleViewWindow.GetTitle.IsLanded)]"
-								datacontext = "[TitleViewWindow.GetHolding]"
-								tooltip = "TITLE_VIEW_GO_TO_HOLDING"
-								onclick = "[TitleViewWindow.GoToHolding]"
-								shortcut = "title_select_county"
-								vbox = {
+								margin_left = 10
+								margin_bottom = 5
+								spacing = 5
+
+								text_single = {
+									margin_left = 5
 									layoutpolicy_horizontal = expanding
-									margin_left = 10
-									margin_bottom = 5
+									align = left
+									max_width = 180
+									text = "[TitleViewWindow.GetTypeOfLanded]:"
+								}
+
+								button_standard_list = {
+									maximumsize = { 180 -1 }
+									minimumsize = { 0 33 }
+
+									datacontext = "[TitleViewWindow.GetHolding]"
+									tooltip = "TITLE_VIEW_GO_TO_HOLDING"
+									onclick = "[TitleViewWindow.GoToHolding]"
+									shortcut = "title_select_county"														
 
 									text_single = {
-										margin_left = 5
 										layoutpolicy_horizontal = expanding
-										align = left
-										text = "[TitleViewWindow.GetTypeOfLanded]:"
-									}
-
-									text_single = {
-										layoutpolicy_horizontal = expanding
-										align = left
+										parentanchor = center
+										margin_bottom = 5
 										max_width = 160
 										text = " [Holding.GetProvince.GetNameNoTooltip]"
 										default_format = "#high"
@@ -533,12 +528,10 @@ window = {
 							vbox = {
 								datamodel = "[TitleViewWindow.GetTitleAllegianceVassals]"
 								layoutpolicy_horizontal = expanding
-								layoutpolicy_vertical = expanding
 								spacing = 3
 
 								item = {
 									button_standard_list = {
-										datacontext = "[CharacterRef.Get]"
 										layoutpolicy_horizontal = expanding
 										minimumsize = { 0 50 }
 										onclick = "[DefaultOnCharacterClick(Character.GetID)]"
@@ -568,7 +561,7 @@ window = {
 					margin = { 20 5 }
 					datacontext = "[TitleViewWindow.GetTitle.GetPreferredCapital]"
 					visible = "[And( Title.IsValid, Not( TitleViewWindow.GetTitle.HasFaction ) )]"
-					
+
 					text_single = {
 						text = "TITLE_VIEW_DE_JURE_CAPITAL"
 					}
@@ -612,14 +605,14 @@ window = {
 							icon = {
 								name = "icon_yes"
 								size = { 25 25 }
-								texture = "gfx/interface/icons/icon_check.dds"
+								texture = "gfx/interface/icons/symbols/icon_check.dds"
 								visible = "[TitleViewWindow.HasEnoughCounties]"
 							}
 
 							icon = {
 								name = "icon_no"
 								size = { 25 25 }
-								texture = "gfx/interface/icons/icon_cross.dds"
+								texture = "gfx/interface/icons/symbols/icon_cross.dds"
 								visible = "[Not(TitleViewWindow.HasEnoughCounties)]"
 							}
 
@@ -638,14 +631,14 @@ window = {
 								name = "icon_yes"
 								visible = "[TitleViewWindow.HasEnoughGold]"
 								size = { 25 25 }
-								texture = "gfx/interface/icons/icon_check.dds"
+								texture = "gfx/interface/icons/symbols/icon_check.dds"
 							}
 
 							icon = {
 								name = "icon_no"
 								visible = "[Not(TitleViewWindow.HasEnoughGold)]"
 								size = { 25 25 }
-								texture = "gfx/interface/icons/icon_cross.dds"
+								texture = "gfx/interface/icons/symbols/icon_cross.dds"
 							}
 
 							text_single = {
@@ -664,14 +657,14 @@ window = {
 								name = "icon_yes"
 								visible = "[TitleViewWindow.HasTitlesOfTier]"
 								size = { 25 25 }
-								texture = "gfx/interface/icons/icon_check.dds"
+								texture = "gfx/interface/icons/symbols/icon_check.dds"
 							}
 
 							icon = {
 								name = "icon_no"
 								visible = "[Not( TitleViewWindow.HasTitlesOfTier )]"
 								size = { 25 25 }
-								texture = "gfx/interface/icons/icon_cross.dds"
+								texture = "gfx/interface/icons/symbols/icon_cross.dds"
 							}
 
 							text_single = {
@@ -775,7 +768,7 @@ window = {
 									icon = {
 										name = "has_laws"
 										size = { 25 25 }
-										texture = "gfx/interface/icons/icon_title_law.dds"
+										texture = "gfx/interface/icons/title_status/icon_title_law.dds"
 									}
 								}
 
@@ -822,8 +815,6 @@ window = {
 
 								item = {
 									container = {
-										datacontext = "[CharacterRef.Get]"
-
 										# animation_attention = {
 										# 	size = {100% 100%}
 										# 	visible = "[Character.IsLocalPlayer]"
@@ -904,7 +895,7 @@ window = {
 							visible = "[Not(Or(Title.IsMercenaryCompany,Title.IsHolyOrder))]"
 							spacing = 5
 
-							button_standard = {
+							button_tertiary = {
 								name = "destroy_title"
 								text = "TITLE_VIEW_DESTROY_TITLE"
 								visible = "[TitleViewWindow.ShowDestroy]"
@@ -1165,6 +1156,9 @@ window = {
 				}
 
 				blockoverride "character_count" {}
+
+				#this window cannot be openend if there are no claimants
+				blockoverride "scrollbox_empty_visibility" {}
 			}
 		}
 	}
@@ -1200,7 +1194,7 @@ template title_window_background_illustration
 		fittype = centercrop
 
 		modify_texture = {
-			texture = "gfx/interface/buttons/background_button_fade.dds"
+			texture = "gfx/interface/component_masks/mask_fade_vertical_up.dds"
 			blend_mode = alphamultiply
 		}
 

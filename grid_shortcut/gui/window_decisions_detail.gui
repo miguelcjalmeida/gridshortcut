@@ -7,7 +7,7 @@ window = {
 	parentanchor = top|right
 	position = { -650 110 }
 	size = { 630 935 }
-	movable = no
+	movable = yes
 	layer = top
 
 	using = Window_Background
@@ -114,13 +114,13 @@ window = {
 							mirror = horizontal
 
 							modify_texture = {
-								texture = "gfx/interface/tiles/tile_fade_mask_inverted.dds"
+								texture = "gfx/interface/component_masks/mask_fade_corners_bottom.dds"
 								blend_mode = alphamultiply
 								alpha = 0.6
 							}
 
 							modify_texture = {
-								texture = "gfx/interface/tiles/alpha_white.dds"
+								texture = "gfx/interface/component_masks/mask_rough_edges.dds"
 								blend_mode = overlay
 								alpha = 0.4
 							}
@@ -213,19 +213,21 @@ window = {
 				hbox = {
 					spacing = 5
 
-					text_single = {
-						text = "DECISIONS_VIEW_MAJOR_TOGGLE"
-						align = nobaseline
-						default_format = "#low"
-					}
-
-					button_checkbox = {
+					button_checkbox_label = {
 						shortcut = "decision_toggle_importance"
 						name = "major_checkbox"
-						size = { 32 32 }
-						checked = "[Decision.IsImportantForPlayer]"
 						onclick = "[Decision.OnToggleImportantForPlayer]"
-					}
+
+						blockoverride "checkbox"
+						{
+							checked = "[Decision.IsImportantForPlayer]"
+						}
+
+						blockoverride "text"
+						{
+							text = "DECISIONS_VIEW_MAJOR_TOGGLE"
+						}
+					}					
 				}
 
 				expand = {}

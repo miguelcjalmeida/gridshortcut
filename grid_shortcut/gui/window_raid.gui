@@ -10,16 +10,17 @@ window = {
 	datacontext = "[Raid.GetProvince]"
 
 	background = {
-		texture = "gfx/interface/tiles/tile_window_background_subwindow.dds"
+		texture = "gfx/interface/component_tiles/tile_window_background_subwindow.dds"
 		spriteType = Corneredtiled
 		spriteborder = { 18 18 }
 		margin = { -23 -17 }
 		margin_left = 20
 		margin_bottom = 20
-
+		texture_density = 2
+		
 		modify_texture = {
 			name = "overlay"
-			texture = "gfx/interface/tiles/tile_overlay_effect_02.dds"
+			texture = "gfx/interface/component_overlay/overlay_effect.dds"
 			spriteType = Corneredstretched
 			spriteborder = { 0 0 }
 			blend_mode = overlay
@@ -67,7 +68,7 @@ window = {
 			highlight_icon = {
 				size = { 40 40 }
 				name = "blocked_icon"
-				texture = "gfx/interface/mapitems/icon_raid.dds"
+				texture = "gfx/interface/icons/map_icons/icon_raid.dds"
 			}
 
 			text_single = {
@@ -96,7 +97,7 @@ window = {
 					widgetanchor = vcenter
 					size = { 40 40 }
 					name = "blocked_icon"
-					texture = "gfx/interface/mapitems/onmap_army_icon.dds"
+					texture = "gfx/interface/icons/map_icons/onmap_army_icon.dds"
 				}
 			}
 
@@ -113,7 +114,7 @@ window = {
 					widgetanchor = vcenter
 					size = { 40 40 }
 					name = "blocked_icon"
-					texture = "gfx/interface/mapitems/onmap_holding_icon.dds"
+					texture = "gfx/interface/icons/map_icons/onmap_holding_icon.dds"
 				}
 			}
 
@@ -188,18 +189,18 @@ window = {
 							using = tooltip_above
 
 							widget = {
-								size = { 342 45 }
+								size = { 370 45 }
 
 								progressbar = {
 									name = "progress_bar_attacker"
 									visible = "[And(Character.IsLocalPlayer, Not(Raid.IsBlocked))]"
 
 									parentanchor = top
-									size = { 342 40 }
+									size = { 370 35 }
 									position = { 0 8 }
 
-									progresstexture = "gfx/interface/tiles/tile_siege_bar_attacker.dds"
-									noprogresstexture = "gfx/interface/tiles/tile_siege_bar_noprogress.dds"
+									progresstexture = "gfx/interface/progressbars/war_progress_blue.dds"
+									noprogresstexture = "gfx/interface/progressbars/war_progress_noprogress.dds"
 
 									value = "[Raid.GetProgressPercent]"
 
@@ -211,11 +212,11 @@ window = {
 									name = "progress_bar_defender"
 									visible = "[And(Not(Character.IsLocalPlayer), Not(Raid.IsBlocked))]"
 									parentanchor = top
-									size = { 342 40 }
+									size = { 370 35 }
 									position = { 0 8 }
 
-									progresstexture = "gfx/interface/tiles/tile_siege_bar_defender.dds"
-									noprogresstexture = "gfx/interface/tiles/tile_siege_bar_noprogress.dds"
+									progresstexture = "gfx/interface/progressbars/war_progress_red.dds"
+									noprogresstexture = "gfx/interface/progressbars/war_progress_noprogress.dds"
 
 									value = "[Raid.GetProgressPercent]"
 
@@ -227,12 +228,12 @@ window = {
 									name = "progress_bar_blocked"
 									visible = "[Raid.IsBlocked]"
 									parentanchor = top
-									size = { 342 40 }
+									size = { 370 35 }
 									position = { 0 8 }
 
-									progresstexture = "gfx/interface/tiles/tile_siege_bar_blocked.dds"
+									progresstexture = "gfx/interface/progressbars/war_progress_blue.dds"
 
-									noprogresstexture = "gfx/interface/tiles/tile_siege_bar_noprogress.dds"
+									noprogresstexture = "gfx/interface/progressbars/war_progress_noprogress.dds"
 
 									value = "[Raid.GetProgressPercent]"
 
@@ -243,15 +244,16 @@ window = {
 								widget = {
 									name = "power_bar_frame"
 									parentanchor = top
-									position = { 0 4 }
-									size = { 342 46 }
+									size = { 100% 100% }
 									alwaystransparent = yes
 
 									background = {
-										texture = "gfx/interface/tiles/tile_siege_bar_frame.dds"
+										texture = "gfx/interface/progressbars/siege_frame.dds"
 										spriteType = Corneredstretched
-										spriteborder = { 10 10 }
+										spriteborder = { 30 40 }
 										margin = { 5 0 }
+										margin_bottom = 10
+										texture_density = 2
 									}
 								}
 							}
@@ -372,7 +374,7 @@ window = {
 				texture = "[Province.GetHolding.GetIllustration]"
 
 				modify_texture = {
-					texture = "gfx/interface/tiles/holding_view_illustration_mask.dds"
+					texture = "gfx/interface/window_county/mask_holding_illustration.dds"
 					blend_mode = alphamultiply
 					alpha = 0.95
 				}
@@ -539,7 +541,7 @@ window = {
 
 								icon = {
 									name = "icon_fort"
-									texture = "gfx/interface/siege_window/fort_icon.dds"
+									texture = "gfx/interface/window_siege/fort_icon.dds"
 									size = { 30 25 }
 								}
 

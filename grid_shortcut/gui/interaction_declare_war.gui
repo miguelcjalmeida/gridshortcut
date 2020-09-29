@@ -1,5 +1,5 @@
 ######################################################
-#################### DECLARE WAR ####################
+#################### DECLARE WAR "####################
 ######################################################
 
 # These ~50 first lines are a placeholder way to show who will defend
@@ -16,7 +16,7 @@ window = {
 		name = "_show"
 		on_start = "[GetVariableSystem.Clear( 'war_cb_combining' )]"
 	}
-	
+
 	using = Animation_ShowHide_Standard
 
 	scrollarea = {
@@ -40,7 +40,7 @@ window = {
 						datacontext = "[WarAllyItem.GetCharacter]"
 
 						tooltip = "[WarAllyItem.GetAllianceReason]"
-				
+
 						blockoverride "opinion_box" {}
 
 						blockoverride "portrait_button_template_tooltip"
@@ -138,7 +138,7 @@ window = {
 							enabled = "[And(GreaterThan_int32( DeclareWarInteractionWindow.GetAllyCountForAttacker, '(int32)0' ), Not(GetVariableSystem.Exists('war_cb_combining')))]"
 							onclick = "[DeclareWarInteractionWindow.ShowAllyListSubviewForAttacker( '(bool)yes' )]"
 							shortcut = "war_left_allies"
-							
+
 							hbox = {
 								margin = { 20 0 }
 								margin_right = 10
@@ -170,7 +170,7 @@ window = {
 							enabled = "[And(GreaterThan_int32( DeclareWarInteractionWindow.GetAllyCountForDefender, '(int32)0' ), Not(GetVariableSystem.Exists('war_cb_combining')))]"
 							onclick = "[DeclareWarInteractionWindow.ShowAllyListSubviewForAttacker( '(bool)no' )]"
 							shortcut = "war_right_allies"
-							
+
 							hbox = {
 								margin = { 20 0 }
 								margin_right = 10
@@ -376,14 +376,14 @@ window = {
 										visible = "[And(GetVariableSystem.Exists('war_cb_combining'), EqualTo_string(CasusBelliItem.GetType.GetName, SelectLocalization(CasusBelliItem.IsSelected, 'depose_war', 'depose_war')))]"
 									}
 								}
-								
+
 								button_standard = {
 									name = "background_button"
 									size = { 500 35 }
 									down = "[CasusBelliItem.IsSelected]"
 									onclick = "[CasusBelliItem.OnClick]"
 									onclick = "[PdxGuiTriggerAllAnimations('declare_war_goal_refresh')]"
-								
+
 									using = tooltip_es
 
 									hbox = {
@@ -411,7 +411,7 @@ window = {
 										icon = {
 											visible = "[Not( CasusBelliItem.IsValid )]"
 											size = { 25 25 }
-											texture = "gfx/interface/icons/icon_warning.dds"
+											texture = "gfx/interface/icons/symbols/icon_warning.dds"
 											alwaystransparent = yes
 											tooltip = "[CasusBelliItem.GetInvalidText]"
 										}
@@ -524,7 +524,7 @@ window = {
 								}
 
 							}
-							
+
 							button_standard = {
 								name = "white_peace_button"
 								size = { 45 40 }
@@ -669,7 +669,7 @@ window = {
 							tooltip = "WAR_DEFENDER_FAITH_MIGHT_JOIN"
 
 							icon = {
-								texture = "gfx/interface/icons/icon_warning.dds"
+								texture = "gfx/interface/icons/symbols/icon_warning.dds"
 								size = { 25 25 }
 								position = { 5 0 }
 								parentanchor = bottom|right
@@ -745,7 +745,7 @@ window = {
 						icon = {
 							name = "player_cost_ignore"
 							visible = "[And(DeclareWarInteractionWindow.HasSelectedCasusBelli, Or( Or( Not( DeclareWarInteractionWindow.CanAffordCosts ), DeclareWarInteractionWindow.IsBreakingTruce), DeclareWarInteractionWindow.IsBreakingAlliance))]"
-							texture = "gfx/interface/icons/icon_warning.dds"
+							texture = "gfx/interface/icons/symbols/icon_warning.dds"
 							tooltip = "[DeclareWarInteractionWindow.GetWarningTooltipDesc]"
 							size = { 30 30 }
 						}
@@ -764,7 +764,7 @@ window = {
 		position = { -600 120 }
 		size = { 480 750 }
 
-		using = Background_Subwindow
+		using = Window_Background_Subwindow
 		using = Animation_ShowHide_Standard
 
 		vbox = {
@@ -866,7 +866,7 @@ window = {
 		position = { -590 120 }
 		size = { 380 750 }
 
-		using = Background_Subwindow
+		using = Window_Background_Subwindow
 		using = Animation_ShowHide_Standard
 
 		vbox = {

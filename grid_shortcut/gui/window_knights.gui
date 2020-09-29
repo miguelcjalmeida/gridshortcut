@@ -11,7 +11,7 @@ window = {
 	movable = no
 	layer = middle
 
-	using = Background_Subwindow
+	using = Window_Background_Subwindow
 
 	state = {
 		name = _show
@@ -98,22 +98,20 @@ window = {
 
 				item = {
 					widget = {
-						datacontext = "[CharacterRef.Get]"
 						layoutpolicy_horizontal = expanding
 						size = { 0 130 }
-						alpha = "[Select_float( Character.IsKnight, '(float)1.0', '(float)0.6' )]"
 
 						using = Background_Guest
 
 						blockoverride "Background_Guest_pattern_visible"
 						{
-							visible = "[CharacterRef.Get.IsGuest]"
+							visible = "[Character.IsGuest]"
 							margin_bottom = -5
 							margin_right = 5
 						}
 						blockoverride "Background_Guest_frame_visible"
 						{
-							visible = "[CharacterRef.Get.IsGuest]"
+							visible = "[Character.IsGuest]"
 							margin_left = 3
 							margin_bottom = -5
 							margin_top = 1
@@ -130,7 +128,9 @@ window = {
 								margin_right = 5
 								spacing = 10
 
-								portrait_head = {}
+								portrait_head = {
+									alpha = "[Select_float( Character.IsKnight, '(float)1.0', '(float)0.6' )]"
+								}
 
 
 								vbox = {
@@ -148,7 +148,7 @@ window = {
 
 											icon = {
 												visible = "[Character.IsKnight]"
-												texture = "gfx/interface/icons/knight_icon_small.dds"
+												texture = "gfx/interface/icons/icon_knight_small.dds"
 												size = { 40 40 }
 											}
 

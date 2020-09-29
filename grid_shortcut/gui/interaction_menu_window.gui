@@ -31,7 +31,7 @@ window = {
 			ignoreinvisible = yes
 
 			background = {
-				texture = "gfx/interface/character_interaction/interaction_menu_bg.dds"
+				texture = "gfx/interface/component_tiles/interaction_menu_bg.dds"
 				spriteType = Corneredtiled
 				spriteborder = { 11 11 }
 				spriteborder_top = 49
@@ -39,7 +39,7 @@ window = {
 
 				modify_texture = {
 					name = "overlay"
-					texture = "gfx/interface/tiles/tile_overlay_effect_01.dds"
+					texture = "gfx/interface/component_overlay/overlay_window.dds"
 					blend_mode = overlay
 				}
 			}
@@ -143,7 +143,7 @@ window = {
 				position = { 10 0 }
 
 				background = {
-					texture = "gfx/interface/character_interaction/interaction_menu_more_bg.dds"
+					texture = "gfx/interface/component_tiles/interaction_menu_more_bg.dds"
 					spriteType = Corneredtiled
 					spriteborder = { 11 11 }
 					margin = { 8 8 }
@@ -151,7 +151,7 @@ window = {
 
 					modify_texture = {
 						name = "overlay"
-						texture = "gfx/interface/tiles/tile_overlay_effect_01.dds"
+						texture = "gfx/interface/component_overlay/overlay_window.dds"
 						spriteType = Corneredstretched
 						spriteborder = { 0 0 }
 						blend_mode = overlay

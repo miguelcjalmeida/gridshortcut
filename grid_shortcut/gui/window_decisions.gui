@@ -30,11 +30,12 @@ window = {
 		margin = { 0 26 }
 		margin_right = 20
 
+		using = Window_Background
+
 		widget = {
 			size = { 100% 100% }
 
-			using = Window_Background
-			using = Window_Decoration_Thin
+			# using = Window_Decoration_Thin
 
 			vbox = {
 				using = Window_Margins
@@ -64,11 +65,11 @@ window = {
 						texture = "gfx/interface/illustrations/event_scenes/councilchamber.dds"
 						margin = { -5 0 }
 						fittype = end
-						alpha = 0.8
+						alpha = 0.4
 						framesize = { 1200 848 }
 
 						modify_texture = {
-							texture = "gfx/interface/tiles/stretch_bottom_fade.dds"
+							texture = "gfx/interface/component_masks/mask_fade_vertical_up.dds"
 							blend_mode = alphamultiply
 						}
 					}
@@ -553,7 +554,7 @@ types Decisions
 				using = Mask_Rough_Edges
 
 				modify_texture = {
-					texture = "gfx/interface/effects/fade_right.dds"
+					texture = "gfx/interface/component_masks/mask_fade_horizontal_extended.dds"
 					blend_mode = alphamultiply
 				}
 			}
@@ -575,7 +576,7 @@ types Decisions
 				using = Mask_Rough_Edges
 
 				modify_texture = {
-					texture = "gfx/interface/effects/fade_right.dds"
+					texture = "gfx/interface/component_masks/mask_fade_horizontal_extended.dds"
 					blend_mode = alphamultiply
 				}
 			}
@@ -608,7 +609,7 @@ types Decisions
 			highlight_icon = {
 				size = { 30 30 }
 				name = "not_possible"
-				texture = "gfx/interface/icons/icon_cross.dds"
+				texture = "gfx/interface/icons/symbols/icon_cross.dds"
 				visible = "[Not(Decision.IsPossibleForPlayer)]"
 			}
 		}

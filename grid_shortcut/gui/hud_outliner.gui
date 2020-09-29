@@ -75,7 +75,7 @@ window = {
 
 		background = {
 			name = "paper_texture_shadow"
-			texture = "gfx/interface/event_window/tile_letter_shadow.dds"
+            texture = "gfx/interface/window_event/tile_letter_shadow.dds"
 			spriteType = Corneredtiled
 			spriteborder = { 200 200 }
 			margin = { -15 0 }
@@ -84,7 +84,7 @@ window = {
 
 		background = {
 			name = "paper_texture_flat"
-			texture = "gfx/interface/event_window/tile_letter_flat.dds"
+            texture = "gfx/interface/window_event/tile_letter_flat.dds"
 			spriteType = Corneredtiled
 			spriteborder = { 200 200 }
 			alpha = 0.9
@@ -94,7 +94,7 @@ window = {
 
 			modify_texture = {
 				name = "paper_texture_overlay"
-				texture = "gfx/interface/event_window/overlay_letter_texture.dds"
+                texture = "gfx/interface/window_event/overlay_letter_texture.dds"
 				spriteType = Corneredstretched
 				blend_mode = overlay
 			}
@@ -183,7 +183,6 @@ window = {
 						item = {
 							hbox = {
 								name = "pinned_character_item"
-								datacontext = "[CharacterRef.Get]"
 								layoutpolicy_horizontal = expanding
 								using = character_tooltip
 
@@ -246,7 +245,7 @@ window = {
 														size = { 20 20 }
 														framesize = { 60 60 }
 														frame = "[Character.GetHealthIconFrame]"
-														texture = "gfx/interface/icons/icon_health.dds"
+														texture = "gfx/interface/icons/character_status/icon_health.dds"
 														tooltip = "[Character.GetHealthInfo]"
 													}
 
@@ -337,9 +336,9 @@ window = {
 												layoutpolicy_horizontal = expanding
 
 												icon = {
-													size = { 28 20 }
+													size = { 20 20 }
 													visible = "[Character.IsAtWar]"
-													texture = "gfx/interface/mapitems/at_war_icon2.dds"
+													texture = "gfx/interface/icons/icon_banner.dds"
 													tooltip = "At War"
 												}
 
@@ -449,7 +448,6 @@ window = {
 
 						item = {
 							hbox = {
-								datacontext = "[CharacterRef.Get]"
 								layoutpolicy_horizontal = expanding
 								using = character_tooltip
 
@@ -498,7 +496,7 @@ window = {
 													size = { 20 20 }
 													framesize = { 60 60 }
 													frame = "[Character.GetHealthIconFrame]"
-													texture = "gfx/interface/icons/icon_health.dds"
+													texture = "gfx/interface/icons/character_status/icon_health.dds"
 													tooltip = "[Character.GetHealthInfo]"
 												}
 
@@ -742,7 +740,7 @@ window = {
 
 											icon = {
 												size = { 20 20 }
-												texture = "gfx/interface/mapitems/combat_map_icon.dds"
+												texture = "gfx/interface/icons/map_icons/combat_map_icon.dds"
 											}
 										}
 
@@ -761,7 +759,7 @@ window = {
 											button = {
 												visible = "[And(Army.IsMoving,UnitItem.IsRetreating)]"
 												size = { 20 20 }
-												texture = "gfx/interface/mapitems/army_retreating.dds"
+												texture = "gfx/interface/icons/map_icons/army_icon_retreating.dds"
 												onclick = "[UnitItem.SelectAndPanUnit]"
 												tooltip = "[Army.GetMovementInfoForTooltip]"
 											}
@@ -769,7 +767,7 @@ window = {
 											button = {
 												visible = "[Army.IsSieging]"
 												size = { 20 20 }
-												texture = "gfx/interface/mapitems/onmap_siege_icon.dds"
+												texture = "gfx/interface/icons/map_icons/onmap_siege_icon.dds"
 												onclick = "[DefaultOnSiegeClick(Army.GetLocation.GetSiege.GetID)]"
 												tooltip = "[Army.GetLocation.GetSiege.GetSiegeDescription]"
 											}
@@ -777,7 +775,7 @@ window = {
 											button = {
 												visible = "[Army.GetLocation.HasActiveRaid]"
 												size = { 20 20 }
-												texture = "gfx/interface/mapitems/onmap_raid_icon.dds"
+												texture = "gfx/interface/icons/map_icons/onmap_raid_icon.dds"
 												onclick = "[DefaultOnRaidClick(Army.GetLocation.GetRaid.Self)]"
 												tooltip = "MAP_RAID_TOOLTIP"
 											}
@@ -796,7 +794,7 @@ window = {
 											button = {
 												visible = "[And(Army.GetCommander.IsValid,UnitItem.IsRulerCommander)]"
 												size = { 20 20 }
-												texture = "gfx/interface/mapitems/commander_is_leader.dds"
+												texture = "gfx/interface/icons/commander_is_leader.dds"
 												onclick = "[DefaultOnCharacterClick(Army.GetCommander.GetID)]"
 											}
 										}
@@ -975,9 +973,8 @@ window = {
 
 												icon = {
 													visible = "[Holding.IsLowControl]"
-													parentanchor = vcenter
 													size = { 20 20 }
-													texture = "gfx/interface/mapitems/low_control.dds"
+													texture = "gfx/interface/icons/map_icons/county_low_control.dds"
 													tooltip = "MY_REALM_WINDOW_MAP_ICON_LOW_CONTROL"
 												}
 
@@ -985,7 +982,7 @@ window = {
 													visible = "[Holding.CanConstructAnyBuilding(GetPlayer)]"
 													parentanchor = vcenter
 													size = { 20 20 }
-													texture = "gfx/interface/mapitems/building_available.dds"
+							texture = "gfx/interface/icons/map_icons/county_building_available.dds"
 													tooltip = "MY_REALM_WINDOW_CONSTRUCT_BUILDING"
 												}
 											}
@@ -994,8 +991,6 @@ window = {
 												min_width = 50
 
 												icon = {
-													margin_left = 0
-													parentanchor = vcenter
 													size = { 20 20 }
 													texture = "gfx/interface/icons/icon_gold.dds"
 												}
@@ -1012,8 +1007,6 @@ window = {
 												min_width = 55
 
 												icon = {
-													margin_left = 0
-													parentanchor = vcenter
 													size = { 20 20 }
 													texture = "gfx/interface/icons/icon_soldier.dds"
 												}

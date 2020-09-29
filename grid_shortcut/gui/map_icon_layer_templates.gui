@@ -45,9 +45,9 @@ template combat_prediction_tooltip
 
 				icon = {
 					name = "PredictionIcon"
-					texture = "gfx/interface/mapitems/combat_prediction_icon.dds"
+					texture = "gfx/interface/icons/map_icons/combat_prediction_icon.dds"
 					size = { 50 50 }
-					framesize = { 60 60 }
+					framesize = { 120 120 }
 					frame = "[CombatPredictionMapIcon.GetPredictionLevelFrame]"
 					tintcolor = "[TooltipInfo.GetTintColor]"
 				}
@@ -196,7 +196,7 @@ types MapIcons {
 			visible = "[UnitItem.ShowSupplyTrend]"
 			position = { 17 10 }
 			size = { 20 20 }
-			texture = "gfx/interface/icons/icon_supplies_trend.dds"
+			texture = "gfx/interface/icons/symbols/icon_supplies_trend.dds"
 		}
 	}
 
@@ -204,7 +204,7 @@ types MapIcons {
 		name = "raider"
 		visible = "[Army.IsRaidArmy]"
 		size = { 30 30 }
-		texture = "gfx/interface/mapitems/army_raider.dds"
+		texture = "gfx/interface/icons/map_coa/icon_raider.dds"
 		tooltip = "RAID_ARMY_TOOLTIP"
 	}
 
@@ -219,7 +219,7 @@ types MapIcons {
 			using = unit_icon_tooltip
 		}
 		using = tooltip_se
-		
+
 		flowcontainer = {
 			position = { -10 0 }
 
@@ -236,8 +236,11 @@ types MapIcons {
 		datacontext = "[UnitItem.GetArmy]"
 		visible = "[Not(Or(UnitItem.IsUnitItemEnemy, UnitItem.IsUnitItemHostile))]"
 
-		container_unit_effect_icons = {
-			position = { 38 25 }
+		block "siege_window"
+		{
+			container_unit_effect_icons = {
+				position = { 38 25 }
+			}
 		}
 
 		button_group = {
@@ -266,8 +269,8 @@ types MapIcons {
 				background = {
 					name = "unit_bg_me"
 					visible = "[UnitItem.IsUnitItemMine]"
-					texture = "gfx/interface/mapitems/army_bg_me.dds"
-					framesize = { 82 27 }
+					texture = "gfx/interface/icons/map_icons/army_bg_me.dds"
+					framesize = { 164 54 }
 					frame = "[UnitItem.GetQualityLevel]"
 					margin_left = 10
 					margin_right = 15
@@ -278,8 +281,8 @@ types MapIcons {
 				background = {
 					name = "unit_bg_ally"
 					visible = "[UnitItem.IsUnitItemAlly]"
-					texture = "gfx/interface/mapitems/army_bg_ally.dds"
-					framesize = { 82 27 }
+					texture = "gfx/interface/icons/map_icons/army_bg_ally.dds"
+					framesize = { 164 54 }
 					frame = "[UnitItem.GetQualityLevel]"
 					margin_left = 10
 					margin_right = 15
@@ -290,8 +293,8 @@ types MapIcons {
 				background = {
 					name = "unit_bg_neutral"
 					visible = "[UnitItem.IsUnitItemNeutral]"
-					texture = "gfx/interface/mapitems/army_bg_neutral.dds"
-					framesize = { 82 27 }
+					texture = "gfx/interface/icons/map_icons/army_bg_neutral.dds"
+					framesize = { 164 54 }
 					frame = "[UnitItem.GetQualityLevel]"
 					margin_left = 10
 					margin_right = 15
@@ -302,7 +305,7 @@ types MapIcons {
 				background = {
 					name = "unit_highlight"
 					visible = "[Or( UnitItem.ShouldBeHighlighted, UnitItem.IsSelected )]"
-					texture = "gfx/interface/mapitems/army_selected.dds"
+					texture = "gfx/interface/icons/map_icons/army_selected.dds"
 					margin_left = 10
 					margin_right = 15
 					margin_top = -2
@@ -373,62 +376,66 @@ types MapIcons {
 				}
 			}
 
-			button_group = {
-				name = "rally_point"
-				size = { 34 34 }
-
-				icon_raider = {
-					position = { 12 -16 }
-				}
-
-				button = {
-					texture = "gfx/interface/edit_banners/banner_icon.dds"
-					visible = "[And(Not(UnitItem.IsOnlyHiredTroops), UnitItem.IsUnitItemMine)]"
-					position = { 10 0 }
+			block "siege_window"
+			{
+				button_group = {
+					name = "rally_point"
 					size = { 34 34 }
-					tintcolor = "[UnitItem.GetColor]"
+
+					icon_raider = {
+						position = { 8 -22 }
+					}
+
+					button = {
+						texture = "gfx/interface/window_military/banner_icon.dds"
+						visible = "[And(Not(UnitItem.IsOnlyHiredTroops), UnitItem.IsUnitItemMine)]"
+						position = { 7 0 }
+						size = { 35 35 }
+						tintcolor = "[UnitItem.GetColor]"
+					}
+
+					button = {
+						name = "hired_troops"
+						visible = "[And(UnitItem.IsOnlyHiredTroops, UnitItem.IsUnitItemMine)]"
+						position = { 12 0 }
+						texture = "gfx/interface/icons/map_icons/county_hired_troops.dds"
+						size = { 30 30 }
+					}
 				}
 
-				button = {
-					name = "hired_troops"
-					visible = "[And(UnitItem.IsOnlyHiredTroops, UnitItem.IsUnitItemMine)]"
-					position = { 12 0 }
-					texture = "gfx/interface/mapitems/hired_troops.dds"
-					size = { 30 30 }
+				flowcontainer = {
+					position = { 17 0 }
+					widgetanchor = right
+					ignoreinvisible = yes
+
+					container_supply_icon = {}
 				}
-			}
-
-			
-
-			flowcontainer = {
-				position = { 17 0 }
-				widgetanchor = right
-				ignoreinvisible = yes
-
-				container_supply_icon = {}
 			}
 		}
 
-		widget = {
-			size = { 28 34 }
-			position = { 6 0 }
+		block "siege_window"
+		{
+			widget = {
+				size = { 28 34 }
+				position = { 6 0 }
 
-			icon = {
-				name = "ally_war_icon"
-				visible = "[UnitItem.IsUnitItemAlly]"
-				texture = "gfx/interface/icons/diplomatic_icons.dds"
-				frame = 2
-				framesize = { 120 120 }
-				size = { 30 30 }
+				icon = {
+					name = "ally_war_icon"
+					visible = "[UnitItem.IsUnitItemAlly]"
+					texture = "gfx/interface/icons/diplomatic_icons.dds"
+					frame = 2
+					framesize = { 120 120 }
+					size = { 30 30 }
 
-				parentanchor = center
-				position = { 3 -18 }
-			}
+					parentanchor = center
+					position = { 3 -18 }
+				}
 
-			coa_realm_tiny = {
-				position = { 0 -3 }
-				datacontext = "[UnitItem.GetOwner]"
-				visible = "[Not(UnitItem.IsUnitItemMine)]"
+				coa_realm_tiny = {
+					position = { 0 -3 }
+					datacontext = "[UnitItem.GetOwner]"
+					visible = "[Not(UnitItem.IsUnitItemMine)]"
+				}
 			}
 		}
 	}
@@ -439,13 +446,15 @@ types MapIcons {
 		ignoreinvisible = yes
 		visible = "[Or(UnitItem.IsUnitItemEnemy, UnitItem.IsUnitItemHostile)]"
 
+		block "siege_window"
+		{
+			container_supply_icon = {
+				position = { 0 1 }
+			}
 
-		container_supply_icon = {
-			position = { 0 1 }
-		}
-
-		container_unit_effect_icons = {
-			position = { -2 25 }
+			container_unit_effect_icons = {
+				position = { -2 25 }
+			}
 		}
 
 		flowcontainer = {
@@ -458,9 +467,9 @@ types MapIcons {
 				background = {
 					name = "unit_bg_enemy"
 					visible = "[Not(UnitItem.IsUnitItemHostile)]"
-					texture = "gfx/interface/mapitems/army_bg_enemy.dds"
+					texture = "gfx/interface/icons/map_icons/army_bg_enemy.dds"
 					mirror = horizontal
-					framesize = { 82 27 }
+					framesize = { 164 54 }
 					frame = "[UnitItem.GetQualityLevel]"
 					margin_left = 10
 					margin_right = 15
@@ -471,9 +480,9 @@ types MapIcons {
 				background = {
 					name = "unit_bg_hostile"
 					visible = "[UnitItem.IsUnitItemHostile]"
-					texture = "gfx/interface/mapitems/army_bg_hostile.dds"
+					texture = "gfx/interface/icons/map_icons/army_bg_hostile.dds"
 					mirror = horizontal
-					framesize = { 82 27 }
+					framesize = { 164 54 }
 					frame = "[UnitItem.GetQualityLevel]"
 					margin_left = 10
 					margin_right = 15
@@ -522,32 +531,35 @@ types MapIcons {
 				}
 			}
 
-			widget = {
-				size = { 28 34 }
+			block "siege_window"
+			{
+				widget = {
+					size = { 28 34 }
 
-				icon_raider = {
-					position = { 2 -16 }
+					icon_raider = {
+						position = { 2 -22 }
+					}
+
+					icon = {
+						name = "at_war_icon"
+						visible = "[Not(UnitItem.IsUnitItemHostile)]"
+						texture = "gfx/interface/icons/map_coa/icon_at_war.dds"
+
+						size = { 45 18 }
+
+						parentanchor = top|hcenter
+						position = { 4 -10 }
+					}
+
+
+					coa_realm_tiny = {
+						position = { 0 -3 }
+						datacontext = "[UnitItem.GetOwner]"
+					}
 				}
 
-				icon = {
-					name = "at_war_icon"
-					visible = "[Not(UnitItem.IsUnitItemHostile)]"
-					texture = "gfx/interface/mapitems/at_war_icon2.dds"
-
-					size = { 45 18 }
-
-					parentanchor = top|hcenter
-					position = { 3 -10 }
-				}
-
-			
-				coa_realm_tiny = {
-					position = { 0 -3 }
-					datacontext = "[UnitItem.GetOwner]"	
-				}
+				container_supply_icon = {}
 			}
-
-			container_supply_icon = {}
 		}
 	}
 
@@ -558,19 +570,19 @@ types MapIcons {
 		icon = {
 			name = "unit_retreating"
 			visible = "[UnitItem.IsRetreating]"
-			texture = "gfx/interface/mapitems/army_retreating.dds"
+			texture = "gfx/interface/icons/map_icons/army_icon_retreating.dds"
 		}
 
 		icon = {
 			name = "unit_gathering"
-			visible = "[UnitItem.IsGathering]"
-			texture = "gfx/interface/mapitems/army_gathering.dds"
+			visible = "[UnitItem.ShouldShowGatheringProgress]"
+			texture = "gfx/interface/icons/map_icons/army_icon_gathering.dds"
 		}
 
 		icon = {
 			name = "unit_attrition"
 			visible = "[GreaterThan_CFixedPoint( Army.GetArmyAttritionPercentage, '(CFixedPoint)0' )]"
-			texture = "gfx/interface/mapitems/army_attrition.dds"
+			texture = "gfx/interface/icons/map_icons/army_icon_attrition.dds"
 			size = { 23 23 }
 		}
 
@@ -578,14 +590,29 @@ types MapIcons {
 			name = "sea_sickness_icon"
 			visible = "[UnitItem.HasDisembarkPenalty]"
 			size = { 23 23 }
-			texture = "gfx/interface/mapitems/army_disembarked.dds"
+			texture = "gfx/interface/icons/map_icons/army_icon_disembarked.dds"
 		}
 
 		icon = {
 			name = "at_loot_cap"
 			visible = "[Army.IsRaidLootCapped]"
 			size = { 23 23 }
-			texture = "gfx/interface/mapitems/army_at_loot_cap.dds"
+			texture = "gfx/interface/icons/map_icons/army_icon_at_loot_cap.dds"
+		}
+
+		flowcontainer = {
+			margin_top = 7
+
+			progressbar_standard = {
+				name = "gathering_progress"
+				visible = "[UnitItem.ShouldShowGatheringProgress]"
+				size = { 30 8 }
+				min = 0
+				max = 1
+				value = "[Army.GetGatheringProgress]"
+
+				using = Animation_ShowHide_Standard
+			}
 		}
 	}
 }
@@ -607,10 +634,8 @@ template siege_goto_template
 			widgetanchor = vcenter
 			size = { 40 40 }
 			name = "blocked_icon"
-			texture = "gfx/interface/mapitems/onmap_siege_icon.dds"
+			texture = "gfx/interface/icons/map_icons/onmap_siege_icon.dds"
 		}
-		
-		block "siege_button" {}
 	}
 }
 
@@ -631,41 +656,9 @@ template raid_goto_template
 			widgetanchor = vcenter
 			size = { 40 40 }
 			name = "blocked_icon"
-			texture = "gfx/interface/mapitems/onmap_raid_icon.dds"
+			texture = "gfx/interface/icons/map_icons/onmap_raid_icon.dds"
 		}
-		block "raid_button" {}
 	}
-}
-
-template County_Capital_Banner
-{
-	texture = "gfx/interface/mapitems/county_capital_banner.dds"
-	spriteType = Corneredtiled
-	spriteborder = { 38 0 }
-	spriteborder_right = 57
-}
-
-template County_Capital_Banner_Domain
-{
-	texture = "gfx/interface/mapitems/county_capital_banner_domain.dds"
-	spriteType = Corneredtiled
-	spriteborder = { 38 0 }
-	spriteborder_right = 57
-}
-
-template Banner_Domain
-{
-	texture = "gfx/interface/mapitems/banner_domain.dds"
-	spriteType = Corneredtiled
-	spriteborder = { 36 0 }
-	spriteborder_right = 57
-}
-
-template Realm_Banner
-{
-	texture = "gfx/interface/mapitems/realm_banner.dds"
-	spriteType = Corneredtiled
-	spriteborder = { 60 0 }
 }
 
 template State_Title_MouseEntry
@@ -727,7 +720,7 @@ template Domain_Info_Icons
 		#visible = "[Holding.CanConstructAnyBuilding(GetPlayer)]"
 		position = { 60 0 }
 		size = { 30 30 }
-		texture = "gfx/interface/mapitems/building_available.dds"
+		texture = "gfx/interface/icons/map_icons/county_building_available.dds"
 		tooltip = "MY_REALM_WINDOW_CONSTRUCT_BUILDING"
 	}
 }
@@ -735,14 +728,13 @@ template Domain_Info_Icons
 template Unit_Bg_Gathering
 {
 
-	texture = "gfx/interface/mapitems/army_bg_neutral.dds"
+	texture = "gfx/interface/icons/map_icons/army_bg_neutral.dds"
 	alpha = 0.6
-
-	framesize = { 82 27 }
+	framesize = { 164 54 }
 	frame = "[UnitItem.GetQualityLevel]"
 
 	modify_texture = {
-		texture = "gfx/interface/mapitems/army_bg_gathering.dds"
+		texture = "gfx/interface/icons/map_icons/army_overlay_gathering.dds"
 		blend_mode = multiply
 		# alpha = 0.5
 	}
@@ -775,7 +767,7 @@ types MapIconTempateTypes {
 					widgetanchor = vcenter
 					size = { 40 40 }
 					name = "blocked_icon"
-					texture = "gfx/interface/mapitems/onmap_siege_icon.dds"
+					texture = "gfx/interface/icons/map_icons/onmap_siege_icon.dds"
 				}
 
 				highlight_icon = {
@@ -785,7 +777,7 @@ types MapIconTempateTypes {
 					position = { 16 2 }
 					size = { 23 39 }
 					name = "assault_icon"
-					texture = "gfx/interface/mapitems/assault_icon.dds"
+					texture = "gfx/interface/icons/map_icons/assault_icon.dds"
 				}
 			}
 			container = {
@@ -800,7 +792,7 @@ types MapIconTempateTypes {
 
 				highlight_icon = {
 					name = "blocked_icon"
-					texture = "gfx/interface/mapitems/siege_blocked_map_icon.dds"
+					texture = "gfx/interface/icons/map_icons/siege_blocked_map_icon.dds"
 					position = { -2 5 }
 					visible = "[Siege.IsBlocked]"
 				}
@@ -827,7 +819,7 @@ types MapIconTempateTypes {
 						size = { 10 10 }
 					}
 					alwaystransparent = yes
-					texture = "gfx/interface/icons/icon_cross.dds"
+					texture = "gfx/interface/icons/symbols/icon_cross.dds"
 				}
 			}
 		}
@@ -851,7 +843,7 @@ types MapIconTempateTypes {
 					widgetanchor = vcenter
 					size = { 40 40 }
 					name = "blocked_icon"
-					texture = "gfx/interface/mapitems/onmap_raid_icon.dds"
+					texture = "gfx/interface/icons/map_icons/onmap_raid_icon.dds"
 				}
 			}
 			container = {
@@ -866,7 +858,7 @@ types MapIconTempateTypes {
 
 				highlight_icon = {
 					name = "blocked_icon"
-					texture = "gfx/interface/mapitems/raid_blocked_map_icon.dds"
+					texture = "gfx/interface/icons/map_icons/raid_blocked_map_icon.dds"
 					position = { -2 5 }
 					visible = "[Raid.IsBlocked]"
 				}

@@ -3,15 +3,11 @@ window = {
 	gfxtype = windowgfx
 	name = "war_overview_window"
 	parentanchor = bottom|hcenter
-
-	resizable = no
-	movable = no
-
 	size = { 100% 280 }
+	movable = no
 
 	layer = middle
 	allow_outside = yes
-
 
 	state = {
 		name = _mouse_hierarchy_enter
@@ -37,81 +33,289 @@ window = {
 
 	state = {
 		name = _show
-
-		using = Animation_FadeIn_Standard
-
-		position = { 0 0 }
+		on_start = "[PdxGuiTriggerAllAnimations('war_overview_show')]"
+		start_sound = {
+			soundeffect = "event:/SFX/UI/War/sfx_ui_window_war_show"
+		}
 	}
 
 	state = {
 		name = _hide
-
-		using = Animation_FadeOut_Standard
-		position = { 0 60 }
-	}
-
-
-	hbox = {
-		layoutpolicy_horizontal = expanding
-
-		background = {
-			texture = "gfx/interface/military_view/window_background.dds"
-			spriteType = Corneredtiled
-			spriteborder_right = 390
-			spriteborder_left = 390
-
-			modify_texture = {
-				texture = "gfx/interface/military_view/battle_summary_bg_overlay.dds"
-				spritetype = corneredtiled
-				blend_mode = overlay
-				texture_density = 2
-			}
-
-			modify_texture = {
-				texture = "gfx/interface/tiles/tile_overlay_effect_02.dds"
-				blend_mode = overlay
-			}
+		on_start = "[PdxGuiTriggerAllAnimations('war_overview_hide')]"
+		duration = 0.5
+		start_sound = {
+			soundeffect = "event:/SFX/UI/War/sfx_ui_window_war_hide"
 		}
 	}
 
 	widget = {
-		size = { 1920 295 }
-		minimumsize = { 1600 280 }  ###minimum width in order to fit allies
-		widgetanchor = center
 		parentanchor = center
+		size = { 2250 295 }
 		allow_outside = yes
-		layoutpolicy_horizontal = expanding
 
+		hbox = {
+			widget = {
+				name = "left"
+				layoutpolicy_horizontal = expanding
+				layoutpolicy_vertical = expanding
 
-		state = {
-			name = _show
-			# on_start = "[GetVariableSystem.Set( 'siege_view_open', 'true' )]"
+				flowcontainer = {
+					parentanchor = bottom|left
 
-			using = Animation_FadeIn_Standard
+					state = {
+						name = "war_overview_show"
+						next = b
+						position_x = -200
+						alpha = 0
+					}
 
-			position = { 0 0 }
-		}
+					state = {   ####### default ####
+						name = "b"
+						next = "c"
+						duration = 0.25
+						delay = 0.15
+						using = Animation_Curve_Default
 
-		state = {
-			name = _hide
-			# on_start = "[GetVariableSystem.Clear( 'siege_view_open' )]"
+						position_x = 0
+						alpha = 1
+					}
 
-			using = Animation_FadeOut_Standard
-			position = { 0 60 }
+					state = {
+						name = "c"
+						next = "d"
+						duration = 0.05
+						using = Animation_Curve_Default
+
+						position_x = -1
+						position_y = -1
+						alpha = 1
+					}
+
+					state = {  ####### default ####
+						name = "d"
+						duration = 0.25
+						using = Animation_Curve_Default
+
+						position_x = 0
+						position_y = 0
+						alpha = 1
+					}
+
+					state = {
+						name = "war_overview_hide"
+						duration = 0.25
+						using = Animation_Curve_Default
+						position_x = -200
+						alpha = 0
+					}
+
+					widget = {
+						name = "backgrounds_1"
+						size = { 474 280 }
+
+						background = {
+							using = Background_WarOverview
+							mirror = horizontal
+						}
+
+						background = {
+							using = Background_WarOverview_Pattern
+							mirror = horizontal
+						}
+
+						background = {
+							using = Background_WarOverview_Frame
+							mirror = horizontal
+						}
+
+						icon_blood_splatter = {
+							visible = "[LessThan_float( WarOverviewWindow.GetProgressbarWarScore, '(float)25' )]"
+							mirror = horizontal
+						}
+
+						icon_cloth_tears = {
+							visible = "[LessThan_float( WarOverviewWindow.GetProgressbarWarScore, '(float)25' )]"
+							mirror = horizontal
+						}
+					}
+
+					widget = {
+						name = "backgrounds_2"
+						size = { 350 280 }
+
+						background = {
+							using = Background_WarOverview_2
+							mirror = horizontal
+						}
+
+						background = {
+							using = Background_WarOverview_Pattern_2
+							mirror = horizontal
+						}
+
+						background = {
+							using = Background_WarOverview_Frame_2
+							mirror = horizontal
+						}
+
+						background = {
+							using = Background_Area_Dark
+							margin_top = -125
+							modify_texture = {
+								texture = "gfx/interface/component_masks/mask_fade_corner.dds"
+								blend_mode = alphamultiply
+							}
+						}
+
+						icon_blood_splatter_2 = {
+							visible = "[LessThan_float( WarOverviewWindow.GetProgressbarWarScore, '(float)25' )]"
+							mirror = horizontal
+						}
+
+						icon_cloth_tears_2 = {
+							visible = "[LessThan_float( WarOverviewWindow.GetProgressbarWarScore, '(float)25' )]"
+							mirror = horizontal
+						}
+					}
+				}
+			}
+
+			widget = {
+				name = "right"
+				layoutpolicy_horizontal = expanding
+				layoutpolicy_vertical = expanding
+
+				flowcontainer = {
+					parentanchor = bottom|right
+
+					state = {
+						name = "war_overview_show"
+						next = b
+						position_x = 200
+						alpha = 0
+					}
+
+					state = {   ####### default ####
+						name = "b"
+						next = "c"
+						duration = 0.25
+						delay = 0.15
+						using = Animation_Curve_Default
+
+						position_x = 0
+						alpha = 1
+					}
+
+					state = {
+						name = "c"
+						next = "d"
+						duration = 0.05
+						using = Animation_Curve_Default
+
+						position_x = -1
+						position_y = -1
+						alpha = 1
+					}
+
+					state = {  ####### default ####
+						name = "d"
+						duration = 0.25
+						using = Animation_Curve_Default
+
+						position_x = 0
+						position_y = 0
+						alpha = 1
+					}
+
+					state = {
+						name = "war_overview_hide"
+						duration = 0.25
+						using = Animation_Curve_Default
+						position_x = 200
+						alpha = 0
+					}
+
+					widget = {
+						name = "backgrounds_2"
+						size = { 350 280 }
+
+						background = {
+							using = Background_WarOverview_2
+						}
+
+						background = {
+							using = Background_WarOverview_Pattern_2
+						}
+
+						background = {
+							using = Background_WarOverview_Frame_2
+						}
+
+						background = {
+							using = Background_Area_Dark
+							margin_top = -125
+							mirror = horizontal
+
+							modify_texture = {
+								texture = "gfx/interface/component_masks/mask_fade_corner.dds"
+								blend_mode = alphamultiply
+							}
+						}
+
+						icon_blood_splatter_2 = {
+							visible = "[GreaterThan_float( WarOverviewWindow.GetProgressbarWarScore, '(float)75' )]"
+						}
+
+						icon_cloth_tears_2 = {
+							visible = "[GreaterThan_float( WarOverviewWindow.GetProgressbarWarScore, '(float)75' )]"
+						}
+					}
+
+					widget = {
+						name = "backgrounds_1"
+						size = { 474 280 }
+
+						background = {
+							using = Background_WarOverview
+						}
+
+						background = {
+							using = Background_WarOverview_Pattern
+						}
+
+						background = {
+							using = Background_WarOverview_Frame
+						}
+
+						icon_blood_splatter = {
+							visible = "[GreaterThan_float( WarOverviewWindow.GetProgressbarWarScore, '(float)75' )]"
+						}
+
+						icon_cloth_tears = {
+							visible = "[GreaterThan_float( WarOverviewWindow.GetProgressbarWarScore, '(float)75' )]"
+						}
+					}
+				}
+			}
 		}
 
 		hbox = {
 			allow_outside = yes
-			layoutpolicy_horizontal = expanding
 
-			vbox = {
+			widget = {
 				name = "left"
 				layoutpolicy_horizontal = expanding
+				layoutstretchfactor_horizontal = 1
+				size = { 0 295 }
 				allow_outside = yes
 
 				hbox = {
-					layoutpolicy_horizontal = expanding
 					allow_outside = yes
+					spacing = 50
+
+					expand = {
+						layoutpolicy_horizontal = expanding
+					}
 
 					portrait_war_overview = {
 						datacontext = "[WarOverviewWindow.GetLeftSideLeaderItem]"
@@ -131,9 +335,69 @@ window = {
 							shortcut = "war_portrait_left_options"
 						}
 
+						state = {
+							name = "war_overview_show"
+							next = b
+							alpha = 0
+						}
+
+						state = {
+							name = "b"
+							duration = 0.5
+							delay = 0.1
+							alpha = 1
+						}
+
+						state = {
+							name = "war_overview_hide"
+							duration = 0.3
+							using = Animation_Curve_Default
+							alpha = 0
+						}
+
+						### INFO ###
 						vbox = {
 							margin_bottom = 65
 							maximumsize = { 310 -1 }
+
+							using = Background_WarOverview_3
+
+							state = {
+								name = "war_overview_show"
+								next = b
+								position_y = 300
+								alpha = 0
+
+								delay = 0.1
+							}
+
+							state = {
+								name = "b"
+								next = "c"
+								duration = 0.3
+								using = Animation_Curve_Default
+
+								position_y = -2
+								alpha = 1
+							}
+
+							state = {
+								name = "c"
+								duration = 0.05
+								using = Animation_Curve_Default
+
+								position_y = 0
+								alpha = 1
+							}
+
+							state = {
+								name = "war_overview_hide"
+								duration = 0.3
+								using = Animation_Curve_Default
+
+								position_y = 300
+								alpha = 0
+							}
 
 							expand = {}
 
@@ -142,10 +406,8 @@ window = {
 
 								background = {
 									using = Text_Label_Background
-									margin_top = -22
+									margin_top = -24
 									margin_bottom = -15
-									margin_right = -30
-									margin_left = 20
 								}
 
 								text_single = {
@@ -167,12 +429,10 @@ window = {
 
 							vbox = {
 								layoutpolicy_horizontal = expanding
-								margin = { 5 5 }
-								margin_right = 45
+								margin = { 5 0 }
 
 								background = {
 									using = Background_Area_Dark
-									margin_right = -42
 								}
 
 								text_single = {
@@ -180,6 +440,7 @@ window = {
 									layoutpolicy_horizontal = expanding
 									align = left
 									autoresize = no
+									margin_left = 7
 								}
 
 								hbox = {
@@ -195,12 +456,30 @@ window = {
 						}
 					}
 
-					expand = {
-						layoutpolicy_horizontal = expanding
-					}
-
 					vbox = {
 						layoutpolicy_vertical = expanding
+
+						state = {
+							name = "war_overview_show"
+							next = b
+							alpha = 0
+						}
+
+						state = {
+							name = "b"
+							duration = 0.7
+							delay = 0.3
+							alpha = 1
+						}
+
+						state = {
+							name = "war_overview_hide"
+							duration = 0.3
+							using = Animation_Curve_Default
+							alpha = 0
+						}
+
+						using = Background_WarOverview_Ally
 
 						hbox = {
 							visible = "[GetVariableSystem.Exists( 'characterlist_left')]"
@@ -209,7 +488,7 @@ window = {
 
 						expand = {}
 
-						### multiple participants
+						### Multiple participants
 						hbox = {
 							minimumsize = { 250 160 }
 							visible = "[Not(GetVariableSystem.Exists( 'characterlist_left'))]"
@@ -226,29 +505,23 @@ window = {
 
 										blockoverride "opinion_box" {}
 
-										blockoverride "coa" {
-											coa_realm_small_crown = {
-												visible = "[Character.HasLandedTitles]"
-												parentanchor = bottom|right
-											}
-										}
-
 										blockoverride "portrait_button_template_tooltip"
 										{
 											tooltip = "[WarParticipantItem.GetParticipantTooltip]"
 										}
+
 									}
 								}
 							}
 						}
 
-						### +Allies ###
+						### Allies ###
 						hbox = {
 							layoutpolicy_horizontal = expanding
 
 							expand = {}
 
-							button = {
+							button_group = {
 								onclick = "[GetVariableSystem.Toggle( 'characterlist_left' )]"
 								shortcut = "war_left_allies"
 								tooltip = "WAR_OVERVIEW_SHOW_ALLIES"
@@ -257,13 +530,14 @@ window = {
 									set_parent_size_to_minimum = yes
 									minimumsize = { 0 30 }
 									margin = { 5 0 }
+									spacing = 3
 
 									background = {
 										using = Text_Label_Background
 										margin = { 5 0 }
 									}
 
-									button_plus = {
+									button_plus_small = {
 										onclick = "[GetVariableSystem.Toggle( 'characterlist_left' )]"
 									}
 
@@ -278,32 +552,49 @@ window = {
 
 						expand = {}
 					}
-
-					widget = {
-						name = "statue_spacing"
-						size = { 164 0 }
-						layoutpolicy_horizontal = fixed
-						layoutpolicy_vertical = expanding
-					}
 				}
 			}
 
 			### empty space for center widget ###
 			widget = {
-				size = { 620 300 }
+				size = { 790 300 }
 			}
 
-			vbox = {
+			widget = {
 				name = "right"
 				layoutpolicy_horizontal = expanding
+				layoutstretchfactor_horizontal = 1
+				size = { 0 295 }
 				allow_outside = yes
 
 				hbox = {
-					layoutpolicy_horizontal = expanding
 					allow_outside = yes
+					spacing = 50
 
 					vbox = {
 						layoutpolicy_vertical = expanding
+
+						state = {
+							name = "war_overview_show"
+							next = b
+							alpha = 0
+						}
+
+						state = {
+							name = "b"
+							duration = 0.7
+							delay = 0.3
+							alpha = 1
+						}
+
+						state = {
+							name = "war_overview_hide"
+							duration = 0.3
+							using = Animation_Curve_Default
+							alpha = 0
+						}
+
+						using = Background_WarOverview_Ally
 
 						hbox = {
 							visible = "[GetVariableSystem.Exists( 'characterlist_right')]"
@@ -330,6 +621,8 @@ window = {
 									{
 										tooltip = "[WarParticipantItem.GetParticipantTooltip]"
 									}
+
+
 								}
 							}
 						}
@@ -347,13 +640,14 @@ window = {
 									set_parent_size_to_minimum = yes
 									minimumsize = { 0 30 }
 									margin = { 5 0 }
+									spacing = 3
 
 									background = {
 										using = Text_Label_Background
 										margin = { 5 0 }
 									}
-									
-									button_plus = {
+
+									button_plus_small = {
 										onclick = "[GetVariableSystem.Toggle( 'characterlist_right' )]"
 									}
 									text_single = {
@@ -368,10 +662,6 @@ window = {
 						}
 
 						expand = {}
-					}
-
-					expand = {
-						layoutpolicy_horizontal = expanding
 					}
 
 					portrait_war_overview = {
@@ -398,10 +688,69 @@ window = {
 							shortcut = "war_portrait_right_options"
 						}
 
+						state = {
+							name = "war_overview_show"
+							next = b
+							alpha = 0
+						}
+
+						state = {
+							name = "b"
+							duration = 0.5
+							delay = 0.1
+							alpha = 1
+						}
+
+						state = {
+							name = "war_overview_hide"
+							duration = 0.3
+							using = Animation_Curve_Default
+							alpha = 0
+						}
+
 						### INFO ###
 						vbox = {
 							margin_bottom = 65
 							maximumsize = { 310 -1 }
+
+							using = Background_WarOverview_3
+
+							state = {
+								name = "war_overview_show"
+								next = b
+								position_y = 300
+								alpha = 0
+
+								delay = 0.1
+							}
+
+							state = {
+								name = "b"
+								next = "c"
+								duration = 0.3
+								using = Animation_Curve_Default
+
+								position_y = -2
+								alpha = 1
+							}
+
+							state = {
+								name = "c"
+								duration = 0.05
+								using = Animation_Curve_Default
+
+								position_y = 0
+								alpha = 1
+							}
+
+							state = {
+								name = "war_overview_hide"
+								duration = 0.3
+								using = Animation_Curve_Default
+
+								position_y = 300
+								alpha = 0
+							}
 
 							expand = {}
 
@@ -410,10 +759,8 @@ window = {
 
 								background = {
 									using = Text_Label_Background
-									margin_top = -22
+									margin_top = -24
 									margin_bottom = -15
-									margin_left = -30
-									margin_right = 20
 								}
 
 								coa_realm_small_crown = {
@@ -437,12 +784,9 @@ window = {
 
 							hbox = {
 								layoutpolicy_horizontal = expanding
-								margin = { 0 5 }
-								margin_right = 5
 
 								background = {
 									using = Background_Area_Dark
-									margin_left = 5
 								}
 
 								widget = {
@@ -471,6 +815,7 @@ window = {
 										layoutpolicy_horizontal = expanding
 										align = left
 										autoresize = no
+										margin_left = 7
 									}
 
 									hbox = {
@@ -485,611 +830,1441 @@ window = {
 							}
 						}
 					}
+
+					expand = {}
 				}
 			}
 		}
-	}
 
-	widget = {
-		name = "center"
-		allow_outside = yes
-		parentanchor = bottom|hcenter
-		minimumsize = { 620 315 }
+		widget = {
+			name = "center"
+			size = { 622 0 }
+			allow_outside = yes
+			parentanchor = bottom|hcenter
+			minimumsize = { 600 315 }
 
-		icon = {
-			# name = "tile_frame_top"
-			texture = "gfx/interface/tiles/tile_frame_top_Clean.dds"
-			spriteType = Corneredtiled
-			spriteborder = { 100 0 }
-			size = { 670 22 }
-			parentanchor = top|hcenter
-			position = { 0 -15 }
-		}
-
-		icon = {
-			name = "tile_frame_top_center_part"
-			texture = "gfx/interface/tiles/tile_frame_top_center_part.dds"
-			position = { 0 -25 }
-			parentanchor = top|hcenter
-		}
-
-		state = {
-			name = _show
-			using = Animation_FadeIn_Quick
-			on_start = "[GetVariableSystem.Set( 'war_end_terms_open', 'true'  )]"
-		}
-
-		state = {
-			name = _hide
-			using = Animation_FadeOut_Quick
-			on_start = "[GetVariableSystem.Clear( 'war_end_terms_open' )]"
-		}
-
-		background = {
-			texture = "gfx/interface/tiles/tile_window_background.dds"
-			spriteType = Corneredtiled
-			spriteborder = { 18 0 }
-
-			modify_texture = {
-				texture = "gfx/interface/tiles/tile_overlay_effect_02.dds"
-				blend_mode = overlay
+			state = {
+				name = "war_overview_show"
+				next = b
+				position_y = 300
+				alpha = 0
 			}
-		}
 
-		vbox = {
-			layoutpolicy_horizontal = expanding
-			layoutpolicy_vertical = expanding
-			set_parent_size_to_minimum = yes
-			minimumsize = { 620 0 }
-			margin = { 10 0 }
-			margin_bottom = 10
+			state = {
+				name = "b"
+				next = "c"
+				duration = 0.3
+				using = Animation_Curve_Default
 
-			### WAR INFO ###
-			vbox = {
-				layoutpolicy_horizontal = expanding
+				position_y = -5
+				alpha = 1
+			}
 
-				hbox = {
-					name = "header_bar"
-					layoutpolicy_horizontal = expanding
-					size = { 0 43 }
-					margin_left = 50
+			state = {
+				name = "c"
+				duration = 0.05
+				using = Animation_Curve_Default
 
-					background = {
-						texture = "gfx/interface/tiles/tile_background_window_header.dds"
-						spriteType = Corneredtiled
-						spriteborder = { 20 20 }
-						margin = { 5 0 }
-						margin_top = 3
-						margin_bottom = 13
+				position_y = 0
+				alpha = 1
+			}
+
+			state = {
+				name = "war_overview_hide"
+				duration = 0.3
+				using = Animation_Curve_Default
+
+				position_y = 300
+				alpha = 0
+			}
+
+			icon = {
+				name = "dust_cloud_left"
+				parentanchor = bottom|left
+				texture = "gfx/interface/component_masks/mask_fade_circle.dds"
+				size = { 180 180 }
+
+				using = Color_Grey
+
+				modify_texture = {
+					texture = "gfx/interface/component_masks/mask_clouds.dds"
+					blend_mode = alphamultiply
+					spriteType = corneredTiled
+				}
+
+				modify_texture = {
+					name = "shimmer"
+					texture = "gfx/interface/component_masks/mask_clouds.dds"
+					blend_mode = alphamultiply
+					spriteType = corneredTiled
+					rotate_uv = 0
+				}
+
+				modify_texture = {
+					name = "shimmer_2"
+					texture = "gfx/interface/component_masks/mask_clouds.dds"
+					blend_mode = alphamultiply
+					spriteType = corneredTiled
+				}
+
+				state = {
+					name = "war_overview_show"
+					next = d
+					duration = 0.25
+
+					delay = 0.1
+
+					animation = {
+						alpha = 1
+						bezier = { 0 0 0.4 1 }
 					}
 
-					expand = {}
-
-					text_single = {
-						text = "[WarOverviewWindow.GetWar.GetName]"
-						using = Font_Type_Flavor
-						using = Font_Size_Big
-						default_format = "#high"
-						align = center
-						max_width = 510
-						fontsize_min = 14
-
-						state = {
-							name = "waroverview_toggle_refresh"
-							next = a
-							alpha = 0.5
-						}
-
-						state = {
-							name = "a"
-							alpha = 1
-							duration = 0.5
-							using = Animation_Curve_Default
-						}
+					modify_texture = {
+						name = "shimmer"
+						translate_uv = { -5 0 }
+						alpha = 1
+						rotate_uv = 0
 					}
 
-					expand = {}
-
-					hbox = {
-						buttons_window_control = {
-							blockoverride "button_close"
-							{
-								onclick = "[WarOverviewWindow.Close]"
-							}
-						}
+					modify_texture = {
+						name = "shimmer_2"
+						translate_uv = { -5 0 }
+						alpha = 0.5
 					}
 
-					watch_window_button = {
-						size = { 60 40 }
-						onclick = "[AddWatchWindow( WarOverviewWindow.GetWar.MakeScope )]"
+					position_x = 0
+				}
+
+				state = {
+					name = d
+					next = e
+
+					duration = 0.5
+					using = Animation_Curve_Default
+
+					animation = {
+						alpha = 0
+						bezier = { 0.6 0 0.7 0.5 }
+					}
+
+					modify_texture = {
+						name = "shimmer"
+						translate_uv = { -4.3 0 }
+						alpha = 1
+						rotate_uv = 180
+					}
+
+					modify_texture = {
+						name = "shimmer_2"
+						translate_uv = { -4.3 0 }
+						alpha = 0.3
+					}
+
+
+					position_x = -200
+				}
+
+				state = {
+					name = e
+
+					duration = 0.01
+
+					animation = {
+						alpha = 0
+						bezier = { 0.6 0 0.7 0.5 }
+					}
+
+					modify_texture = {
+						name = "shimmer"
+						translate_uv = { -0.1 0 }
+						alpha = 0
+						rotate_uv = 360
+					}
+
+					modify_texture = {
+						name = "shimmer_2"
+						translate_uv = { 1 0 }
+						alpha = 0
+					}
+
+					position_x = 0
+				}
+			}
+
+			icon = {
+				name = "dust_cloud_right"
+				parentanchor = bottom|right
+
+				texture = "gfx/interface/component_masks/mask_fade_circle.dds"
+				size = { 180 180 }
+
+				using = Color_Grey
+
+				modify_texture = {
+					texture = "gfx/interface/component_masks/mask_clouds.dds"
+					blend_mode = alphamultiply
+					spriteType = corneredTiled
+				}
+
+				modify_texture = {
+					name = "shimmer"
+					texture = "gfx/interface/component_masks/mask_clouds.dds"
+					blend_mode = alphamultiply
+					spriteType = corneredTiled
+					rotate_uv = 0
+				}
+
+				modify_texture = {
+					name = "shimmer_2"
+					texture = "gfx/interface/component_masks/mask_clouds.dds"
+					blend_mode = alphamultiply
+					spriteType = corneredTiled
+				}
+
+				state = {
+					name = "war_overview_show"
+					next = d
+					duration = 0.25
+
+					delay = 0.1
+
+					animation = {
+						alpha = 1
+						bezier = { 0 0 0.4 1 }
+					}
+
+					modify_texture = {
+						name = "shimmer"
+						translate_uv = { -5 0 }
+						alpha = 1
+						rotate_uv = 0
+					}
+
+					modify_texture = {
+						name = "shimmer_2"
+						translate_uv = { -5 0 }
+						alpha = 0.5
+					}
+
+					position_x = 0
+				}
+
+				state = {
+					name = d
+					next = e
+
+					duration = 0.5
+					using = Animation_Curve_Default
+
+					animation = {
+						alpha = 0
+						bezier = { 0.6 0 0.7 0.5 }
+					}
+
+					modify_texture = {
+						name = "shimmer"
+						translate_uv = { -4.3 0 }
+						alpha = 1
+						rotate_uv = 180
+					}
+
+					modify_texture = {
+						name = "shimmer_2"
+						translate_uv = { -4.3 0 }
+						alpha = 0.3
+					}
+
+
+					position_x = 200
+				}
+
+				state = {
+					name = e
+
+					duration = 0.01
+
+					animation = {
+						alpha = 0
+						bezier = { 0.6 0 0.7 0.5 }
+					}
+
+					modify_texture = {
+						name = "shimmer"
+						translate_uv = { -0.1 0 }
+						alpha = 0
+						rotate_uv = 360
+					}
+
+					modify_texture = {
+						name = "shimmer_2"
+						translate_uv = { 1 0 }
+						alpha = 0
+					}
+
+					position_x = 0
+				}
+			}
+
+			icon = {
+				texture = "gfx/interface/window_war/tile_frame_top_war_2.dds"
+				spriteType = Corneredtiled
+				spriteborder = { 100 0 }
+				size = { 724 35 }
+				parentanchor = top|hcenter
+				position = { 0 50 }
+			}
+
+			background = {
+				texture = "gfx/interface/component_tiles/tile_window_background_no_edge.dds"
+				spriteType = Corneredtiled
+				spriteborder = { 18 0 }
+				margin = { 18 0 }
+				margin_top = -60
+
+				modify_texture = {
+					texture = "gfx/interface/component_overlay/overlay_effect.dds"
+					blend_mode = overlay
+				}
+			}
+
+			widget = {
+				parentanchor = bottom|hcenter
+
+				background = {
+					texture = "gfx/interface/component_tiles/tile_window_background_no_edge.dds"
+					spriteType = Corneredtiled
+					spriteborder = { 18 0 }
+					margin = { -3 0 }
+
+					modify_texture = {
+						texture = "gfx/interface/component_overlay/overlay_effect.dds"
+						blend_mode = overlay
 					}
 				}
 
-				#### TEXT
-				hbox = {
-					layoutpolicy_horizontal = expanding
-					margin_top = 5
+				### TOP FRAMES ###
+				icon = {
+					texture = "gfx/interface/window_war/tile_frame_top_war.dds"
+					spriteType = Corneredtiled
+					spriteborder = { 100 0 }
+					size = { 728 22 }
+					parentanchor = top|hcenter
+					position = { 2 -14 }
+				}
 
-					hbox = {
-						margin_left = 15
-						spacing = 10
+				icon = {
+					name = "tile_frame_top_center_part"
+					texture = "gfx/interface/window_war/tile_frame_top.dds"
+					position = { 0 5 }
 
-						background = {
-							using = Background_Area_Dark
-						}
+					parentanchor = top|hcenter
+					widgetanchor = bottom|hcenter
+				}
 
-						text_single = {
-							name = "start_date"
-							text = "WAR_OVERVIEW_STARTED"
-							using = Font_Size_Small
-						}
+				### GHW ###
+				widget = {
+					size = { 630 80 }
+					using = GHW_Decoration
+					visible = "[WarOverviewWindow.IsGreatHolyWar]"
+					parentanchor = top|hcenter
+					widgetanchor = bottom|hcenter
+				}
 
-						icon = {
-							name = "icon"
-							texture = "[WarOverviewWindow.GetWar.GetActiveCB.GetType.GetIcon]"
-							size = { 33 33 }
-							tooltip = "[WarOverviewWindow.GetWar.GetActiveCB.GetType.GetName]"
-						}
+				#### SIDEFRAMES ####
+				### Right
+				background = {
+					texture = "gfx/interface/component_tiles/tile_frame_subwindow_01.dds"
+					spriteType = Corneredtiled
+					spriteborder = { 20 20 }
+					margin = { 0 10 }
+
+					modify_texture = {
+						texture = "gfx/interface/component_masks/mask_fade_horizontal_right.dds"
+						blend_mode = alphamultiply
+						rotate_uv = -180
+					}
+				}
+
+				background = {
+					texture = "gfx/interface/component_tiles/tile_frame_subwindow_01.dds"
+					spriteType = Corneredtiled
+					spriteborder = { 20 20 }
+					margin = { 3 10 }
+					mirror = horizontal
+
+					modify_texture = {
+						texture = "gfx/interface/component_masks/mask_fade_horizontal_right.dds"
+						blend_mode = alphamultiply
+					}
+				}
+
+				### Left
+				background = {
+					texture = "gfx/interface/component_tiles/tile_frame_subwindow_01.dds"
+					spriteType = Corneredtiled
+					spriteborder = { 20 20 }
+					margin = { 0 10 }
+					mirror = horizontal
+
+					modify_texture = {
+						texture = "gfx/interface/component_masks/mask_fade_horizontal_right.dds"
+						blend_mode = alphamultiply
+						rotate_uv = -180
+					}
+				}
+
+				background = {
+					texture = "gfx/interface/component_tiles/tile_frame_subwindow_01.dds"
+					spriteType = Corneredtiled
+					spriteborder = { 20 20 }
+					margin = { 3 10 }
+
+					modify_texture = {
+						texture = "gfx/interface/component_masks/mask_fade_horizontal_right.dds"
+						blend_mode = alphamultiply
 					}
 				}
 
 				vbox = {
-					name = "tutorial_highlight_war_score_details"
-					layoutpolicy_horizontal = expanding
-					margin = { 0 5 }
-
-					background = {
-						using = Background_Area_Dark
-					}
+					set_parent_size_to_minimum = yes
+					minimumsize = { 620 0 }
+					margin = { 10 0 }
 
 					vbox = {
+						layoutpolicy_horizontal = expanding
 
-						## WARSCORE ICONS
-						hbox = {
-							name = "category_icon"
+						vbox = {
+							name = "header_bar"
 							layoutpolicy_horizontal = expanding
-							spacing = 40
+							margin_bottom = 5
 
-							# TICKING
+							background = {
+								texture = "gfx/interface/component_tiles/tile_background_window_header.dds"
+								spriteType = Corneredtiled
+								spriteborder = { 20 20 }
+								margin = { 5 0 }
+								margin_top = 3
+								margin_bottom = 13
+							}
+
 							hbox = {
-								tooltip = "[WarOverviewWindow.GetTickingWarScoreTooltip]"
-								tooltip_offset = { 0 50 }
+								layoutpolicy_horizontal = expanding
+
+								expand = {
+									layoutpolicy_horizontal = expanding
+									layoutstretchfactor_horizontal = 1
+								}
+
+								text_single = {
+									text = "[WarOverviewWindow.GetWar.GetName]"
+									using = Font_Type_Flavor
+									using = Font_Size_Big
+									default_format = "#high"
+									align = nobaseline
+									max_width = 500
+								}
+
+
+								hbox = {
+									layoutpolicy_horizontal = expanding
+									layoutstretchfactor_horizontal = 1
+
+									expand = {}
+
+									buttons_window_control = {
+										blockoverride "button_close"
+										{
+											onclick = "[WarOverviewWindow.Close]"
+										}
+									}
+								}
+
+								watch_window_button = {
+									size = { 60 40 }
+									onclick = "[AddWatchWindow( WarOverviewWindow.GetWar.MakeScope )]"
+								}
+							}
+
+							hbox = {
+								margin = { 15 0 }
+								spacing = 5
+
+								text_single = {
+									name = "start_date"
+									text = "WAR_OVERVIEW_STARTED"
+									using = Font_Size_Small
+									align = nobaseline
+									default_format = "#weak"
+								}
 
 								icon = {
-									name = "icon_a"
-									size = { 40 40 }
-									texture = "gfx/interface/icons/icon_war_score_objectives.dds"
+									name = "cb_icon"
+									texture = "[WarOverviewWindow.GetWar.GetActiveCB.GetType.GetIcon]"
+									size = { 25 25 }
+									tooltip = "[WarOverviewWindow.GetWar.GetActiveCB.GetType.GetName]"
 								}
-
-								text_single = {
-									name = "ticking_warscore"
-									size = { 40 40 }
-									align = center
-									text = "[WarOverviewWindow.GetTickingWarScore]"
-								}
-							}
-
-							### BATTLES
-							hbox = {
-								tooltip = "[WarOverviewWindow.GetBattlesWarScoreTooltip]"
-								tooltip_offset = { 0 50 }
-
-								icon = {
-									name = "icon_b"
-
-									size = { 40 40 }
-									texture = "gfx/interface/icons/icon_war_score_battles.dds"
-								}
-
-								text_single = {
-									name = "battles_warscore"
-									size = { 40 40 }
-									align = center
-									text = "[WarOverviewWindow.GetBattlesWarScore]"
-								}
-
-								spacer = {
-									size = { 5 5 }
-									visible = "[WarOverviewWindow.IsBattlesWarScoreCapped]"
-								}
-
-								text_single = {
-									name = "battles_warscore_capped"
-									visible = "[WarOverviewWindow.IsBattlesWarScoreCapped]"
-									size = { 40 40 }
-									align = center
-									text = "BATTLES_WAR_SCORE_CAPPED"
-									default_format = "#N"
-								}
-							}
-
-							### OCCUPATION
-							hbox = {
-								tooltip = "[WarOverviewWindow.GetOccupationWarScoreTooltip]"
-								tooltip_offset = { 0 50 }
-
-								icon = {
-									name = "icon_c"
-									size = { 40 40 }
-									texture = "gfx/interface/icons/icon_holding_castle.dds"
-								}
-								text_single = {
-									name = "occupation_warscore"
-									size = { 40 40 }
-									align = center
-									text = "[WarOverviewWindow.GetOccupationWarScore]"
-								}
-							}
-
-							### PRISONERS
-							hbox = {
-								tooltip = "[WarOverviewWindow.GetImprisonmentWarScoreTooltip]"
-								tooltip_offset = { 0 50 }
-
-								icon = {
-									name = "icon_d"
-									size = { 40 40 }
-									texture = "gfx/interface/icons/icon_war_score_prisoners.dds"
-								}
-
-								text_single = {
-									name = "prisoners_warscore"
-									size = { 40 40 }
-									align = center
-									text = "[WarOverviewWindow.GetImprisonmentWarScore]"
-								}
-							}
-
-							tooltip = "[WarOverviewWindow.GetWarScoreTooltip]"
-						}
-
-						hbox = {
-							spacing = 10
-
-							text_single = {
-								name = "warscore_header"
-								text = "[war_score|E]"
-							}
-
-							text_single = {
-								name = "warscore"
-								text = "[WarOverviewWindow.GetWarScore]"
 							}
 						}
 
-						hbox = {
-							name = "score_progress"
+						spacer = {
+							size = { 0 15 }
+						}
 
-							text_single = {
-								name = "max_warscore"
-								align = right
-								text = "-100"
+						vbox = {
+							name = "tutorial_highlight_war_score_details"
+							layoutpolicy_horizontal = expanding
+							margin = { 0 5 }
+
+							background = {
+								using = Background_Area_Dark
 							}
 
-							progressbar_standard = {
-								name = "warscore_progressbar"
-								size = { 350 20 }
-								value = "[WarOverviewWindow.GetProgressbarWarScore]"
+							vbox = {
+								layoutpolicy_horizontal = expanding
 								tooltip = "[WarOverviewWindow.GetWarScoreTooltip]"
+								margin = { 0 5 }
+								spacing = 3
+
+								hbox = {
+									layoutpolicy_horizontal = expanding
+									margin = { 25 0 }
+									spacing = 10
+
+									text_single = {
+										name = "warscore_header"
+										text = "[war_score|E]"
+										using = Font_Size_Big
+										align = nobaseline
+									}
+
+									text_single = {
+										name = "warscore"
+										text = "[WarOverviewWindow.GetWarScore]"
+										using = Font_Size_Big
+										align = nobaseline
+									}
+
+									expand = {}
+
+									hbox = {
+										name = "category_icons"
+										margin = { 15 0 }
+										spacing = 10
+
+										# Objectives
+										hbox = {
+											spacing = 3
+											tooltip = "[WarOverviewWindow.GetTickingWarScoreTooltip]"
+											tooltip_offset = { 0 50 }
+
+											icon = {
+												name = "icon_a"
+												size = { 30 30 }
+												texture = "gfx/interface/icons/war_score/icon_war_score_objectives.dds"
+											}
+
+											text_single = {
+												name = "ticking_warscore"
+												min_width = 30
+												align = nobaseline
+												text = "[WarOverviewWindow.GetTickingWarScore]"
+											}
+										}
+
+										# Battles
+										hbox = {
+											spacing = 3
+											tooltip = "[WarOverviewWindow.GetBattlesWarScoreTooltip]"
+											tooltip_offset = { 0 50 }
+
+											icon = {
+												name = "icon_b"
+
+												size = { 30 30 }
+												texture = "gfx/interface/icons/war_score/icon_war_score_battles.dds"
+											}
+
+											text_single = {
+												name = "battles_warscore"
+												min_width = 30
+												align = nobaseline
+												text = "[WarOverviewWindow.GetBattlesWarScore]"
+											}
+
+											text_single = {
+												name = "battles_warscore_capped"
+												visible = "[WarOverviewWindow.IsBattlesWarScoreCapped]"
+												margin_left = 5
+												text = "BATTLES_WAR_SCORE_CAPPED"
+												default_format = "#N"
+											}
+										}
+
+										# Occupation
+										hbox = {
+											spacing = 3
+											tooltip = "[WarOverviewWindow.GetOccupationWarScoreTooltip]"
+											tooltip_offset = { 0 50 }
+
+											icon = {
+												name = "icon_c"
+												size = { 30 30 }
+												texture = "gfx/interface/icons/icon_holding_castle.dds"
+											}
+											text_single = {
+												name = "occupation_warscore"
+												min_width = 30
+												align = nobaseline
+												text = "[WarOverviewWindow.GetOccupationWarScore]"
+											}
+										}
+
+										# Prisoners
+										hbox = {
+											spacing = 3
+											tooltip = "[WarOverviewWindow.GetImprisonmentWarScoreTooltip]"
+											tooltip_offset = { 0 50 }
+
+											icon = {
+												name = "icon_d"
+												size = { 30 30 }
+												texture = "gfx/interface/icons/war_score/icon_war_score_prisoners.dds"
+											}
+
+											text_single = {
+												name = "prisoners_warscore"
+												min_width = 30
+												align = nobaseline
+												text = "[WarOverviewWindow.GetImprisonmentWarScore]"
+											}
+										}
+									}
+								}
+
+								hbox = {
+									name = "score_progress"
+									margin = { 0 4 }
+									# margin_top = 4
+									spacing = 15
+
+									text_single = {
+										name = "max_warscore"
+										align = right|nobaseline
+										text = "-100"
+										using = Font_Size_Medium
+										default_format = "#low"
+									}
+
+									#### PROGRESSBAR ###
+									widget = {
+										size = { 450 20 }
+
+										widget = {
+											size = { 100% 100% }
+											scissor = yes
+
+											hbox = {
+
+												#### LEFT ####
+												widget = {
+													layoutpolicy_horizontal = expanding
+													layoutpolicy_vertical = expanding
+													layoutstretchfactor_horizontal = "[GetProgressBarValueMax( WarOverviewWindow.GetProgressbarWarScore, '(float)100' )]"
+
+													icon = {
+														size = { 100% 100% }
+														texture = "gfx/interface/progressbars/war_progress_blue.dds"
+														spriteType = Corneredtiled
+
+														modify_texture = {
+															name = overlay
+															texture = "gfx/interface/component_masks/mask_fade_horizontal_middle_solid.dds"
+															blend_mode = mask
+														}
+
+														modify_texture = {
+															name = "flash"
+															texture = "gfx/interface/colors/gold.dds"
+															alpha = 0
+														}
+
+														state = {
+															trigger_on_create = yes
+															name = war_overview_show
+															next = a
+															delay = 0.5
+															duration = 0.0
+															using = Animation_Curve_Default
+
+															modify_texture = {
+																name = overlay
+																translate_uv = { 1 0 }
+															}
+
+															modify_texture = {
+																name = "flash"
+																alpha = 0.1
+															}
+														}
+
+														state = {
+															name = a
+															duration = 0.75
+															bezier = { 0.5 0.1 1 1}
+															using = Animation_Curve_Default
+
+															modify_texture = {
+																name = overlay
+																translate_uv = { -1 0 }
+															}
+
+															modify_texture = {
+																name = "flash"
+																alpha = 0.4
+															}
+														}
+													}
+
+													### GHW BAR ###
+													icon = {
+														visible = "[WarOverviewWindow.IsGreatHolyWar]"
+														size = { 100% 100% }
+														texture = "gfx/interface/progressbars/war_progress_ghw.dds"
+														spriteType = Corneredtiled
+
+														modify_texture = {
+															name = overlay
+															texture = "gfx/interface/component_masks/mask_fade_horizontal_middle_solid.dds"
+															blend_mode = mask
+														}
+
+														modify_texture = {
+															name = "flash"
+															texture = "gfx/interface/colors/gold.dds"
+															alpha = 0
+														}
+
+														state = {
+															trigger_on_create = yes
+															name = war_overview_show
+															next = a
+															delay = 0.5
+															duration = 0.0
+															using = Animation_Curve_Default
+
+															modify_texture = {
+																name = overlay
+																translate_uv = { 1 0 }
+															}
+
+															modify_texture = {
+																name = "flash"
+																alpha = 0.1
+															}
+														}
+
+														state = {
+															name = a
+															duration = 0.75
+															bezier = { 0.5 0.1 1 1}
+															using = Animation_Curve_Default
+
+															modify_texture = {
+																name = overlay
+																translate_uv = { -1 0 }
+															}
+
+															modify_texture = {
+																name = "flash"
+																alpha = 0.4
+															}
+														}
+													}
+
+													icon = {
+														visible = "[LessThan_float( WarOverviewWindow.GetProgressbarWarScore, '(float)50' )]"
+														using = Animation_ShowHide_Standard
+														parentanchor = right|vcenter
+														position = { 5 0 }
+
+														size = { 20 100% }
+														texture = "gfx/interface/progressbars/progressbar_center_glow.dds"
+
+														state = {
+															name = a
+															next = b
+															trigger_on_create = yes
+															duration = 0.1
+															alpha = 1
+														}
+
+														state = {
+															name = b
+															next = a
+															duration = 0.2
+															alpha = 0.9
+														}
+													}
+
+													icon = {
+														visible = "[GreaterThanOrEqualTo_float( WarOverviewWindow.GetProgressbarWarScore, '(float)50' )]"
+														using = Animation_ShowHide_Standard
+														parentanchor = right|vcenter
+														position = { 20 0 }
+
+														size = { 80 100% }
+														texture = "gfx/interface/progressbars/progressbar_center_glow.dds"
+
+														state = {
+															name = a
+															next = b
+															trigger_on_create = yes
+															duration = 0.1
+															alpha = 1
+														}
+
+														state = {
+															name = b
+															next = a
+															duration = 0.2
+															alpha = 0.9
+														}
+													}
+
+													### EFFECTS ###
+													widget = {
+														visible = "[GreaterThanOrEqualTo_float( WarOverviewWindow.GetProgressbarWarScore, '(float)50' )]"
+														size = { 100% 100% }
+
+														widget = {
+															size = { 100% 100% }
+															scissor = yes
+
+															icon = {
+																parentanchor = right
+																size = { 160 100% }
+																texture = "gfx/interface/colors/white.dds"
+																shaderfile = "gfx/FX/repeat_texture.shader"
+																alpha = 0.4
+
+																using = Color_Bright_Yellow
+
+																modify_texture = {
+																	texture = "gfx/interface/component_masks/mask_fade_horizontal.dds"
+																	blend_mode = alphamultiply
+																}
+
+																modify_texture = {
+																	name = "clouds"
+																	texture = "gfx/interface/component_masks/mask_clouds.dds"
+																	blend_mode = alphamultiply
+																	spriteType = corneredtiled
+																	texture_density = 2
+																}
+
+																state = {
+																	name = a
+																	next = b
+																	trigger_on_create = yes
+
+																	modify_texture = {
+																		name = "clouds"
+																		translate_uv = { -1 0 }
+																	}
+																}
+
+																state = {
+																	name = b
+																	next = a
+																	duration = 4
+
+																	modify_texture = {
+																		name = "clouds"
+																		translate_uv = { 1 0 }
+																	}
+																}
+															}
+														}
+													}
+												}
+
+												#### RIGHT ####
+												widget = {
+													layoutpolicy_horizontal = expanding
+													layoutpolicy_vertical = expanding
+													layoutstretchfactor_horizontal = "[GetProgressBarValueMaxOther( WarOverviewWindow.GetProgressbarWarScore, '(float)100' )]"
+
+													icon = {
+														size = { 100% 100% }
+														texture = "gfx/interface/progressbars/war_progress_red.dds"
+														spriteType = Corneredtiled
+
+														modify_texture = {
+															name = overlay
+															texture = "gfx/interface/component_masks/mask_fade_horizontal_middle_solid.dds"
+															blend_mode = mask
+														}
+
+														modify_texture = {
+															name = "flash"
+															texture = "gfx/interface/colors/gold.dds"
+															alpha = 0
+														}
+
+														state = {
+															trigger_on_create = yes
+															name = war_overview_show
+															next = a
+															delay = 0.5
+															duration = 0.0
+															using = Animation_Curve_Default
+
+															modify_texture = {
+																name = overlay
+																translate_uv = { -1 0 }
+															}
+
+															modify_texture = {
+																name = "flash"
+																alpha = 0.1
+															}
+														}
+
+														state = {
+															name = a
+															duration = 0.75
+															bezier = { 0.5 0.1 1 1}
+
+															modify_texture = {
+																name = overlay
+																translate_uv = { 1 0 }
+															}
+
+															modify_texture = {
+																name = "flash"
+																alpha = 0.4
+															}
+														}
+													}
+
+													### EFFECTS ###
+													icon = {
+														visible = "[GreaterThanOrEqualTo_float( WarOverviewWindow.GetProgressbarWarScore, '(float)50' )]"
+														using = Animation_ShowHide_Standard
+														parentanchor = left|vcenter
+														position = { -5 0 }
+														mirror = horizontal
+
+														size = { 20 100% }
+														texture = "gfx/interface/progressbars/progressbar_center_glow.dds"
+
+														state = {
+															name = a
+															next = b
+															trigger_on_create = yes
+															duration = 0.1
+															alpha = 1
+														}
+
+														state = {
+															name = b
+															next = a
+															duration = 0.2
+															alpha = 0.9
+														}
+													}
+													
+													icon = {
+														visible = "[LessThan_float( WarOverviewWindow.GetProgressbarWarScore, '(float)50' )]"
+														using = Animation_ShowHide_Standard
+														parentanchor = left|vcenter
+														position = { -20 0 }
+														mirror = horizontal
+
+														size = { 80 100% }
+														texture = "gfx/interface/progressbars/progressbar_center_glow.dds"
+
+														state = {
+															name = a
+															next = b
+															trigger_on_create = yes
+															duration = 0.1
+															alpha = 1
+														}
+
+														state = {
+															name = b
+															next = a
+															duration = 0.2
+															alpha = 0.9
+														}
+													}
+
+													widget = {
+														visible = "[LessThan_float( WarOverviewWindow.GetProgressbarWarScore, '(float)50' )]"
+														using = Animation_ShowHide_Standard
+														size = { 100% 100% }
+
+														widget = {
+															size = { 100% 100% }
+															scissor = yes
+
+															icon = {
+																parentanchor = left
+																mirror = horizontal
+
+																size = { 160 100% }
+																texture = "gfx/interface/colors/white.dds"
+																shaderfile = "gfx/FX/repeat_texture.shader"
+																alpha = 0.4
+
+																using = Color_Bright_Yellow
+
+																modify_texture = {
+																	texture = "gfx/interface/component_masks/mask_fade_horizontal.dds"
+																	blend_mode = alphamultiply
+																}
+
+																modify_texture = {
+																	name = "clouds"
+																	texture = "gfx/interface/component_masks/mask_clouds.dds"
+																	blend_mode = alphamultiply
+																	spriteType = corneredtiled
+																	texture_density = 2
+																}
+
+																state = {
+																	name = a
+																	next = b
+																	trigger_on_create = yes
+
+																	modify_texture = {
+																		name = "clouds"
+																		translate_uv = { -1 0 }
+																	}
+																}
+
+																state = {
+																	name = b
+																	next = a
+																	duration = 4
+
+																	modify_texture = {
+																		name = "clouds"
+																		translate_uv = { 1 0 }
+																	}
+																}
+															}
+														}
+													}
+												}
+											}
+										}
+
+										widget = {
+											name = "power_bar_frame"
+											parentanchor = top
+											size = { 100% 100% }
+											alwaystransparent = yes
+
+											background = {
+												texture = "gfx/interface/progressbars/progress_frame_war.dds"
+												spriteType = Corneredstretched
+												spriteborder = { 10 10 }
+												margin = { 5 4 }
+											}
+										}
+									}
+
+									text_single = {
+										name = "min_warscore"
+										align = nobaseline
+										text = "+100"
+										using = Font_Size_Medium
+										default_format = "#low"
+									}
+								}
 							}
-
-							text_single = {
-								name = "min_warscore"
-								text = "+100"
-							}
-						}
-					}
-				}
-
-				### GHW ###
-				hbox = {
-					margin = { 10 5 }
-					ignoreinvisible = yes
-					spacing = 12
-					layoutpolicy_horizontal = expanding
-
-					background = {
-						using = Background_Area
-					}
-
-					### MY CONTRIBUTION
-					vbox = {
-						layoutpolicy_horizontal = expanding
-						datacontext = "[WarOverviewWindow.GetPlayerParticipantItem]"
-						visible = "[WarParticipantItem.ShowContribution]"
-
-						text_single = {
-							text = "WAR_OVERVIEW_MY_CONTRIBUTION"
 						}
 
 						hbox = {
 							layoutpolicy_horizontal = expanding
+							margin = { 10 0 }
+							spacing = 12
 
-							text_single = {
-								align = center
-								text = "[WarParticipantItem.GetContribution]"
+							background = {
+								using = Background_Area
 							}
 
-							text_single = {
-								align = center
-								text = "[WarParticipantItem.GetContributionPercentage|%]"
+							### MY CONTRIBUTION
+							vbox = {
+								layoutpolicy_horizontal = expanding
+								datacontext = "[WarOverviewWindow.GetPlayerParticipantItem]"
+								visible = "[WarParticipantItem.ShowContribution]"
+								visible_at_creation = no
+								margin = { 0 5 }
+
+								text_single = {
+									text = "WAR_OVERVIEW_MY_CONTRIBUTION"
+								}
+
+								hbox = {
+									layoutpolicy_horizontal = expanding
+
+									text_single = {
+										align = center
+										text = "[WarParticipantItem.GetContribution]"
+									}
+
+									text_single = {
+										align = center
+										text = "[WarParticipantItem.GetContributionPercentage|%]"
+									}
+
+									text_single = {
+										visible = "[And( WarOverviewWindow.ShowContributionRank, EqualTo_int32( WarOverviewWindow.GetContributionRank(GetPlayer), '(int32)0' ) )]"
+										align = center
+										text = "WAR_OVERVIEW_CONTRIBUTION_NO_RANK"
+									}
+
+									text_single = {
+										visible = "[And( WarOverviewWindow.ShowContributionRank, GreaterThan_int32( WarOverviewWindow.GetContributionRank(GetPlayer), '(int32)0' ) )]"
+										align = center
+										text = "WAR_OVERVIEW_CONTRIBUTION_RANK"
+									}
+								}
+
+								tooltip = "[WarParticipantItem.GetContributionTooltip]"
 							}
 
-							text_single = {
-								visible = "[And( WarOverviewWindow.ShowContributionRank, EqualTo_int32( WarOverviewWindow.GetContributionRank(GetPlayer), '(int32)0' ) )]"
-								align = center
-								text = "WAR_OVERVIEW_CONTRIBUTION_NO_RANK"
+							divider_light = {
+								layoutpolicy_vertical = expanding
+								visible = "[WarOverviewWindow.ShowBeneficiary]"
+								visible_at_creation = no
+
 							}
 
-							text_single = {
-								visible = "[And( WarOverviewWindow.ShowContributionRank, GreaterThan_int32( WarOverviewWindow.GetContributionRank(GetPlayer), '(int32)0' ) )]"
-								align = center
-								text = "WAR_OVERVIEW_CONTRIBUTION_RANK"
+							hbox = {
+								name = "ghw_info"
+								layoutpolicy_horizontal = expanding
+								visible = "[WarOverviewWindow.ShowBeneficiary]"
+								visible_at_creation = no
+
+								margin = { 0 5 }
+
+								vbox = {
+									layoutpolicy_horizontal = expanding
+
+									text_single = {
+										name = "beneficiary"
+										layoutpolicy_horizontal = expanding
+										align = left
+										text = "WAR_OVERVIEW_BENEFICIARY"
+									}
+
+									text_single = {
+										name = "beneficiary_name"
+										layoutpolicy_horizontal = expanding
+										align = left
+										text = "[WarOverviewWindow.GetBeneficiaryName]"
+									}
+								}
+
+								button_round = {
+									name = "change_beneficiary"
+									alwaystransparent = no
+
+									button_replace = {
+										onclick = "[OpenCharacterInteraction( 'select_ghw_beneficiary_interaction', GetPlayer )]"
+										shortcut = "war_change_beneficiary"
+										parentanchor = center
+									}
+
+									tooltip = "SELECT_GHW_BENEFICIARY"
+								}
+							}
+						}
+					}
+
+					spacer = {
+						size = { 10 10 }
+					}
+
+					#### WAR END TERMS ###
+					widget = {
+						visible = "[WarOverviewWindow.IsPeaceTermsOpen]"
+						visible_at_creation = no
+						layoutpolicy_horizontal = expanding
+						size = { 0 350 }
+						scissor = yes
+
+						state = {
+							name = _show
+							duration = 0.1
+							using = Animation_Curve_Default
+
+							alpha = 1
+							size = { 0 350}
+							start_sound = {
+								soundeffect = "event:/SFX/UI/Generic/Windows/sfx_ui_generic_window_standard"
 							}
 						}
 
-						tooltip = "[WarParticipantItem.GetContributionTooltip]"
+						state = {
+							name = _hide
+							duration = 0.3
+							using = Animation_Curve_Default
+
+							alpha = 0
+							size = { 0 0 }
+							start_sound = {
+								soundeffect = "event:/SFX/UI/Generic/Windows/sfx_ui_generic_window_standard"
+							}
+						}
+
+						vbox = {
+							margin = { 5 0 }
+							vbox = {
+								layoutpolicy_horizontal = expanding
+								layoutpolicy_vertical = expanding
+								spacing = 5
+								margin = { 15 15 }
+
+								background = {
+									using = Background_Tab_Area
+									mirror = vertical
+								}
+
+								state = {
+									name = "war_end_terms_refresh"
+									next = "b"
+									using = Animation_Refresh_FadeOut
+								}
+
+								state = {
+									name = "b"
+									using = Animation_Refresh_FadeIn
+								}
+
+								scrollbox = {
+									layoutpolicy_horizontal = expanding
+									layoutpolicy_vertical = expanding
+
+									blockoverride "scrollbox_content"
+									{
+										vbox = {
+											name = "effects_text"
+
+											text_single = {
+												name = "main_end_war_effect"
+												autoresize = yes
+												maximumsize = { 520 -1 }
+												minimumsize = { 520 -1 }
+												text = "[WarOverviewWindow.GetCurrentTabMainOutputDescription]"
+												default_format = "#high"
+												multiline = yes
+											}
+
+											text_single = {
+												name = "main_end_war_effect_spacing"
+												autoresize = yes
+												maximumsize = { 520 -1 }
+												minimumsize = { 520 -1 }
+												text = " "
+												multiline = yes
+											}
+
+											text_single = {
+												name = "other_end_war_effects"
+												autoresize = yes
+												maximumsize = { 520 -1 }
+												minimumsize = { 520 -1 }
+												text = "[WarOverviewWindow.GetCurrentTabEffectsDescription]"
+												multiline = yes
+												margin_bottom = 5
+											}
+										}
+									}
+								}
+
+								widget = {
+									name = "acceptance"
+									size = { 400 50 }
+									visible = "[And(WarOverviewWindow.IsPlayerParticipant, WarOverviewWindow.NeedsAnswer)]"
+									tooltip = "[WarOverviewWindow.GetAnswerReason]"
+
+									progressbar_standard = {
+										name = "answer_chance"
+										size = { 300 35 }
+										position = { 0 6 }
+										value = "[WarOverviewWindow.GetAnswerScore]"
+										parentanchor = hcenter
+									}
+
+									text_single = {
+										name = "answer"
+										size = { 100 40 }
+										position = { 0 10 }
+										align = center
+										text = "[WarOverviewWindow.GetAnswer]"
+										parentanchor = hcenter
+									}
+								}
+
+								expand = {
+									visible = "[Not(And(WarOverviewWindow.IsPlayerParticipant, WarOverviewWindow.NeedsAnswer))]"
+									size = { 400 50 }
+								}
+
+								### SEND BUTTON
+								button_primary = {
+									name = "send_button"
+									visible = "[WarOverviewWindow.IsPlayerParticipant]"
+									size = { 400 42 }
+									text = "[WarOverviewWindow.GetSendButtonLabel]"
+									enabled = "[WarOverviewWindow.CanSend]"
+									onclick = "[WarOverviewWindow.Send]"
+									clicksound = "event:/SFX/UI/Generic/sfx_ui_generic_advance"
+									tooltip = "[WarOverviewWindow.GetSendButtonTooltip]"
+								}
+							}
+						}
 					}
 
-					divider_light = {
-						layoutpolicy_vertical = expanding
-						visible = "[WarOverviewWindow.ShowBeneficiary]"
-					}
-
+					### BUTTONS ###
 					hbox = {
-						name = "ghw_info"
+						name = "tab_buttons"
+						ignoreinvisible = yes
+						margin = { 5 0 }
 						layoutpolicy_horizontal = expanding
-						visible = "[WarOverviewWindow.ShowBeneficiary]"
 
-						vbox = {
+						button_tab = {
+							name = "defeat_button"
 							layoutpolicy_horizontal = expanding
+							size = { 0 50 }
+							margin_left = 35
+							mirror = vertical
 
-							text_single = {
-								name = "beneficiary"
+							text = "TAB_DEFEAT"
+
+							onclick = "[PdxGuiTriggerAllAnimations('war_end_terms_refresh')]"
+							onclick = "[WarOverviewWindow.SetEffectsTabDefeat]"
+							shortcut = "war_surrender"
+							down = "[WarOverviewWindow.IsEffectsTabDefeat]"
+
+							war_defeat = {
+								alwaystransparent = yes
+								parentanchor = left|vcenter
+								position = { 10 0 }
+							}
+						}
+
+						button_tab = {
+							name = "white_peace_button"
+							layoutpolicy_horizontal = expanding
+							size = { 0 50 }
+							visible = "[WarOverviewWindow.GetWar.GetActiveCB.GetType.IsWhitePeacePossible]"
+							margin_left = 35
+							mirror = vertical
+
+							text = "TAB_WHITE_PEACE"
+
+							onclick = "[PdxGuiTriggerAllAnimations('war_end_terms_refresh')]"
+							onclick = "[WarOverviewWindow.SetEffectsTabWhitePeace]"
+							down = "[WarOverviewWindow.IsEffectsTabWhitePeace]"
+							shortcut = "war_white_peace"
+
+
+							war_peace = {
+								alwaystransparent = yes
+								parentanchor = left|vcenter
+								position = { 10 0 }
+							}
+						}
+
+						button_tab = {
+							name = "victory_button"
+							layoutpolicy_horizontal = expanding
+							size = { 0 50 }
+							margin_left = 35
+							mirror = vertical
+
+							text = "TAB_VICTORY"
+
+							onclick = "[PdxGuiTriggerAllAnimations('war_end_terms_refresh')]"
+							onclick = "[WarOverviewWindow.SetEffectsTabVictory]"
+							shortcut = "war_enforce_demands"
+							down = "[WarOverviewWindow.IsEffectsTabVictory]"
+
+							button = { 
+								size = { 0 0 }
+								shortcut = "confirm"
+								shortcut = "confirm_2"
+								onclick = "[PdxGuiTriggerAllAnimations('war_end_terms_refresh')]"
+								onclick = "[WarOverviewWindow.SetEffectsTabVictory]"
+								enabled = "[Not(Or(WarOverviewWindow.IsEffectsTabDefeat,Or(WarOverviewWindow.IsEffectsTabWhitePeace,WarOverviewWindow.IsEffectsTabVictory)))]"
+							}
+
+							animation_aggressive = {
+								name = "vicotry_glow"
 								layoutpolicy_horizontal = expanding
-								align = left
-								text = "WAR_OVERVIEW_BENEFICIARY"
+								minimumsize = { 0 40 }
+								visible = "[WarOverviewWindow.CanSendVictoryDemand]"
 							}
 
-							text_single = {
-								name = "beneficiary_name"
-								layoutpolicy_horizontal = expanding
-								align = left
-								text = "[WarOverviewWindow.GetBeneficiaryName]"
+							war_victory = {
+								alwaystransparent = yes
+								parentanchor = left|vcenter
+								position = { 10 0 }
 							}
-
-						}
-
-						button_round  = {
-							name = "change_beneficiary"
-							alwaystransparent = no
-
-							button_replace = {
-								onclick = "[OpenCharacterInteraction( 'select_ghw_beneficiary_interaction', GetPlayer )]"
-								shortcut = "war_change_beneficiary"
-								parentanchor = center
-							}
-
-							tooltip = "SELECT_GHW_BENEFICIARY"
 						}
 					}
 				}
 			}
 
-			#### WAR END TERMS ###
-			vbox = {
-				visible = "[WarOverviewWindow.IsPeaceTermsOpen]"
-				layoutpolicy_horizontal = expanding
-				layoutpolicy_vertical = expanding
-				minimumsize = { 0 410 }
-				spacing = 5
+			#### LEFT ####
+			icon = {
+				texture = "gfx/interface/window_war/decoration_defender.dds"
+				visible = "[Not(WarOverviewWindow.IsLeftSideAttacker)]"
 
-				state = {
-					name = "war_end_terms_refresh"
-					alpha = 0.5
-					duration = 0.2
-					next = "b"
-					using = Animation_Curve_Default
-				}
-
-				state = {
-					name = "b"
-					alpha = 1
-					duration = 0.2
-					using = Animation_Curve_Default
-				}
-
-				scrollbox = {
-					layoutpolicy_horizontal = expanding
-					layoutpolicy_vertical = expanding
-
-					blockoverride "scrollbox_content"
-					{
-						vbox = {
-							name = "effects_text"
-
-							text_single = {
-								name = "main_end_war_effect"
-								autoresize = yes
-								maximumsize = { 520 -1 }
-								minimumsize = { 520 -1 }
-								text = "[WarOverviewWindow.GetCurrentTabMainOutputDescription]"
-								default_format = "#high"
-								multiline = yes
-							}
-
-							text_single = {
-								name = "main_end_war_effect_spacing"
-								autoresize = yes
-								maximumsize = { 520 -1 }
-								minimumsize = { 520 -1 }
-								text = " "
-								multiline = yes
-							}
-
-							text_single = {
-								name = "other_end_war_effects"
-								autoresize = yes
-								maximumsize = { 520 -1 }
-								minimumsize = { 520 -1 }
-								text = "[WarOverviewWindow.GetCurrentTabEffectsDescription]"
-								multiline = yes
-								margin_bottom = 5
-							}
-						}
-					}
-				}
-
-				### ACCEPTANCE
-				widget = {
-					name = "acceptance"
-					size = { 400 50 }
-					visible = "[And(WarOverviewWindow.IsPlayerParticipant, WarOverviewWindow.NeedsAnswer)]"
-					tooltip = "[WarOverviewWindow.GetAnswerReason]"
-
-					progressbar_standard = {
-						name = "answer_chance"
-						size = { 300 35 }
-						position = { 0 6 }
-						value = "[WarOverviewWindow.GetAnswerScore]"
-						parentanchor = hcenter
-					}
-
-					text_single = {
-						name = "answer"
-						size = { 100 40 }
-						position = { 0 10 }
-						align = center
-						text = "[WarOverviewWindow.GetAnswer]"
-						parentanchor = hcenter
-					}
-				}
-
-				expand = {
-					visible = "[Not(And(WarOverviewWindow.IsPlayerParticipant, WarOverviewWindow.NeedsAnswer))]"
-					size = { 400 50 }
-				}
-
-				### SEND BUTTON
-				button_primary = {
-					name = "send_button"
-					visible = [WarOverviewWindow.IsPlayerParticipant]
-					size = { 400 42 }
-					text = "[WarOverviewWindow.GetSendButtonLabel]"
-					enabled = "[WarOverviewWindow.CanSend]"
-					onclick = "[WarOverviewWindow.Send]"
-					clicksound = "event:/SFX/UI/Generic/sfx_ui_generic_advance"
-
-					tooltip = "[WarOverviewWindow.GetSendButtonTooltip]"
-				}
-
-				spacer = {
-					size = { 10 10 }
-				}
+				size = { 120 270}
+				position = { -94 0 }
+				parentanchor = bottom|left
+				widgetanchor = bottom|left
 			}
 
-			### BUTTONS ###
-			hbox = {
-				name = "tab_buttons"
-				ignoreinvisible = yes
-				spacing = 5
-				margin_bottom = 10
-				margin_left = 10
-				margin_right = 10
-				layoutpolicy_horizontal = expanding
+			icon = {
+				texture = "gfx/interface/window_war/decoration_attacker.dds"
+				visible = "[WarOverviewWindow.IsLeftSideAttacker]"
+				mirror = horizontal
 
-				button_standard = {
-					name = "defeat_button"
-					layoutpolicy_horizontal = expanding
-					minimumsize = { 0 45 }
-
-					onclick = "[PdxGuiTriggerAllAnimations('war_end_terms_refresh')]"
-					onclick = "[WarOverviewWindow.SetEffectsTabDefeat]"
-					shortcut = "war_surrender"
-					down = "[WarOverviewWindow.IsEffectsTabDefeat]"
-
-					text = "TAB_DEFEAT"
-					margin_left = 35
-
-					war_defeat = {
-						alwaystransparent = yes
-						parentanchor = left|vcenter
-						position = { 5 0 }
-					}
-				}
-
-				button_standard = {
-					name = "white_peace_button"
-					layoutpolicy_horizontal = expanding
-					visible = "[WarOverviewWindow.GetWar.GetActiveCB.GetType.IsWhitePeacePossible]"
-					minimumsize = { 0 45 }
-
-					onclick = "[PdxGuiTriggerAllAnimations('war_end_terms_refresh')]"
-					onclick = "[WarOverviewWindow.SetEffectsTabWhitePeace]"
-					down = "[WarOverviewWindow.IsEffectsTabWhitePeace]"
-					shortcut = "war_white_peace"
-
-					text = "TAB_WHITE_PEACE"
-					margin_left = 35
-
-					war_peace = {
-						alwaystransparent = yes
-						parentanchor = left|vcenter
-						position = { 5 0 }
-					}
-				}
-
-				button_standard = {
-					name = "victory_button"
-					layoutpolicy_horizontal = expanding
-					minimumsize = { 200 45 }
-
-					onclick = "[PdxGuiTriggerAllAnimations('war_end_terms_refresh')]"
-					onclick = "[WarOverviewWindow.SetEffectsTabVictory]"
-					shortcut = "war_enforce_demands"
-					down = "[WarOverviewWindow.IsEffectsTabVictory]"
-
-					button = { 
-						size = { 0 0 }
-						shortcut = "confirm"
-						shortcut = "confirm_2"
-						onclick = "[PdxGuiTriggerAllAnimations('war_end_terms_refresh')]"
-						onclick = "[WarOverviewWindow.SetEffectsTabVictory]"
-						enabled = "[Not(Or(WarOverviewWindow.IsEffectsTabDefeat,Or(WarOverviewWindow.IsEffectsTabWhitePeace,WarOverviewWindow.IsEffectsTabVictory)))]"
-					}
-
-					text = "TAB_VICTORY"
-
-					margin_left = 35
-
-					war_victory = {
-						alwaystransparent = yes
-						parentanchor = left|vcenter
-						position = { 5 0 }
-					}
-
-					animation_aggressive = {
-						name = "vicotry_glow"
-						layoutpolicy_horizontal = expanding
-						minimumsize = { 0 40 }
-						visible = "[WarOverviewWindow.CanSendVictoryDemand]"
-					}
-				}
+				size = { 120 270}
+				position = { -94 0 }
+				parentanchor = bottom|left
+				widgetanchor = bottom|left
 			}
-		}
 
-		icon = {
-			position = { -82 0 }
-			parentanchor = bottom|left
-			widgetanchor = bottom|left
-			texture = "gfx/interface/combat/war_decoration_left.dds"
-		}
+			#### RIGHT ####
+			icon = {
+				texture = "gfx/interface/window_war/decoration_attacker.dds"
+				visible = "[Not(WarOverviewWindow.IsLeftSideAttacker)]"
 
-		icon = {
-			position = { 82 0 }
-			parentanchor = bottom|right
-			widgetanchor = bottom|right
-			texture = "gfx/interface/combat/war_decoration_right.dds"
+				size = { 120 270}
+				position = { 94 0 }
+				parentanchor = bottom|right
+				widgetanchor = bottom|right
+			}
+
+			icon = {
+				texture = "gfx/interface/window_war/decoration_defender.dds"
+				visible = "[WarOverviewWindow.IsLeftSideAttacker]"
+				mirror = horizontal
+
+				size = { 120 270}
+				position = { 94 0 }
+				parentanchor = bottom|right
+				widgetanchor = bottom|right
+			}
 		}
 	}
 
@@ -1248,7 +2423,7 @@ window = {
 				}
 			}
 
-			###LIST ###
+			### LIST ###
 			scrollbox = {
 				name = "characters_scroll_area"
 				layoutpolicy_vertical = expanding
@@ -1309,3 +2484,209 @@ window = {
 		}
 	}
 }
+
+template Background_WarOverview
+{
+	texture = "gfx/interface/window_war/window_background.dds"
+	spriteType = Corneredtiled
+	spriteborder_right = 410
+	spriteborder_bottom = -10
+}
+
+template Background_WarOverview_2
+{
+	texture = "gfx/interface/window_war/window_background_2.dds"
+	spriteType = Corneredtiled
+	spriteborder_bottom = -10
+}
+
+template Background_WarOverview_Pattern
+{
+	texture = "gfx/interface/component_masks/patterns/mask_pattern_03.dds"
+	spriteType = corneredtiled
+	color = { 0.1 0.1 0.12 1 }
+	texture_density = 0.6
+
+	modify_texture = {
+		texture = "gfx/interface/window_war/window_background.dds"
+		blend_mode = alphamultiply
+	}
+
+	modify_texture = {
+		texture = "gfx/interface/component_masks/mask_clouds.dds"
+		blend_mode = alphamultiply
+	}
+}
+
+template Background_WarOverview_Pattern_2
+{
+	texture = "gfx/interface/component_masks/patterns/mask_pattern_03.dds"
+	spriteType = corneredtiled
+	color = { 0.1 0.1 0.12 1 }
+	texture_density = 0.6
+
+	modify_texture = {
+		texture = "gfx/interface/window_war/window_background_2.dds"
+		blend_mode = alphamultiply
+	}
+
+	modify_texture = {
+		texture = "gfx/interface/component_masks/mask_clouds.dds"
+		blend_mode = alphamultiply
+	}
+}
+
+template Background_WarOverview_Frame
+{
+	texture = "gfx/interface/window_war/window_frame.dds"
+	spriteType = Corneredtiled
+	spriteborder_right = 410
+	spriteborder_bottom = -10
+}
+
+template Background_WarOverview_Frame_2
+{
+	texture = "gfx/interface/window_war/window_frame_2.dds"
+	spriteType = Corneredtiled
+	spriteborder_bottom = -10
+}
+
+template Background_WarOverview_Ally
+{
+
+	background = {
+		using = Background_Area_Solid
+		margin = { 10 0 }
+		margin_top = -145
+		margin_bottom = -85
+	}
+
+	background = {
+		texture = "gfx/portraits/portrait_frame.dds"
+		using = Color_Grey
+		margin = { 5 -5 }
+		margin_top = -150
+		margin_bottom = -90
+
+		alpha = 0.4
+
+		spriteType = Corneredtiled
+		spriteborder = { 3 3 }
+	}
+}
+
+template Background_WarOverview_3
+{
+	background = {
+		name = "background"
+		texture = "gfx/interface/component_tiles/tile_window_background_no_edge.dds"
+
+		spriteType = Corneredtiled
+		spriteborder = { 5 5 }
+		color = { 1.77 1.77 1.80 1 }
+
+		margin_top = -120
+		alpha = 0.5
+
+		modify_texture = {
+			texture = "gfx/interface/component_overlay/overlay_window.dds"
+			blend_mode = overlay
+		}
+	}
+
+	background = {
+		texture = "gfx/interface/component_tiles/tile_frame_subwindow_01.dds"
+
+		spriteType = Corneredtiled
+		spriteborder = { 10 10 }
+
+		margin = { 5 0}
+		margin_top = -114
+	}
+}
+
+### ANIMATIONS
+template Animation_WarOverview_Blood
+{
+	state = {
+		name = "war_overview_show"
+		next = b
+		delay = 0.5
+		alpha = 0
+	}
+
+	state = {
+		name = b
+		duration = 3.5
+		alpha = 1
+	}
+
+	state = {
+		name = "war_overview_hide"
+		duration = 0.25
+		using = Animation_Curve_Default
+		alpha = 0
+	}
+}
+
+types WarOverView
+{
+	type icon_blood_splatter = highlight_icon {
+		size = { 474 270 }
+		parentanchor = bottom|hcenter
+
+		texture = "gfx/interface/window_war/blood.dds"
+		spriteType = Corneredtiled
+		spriteborder_right = 410
+
+		modify_texture = {
+			name = "mask"
+			texture = "gfx/interface/window_war/window_frame_broken.dds"
+			blend_mode = mask
+		}
+
+		using = Animation_WarOverview_Blood
+	}
+
+	type icon_blood_splatter_2 = highlight_icon {
+		size = { 350 270 }
+		parentanchor = bottom|hcenter
+
+		texture = "gfx/interface/window_war/blood_2.dds"
+		spriteType = Corneredtiled
+		spriteborder = { 238 0 }
+		spriteborder_bottom = -10
+
+		modify_texture = {
+			name = "mask"
+			texture = "gfx/interface/component_masks/mask_fade_circle.dds"
+			blend_mode = mask
+		}
+
+		using = Animation_WarOverview_Blood
+	}
+
+	type icon_cloth_tears = highlight_icon {
+		size = { 474 280 }
+		parentanchor = bottom|hcenter
+
+		texture = "gfx/interface/window_war/window_frame_broken.dds"
+		spriteType = Corneredtiled
+		spriteborder_right = 410
+		spriteborder_bottom = -10
+
+		using = Animation_ShowHide_Standard
+	}
+
+	type icon_cloth_tears_2 = highlight_icon {
+		size = { 350 280 }
+		parentanchor = bottom|hcenter
+
+		texture = "gfx/interface/window_war/window_frame_broken_2.dds"
+		spriteType = Corneredtiled
+		spriteborder_bottom = -10
+
+		using = Animation_ShowHide_Standard
+	}
+}
+

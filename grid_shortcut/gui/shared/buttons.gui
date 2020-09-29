@@ -3,12 +3,6 @@
 ################## BUTTON TEMPLATES ##################
 ######################################################
 
-
-template Button_Shared_Stuff_Temp
-{
-
-}
-
 types Buttons
 {
     type button_primary_big = button_primary
@@ -27,12 +21,12 @@ types Buttons
         }
     }
 
-
     type button_primary = button_standard
     {
         texture = "gfx/interface/buttons/button_verb_primary.dds"
         shortcut = confirm
         shortcut = confirm_2
+        clicksound = "event:/SFX/UI/Generic/sfx_ui_generic_confirm"
 
         buttonText = {
             text_single = {
@@ -48,6 +42,18 @@ types Buttons
     type button_tertiary = button_frontend
     {
         size = { 170 33 }
+        texture = "gfx/interface/buttons/button_tertiary.dds"
+
+        gfxtype = framedbuttongfx
+        effectname = "NoHighlight"
+        upframe = 1
+        overframe = 2
+        downframe = 3
+        framesize = { 210 36 }
+
+
+        spriteType = Corneredtiled
+        spriteborder = { 22 20 }
 
         buttonText = {
             text_single = {
@@ -57,6 +63,22 @@ types Buttons
                 align = center|nobaseline
                 default_format = "#clickable"
                 using = Font_Size_Small
+            }
+        }
+    }
+
+    type button_standard_big = button_standard
+    {
+        size = { 250 42 }
+
+        buttonText = {
+            text_single = {
+                size = { 100% 100% }
+                autoresize = no
+                margin = { 10 0 }
+                align = center|nobaseline
+                default_format = "#clickable"
+                using = Font_Size_Medium
             }
         }
     }
@@ -166,24 +188,9 @@ types Buttons
                     name = "vignette"
                     size = { 100% 100% }
                     alpha = 0.2
-                    texture = "gfx/interface/hud/pause_border.dds"
+                    texture = "gfx/interface/component_masks/mask_vignette.dds"
+                    color = { 0.15 0.15 0.15 1 }
                 }
-            }
-        }
-    }
-
-    type button_standard_big = button_standard
-    {
-        size = { 250 42 }
-       
-        buttonText = {
-            text_single = {
-                size = { 100% 100% }
-                autoresize = no
-                margin = { 10 0 }
-                align = center|nobaseline
-                default_format = "#clickable"
-                using = Font_Size_Medium
             }
         }
     }
@@ -207,15 +214,62 @@ types Buttons
         texture = "gfx/interface/buttons/button_standard_clean_weak.dds"
     }
 
-    # Highlight used to show current selected Option
-    type button_highlight = icon {
-        size = { 100% 100% }
-        texture = "gfx/interface/buttons/background_frame.dds"
-        using = Color_Bright_Yellow
+    type button_standard_hover = button_standard_clean {
+        texture = "gfx/interface/buttons/button_standard_clean.dds"
+        upframe = 9
     }
 
-    type button_standard_hover = button_standard_clean {
-        upframe = 8
+    type button_sidepanel_right = button_standard_hover {
+        minimumsize = { -1 20 }
+
+        flowcontainer = {
+            resizeparent = yes
+            margin = { 3 3 }
+            margin_left = 7
+
+            text_single = {
+                block "button_text"{}
+
+                align = nobaseline
+                default_format = "#clickable"
+            }
+
+            button_select_arrow = {
+                size = { 20 20 }
+                alwaystransparent = yes
+            }
+        }
+    }
+
+    type button_standard_select_arrow = button_standard {
+        size = { 170 33 }
+
+        hbox = {
+            layoutpolicy_horizontal = expanding
+            margin = { 5 0 }
+
+            spacer = {
+                size = { 20 20 }
+            }
+
+            expand = {}
+
+            text_single = {
+                layoutpolicy_horizontal = expanding
+                align = center|nobaseline
+                default_format = "#clickable"
+                autoresize = no
+
+                block "button_text"{}
+            }
+
+            expand = {}
+
+            button_select_arrow = {
+                size = { 20 20 }
+                alwaystransparent = yes
+            }
+        }
     }
 
     type button_list = button_normal
@@ -322,7 +376,7 @@ types Buttons
         size = { 50 50 }
 
         framesize = { 100 100 }
-        texture = "gfx/interface/tiles/button_tab_round.dds"
+        texture = "gfx/interface/buttons/button_tab_round.dds"
 
         # upframe = 1
         # uphoverframe = 2
@@ -336,14 +390,19 @@ types Buttons
     # For main menu
     type button_frontend = button_normal
     {
-        size = { 391 69 }
+        texture = "gfx/interface/buttons/button_frontend.dds"
+        size = { 310 55 }
         gfxtype = framedbuttongfx
         effectname = "NoHighlight"
         upframe = 1
         overframe = 2
         downframe = 3
         framesize = { 391 69 }
-        texture = "gfx/interface/frontend/button_frontend.dds"
+
+
+        spriteType = Corneredtiled
+        spriteborder = { 50 30 }
+
 
         buttonText = {
             text_single = {
@@ -355,6 +414,7 @@ types Buttons
                 using = Font_Size_Medium
             }
         }
+
     }
 
     type button_event_standard = button_normal
@@ -373,7 +433,7 @@ types Buttons
         disableframe = 7
         spriteType = Corneredtiled
         spriteborder = { 3 3 }
-        framesize  = { 249 78 }
+        framesize = { 249 78 }
 
         highlight_icon = {
             size = { 98% 100% }
@@ -409,7 +469,7 @@ types Buttons
         overframe = 2
         downframe = 3
         disableframe = 4
-        texture = "gfx/interface/event_window/options_button.dds"
+        texture = "gfx/interface/buttons/button_event_letter.dds"
         framesize = { 175 37 }
         spriteType = Corneredtiled
         spriteborder = { 7 7 }
@@ -420,7 +480,7 @@ types Buttons
 
         modify_texture = {
             name = "paper_texture_overlay"
-            texture = "gfx/interface/event_window/paper_texture_overlay.dds"
+            texture = "gfx/interface/window_event/paper_texture_overlay.dds"
             spriteType = Corneredtiled
             spriteborder = { 0 0 }
             blend_mode = overlay
@@ -428,7 +488,7 @@ types Buttons
 
         modify_texture = {
             name = "shading_overlay"
-            texture = "gfx/interface/event_window/options_button_overlay.dds"
+            texture = "gfx/interface/buttons/button_event_letter_overlay.dds"
             spriteType = Corneredstretched
             spriteborder = { 0 0 }
             blend_mode = overlay
@@ -436,7 +496,7 @@ types Buttons
 
         modify_texture = {
             name = "mask"
-            texture = "gfx/interface/tiles/tile_fade_mask_2.dds"
+            texture = "gfx/interface/component_masks/mask_fade_horizontal_middle_thick.dds"
             spriteType = Corneredtiled
             spriteborder_left = 40
             spriteborder_right = 40
@@ -455,7 +515,7 @@ types Buttons
         downframe = 3
         disableframe = 4
 
-        texture = "gfx/interface/event_window/options_button.dds"
+        texture = "gfx/interface/buttons/button_event_letter.dds"
         framesize = { 175 37 }
         spriteType = Corneredtiled
         spriteborder = { 7 7 }
@@ -466,7 +526,7 @@ types Buttons
 
         modify_texture = {
             name = "paper_texture_overlay"
-            texture = "gfx/interface/event_window/paper_texture_overlay.dds"
+            texture = "gfx/interface/window_event/paper_texture_overlay.dds"
             spriteType = Corneredtiled
             spriteborder = { 0 0 }
             blend_mode = overlay
@@ -474,14 +534,13 @@ types Buttons
 
         modify_texture = {
             name = "shading_overlay"
-            texture = "gfx/interface/event_window/options_button_overlay.dds"
+            texture = "gfx/interface/buttons/button_event_letter_overlay.dds"
             spriteType = Corneredstretched
             spriteborder = { 0 30 }
             blend_mode = overlay
         }
     }
 
-    ### Icon Buttons backgrounds
     type icon_button_decorative = button
     {
         gfxtype = framedbuttongfx
@@ -494,31 +553,63 @@ types Buttons
         size = { 47 47 }
     }
 
-    # This type is kind of deprecated, big_round does not have radio version atm, and this is only used for map modes now anyway.
-    type icon_button_small_round_radio = button
-    {
-        gfxtype = updownframedbuttongfx
-        effectname = "NoHighlight"
+    type icon_button_mapmode = widget {
+        size = { 40 40 }
 
-        upframe = 1
-        overframe = 2
-        downframe = 4
+        icon = {
+            size = { 100% 100% }
+            texture = "gfx/interface/component_masks/mask_circle.dds"
 
-        texture = "gfx/interface/buttons/button_small_round.dds"
-        framesize = { 82 82 }
-        size = { 41 41 }
+            block = "mm_glow"
+            {
+                visible = yes
+            }
+
+            glow = {
+                color = { 0.93 0.65 0.45 1.0 }
+                glow_radius = 6
+
+                glow_generation_rules= {
+                    glow_max_radius = 40
+                    glow_alpha_mask = 0
+                    glow_blur_passes = 10
+                    glow_texture_downscale = 5.5f
+                    glow_ignore_inside_pixels = yes
+                }
+            }
+
+            using = Animation_Glow_Pulse
+        }
+
+        button_round = {
+            size = { 100% 100% }
+            using = tooltip_nw
+
+            block "mm_button" {}
+
+            button_icon = {
+                parentanchor = center
+                alwaystransparent = yes
+                block "mm_icon" {}
+            }
+        }
     }
 
-    type button_round  = button
-    {
-        gfxtype = framedbuttongfx
-        effectname = "NoHighlight"
-        upframe = 1
-        overframe = 2
-        downframe = 3
-        texture = "gfx/interface/buttons/button_big_round.dds"
-        framesize = { 94 94 }
-        size = { 42 42 }
+    type button_round = button_icon {
+        size = { 40 40 }
+        texture = "gfx/interface/buttons/button_round_frame.dds"
+
+        background = {
+            texture = "gfx/interface/buttons/button_round_bg.dds"
+            using = Color_Button_Background
+
+            block "button_bg_color" {}
+
+            modify_texture = {
+                texture = "gfx/interface/component_overlay/overlay_texture.dds"
+                blend_mode = overlay
+            }
+        }
     }
 
     ## The standard close/minimize etc. buttons used on most windows
@@ -561,10 +652,11 @@ types Buttons
             }
         }
 
-        button_icon = {
+        button_me = {
             name = "button_me"
-            texture = "gfx/interface/buttons/button_icons/window_me.dds"
             tooltip = "CV_TOOLTIP_ME_BUTTON"
+
+            using = tooltip_se
 
             using = Animation_ShowHide_Standard
 
@@ -573,10 +665,9 @@ types Buttons
             }
         }
 
-        button_icon = {
+        button_back = {
             name = "button_back"
             shortcut = "go_back"
-            texture = "gfx/interface/buttons/button_icons/window_back.dds"
             clicksound = "event:/SFX/UI/Generic/sfx_ui_generic_close"
 
             using = Animation_ShowHide_Standard
@@ -586,11 +677,10 @@ types Buttons
             }
         }
 
-        button_icon = {
+        button_minimize = {
             name = "button_minimize"
             shortcut = "close_window"
             tooltip = "MINIMIZE_TOOLTIP"
-            texture = "gfx/interface/buttons/button_icons/window_minimize.dds"
             clicksound = "event:/SFX/UI/Generic/sfx_ui_generic_close"
 
             using = Animation_ShowHide_Standard
@@ -600,11 +690,10 @@ types Buttons
             }
         }
 
-        button_icon = {
+        button_close = {
             name = "button_close"
             shortcut = "close_window"
             tooltip = "CLOSE_TOOLTIP"
-            texture = "gfx/interface/buttons/button_icons/window_close.dds"
             clicksound = "event:/SFX/UI/Generic/sfx_ui_generic_close"
 
             using = Animation_ShowHide_Standard
@@ -613,34 +702,133 @@ types Buttons
         }
     }
 
-    # individual backbutton icon
-    type button_back = button_icon {
-        name = "button_back_standard"
-        texture = "gfx/interface/buttons/button_icons/window_back.dds"
-        size = { 25 25 }
+    type button_checkbox_label = button_group {
+
+        using = tooltip_se
+        flowcontainer = {
+            spacing = 5
+
+            button_checkbox = {
+                block "checkbox" {}
+            }
+
+            text_single = {
+                parentanchor = vcenter
+                align = nobaseline
+                default_format = "#clickable"
+
+                block "text" {
+                    text = "DEFAULT TEXT"
+                }
+            }
+        }
     }
 
     type button_checkbox = checkbutton {
         name = "button_checkbox"
         texture = "gfx/interface/buttons/button_checkbox.dds"
         framesize = { 80 80 }
-        size = { 25 25 }
-        clicksound = "event:/SFX/UI/Generic/sfx_ui_generic_checkbox"
+        size = { 30 30 }
+
+        using = Master_Button_Modify_Texture
+        blockoverride "master_color_frame" {
+            frame = 1
+        }
+
+        background = {
+            texture = "gfx/interface/buttons/button_checkbox_background.dds"
+            margin = { 1 1 }
+        }
+    }
+
+    type button_radio_label = button_group {
+
+        using = tooltip_se
+        flowcontainer = {
+            spacing = 5
+
+            button_radio = {
+                block "radio" {}
+
+                background = {
+                    texture = "gfx/interface/buttons/button_round_big.dds"
+                    alpha = 0.5
+                }
+            }
+
+            text_single = {
+                parentanchor = vcenter
+                align = nobaseline
+                default_format = "#clickable"
+
+                block "text" {
+                    text = "DEFAULT TEXT"
+                }
+            }
+        }
     }
 
     type button_radio = button_toggle {
         name = "button_checkbox"
         texture = "gfx/interface/buttons/button_radio.dds"
+        using = Master_Button_Modify_Texture
+
         framesize = { 80 80 }
-        size = { 25 25 }
-        clicksound = "event:/SFX/UI/Generic/sfx_ui_generic_checkbox"
+        size = { 30 30 }
+
+        background = {
+            texture = "gfx/interface/buttons/button_round_bg.dds"
+            using = Color_Button_Background
+
+            block "button_bg_color" {}
+
+            modify_texture = {
+                texture = "gfx/interface/component_overlay/overlay_texture.dds"
+                blend_mode = overlay
+            }
+        }
     }
 
     type button_expand = button_toggle {
         size = { 18 18 }
         texture = "gfx/interface/buttons/button_tree_expand.dds"
         framesize = { 36 36 }
-        clicksound = "event:/SFX/UI/Generic/sfx_ui_generic_checkbox"
+        gfxtype = togglepushbuttongfx
+
+        upframe = 1
+        uphoverframe = 1
+        uppressedframe = 1
+        downframe = 2
+        downhoverframe = 2
+        downpressedframe = 2
+    }
+
+    type button_standard_back = button_standard {
+        block "text" {
+            text = "BACK_LABEL"
+        }
+
+        button_back = {
+            parentanchor =  left|vcenter
+            position = { 5 0 }
+            size = { 25 25 }
+            alwaystransparent = yes
+        }
+    }
+
+    # Marker used to show current selected Option
+    type button_active_marker = icon {
+        parentanchor = top|hcenter
+        position = { 0 -5 }
+        texture = "gfx/interface/buttons/button_sort_toggle.dds"
+        framesize = { 36 36 }
+        size = { 24 24 }
+        frame = 1
+
+        using = Master_Button_Modify_Texture
+        blockoverride "master_color_frame" {
+            frame = 1
+        }
     }
 
     # For dropdown filter
@@ -670,6 +858,7 @@ types Buttons
         }
     }
 
+    # For dropdown filter options
     type button_dropdown = button_normal {
         size = { 225 30 }
         button_trigger = none
@@ -680,7 +869,7 @@ types Buttons
         overframe = 2
         downframe = 3
         disableframe = 1
-        texture = "gfx/interface/character_interaction/interaction_menu_button.dds"
+        texture = "gfx/interface/buttons/button_interaction_menu.dds"
         framesize = { 317 30 }
         clicksound = "event:/SFX/UI/Generic/sfx_ui_generic_checkbox"
 
@@ -695,65 +884,11 @@ types Buttons
     }
 
     type button_religion_icon = button {
-
         # Needs a Faith Data Context!
-
         name = "faith_button"
         size = { 65 65 }
         onclick = "[DefaultOnFaithClick(Faith.GetID)]"
         tooltipwidget = { faith_tooltip_click = {} }
         texture = "[Faith.GetIcon]"
-    }
-
-    # Do not use
-    type button_entry_old = button
-    {
-        gfxtype = togglepushbuttongfx
-        effectname = "NoHighlight"
-
-        upframe = 1
-        uphoverframe = 2
-        uppressedframe = 3
-        downframe = 4
-        downhoverframe = 5
-        downpressedframe = 6
-        texture = "gfx/interface/buttons/button_entry_01.dds"
-        spriteType = Corneredtiled
-        spriteborder = { 3 3 }
-        framesize  = { 249 78 }
-
-        block "overlay" {
-            modify_texture = {
-                name = "overlay"
-                texture = "gfx/interface/buttons/button_entry_01_overlay.dds"
-                spriteType = Corneredstretched
-                spriteborder = { 2 2 }
-                blend_mode = overlay
-            }
-        }
-    }
-
-    type button_standard_old = game_button {
-        text = "Words.."
-        #   using = framed_clickbutton
-
-        upframe = 1
-        overframe = 2
-        downframe = 3
-        texture = "gfx/interface/buttons/button_standard.dds"
-        framesize = { 251 80 }
-        spriteType = Corneredtiled
-        spriteborder = { 3 3 }
-        size = { 180 42 }
-
-        block "overlay" {
-            modify_texture = {
-                name = "overlay"
-                texture = "gfx/interface/buttons/button_standard_overlay.dds"
-                spriteType = Corneredstretched
-                spriteborder = { 3 3 }
-                blend_mode = overlay
-            }
-        }
     }
 }

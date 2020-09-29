@@ -186,8 +186,7 @@ types Filters {
 									frame = 4
 								}
 
-								texture = "gfx/interface/buttons/button_icons/search.dds"
-								mirror = horizontal
+								texture = "gfx/interface/icons/flat_icons/search.dds"
 							}
 
 							editbox = {
@@ -210,7 +209,7 @@ types Filters {
 
 							button_icon = {
 								name = "cross"
-								texture = "gfx/interface/buttons/button_icons/window_close.dds"
+								texture = "gfx/interface/icons/flat_icons/window_close.dds"
 								onclick = "[CharacterSelectionList.ClearPattern]"
 								visible = "[CharacterSelectionList.HasTextInEdit]"
 								tooltip = "CHARACTER_LIST_CLEAR"
@@ -264,7 +263,7 @@ types Filters {
 												name = "cross"
 												alwaystransparent = yes
 												visible = "[PatternItem.IsSelected]"
-												texture = "gfx/interface/buttons/button_icons/window_close.dds"
+												texture = "gfx/interface/icons/flat_icons/window_close.dds"
 												size = {16 16}
 											}
 											hbox = {

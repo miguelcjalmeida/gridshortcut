@@ -44,6 +44,8 @@ widget = {
 		ignoreinvisible = yes
 		allow_outside = yes
 
+		using = Animation_ShowHide_Quick
+
 		widget = {
 			parentanchor = hcenter
 			allow_outside = yes
@@ -63,7 +65,7 @@ widget = {
 					#using = Animation_MapIcon_Fade
 					#blockoverride "icon_size"
 					#{
-						size = { 234 45 }
+					size = { 234 45 }
 					#}
 				}
 
@@ -313,6 +315,8 @@ container = {
 
 	button_rally_point = {
 		datacontext = "[RallyPointMapIcon.GetRallyPoint]"
+		visible = "[RallyPointMapIcon.ShouldBeShown]"
+		alwaystransparent = "[Not( RallyPointMapIcon.CanClick )]" # Ignore the clicks if we are moving or placing a rally point so it filters through to the map to handle it instead of trying to show the info of the not existing rally point
 	}
 }
 
@@ -326,7 +330,7 @@ widget = {
 
 	icon = {
 		name = "ford_icon"
-		texture = "gfx/interface/mapitems/ford.dds"
+		texture = "gfx/interface/icons/map_icons/ford.dds"
 		visible = "[StraitMapIcon.ShouldBeShown]"
 	}
 }
@@ -341,7 +345,7 @@ widget = {
 
 	icon = {
 		name = "strait_icon"
-		texture = "gfx/interface/mapitems/strait.dds"
+		texture = "gfx/interface/icons/map_icons/strait.dds"
 		visible = "[StraitMapIcon.ShouldBeShown]"
 	}
 }
@@ -355,7 +359,8 @@ container = {
 	# Animations have been removed for now, should be part of map_realm_coa types
 
 	background = {
-		texture = "gfx/interface/temp/temp_bg_event_window_fade.dds"
+		texture = "gfx/interface/component_masks/mask_fade_circle.dds"
+		color = { 0.1 0.1 0.1 1 }
 		visible = "[TitleCapitalMapIcon.GetTitle.GetHolder.IsValid]"
 		margin = { 15 5 }
 		margin_bottom = 15
@@ -376,9 +381,9 @@ container = {
 
 	icon = {
 		name = "prediction_icon"
-		texture = "gfx/interface/mapitems/combat_prediction_icon.dds"
+		texture = "gfx/interface/icons/map_icons/combat_prediction_icon.dds"
 		size = { 40 40 }
-		framesize = { 60 60 }
+		framesize = { 120 120 }
 		frame = "[CombatPredictionMapIcon.GetPredictionLevelFrame]"
 		tooltipwidget = {
 			using = combat_prediction_tooltip
@@ -397,7 +402,7 @@ container = {
 
 	icon = {
 		name = "prediction_icon"
-		texture = "gfx/interface/mapitems/naval_transportation.dds"
+		texture = "gfx/interface/icons/map_icons/naval_transportation.dds"
 		position = { 10 0 }
 	}
 
@@ -428,7 +433,6 @@ container = {
 	name = "council_task_widget"
 
 	flowcontainer_active_tasks = {
-		visible = "[Not( IsDefaultGUIMode )]"
 		widgetanchor = center
 		datamodel = "[ActiveCouncilTaskIcon.GetTasks]"
 	}
@@ -445,7 +449,7 @@ widget = {
 		name = "attrition"
 		position = { 0 0 }
 		size = { 30 30 }
-		texture = "gfx/interface/mapitems/attrition_icon.dds"
+		texture = "gfx/interface/icons/map_icons/attrition_icon.dds"
 	}
 }
 
@@ -458,7 +462,8 @@ widget = {
 	datacontext = "[GuiHolySiteItem.GetHolySite]"
 
 	background = {
-		texture = "gfx/interface/temp/temp_bg_event_window_fade.dds"
+		texture = "gfx/interface/component_masks/mask_fade_circle.dds"
+		color = { 0.1 0.1 0.1 1 }
 		margin = { 10 10 }
 		alpha = 0.6
 	}
@@ -502,25 +507,25 @@ types MapIcons
 			visible = "[CapitalMapIcon.IsAtWarWithMe]"
 
 			parentanchor = center
-			texture = "gfx/interface/mapitems/at_war_icon.dds" ### STATIC, SILHOUETTE SHAPE
+			texture = "gfx/interface/icons/map_coa/at_war_icon.dds"
 			size = { 95% 95% }
 
 			modify_texture = {
 				name = anim_mask1
-				texture = "gfx/interface/mapitems/at_war_icon_anim_mask.dds"
+				texture = "gfx/interface/icons/map_coa/at_war_mask.dds"
 				blend_mode = alphamultiply
 
 			}
 
 			modify_texture = {
 				name = anim_mask2
-				texture = "gfx/interface/mapitems/at_war_icon_anim_mask.dds"
+				texture = "gfx/interface/icons/map_coa/at_war_mask.dds"
 				blend_mode = alphamultiply
 			}
 
 			modify_texture = {
 				name = overlay
-				texture = "gfx/interface/mapitems/at_war_icon_modify_texture.dds"
+				texture = "gfx/interface/icons/map_coa/at_war_effect.dds"
 				blend_mode = colordodge
 			}
 
@@ -603,12 +608,12 @@ types MapIcons
 			}
 
 			parentanchor = center
-			texture = "gfx/interface/mapitems/ally_war_icon.dds"
+			texture = "gfx/interface/icons/map_coa/ally_icon.dds"
 			size = { 100% 100% }
 
 			modify_texture = {
 				name = overlay
-				texture = "gfx/interface/mapitems/ally_war_icon_modify_icon.dds"
+				texture = "gfx/interface/icons/map_coa/ally_effect.dds"
 				blend_mode = colordodge
 				rotate_uv = 0
 			}
@@ -654,7 +659,7 @@ types MapIcons
 
 			modify_texture = {
 				name = overlay2
-				texture = "gfx/interface/mapitems/ally_war_icon_modify_icon.dds"
+				texture = "gfx/interface/icons/map_coa/ally_effect.dds"
 				blend_mode = colordodge
 				rotate_uv = 0
 			}
@@ -717,7 +722,7 @@ types MapIcons
 			position = { -8 -45 }
 
 			size = { 84 84 }
-			texture = "gfx/interface/mapitems/ally_no_war_icon.dds"
+			texture = "gfx/interface/icons/map_coa/icon_ally.dds"
 		}
 
 		icon = {
@@ -727,7 +732,7 @@ types MapIcons
 			position = { 0 -60 }
 
 			size = { 90 36 }
-			texture = "gfx/interface/mapitems/at_war_icon2.dds"
+			texture = "gfx/interface/icons/map_coa/icon_at_war.dds"
 		}
 
 		coa_realm_big_crown = {
@@ -770,7 +775,7 @@ types MapIcons
 				position = { -8 -30 }
 
 				size = { 72 78 }
-				texture = "gfx/interface/mapitems/ally_no_war_icon.dds"
+				texture = "gfx/interface/icons/map_coa/icon_ally.dds"
 			}
 
 			icon = {
@@ -780,7 +785,7 @@ types MapIcons
 				position = { 0 -40 }
 
 				size = { 72 28 }
-				texture = "gfx/interface/mapitems/at_war_icon2.dds"
+				texture = "gfx/interface/icons/map_coa/icon_at_war.dds"
 			}
 
 			coa_realm_medium_crown = {
@@ -825,7 +830,7 @@ types MapIcons
 				position = { -6 -21 }
 
 				size = { 60 63 }
-				texture = "gfx/interface/mapitems/ally_no_war_icon.dds"
+				texture = "gfx/interface/icons/map_coa/icon_ally.dds"
 			}
 
 			icon = {
@@ -835,7 +840,7 @@ types MapIcons
 				position = { 0 -35 }
 
 				size = { 62 24 }
-				texture = "gfx/interface/mapitems/at_war_icon2.dds"
+				texture = "gfx/interface/icons/map_coa/icon_at_war.dds"
 			}
 
 			coa_realm_small_crown = {
@@ -862,7 +867,7 @@ types MapIcons
 			position = { -4 -15 }
 
 			size = { 42 42 }
-			texture = "gfx/interface/mapitems/ally_no_war_icon.dds"
+			texture = "gfx/interface/icons/map_coa/icon_ally.dds"
 		}
 
 		icon = {
@@ -872,7 +877,7 @@ types MapIcons
 			position = { 0 -22 }
 
 			size = { 45 18 }
-			texture = "gfx/interface/mapitems/at_war_icon2.dds"
+			texture = "gfx/interface/icons/map_coa/icon_at_war.dds"
 		}
 
 		coa_realm_tiny_crown = {
@@ -910,18 +915,23 @@ types MapIcons
 
 				icon = {
 					size = { 100% 36 }
-					using = Banner_Domain
-					position = { 5 0 }
+					texture = "gfx/interface/icons/banners/banner_blue_center.dds"
+					spriteType = Corneredtiled
+					spriteborder = { 72 0 }
+					spriteborder_right = 114
+					texture_density = 4
+
+					position = { 5 -7 }
 					using = Holding_Mouse_Entry
 				}
 
 				text_single = {
 					name = "tutorial_highlight_capital_holding"
 					snap_to_pixels = no
-					position = { -1 -4 }
+					position = { -1 -5 }
 					margin_top = 5
-					margin_left = 42
-					margin_right = 30
+					margin_left = 45
+					margin_right = 33
 
 					text = "[ProvinceIcon.GetTitle.GetNameNoTierNoTooltip]"
 					default_format = "#high;glow_color:{0.1,0.1,0.1,1.0}"
@@ -942,15 +952,11 @@ types MapIcons
 		widget = {
 			visible = "[And( Not( Holding.GetHolder.IsAtWar ), ProvinceIcon.HasHoldingDetails )]"
 			parentanchor = hcenter
-
-			#using = Animation_MapIcon_Fade
-			#blockoverride "icon_size"
-			#{
-				size = { 150 28 }
-			#}
+			size = { 150 28 }
 
 			background = {
-				texture = "gfx/interface/temp/temp_bg_event_window_fade.dds"
+				texture = "gfx/interface/component_masks/mask_fade_circle.dds"
+				color = { 0.1 0.1 0.1 1 }
 				margin = { 50 0 }
 				margin_top = 20
 				margin_bottom = 20
@@ -972,7 +978,7 @@ types MapIcons
 							visible = "[Holding.CanConstructAnyBuilding(GetPlayer)]"
 							parentanchor = vcenter
 							size = { 25 25 }
-							texture = "gfx/interface/mapitems/building_available.dds"
+							texture = "gfx/interface/icons/map_icons/county_building_available.dds"
 							tooltip = "MY_REALM_WINDOW_CONSTRUCT_BUILDING"
 						}
 
@@ -980,7 +986,7 @@ types MapIcons
 							visible = "[Holding.IsLowControl]"
 							parentanchor = vcenter
 							size = { 25 25 }
-							texture = "gfx/interface/mapitems/low_control.dds"
+							texture = "gfx/interface/icons/map_icons/county_low_control.dds"
 							tooltip = "MY_REALM_WINDOW_MAP_ICON_LOW_CONTROL"
 						}
 					}
@@ -1037,13 +1043,14 @@ types MapIcons
 			#using = Animation_MapIcon_Fade
 			#blockoverride "icon_size"
 			#{
-				size = { 150 28 }
+			size = { 150 28 }
 			#}
 
 			background = {
-				texture = "gfx/interface/temp/temp_bg_event_window_fade.dds"
+				texture = "gfx/interface/component_masks/mask_fade_circle.dds"
+				color = { 0.1 0.1 0.1 1 }				
 				margin = { 50 0 }
-				margin_top = 20
+				margin_top = 15
 				margin_bottom = 20
 				alpha = 0.6
 			}
@@ -1063,7 +1070,7 @@ types MapIcons
 							visible = "[Holding.CanConstructAnyBuilding(GetPlayer)]"
 							parentanchor = vcenter
 							size = { 25 25 }
-							texture = "gfx/interface/mapitems/building_available.dds"
+							texture = "gfx/interface/icons/map_icons/county_building_available.dds"
 							tooltip = "MY_REALM_WINDOW_CONSTRUCT_BUILDING"
 						}
 
@@ -1071,7 +1078,7 @@ types MapIcons
 							visible = "[Holding.IsLowControl]"
 							parentanchor = vcenter
 							size = { 25 25 }
-							texture = "gfx/interface/mapitems/low_control.dds"
+							texture = "gfx/interface/icons/map_icons/county_low_control.dds"
 							tooltip = "MY_REALM_WINDOW_MAP_ICON_LOW_CONTROL"
 						}
 					}
@@ -1082,7 +1089,7 @@ types MapIcons
 
 					icon = {
 						size = { 25 25 }
-						texture = "gfx/interface/text_icons/icon_holding.dds"
+						texture = "gfx/interface/icons/text_icons/icon_holding.dds"
 					}
 
 					text_single = {
@@ -1130,20 +1137,22 @@ types MapIcons
 		#using = Animation_MapIcon_Fade
 		#blockoverride "icon_size"
 		#{
-			size = { 150 28 }
+		size = { 150 28 }
 		#}
 
 		button = {
 			name = "portrait_pin"
 			parentanchor = bottom|hcenter
 
-			texture = "gfx/interface/mapitems/portrait_pin.dds"
+			texture = "gfx/interface/icons/map_icons/portrait_pin.dds"
+			size = { 84 95 }
 
 			tooltip = "[Character.GetLocationDesc]"
 			onclick = "[DefaultOnCharacterClick(Character.GetID)]"
 
 			background = {
-				texture = "gfx/interface/temp/temp_bg_event_window_fade.dds"
+				texture = "gfx/interface/component_masks/mask_fade_circle.dds"
+				color = { 0.1 0.1 0.1 1 }
 				margin = { 20 20 }
 				alpha = 0.5
 			}
@@ -1164,7 +1173,7 @@ types MapIcons
 	type button_rally_point = button_normal {
 		name = "rally_point_button"
 		size = { 34 34 }
-		texture = "gfx/interface/edit_banners/banner_icon.dds"
+		texture = "gfx/interface/window_military/banner_icon.dds"
 		tintcolor = "[RallyPoint.GetIconColor]"
 
 		block "rally_point_click" {
@@ -1182,9 +1191,8 @@ types MapIcons
 
 		item = {
 			icon = {
-				datacontext = "[ActiveCouncilTaskRef.Get]"
-				visible = "[Not( ActiveCouncilTask.GetTaskType.IsInfiniteTask )]"
-				texture = "gfx/interface/mapitems/map_council_task_base.dds"
+				visible = "[And( Not( ActiveCouncilTask.GetTaskType.IsInfiniteTask ), Not( ActiveCouncilTask.IsFrozen ) )]"
+				texture = "gfx/interface/icons/map_icons/map_council_task_base.dds"
 				size = { 52 52 }
 
 				tooltipwidget = {
@@ -1195,9 +1203,11 @@ types MapIcons
 						alwaystransparent = no
 						flowcontainer = {
 							margin_left = 12
+							margin_right = 12
 							margin_top = 3
 							margin_bottom = 12
 							layoutpolicy_horizontal = preferred
+							ignoreinvisible = yes
 							text_single = {
 								name = "frozen"
 								text = ACTIVE_COUNCIL_TASK_FROZEN_TT
@@ -1216,7 +1226,7 @@ types MapIcons
 					name = "progress"
 					parentanchor = center
 					size = { 45 45 }
-					texture = "gfx/interface/siege_window/action_progress_thin.dds"
+					texture = "gfx/interface/progressbars/action_progress_thin.dds"
 					framesize = { 124 124 }
 					frame = 2
 					value = "[ActiveCouncilTask.GetProgressPie]"
@@ -1236,7 +1246,7 @@ types MapIcons
 					name = "inactive"
 					parentanchor = center
 					size = { 15 15 }
-					texture = "gfx/interface/icons/icon_cross.dds"
+					texture = "gfx/interface/icons/symbols/icon_cross.dds"
 					visible = "[ActiveCouncilTask.IsFrozen]"
 				}
 			}
@@ -1255,18 +1265,20 @@ types MapIcons
 				alwaystransparent = yes
 				size = { 46 46 }
 
-				button_round = {
-					name = "activity_button"
+				icon = {
+					name = "activity_icon"
+					visible = "[Not(ActivityMapItem.GetActivity.GetType.HasActivityWindow)]"
 					alwaystransparent = no
 					parentanchor = center
-					onclick = "[ActivityMapItem.OnClick]"
 					tooltip = "ACTIVITY_MAP_ITEM_TOOLTIP_TOGGLE_CLICKABLE"
 					framesize = { 160 160 }
+					size = { 46 46 }
 
-					texture = "gfx/interface/mapitems/map_council_task_base.dds"
+					texture = "gfx/interface/icons/map_icons/map_council_task_base.dds"
 
 					background = {
-						texture = "gfx/interface/temp/temp_bg_event_window_fade.dds"
+						texture = "gfx/interface/component_masks/mask_fade_circle.dds"
+						color = { 0.1 0.1 0.1 1 }
 						margin = { 10 10 }
 						alpha = 0.6
 					}
@@ -1277,6 +1289,33 @@ types MapIcons
 						alwaystransparent = yes
 						texture = "[ActivityMapItem.GetActivity.GetType.GetIcon]"
 						size = { 35 35 }
+					}
+				}
+				
+				icon = {
+					name = "activity_button_with_window"
+					visible = "[ActivityMapItem.GetActivity.GetType.HasActivityWindow]"
+					alwaystransparent = no
+					parentanchor = center
+					tooltip = "ACTIVITY_MAP_ITEM_TOOLTIP_TOGGLE_CLICKABLE"
+					framesize = { 160 160 }
+					size = { 46 46 }
+
+					texture = "gfx/interface/icons/map_icons/map_council_task_base.dds"
+
+					button_icon = {
+						texture = "gfx/interface/buttons/button_round_big.dds"
+						parentanchor = center
+						size = { 46 46 }
+						onclick = "[ActivityMapItem.OnClick]"
+
+						highlight_icon = {
+							visible = "[ActivityMapItem.GetActivity.GetType.HasIcon]"
+							parentanchor = center
+							alwaystransparent = yes
+							texture = "gfx/interface/icons/activities/activity_feast.dds"
+							size = { 35 35 }
+						}
 					}
 				}
 
@@ -1333,7 +1372,7 @@ types MapIcons
 					visible = "[ProvinceIcon.HasBeenRaided]"
 					parentanchor = vcenter
 					name = "recently_raided_icon"
-					texture = "gfx/interface/mapitems/recently_raided.dds"
+					texture = "gfx/interface/icons/map_icons/recently_raided.dds"
 					size = { 35 35 }
 					tooltip = "RECENTLY_RAIDED_TOOLTIP"
 				}
@@ -1358,32 +1397,36 @@ types MapIcons
 				button_normal = {
 					name = "left_side_bg"
 					visible = "[CombatMapIcon.LeftIsPlayer]"
-					texture = "gfx/interface/mapitems/army_bg_me.dds"
-					framesize = { 82 27 }
+					texture = "gfx/interface/icons/map_icons/army_bg_me.dds"
+					size = { 82 27 }
+					framesize = { 164 54 }
 					frame = 4
 				}
 
 				button_normal = {
 					name = "left_side_bg_ally"
 					visible = "[CombatMapIcon.LeftIsAlly]"
-					texture = "gfx/interface/mapitems/army_bg_ally.dds"
-					framesize = { 82 27 }
+					texture = "gfx/interface/icons/map_icons/army_bg_ally.dds"
+					size = { 82 27 }
+					framesize = { 164 54 }
 					frame = 4
 				}
 
 				button_normal = {
 					name = "left_side_bg_neutral"
 					visible = "[CombatMapIcon.LeftIsNeutral]"
-					texture = "gfx/interface/mapitems/army_bg_neutral.dds"
-					framesize = { 82 27 }
+					texture = "gfx/interface/icons/map_icons/army_bg_neutral.dds"
+					size = { 82 27 }
+					framesize = { 164 54 }
 					frame = 4
 				}
 
 				button_normal = {
 					name = "left_side_bg_enemyl"
 					visible = "[Or( CombatMapIcon.LeftIsEnemy, CombatMapIcon.LeftIsHostile )]"
-					texture = "gfx/interface/mapitems/army_bg_enemy.dds"
-					framesize = { 82 27 }
+					texture = "gfx/interface/icons/map_icons/army_bg_enemy.dds"
+					size = { 82 27 }
+					framesize = { 164 54 }
 					frame = 4
 				}
 			}
@@ -1394,36 +1437,40 @@ types MapIcons
 				button = {
 					name = "right_side_bg_me"
 					visible = "[CombatMapIcon.RightIsPlayer]"
-					texture = "gfx/interface/mapitems/army_bg_me.dds"
+					texture = "gfx/interface/icons/map_icons/army_bg_me.dds"
 					mirror = horizontal
-					framesize = { 82 27 }
+					size = { 82 27 }
+					framesize = { 164 54 }
 					frame = 4
 				}
 
 				button = {
 					name = "right_side_bg_ally"
 					visible = "[CombatMapIcon.RightIsAlly]"
-					texture = "gfx/interface/mapitems/army_bg_ally.dds"
+					texture = "gfx/interface/icons/map_icons/army_bg_ally.dds"
 					mirror = horizontal
-					framesize = { 82 27 }
+					size = { 82 27 }
+					framesize = { 164 54 }
 					frame = 4
 				}
 
 				button = {
 					name = "right_side_bg_neutral"
 					visible = "[CombatMapIcon.RightIsNeutral]"
-					texture = "gfx/interface/mapitems/army_bg_neutral.dds"
+					texture = "gfx/interface/icons/map_icons/army_bg_neutral.dds"
 					mirror = horizontal
-					framesize = { 82 27 }
+					size = { 82 27 }
+					framesize = { 164 54 }
 					frame = 4
 				}
 
 				button = {
 					name = "right_side_bg"
 					visible = "[Or( CombatMapIcon.RightIsEnemy, CombatMapIcon.RightIsHostile )]"
-					texture = "gfx/interface/mapitems/army_bg_enemy.dds"
+					texture = "gfx/interface/icons/map_icons/army_bg_enemy.dds"
 					mirror = horizontal
-					framesize = { 82 27 }
+					size = { 82 27 }
+					framesize = { 164 54 }
 					frame = 4
 				}
 			}
@@ -1433,9 +1480,9 @@ types MapIcons
 				parentanchor = top|hcenter
 				position = { 0 30 }
 				size = { 150 12 }
-				progresstexture = "gfx/interface/combat/advantage_bar_me_flat_ends.dds"
+				progresstexture = "gfx/interface/progressbars/onmap_progress_blue.dds"
 
-				noprogresstexture = "gfx/interface/combat/advantage_bar_enemy_flat_ends.dds"
+				noprogresstexture = "gfx/interface/progressbars/onmap_progress_red.dds"
 				value = "[Combat.GetPowerSlider]"
 				direction = horizontal
 				alwaystransparent = yes
@@ -1445,7 +1492,7 @@ types MapIcons
 				name = "combat_icon"
 				parentanchor = center
 				alwaystransparent = no
-				texture = "gfx/interface/mapitems/combat_map_icon.dds"
+				texture = "gfx/interface/icons/map_icons/combat_map_icon.dds"
 				size = { 40 40 }
 			}
 		}
@@ -1453,7 +1500,7 @@ types MapIcons
 		background = {
 			name = "unit_highlight"
 			visible = "[CombatMapIcon.IsSelected]"
-			texture = "gfx/interface/mapitems/army_selected.dds"
+			texture = "gfx/interface/icons/map_icons/army_selected.dds"
 			spriteType = Corneredtiled
 			spriteborder = { 20 5 }
 			margin_left = -38

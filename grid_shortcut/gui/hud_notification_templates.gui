@@ -39,6 +39,7 @@ types Notifications {
                         effectname = "NoHighlight"
                         shaderfile = "gfx/FX/pdxgui_pushbutton.shader"
                         texture = "[GUIAlertItem.GetImportantActionType.GetIcon]"
+
                         shortcut = "notification_action"
                         onclick = "[GUIAlertItem.OnClick]"
                         onrightclick = "[GUIAlertItem.OnRightClick]"
@@ -49,13 +50,13 @@ types Notifications {
 
                         modify_texture = {
                             name = "mask"
-                            texture = "gfx/interface/effects/alert_glow_mask.dds"
+                            texture = "gfx/interface/component_masks/mask_alert_solid.dds"
                             blend_mode = mask
                         }
 
                         modify_texture = {
                             name = "glow"
-                            texture = "gfx/interface/effects/alert_glow.dds"
+                            texture = "gfx/interface/component_effects/effect_shimmer.dds"
                             blend_mode = colordodge
                             translate_uv = { 0.2 0.2 }
                         }
@@ -264,19 +265,19 @@ types Notifications {
 
             item = {
                 container = {
-                    visible = "[DiplomaticItem.IsVisible]"
+                    # visible = "[DiplomaticItem.IsVisible]"
 
                     icon = {
                         name = "notification_glow"
                         size = { 150% 150% }
                         parentanchor = center
-                        texture = "gfx/interface/effects/alert_diplomacy_glow.dds"
+                        texture = "gfx/interface/component_masks/mask_rays.dds"
                         color = { 0.7 0.66 0.61 1 }
 
                         modify_texture = {
                             rotate_uv = 0
                             name = rotation
-                            texture = "gfx/interface/effects/alert_diplomacy_glow.dds"
+                            texture = "gfx/interface/component_masks/mask_rays.dds"
                             blend_mode = colordodge
                         }
 
@@ -299,6 +300,11 @@ types Notifications {
                             duration = 1.35
                             alpha = 0
                             scale = 1
+
+                            modify_texture = {
+                                name = rotation
+                                rotate_uv = 90
+                            }
                         }
 
                         state = {
@@ -339,7 +345,7 @@ types Notifications {
                         parentanchor = center
 
                         size = { 0 0 }
-                        framesize = { 96 96 }
+                        framesize = { 192 192 }
                         filter_mouse = right
 
                         texture = "[DiplomaticItem.GetIcon]"
@@ -350,7 +356,7 @@ types Notifications {
                         tooltip = "DIPLOMATIC_ITEM_TOOLTIP"
 
                         icon = {
-                            texture = "gfx/interface/effects/alert_diplomacy_timer_base.dds"
+                            texture = "gfx/interface/component_effects/alert_diplomacy_timer_base.dds"
                             visible = "[LessThan_int32( DiplomaticItem.GetDaysUntilTimeout, '(int32)30')]"
                             size = { 104 104 }
                             parentanchor = center
@@ -514,7 +520,7 @@ types Notifications {
     type notifications_toasts = widget {
         name = "toast_container_widget"
         visible = "[And(ToastMessageHandler.HasMessage, Not(SinglePlayerShowingPausedSuccession))]"
-        # visible = "[IsGamePaused]"
+        # visible = "[Or(ToastMessageHandler.HasMessage, IsGamePaused)]"
         allow_outside = yes
 
         state = {
@@ -587,21 +593,21 @@ types Notifications {
 
             icon = {
                 visible = "[PlayerMessageItem.GetType.IsGood]"
-                texture = "gfx/interface/hud/bg_toast_good.dds"
+                texture = "gfx/interface/hud/toast_bg_good.dds"
                 parentanchor = center
                 size = { 160 160 }
             }
 
             icon = {
                 visible = "[PlayerMessageItem.GetType.IsNeutral]"
-                texture = "gfx/interface/hud/bg_toast_neutral.dds"
+                texture = "gfx/interface/hud/toast_bg_neutral.dds"
                 parentanchor = center
                 size = { 160 160 }
             }
 
             icon = {
                 visible = "[PlayerMessageItem.GetType.IsBad]"
-                texture = "gfx/interface/hud/bg_toast_bad.dds"
+                texture = "gfx/interface/hud/toast_bg_bad.dds"
                 parentanchor = center
                 size = { 160 160 }
             }
@@ -618,7 +624,7 @@ types Notifications {
             alwaystransparent = yes
 
             background = {
-                texture = "gfx/interface/tiles/tile_title_bg_toast.dds"
+                texture = "gfx/interface/hud/toast_title_bg.dds"
                 spriteType = Corneredstretched
                 spriteborder = { 0 10 }
                 margin = { 12 0 }
@@ -631,7 +637,7 @@ types Notifications {
 
                 background = {
                     layoutpolicy_vertical = expanding
-                    texture = "gfx/interface/tiles/tile_title_bg_toast_edge.dds"
+                    texture = "gfx/interface/hud/toast_title_bg_edge.dds"
                     spriteType = Corneredstretched
                     spriteborder = { 5 20 }
                 }
@@ -644,7 +650,7 @@ types Notifications {
 
                 background = {
                     layoutpolicy_vertical = expanding
-                    texture = "gfx/interface/tiles/tile_title_bg_toast_edge.dds"
+                    texture = "gfx/interface/hud/toast_title_bg_edge.dds"
                     spriteType = Corneredstretched
                     spriteborder = { 0 20 }
                     mirror = horizontal
@@ -791,19 +797,20 @@ types Notifications {
                             name = "neutral"
                             visible = "[PlayerMessageItem.GetType.IsNeutral]"
                             using = Toast_Header
+                            using = Color_Blue
                         }
 
                         background = {
                             name = "good"
                             visible = "[PlayerMessageItem.GetType.IsGood]"
-                            tintcolor = { 0.767708 0.88325 0.3479 0.847656 }
+                            using = Color_Green
                             using = Toast_Header
                         }
 
                         background = {
                             name = "bad"
                             visible = "[PlayerMessageItem.GetType.IsBad]"
-                            tintcolor = { 0.949219 0.446105 0.330002 1 }
+                            using = Color_Red
                             using = Toast_Header
                         }
                     }
@@ -853,6 +860,35 @@ types Notifications {
                     visible = "[Not(Or(PlayerMessageItem.HasRightCharacter,PlayerMessageItem.HasRightTitle))]"
                 }
             }
+
+            button_cancel = {
+                parentanchor = top|right
+                position = { 10 3 }
+                onclick = "[ToastMessageHandler.DismissMessage]"
+                tooltip = "DISMISS"
+                alpha = 0
+
+                background = {
+                    texture = "gfx/interface/component_masks/mask_fade_circle.dds"
+                    color = { 0.1 0.1 0.1 0.7 }
+                    margin = { 7 7 }
+                }
+
+                state = {
+                    name = a
+                    next = b
+                    trigger_on_create = yes
+                    alpha = 0
+                }
+
+                state = {
+                    name = b
+                    alpha = 1
+                    delay = 3
+                    duration = 0.5
+                    using = Animation_Curve_Default
+                }
+            }
         }
     }
 
@@ -864,6 +900,8 @@ types Notifications {
         visible = "[And( Not( IsPauseMenuShown ), And( Not(SinglePlayerShowingPausedSuccession), ActionItemHandler.ShouldBeVisible))]"
         alwaystransparent = no
         allow_outside = yes
+
+        using = Animation_ShowHide_Quick
 
         ## Suggestions / Current Situation toggle button
         button = {
@@ -974,7 +1012,7 @@ types Notifications {
             modify_texture = {
                 name = "shimmer"
                 visible = "[GreaterThan_int32(ActionItemHandler.GetNumberOfActions, '(int32)0')]"
-                texture = "gfx/interface/effects/alert_glow.dds"
+                texture = "gfx/interface/component_effects/effect_shimmer.dds"
                 blend_mode = colordodge
                 translate_uv = { 0.2 0.2 }
             }
@@ -982,7 +1020,7 @@ types Notifications {
             modify_texture = {
                 name = "mouseover"
                 visible = "[GreaterThan_int32(ActionItemHandler.GetNumberOfActions, '(int32)0')]"
-                texture = "gfx/interface/effects/alert_glow.dds"
+                texture = "gfx/interface/component_effects/effect_shimmer.dds"
                 blend_mode = colordodge
                 alpha = 0
             }
@@ -1064,22 +1102,21 @@ types Notifications {
 
             background = {
                 name = "paper_texture_shadow"
-                texture = "gfx/interface/event_window/tile_letter_shadow.dds"
+                texture = "gfx/interface/window_event/tile_letter_shadow.dds"
                 spriteType = Corneredtiled
                 spriteborder = { 200 200 }
             }
 
             background = {
                 name = "paper_texture_flat"
-                texture = "gfx/interface/event_window/tile_letter_flat.dds"
+                texture = "gfx/interface/window_event/tile_letter_flat.dds"
                 spriteType = Corneredtiled
                 spriteborder = { 200 200 }
-                alpha = 0.9
-                color = { 0.6 0.6 0.6 1 }
+                color = { 0.45 0.45 0.45 1 }
 
                 modify_texture = {
                     name = "paper_texture_overlay"
-                    texture = "gfx/interface/event_window/overlay_letter_texture.dds"
+                    texture = "gfx/interface/window_event/overlay_letter_texture.dds"
                     spriteType = Corneredstretched
                     blend_mode = overlay
                 }
@@ -1096,7 +1133,7 @@ types Notifications {
                     margin_left = 55
                     margin_bottom = 55
                     modify_texture = {
-                        texture = "gfx/interface/tiles/bg_corner_fade.dds"
+                        texture = "gfx/interface/component_masks/mask_fade_corner.dds"
                         blend_mode = alphamultiply
                     }
                 }
@@ -1126,10 +1163,9 @@ types Notifications {
                     ignoreinvisible = yes
                     spacing = 10
 
-                    text_single = {
+                    text_label_center = {
                         parentanchor = hcenter
                         text = "CURRENT_SITUATION_SUGGESTIONS"
-                        default_format = "#light_background"
                         using = Font_Size_Medium
                     }
 
@@ -1156,11 +1192,9 @@ types Notifications {
                         parentanchor = hcenter
                         allow_outside = yes
 
-                        text_single = {
+                        text_label_center = {
                             parentanchor = hcenter
                             text = "CURRENT_SITUATION_HEADER"
-                            align = nobaseline
-                            default_format = "#light_background"
                             max_width = 300
                             using = Font_Size_Medium
                         }
@@ -1172,7 +1206,7 @@ types Notifications {
                             button_change = {
                                 name = "reset_dismissed"
                                 widgetanchor = left
-                                position = { 5 -2 }
+                                position = { 15 -2 }
                                 onclick = "[ActionItemHandler.ResetAllDismissed]"
                                 tooltip = "RESET_DISMISSED_TOOLTIP"
 
@@ -1184,7 +1218,7 @@ types Notifications {
                                     tintcolor = { 0.22 0.16 0.04 0.5 }
 
                                     modify_texture = {
-                                        texture = "gfx/interface/tiles/tile_fade_mask_3.dds"
+                                        texture = "gfx/interface/component_masks/mask_fade_horizontal_middle_thick.dds"
                                         blend_mode = alphamultiply
                                     }
                                 }
@@ -1213,7 +1247,7 @@ types Notifications {
 
                         blockoverride "scrollbox_content" {
                             name = "current_situation"
-                            datamodel = "[ActionItemHandler.GetGuiActionItems]" 
+                            datamodel = "[ActionItemHandler.GetGuiActionItems]"
                             layoutpolicy_horizontal = expanding
                             set_parent_size_to_minimum = yes
                             spacing = 5
@@ -1225,12 +1259,13 @@ types Notifications {
                                     direction = vertical
 
                                     button_current_situation_item = {
-                                        visible = "[Not(GuiActionItem.HasMultipleActions)]"
                                         datacontext = "[GuiActionItem.GetFirstVisibleActionItem]"
+                                        visible = "[Not(GuiActionItem.HasMultipleActions)]"
+                                        layoutpolicy_horizontal = expanding
                                         minimumsize = { 340 0 }
                                     }
 
-                                    button_standard_list = {
+                                    button_standard_clean = {
                                         minimumsize = { 340 0 }
                                         visible = "[GuiActionItem.HasMultipleActions]"
 
@@ -1239,33 +1274,34 @@ types Notifications {
                                         onrightclick = "[GuiActionItem.Dismiss]"
                                         button_ignore = none
                                         tooltip = "[GuiActionItem.GetCombinedTooltip]"
+                                        tooltip_offset = { 40 0 }
+
+                                        background = {
+                                            visible = "[GuiActionItem.HasAnyActionIsDangerous]"
+                                            using = Status_Suggestion_Bad
+                                            margin = { 2 0 }
+                                            margin_bottom = -2
+                                        }
+
+                                        background = {
+                                            visible = "[Not(GuiActionItem.HasAnyActionIsDangerous)]"
+                                            using = Status_Suggestion_Good
+                                            margin = { 2 0 }
+                                            margin_bottom = -2
+                                        }
+
+                                        background = {
+                                            texture = "gfx/interface/component_tiles/tile_vignette_3px.dds"
+                                            spriteType = Corneredtiled
+                                            spriteborder = { 5 5 }
+                                            margin = { -2 -2 }
+                                            alpha = 0.3
+                                        }
 
                                         hbox = {
                                             restrictparent_min = yes
                                             margin = { 10 5 }
                                             spacing = 5
-
-                                            background = {
-                                                using = Background_Area
-                                            }
-
-                                            background = {
-                                                visible = "[GuiActionItem.HasAnyActionIsDangerous]"
-                                                margin = { 2 0 }
-                                                margin_bottom = -3
-                                                using = Status_Bad
-
-                                                alpha = 0.5
-                                            }
-
-                                            background = {
-                                                visible = "[Not(GuiActionItem.HasAnyActionIsDangerous)]"
-                                                margin_bottom = -3
-                                                margin = { 2 0 }
-                                                using = Status_Good
-
-                                                alpha = 0.5
-                                            }
 
                                             icon = {
                                                 name = "Expand"
@@ -1287,6 +1323,7 @@ types Notifications {
 
                                             text_single = {
                                                 text = "[GuiActionItem.GetNumberOfItems]"
+                                                default_format = "#high"
                                                 align = nobaseline
                                             }
                                         }
@@ -1306,6 +1343,7 @@ types Notifications {
                                         item = {
                                             button_current_situation_item_combined = {
                                                 datacontext = "[GuiActionImportantActionItem.GetImportantAction]"
+                                                layoutpolicy_horizontal = expanding
                                                 minimumsize = { 330 0 }
                                             }
                                         }
@@ -1328,6 +1366,8 @@ types Notifications {
         parentanchor = bottom|right
         alwaystransparent = yes
         ignoreinvisible = yes
+
+        using = Animation_ShowHide_Quick
 
         flowcontainer = {
             direction = vertical
@@ -1649,32 +1689,28 @@ template message_feed_text
 
 template Toast_Header
 {
-    texture = "gfx/interface/tiles/tile_title_bg_toast_header.dds"
+    texture = "gfx/interface/component_tiles/tile_title_bg_toast_header.dds"
     spriteType = Corneredstretched
     spriteborder = { 5 5 }
     margin = { 50 -3 }
     alpha = 0.5
 
     modify_texture = {
-        texture = "gfx/interface/tiles/tile_fade_mask_3.dds"
-        spriteType = Corneredstretched
+        texture = "gfx/interface/component_masks/mask_fade_horizontal_middle_thick.dds"
         blend_mode = alphamultiply
     }
 }
 
 template Feed_Message_Header
 {
-    texture = "gfx/interface/tiles/tile_header_background_01.dds"
+    texture = "gfx/interface/component_tiles/tile_header_background_01.dds"
     spriteType = Corneredtiled
     spriteborder_top = 3
     spriteborder_bottom = 3
 
     modify_texture = {
         name = "mask"
-        texture = "gfx/interface/tiles/tile_fade_mask_3.dds"
-        spriteType = Corneredtiled
-        spriteborder_left = 140
-        spriteborder_right = 140
+        texture = "gfx/interface/component_masks/mask_fade_horizontal_middle_thick.dds"
         blend_mode = alphamultiply
         alpha = 0.5
     }
@@ -1682,55 +1718,118 @@ template Feed_Message_Header
 
 types Suggestions
 {
-    type button_suggestion_item = button_standard_list {
+    type button_suggestion_item = button_standard_clean {
         onclick = "[SuggestionItem.OnClick]"
         onrightclick = "[SuggestionItem.Dismiss]"
         button_ignore = none
         tooltip = "[SuggestionItem.GetTooltip]"
+        # tooltip_offset = { 40 0 }
 
-        layoutpolicy_horizontal = expanding
+        # state = {
+        #     name = _mouse_hierarchy_enter
+        #     on_start = "[PdxGuiWidget.FindChild('button_dismiss').TriggerAnimation('button_close_show')]"
+        # }
+
+        # state = {
+        #     name = _mouse_hierarchy_leave
+        #     on_start = "[PdxGuiWidget.FindChild('button_dismiss').TriggerAnimation('button_close_hide')]"
+        # }
+
+        background = {
+            using = Status_Suggestion
+            margin = { 2 0 }
+            margin_bottom = -2
+        }
+
+        background = {
+            texture = "gfx/interface/component_tiles/tile_vignette_3px.dds"
+            spriteType = Corneredtiled
+            spriteborder = { 5 5 }
+            margin = { -2 -2 }
+            alpha = 0.3
+        }
 
         hbox = {
             margin = { 10 5 }
             margin_right = 5
             restrictparent_min = yes
 
-            background = {
-                using = Background_Area
-            }
-
-            background = {
-                margin = { 2 0 }
-                margin_bottom = -2
-                using = Status_Suggestion
-                alpha = 0.5
-            }
-
             text_single = {
                 layoutpolicy_horizontal = expanding
                 align = nobaseline
                 text = "[SuggestionItem.GetLabel]"
+                default_format = "#high"
             }
 
-            button_cancel = {
-                name = "dismiss"
-                tooltip = "DISMISS"
+            button_cancel_small = {
+                name = "button_dismiss"
+                tooltip = "DISMISS_SUGGESTION_TT"
                 onclick = "[SuggestionItem.Dismiss]"
+                inherit_visual_state = no
+
+                # alpha = 0
+
+                # state = {
+                #     name = "button_close_show"
+                #     duration = 0.1
+                #     using = Animation_Curve_Default
+                #     alpha = 1
+                # }
+
+                # state = {
+                #     name = "button_close_hide"
+                #     duration = 0.2
+                #     using = Animation_Curve_Default
+                #     alpha = 0
+                # }
             }
         }
     }
 
-    type button_current_situation_item = button_standard_list {
+    type button_current_situation_item = button_standard_clean {
         visible = "[ImportantActionItem.IsVisible]"
         minimumsize = { 350 0 }
-        
+
         shortcut = "suggestion_open"
         onclick = "[ImportantActionItem.OnClick]"
         onrightclick = "[ImportantActionItem.Dismiss]"
         button_ignore = none
-        tooltip = "[ImportantActionItem.GetTooltip]"
 
-        layoutpolicy_horizontal = expanding
+        tooltip = "[ImportantActionItem.GetTooltip]"
+        tooltip_offset = { 40 0 }
+
+        # state = {
+        #     name = _mouse_hierarchy_enter
+        #     on_start = "[PdxGuiWidget.FindChild('button_dismiss').TriggerAnimation('button_close_show')]"
+
+        # }
+
+        # state = {
+        #     name = _mouse_hierarchy_leave
+        #     on_start = "[PdxGuiWidget.FindChild('button_dismiss').TriggerAnimation('button_close_hide')]"
+        # }
+
+        background = {
+            visible = "[ImportantActionItem.GetActionType.IsDangerous]"
+            using = Status_Suggestion_Bad
+            margin = { 2 0 }
+            margin_bottom = -2
+        }
+
+        background = {
+            visible = "[Not(ImportantActionItem.GetActionType.IsDangerous)]"
+            using = Status_Suggestion_Good
+            margin = { 2 0 }
+            margin_bottom = -2
+        }
+
+        background = {
+            texture = "gfx/interface/component_tiles/tile_vignette_3px.dds"
+            spriteType = Corneredtiled
+            spriteborder = { 5 5 }
+            margin = { -2 -2 }
+            alpha = 0.3
+        }
 
         hbox = {
             margin = { 10 5 }
@@ -1747,68 +1846,79 @@ types Suggestions
 
             expand = {}
 
-            background = {
-                using = Background_Area
-            }
-
-            background = {
-                visible = "[ImportantActionItem.GetActionType.IsDangerous]"
-                margin = { 2 3 }
-                margin_bottom = -2
-                using = Status_Bad
-                alpha = 0.5
-            }
-
-            background = {
-                visible = "[Not(ImportantActionItem.GetActionType.IsDangerous)]"
-                margin = { 2 -3 }
-                margin_bottom = -2
-                using = Status_Good
-                alpha = 0.5
-            }
-
-            button_cancel = {
-                name = "dismiss"
-                tooltip = "DISMISS"
+            button_cancel_small = {
+                name = "button_dismiss"
+                tooltip = "DISMISS_CS_TT"
+                tooltip_offset = { 40 0 }
                 onclick = "[ImportantActionItem.Dismiss]"
+                inherit_visual_state = no
+
+                # alpha = 0
+
+                # state = {
+                #     name = "button_close_show"
+                #     duration = 0.1
+                #     using = Animation_Curve_Default
+                #     alpha = 1
+                # }
+
+                # state = {
+                #     name = "button_close_hide"
+                #     duration = 0.2
+                #     using = Animation_Curve_Default
+                #     alpha = 0
+                # }
             }
         }
     }
 
-    type button_current_situation_item_combined = button_standard_list {
+    type button_current_situation_item_combined = button_standard_clean {
         visible = "[ImportantActionItem.IsVisible]"
         shortcut = "suggestion_open"
         onclick = "[ImportantActionItem.OnClick]"
         onrightclick = "[ImportantActionItem.Dismiss]"
         button_ignore = none
+
         tooltip = "[ImportantActionItem.GetTooltip]"
+        tooltip_offset = { 40 0 }
+
+        # state = {
+        #     name = _mouse_hierarchy_enter
+        #     on_start = "[PdxGuiWidget.FindChild('button_dismiss').TriggerAnimation('button_close_show')]"
+
+        # }
+
+        # state = {
+        #     name = _mouse_hierarchy_leave
+        #     on_start = "[PdxGuiWidget.FindChild('button_dismiss').TriggerAnimation('button_close_hide')]"
+        # }
+
+        background = {
+            visible = "[ImportantActionItem.GetActionType.IsDangerous]"
+            using = Status_Suggestion_Bad
+            margin = { 2 0 }
+            margin_bottom = -2
+        }
+
+        background = {
+            visible = "[Not(ImportantActionItem.GetActionType.IsDangerous)]"
+            using = Status_Suggestion_Good
+            margin = { 2 0 }
+            margin_bottom = -2
+        }
+
+        background = {
+            texture = "gfx/interface/component_tiles/tile_vignette_3px.dds"
+            spriteType = Corneredtiled
+            spriteborder = { 5 5 }
+            margin = { -2 -2 }
+            alpha = 0.3
+        }
 
         hbox = {
             margin = { 10 5 }
             margin_right = 5
             restrictparent_min = yes
-
-            background = {
-                using = Background_Area
-            }
-
-            background = {
-                visible = "[ImportantActionItem.GetActionType.IsDangerous]"
-                margin = { 2 -3 }
-                margin_bottom = -2
-                using = Status_Bad
-                alpha = 0.5
-                tintcolor = { 0.6 0.6 0.65 1 }
-            }
-
-            background = {
-                visible = "[Not(ImportantActionItem.GetActionType.IsDangerous)]"
-                margin = { 2 -3 }
-                margin_bottom = -2
-                using = Status_Good
-                alpha = 0.5
-                tintcolor = { 0.4 0.45 0.4 1 }
-            }
 
             text_multi = {
                 layoutpolicy_horizontal = expanding
@@ -1821,10 +1931,28 @@ types Suggestions
 
             expand = {}
 
-            button_cancel = {
-                name = "dismiss"
-                tooltip = "DISMISS"
+            button_cancel_small = {
+                name = "button_dismiss"
+                tooltip = "DISMISS_CS_TT"
+                # tooltip_offset = { 20 0 }
                 onclick = "[ImportantActionItem.Dismiss]"
+                inherit_visual_state = no
+
+                # alpha = 0
+
+                # state = {
+                #     name = "button_close_show"
+                #     duration = 0.1
+                #     using = Animation_Curve_Default
+                #     alpha = 1
+                # }
+
+                # state = {
+                #     name = "button_close_hide"
+                #     duration = 0.2
+                #     using = Animation_Curve_Default
+                #     alpha = 0
+                # }
             }
         }
     }

@@ -9,7 +9,7 @@ shortcutbindings = {
 	zoom_out = "PAGE_UP"
 	zoom_in = "PAGE_DOWN"
 	go_back = "B"
-
+	
 # Time keeping
 	increase_speed = "KP_PLUS"
 	increase_speed_2 = "X"
@@ -67,6 +67,7 @@ shortcutbindings = {
 	decision_window = "F8"
 	encyclopedia = "F9"
 	screenshot = "F11"
+	screenshot_map = "shift+F11"
 
 # Character
 	character_lifestyle = "Q"

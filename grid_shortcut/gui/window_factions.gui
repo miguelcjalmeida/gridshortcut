@@ -35,11 +35,12 @@ window = {
 		margin = { 0 26 }
 		margin_right = 20
 
+		using = Window_Background
+
 		widget = {
 			size = { 100% 100% }
 
-			using = Window_Background
-			using = Window_Decoration_Thin
+			# using = Window_Decoration_Thin
 
 			vbox = {
 				using = Window_Margins
@@ -100,7 +101,7 @@ window = {
 						framesize = { 1200 848 }
 
 						modify_texture = {
-							texture = "gfx/interface/tiles/stretch_bottom_fade.dds"
+							texture = "gfx/interface/component_masks/mask_fade_vertical_up.dds"
 							blend_mode = alphamultiply
 						}
 					}
@@ -378,6 +379,7 @@ types  FactionWindow
 			default_format = "#high"
 			align = center
 			using = tooltip_nw
+			max_width = 495
 		}
 
 		hbox = {
@@ -386,7 +388,7 @@ types  FactionWindow
 
 			# Faction Leader / Claimant
 			widget = {
-				size = { 115 115 }
+				size = { 120 120 }
 				name = "leader"
 
 				# Dangerous faction
@@ -397,10 +399,9 @@ types  FactionWindow
 					margin = { -5 0 }
 				}
 
-
 				icon_flat_standard = {
 					visible = "[Not( Faction.HasSpecialCharacter )]"
-					size = { 115 115 }
+					size = { 120 120 }
 					texture = "[Faction.GetIcon]"
 				}
 
@@ -474,9 +475,8 @@ types  FactionWindow
 								size = { 100% 25 }
 								position = { 0 1 }
 								max = 1
-								#	tintcolor = { 0.5 1.0 1.0 1.0 }
 								value = "[FactionItem.GetPowerPushPercentage]"
-								noprogresstexture = "gfx/interface/tiles/tile_progress_blue_bg.dds"
+								noprogresstexture = "gfx/interface/progressbars/progress_blue_bg.dds"
 							}
 
 							progressbar_red = {
@@ -485,7 +485,7 @@ types  FactionWindow
 								position = { 0 1 }
 								max = 1
 								value = "[FactionItem.GetPowerPushPercentage]"
-								noprogresstexture = "gfx/interface/tiles/tile_progress_blue_bg.dds"
+								noprogresstexture = "gfx/interface/progressbars/progress_blue_bg.dds"
 							}
 
 							container = {
@@ -497,12 +497,12 @@ types  FactionWindow
 								icon = {
 									parentanchor = top|hcenter
 									alwaystransparent = yes
-									texture = "gfx/interface/faction_view/faction_progress_threshold.dds"
+									texture = "gfx/interface/window_factions/faction_progress_threshold.dds"
 								}
 							}
 
 							icon = {
-								texture = "gfx/interface/icons/icon_warning.dds"
+								texture = "gfx/interface/icons/symbols/icon_warning.dds"
 								name = "warning_icon"
 								size = { 25 25 }
 								visible = "[Or( Not( FactionItem.IsPowerThresholdVisible), FactionItem.HasEnoughPower )]"
@@ -564,23 +564,20 @@ types  FactionWindow
 				### Faction at war
 				hbox = {
 					layoutpolicy_horizontal = expanding
-					margin_left = 80
+					expand = {}
 
-					widget = {
+					vbox = {
 						name = "faction_in_war"
 						visible = "[Faction.IsAtWar]"
-						size = { 100 50 }
+						margin_top = -20
+						spacing = -30
 
 						icon = {
-							position = { 0 35 }
-							parentanchor = center
-							texture = "gfx/interface/faction_view/faction_at_war.dds"
+							texture = "gfx/interface/window_factions/faction_at_war.dds"
 						}
 
 						text_single = {
-							position = { 65 35 }
 							text = "FACTIONS_WINDOW_FACTION_AT_WAR"
-							parentanchor = center
 							align = center
 							using = Font_Size_Medium
 						}
@@ -598,7 +595,7 @@ types  FactionWindow
 			expand = {}
 
 			button_standard = {
-				visible = "[FactionItem.IsPlayerLeader]"
+				visible = "[And( FactionItem.IsPlayerLeader, Not( Faction.IsAtWar ) )]"
 				name = "press_demands_button"
 				enabled = "[FactionItem.CanPressDemands]"
 				text = "FACTION_WINDOW_PRESS_DEMANDS"
@@ -681,7 +678,7 @@ types  FactionWindow
 				name = "cannot_join"
 				visible = "[FactionItem.ShowCannotJoin]"
 				size = { 30 30 }
-				texture = "gfx/interface/icons/icon_cross.dds"
+				texture = "gfx/interface/icons/symbols/icon_cross.dds"
 				tooltip = "PLAYER_CANNOT_JOIN_FACTION_OF_THIS_TYPE"
 			}
 
@@ -736,7 +733,7 @@ types  FactionWindow
 							parentanchor = top|left
 							position = { -5 15 }
 							size = { 25 25 }
-							texture = "gfx/interface/icons/icon_warning.dds"
+							texture = "gfx/interface/icons/symbols/icon_warning.dds"
 						}
 					}
 				}

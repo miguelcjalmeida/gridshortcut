@@ -34,10 +34,9 @@ window = {
 		layoutpolicy_horizontal = expanding
 		layoutpolicy_vertical = expanding
 		set_parent_size_to_minimum = yes
-		margin = { 15 20 }
+		margin = { 30 20 }
 		spacing = 5
 		minimumsize = { -1 700 }
-
 
 		header_pattern = {
 			layoutpolicy_horizontal = expanding
@@ -85,9 +84,66 @@ window = {
 				layoutpolicy_horizontal = expanding
 				layoutpolicy_vertical = expanding
 				margin_left = 10
+				
 				vbox = {
 					layoutpolicy_horizontal = expanding
 					datacontext = "[WarResultsWindow.GetOpponent]"
+					margin_bottom = 10
+					spacing = 25
+
+					background = {
+						visible = "[Or(WarResultsWindow.IsWhitePeace, WarResultsWindow.IsInvalidated)]"
+						texture = "gfx/interface/window_war_results/war_end_bg_default.dds"
+						spriteType = Corneredstretched
+						spriteborder_top = 5
+						spriteborder_bottom = -300
+						margin_bottom = 170
+
+						modify_texture = {
+							name = "overlay"
+							texture = "gfx/interface/component_overlay/overlay_effect_frame.dds"
+							spriteType = Corneredstretched
+							spriteborder = { 0 0 }
+							blend_mode = overlay
+						}
+
+					}
+
+					background = {
+						visible = "[Not(WarResultsWindow.IsPlayerWon)]"
+						texture = "gfx/interface/window_war_results/war_end_bg_default.dds"
+						spriteType = Corneredstretched
+						spriteborder_top = 5
+						spriteborder_bottom = -300
+						margin_bottom = 170
+
+						modify_texture = {
+							name = "overlay"
+							texture = "gfx/interface/component_overlay/overlay_effect_frame.dds"
+							spriteType = Corneredstretched
+							spriteborder = { 0 0 }
+							blend_mode = overlay
+						}
+
+					}
+
+					background = {
+						visible = "[WarResultsWindow.IsPlayerWon]"
+						texture = "gfx/interface/window_war_results/war_end_bg_defeat.dds"
+						spriteType = Corneredstretched
+						spriteborder_top = 0
+						spriteborder_bottom = -300
+						margin_bottom = 170
+
+						modify_texture = {
+							name = "overlay"
+							texture = "gfx/interface/component_overlay/overlay_effect_frame.dds"
+							spriteType = Corneredstretched
+							spriteborder = { 0 0 }
+							blend_mode = overlay
+						}
+
+					}
 
 					hbox = {
 						layoutpolicy_horizontal = expanding
@@ -102,63 +158,8 @@ window = {
 						text_single = {
 							text = "[SelectLocalization(WarResultsWindow.IsPlayerAttacker, 'DEFENDER', 'ATTACKER')]"
 						}
-
 					}
-
-					background = {
-						visible = "[Or(WarResultsWindow.IsWhitePeace, WarResultsWindow.IsInvalidated)]"
-						texture = "gfx/interface/military_view/war_end_bg_default2.dds"
-						spriteType = Corneredstretched
-						spriteborder_top = 5
-						spriteborder_bottom = -300
-						margin_bottom = 170
-
-						modify_texture = {
-							name = "overlay"
-							texture = "gfx/interface/tiles/tile_overlay_effect_frame_01.dds"
-							spriteType = Corneredstretched
-							spriteborder = { 0 0 }
-							blend_mode = overlay
-						}
-
-					}
-
-					background = {
-						visible = "[Not(WarResultsWindow.IsPlayerWon)]"
-						texture = "gfx/interface/military_view/war_end_bg_default2.dds"
-						spriteType = Corneredstretched
-						spriteborder_top = 5
-						spriteborder_bottom = -300
-						margin_bottom = 170
-
-						modify_texture = {
-							name = "overlay"
-							texture = "gfx/interface/tiles/tile_overlay_effect_frame_01.dds"
-							spriteType = Corneredstretched
-							spriteborder = { 0 0 }
-							blend_mode = overlay
-						}
-
-					}
-
-					background = {
-						visible = "[WarResultsWindow.IsPlayerWon]"
-						texture = "gfx/interface/military_view/war_end_bg_defeat2.dds"
-						spriteType = Corneredstretched
-						spriteborder_top = 0
-						spriteborder_bottom = -300
-						margin_bottom = 170
-
-						modify_texture = {
-							name = "overlay"
-							texture = "gfx/interface/tiles/tile_overlay_effect_frame_01.dds"
-							spriteType = Corneredstretched
-							spriteborder = { 0 0 }
-							blend_mode = overlay
-						}
-
-					}
-
+					
 					portrait_body = {
 						name = "defender_portrait"
 						blockoverride "opinion_box" {}
@@ -176,7 +177,6 @@ window = {
 								parentanchor = bottom|hcenter
 								position = { 0 -2 }
 							}
-
 						}
 					}
 				}
@@ -257,7 +257,7 @@ window = {
 										icon = {
 											name = "sigil_bg"
 											size = { 50 50 }
-											texture = "gfx/interface/event_window/sigil_bg.dds"
+											texture = "gfx/interface/window_event/sigil_bg.dds"
 											alwaystransparent = yes
 											parentanchor = center
 										}
@@ -273,7 +273,7 @@ window = {
 											datacontext = "[Character.GetSealCoA]"
 											coat_of_arms_slot = "[CoatOfArms.GetSlot('(int32)88','(int32)88')]"
 											coat_of_arms = "[CoatOfArms.GetTexture('(int32)88','(int32)88')]"
-											coat_of_arms_mask = "gfx/interface/event_window/sigil_center.dds"
+											coat_of_arms_mask = "gfx/interface/window_event/sigil_center.dds"
 											parentanchor = center
 										}
 
@@ -281,7 +281,7 @@ window = {
 											name = "sigil_lowborn"
 											visible = "[Not( Character.HasSealCoA )]"
 											size = { 34 34 }
-											texture = "gfx/interface/event_window/sigil_center_lowborn.dds"
+											texture = "gfx/interface/window_event/sigil_center_lowborn.dds"
 											alwaystransparent = yes
 											parentanchor = center
 										}
@@ -478,7 +478,6 @@ window = {
 			button_primary_big = {
 				name = "close_button"
 				text = "WAR_RESULTS_DISMISS"
-				tooltip = "WAR_RESULTS_DISMISS_TOOLTIP"
 				onclick = "[WarResultsWindow.Dismiss]"
 			}
 

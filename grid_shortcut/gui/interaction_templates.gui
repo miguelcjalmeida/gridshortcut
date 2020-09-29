@@ -66,12 +66,15 @@ types CharacterInteraction
 
 			icon = {
 				name = "marriage_type"
-				visible = "[MatchmakerInteractionWindow.HasPickedCharacters]"
+				block "icon_frame"
+				{
+					visible = "[MatchmakerInteractionWindow.HasPickedCharacters]"
+				}
 
 				texture = "gfx/interface/icons/marriage_types.dds"
 				framesize = { 60 60 }
 				size = { 60 60 }
-				frame = "[MarriageInteractionWindow.GetMarriageInfo.GetMarriageIconFrame]"
+				frame = "[MarriageInfo.GetMarriageIconFrame]"
 			}
 
 			vbox = {
@@ -151,14 +154,14 @@ types CharacterInteraction
 								name = "guaranteed"
 								visible = "[And( MatchmakerTraitInfo.IsGuaranteed, Not(MatchmakerTraitInfo.CanUpgrade) )]"
 								position = { 28 30 }
-								texture = "gfx/interface/icons/icon_check.dds"
+								texture = "gfx/interface/icons/symbols/icon_check.dds"
 								size = { 25 25 }
 							}
 
 							highlight_icon = {
 								name = "upgrade"
 								visible = "[MatchmakerTraitInfo.CanUpgrade]"
-								texture = "gfx/interface/icons/icon_arrow_green_down.dds"
+								texture = "gfx/interface/icons/symbols/icon_arrow_green_down.dds"
 								mirror = vertical
 								position = { 5 28 }
 								size = { 25 25 }
@@ -193,13 +196,17 @@ types CharacterInteraction
 				layoutpolicy_horizontal = expanding
 
 				text_multi = {
-					datacontext = "[MatchmakerInteractionWindow.GetActorToMatch]"
+					block "get_actor"
+					{
+						datacontext = "[MatchmakerInteractionWindow.GetActorToMatch]"
+					}
 					name = "prestige_desc_our"
 					max_width = 510
 					autoresize = yes
 					text = "MARRIAGE_PRESTIGE_DESC_OUR"
 					tooltip = "MARRIAGE_PRESTIGE_TOOLTIP_OUR"
 				}
+				
 
 				expand = {}
 			}
@@ -208,7 +215,10 @@ types CharacterInteraction
 				layoutpolicy_horizontal = expanding
 
 				text_multi = {
-					datacontext = "[MatchmakerInteractionWindow.GetRecipientToMatch]"
+					block "get_recipient"
+					{
+						datacontext = "[MatchmakerInteractionWindow.GetRecipientToMatch]"
+					}
 					name = prestige_desc_their
 					max_width = 510
 					autoresize = yes
@@ -321,14 +331,14 @@ types CharacterInteraction
 							name = "guaranteed"
 							visible = "[And( MatchmakerTraitInfo.IsGuaranteed, Not(MatchmakerTraitInfo.CanUpgrade) )]"
 							position = { 28 30 }
-							texture = "gfx/interface/icons/icon_check.dds"
+							texture = "gfx/interface/icons/symbols/icon_check.dds"
 							size = { 25 25 }
 						}
 
 						highlight_icon = {
 							name = "upgrade"
 							visible = "[MatchmakerTraitInfo.CanUpgrade]"
-							texture = "gfx/interface/icons/icon_arrow_green_down.dds"
+							texture = "gfx/interface/icons/symbols/icon_arrow_green_down.dds"
 							mirror = vertical
 							position = { 5 28 }
 							size = { 25 25 }
@@ -391,7 +401,7 @@ types CharacterInteraction
 						margin_right = 5
 
 						# highlight_icon = {
-						# 	texture = "gfx/interface/icons/icon_check.dds"
+						# 	texture = "gfx/interface/icons/symbols/icon_check.dds"
 						# 	visible = "[InteractionTitleItem.IsSelected]"
 						# 	size = { 30 30 }
 						# }
@@ -406,7 +416,7 @@ types CharacterInteraction
 							name = "pressed_claim"
 							visible = "[GetPlayer.HasPressedClaimOnTitle( Title.Self )]"
 							size = { 24 24 }
-							texture = "gfx/interface/icons/icon_claim_pressed.dds"
+							texture = "gfx/interface/icons/title_status/icon_claim_pressed.dds"
 							tooltip = "REVOKE_TITLE_PRESSED_CLAIM"
 						}
 
@@ -414,7 +424,7 @@ types CharacterInteraction
 							name = "unpressed_claim"
 							visible = "[GetPlayer.HasUnpressedClaimOnTitle( Title.Self )]"
 							size = { 24 24 }
-							texture = "gfx/interface/icons/icon_claim_unpressed.dds"
+							texture = "gfx/interface/icons/title_status/icon_claim_unpressed.dds"
 							tooltip = "REVOKE_TITLE_UNPRESSED_CLAIM"
 						}
 
@@ -854,6 +864,73 @@ types CharacterInteraction
 		}
 	}
 
+	type vbox_character_interaction_effects_accept_contents = vbox {
+		name = "affected_characters_accept"
+		visible = "[InteractionEffectsDescription.IsShowingOnAcceptEffects]"
+		layoutpolicy_horizontal = expanding
+		spacing = 10
+		
+
+		### Me
+		vbox_character_interaction_effects_me = {
+			visible = "[InteractionEffectsDescription.HasActorAcceptEffect]"
+			layoutpolicy_horizontal = expanding
+
+			blockoverride "EffectText" {
+				text = "[InteractionEffectsDescription.GetActorAcceptEffectDescription]"
+			}
+		}
+
+		### Recipient
+		vbox_character_interaction_effects_recipient = {
+			visible = "[InteractionEffectsDescription.HasRecipientAcceptEffect]"
+			layoutpolicy_horizontal = expanding
+
+			blockoverride "EffectText" {
+				text = "[InteractionEffectsDescription.GetRecipientAcceptEffectDescription]"
+			}
+		}
+
+		### Others
+		vbox_character_interaction_other_effects = {
+			datamodel = "[InteractionEffectsDescription.GetOtherInteractionAcceptEffects]"
+			layoutpolicy_horizontal = expanding
+		}
+	}
+
+	type vbox_character_interaction_effects_decline_contents = vbox {
+		name = "affected_characters_decline"
+		visible = "[Not(InteractionEffectsDescription.IsShowingOnAcceptEffects)]"
+		layoutpolicy_horizontal = expanding
+		spacing = 10
+
+		### Me
+		vbox_character_interaction_effects_me = {
+			visible = "[InteractionEffectsDescription.HasActorDeclineEffect]"
+			layoutpolicy_horizontal = expanding
+
+			blockoverride "EffectText" {
+				text = "[InteractionEffectsDescription.GetActorDeclineEffectDescription]"
+			}
+		}
+
+		### Recipient
+		vbox_character_interaction_effects_recipient = {
+			visible = "[InteractionEffectsDescription.HasRecipientDeclineEffect]"
+			layoutpolicy_horizontal = expanding
+
+			blockoverride "EffectText" {
+				text = "[InteractionEffectsDescription.GetRecipientDeclineEffectDescription]"
+			}
+		}
+
+		### Others
+		vbox_character_interaction_other_effects = {
+			datamodel = "[InteractionEffectsDescription.GetOtherInteractionDeclineEffects]"
+			layoutpolicy_horizontal = expanding
+		}
+	}
+
 	# All the interaction effects on you and on other character
 	type vbox_character_interaction_effects = vbox {
 		name = "effects"
@@ -899,71 +976,8 @@ types CharacterInteraction
 						minimumsize = { 640 0 }
 					}
 
-					vbox = {
-						name = "affected_characters_accept"
-						visible = "[InteractionEffectsDescription.IsShowingOnAcceptEffects]"
-						layoutpolicy_horizontal = expanding
-						spacing = 10
-
-						### Me
-						vbox_character_interaction_effects_me = {
-							visible = "[InteractionEffectsDescription.HasActorAcceptEffect]"
-							layoutpolicy_horizontal = expanding
-
-							blockoverride "EffectText" {
-								text = "[InteractionEffectsDescription.GetActorAcceptEffectDescription]"
-							}
-						}
-
-						### Recipient
-						vbox_character_interaction_effects_recipient = {
-							visible = "[InteractionEffectsDescription.HasRecipientAcceptEffect]"
-							layoutpolicy_horizontal = expanding
-
-							blockoverride "EffectText" {
-								text = "[InteractionEffectsDescription.GetRecipientAcceptEffectDescription]"
-							}
-						}
-
-						### Others
-						vbox_character_interaction_other_effects = {
-							datamodel = "[InteractionEffectsDescription.GetOtherInteractionAcceptEffects]"
-							layoutpolicy_horizontal = expanding
-						}
-					}
-
-					vbox = {
-						name = "affected_characters_decline"
-						visible = "[Not(InteractionEffectsDescription.IsShowingOnAcceptEffects)]"
-						layoutpolicy_horizontal = expanding
-						spacing = 10
-
-						### Me
-						vbox_character_interaction_effects_me = {
-							visible = "[InteractionEffectsDescription.HasActorDeclineEffect]"
-							layoutpolicy_horizontal = expanding
-
-							blockoverride "EffectText" {
-								text = "[InteractionEffectsDescription.GetActorDeclineEffectDescription]"
-							}
-						}
-
-						### Recipient
-						vbox_character_interaction_effects_recipient = {
-							visible = "[InteractionEffectsDescription.HasRecipientDeclineEffect]"
-							layoutpolicy_horizontal = expanding
-
-							blockoverride "EffectText" {
-								text = "[InteractionEffectsDescription.GetRecipientDeclineEffectDescription]"
-							}
-						}
-
-						### Others
-						vbox_character_interaction_other_effects = {
-							datamodel = "[InteractionEffectsDescription.GetOtherInteractionDeclineEffects]"
-							layoutpolicy_horizontal = expanding
-						}
-					}
+					vbox_character_interaction_effects_accept_contents = {}
+					vbox_character_interaction_effects_decline_contents = {}
 				}
 			}
 		}
@@ -1183,7 +1197,7 @@ types CharacterInteraction
 			}
 
 			icon = {
-				texture = "gfx/interface/icons/icon_cross.dds"
+				texture = "gfx/interface/icons/symbols/icon_cross.dds"
 				size = { 30 30 }
 				position = { 50 0 }
 				parentanchor = vcenter
@@ -1191,7 +1205,7 @@ types CharacterInteraction
 			}
 
 			icon = {
-				texture = "gfx/interface/icons/icon_check.dds"
+				texture = "gfx/interface/icons/symbols/icon_check.dds"
 				size = { 30 30 }
 				position = { 50 0 }
 				parentanchor = vcenter
@@ -1211,10 +1225,6 @@ types CharacterInteraction
 					using = Font_Size_Medium
 					align = nobaseline
 				}
-
-				#spacer = {
-				#	size = { 50 21 }
-				#}
 			}
 
 			vbox = {
@@ -1299,7 +1309,6 @@ types CharacterInteraction
 					button_checkbox = {
 						block "button_checkbox_inner" {
 						}
-						
 						size = { 30 30 }
 						checked = "[OptionItem.HasOption]"
 						onclick = "[OptionItem.OnClick]"
@@ -1399,7 +1408,7 @@ types CharacterInteraction
 					icon = {
 						name = "success_icon"
 						size = { 30 30 }
-						texture = "gfx/interface/icons/success_icon.dds"
+						texture = "gfx/interface/icons/schemes/icon_scheme_success.dds"
 					}
 
 					text_single = {
@@ -1473,7 +1482,7 @@ types CharacterInteraction
 					icon = {
 						name = "secrecy_icon"
 						size = { 30 30 }
-						texture = "gfx/interface/icons/secrecy_icon.dds"
+						texture = "gfx/interface/icons/schemes/icon_secrecy.dds"
 					}
 
 					text_single = {
@@ -1537,7 +1546,7 @@ types CharacterInteraction
 					icon = {
 						name = "time"
 						size = { 32 32 }
-						texture = "gfx/interface/icons/scheme_power_icon.dds"
+						texture = "gfx/interface/icons/schemes/icon_scheme_power.dds"
 					}
 
 					text_single = {
@@ -1607,26 +1616,6 @@ types CharacterInteraction
 	}
 
 	########################################
-
-	type glowy_portrait = container {
-		icon = {
-			name = "glow"
-			position = { 65 120 }
-			texture = "gfx/portraits/portrait_selected_glow.dds"
-			size = { 128 128 }
-			widgetanchor = center
-			block "Glow"
-			{
-				visible = yes
-			}
-		}
-
-		portrait_head = {
-			name = "portrait"
-			position = { 0 -10 }
-		}
-	}
-
 	type change_revert_buttons = vbox {
 		button_round  = {
 			name = "change"
@@ -1698,7 +1687,7 @@ types CharacterInteraction
 						background = {
 							name = "interaction_glow"
 							visible = "[InteractionItem.IsHighlighted]"
-							texture = "gfx/interface/tiles/tile_selected.dds"
+							texture = "gfx/interface/component_tiles/tile_selected.dds"
 							spriteType = corneredtiled
 							spriteborder = { 25 25 }
 						}
@@ -1729,11 +1718,11 @@ types CharacterInteraction
 								name = "dont_accept"
 								visible = "[And(Not(InteractionItem.IsMore),Not(InteractionItem.IsPotentialAccept))]"
 								size = { 30 30 }
-								texture = "gfx/interface/icons/icon_cross.dds"
+								texture = "gfx/interface/icons/symbols/icon_cross.dds"
 							}
 
 							icon = {
-								texture = "gfx/interface/icons/icon_warning.dds"
+								texture = "gfx/interface/icons/symbols/icon_warning.dds"
 								name = "warning_icon"
 								size = { 25 25 }
 								visible = "[InteractionItem.HasWarningIcon]"
@@ -1950,28 +1939,33 @@ types CharacterInteraction
 					enabled = "[InteractionItem.IsValid]"
 					onclick = "[InteractionItem.OnClick]"
 				}
-				
-				widget = {
-					size = { 35 30 }
+
+				button_standard_hover = {
 					visible = "[InteractionItem.IsMarriageSetting]"
+					tooltip = "[InteractionItem.GetCheckboxTooltip]"
+					onclick = "[InteractionItem.OnClickCheckbox]"
+					size = { 317 30 }
 
-					button_normal = {
-						name = "button"
-						position = { 5 0 }
-						texture = "gfx/interface/buttons/checkbox_small.dds"
-						framesize = { 120 60 }
-						size = { 60 30 }
-						enabled = "[InteractionItem.CheckboxEnabled]"
-						frame = "[InteractionItem.GetCheckboxFrame]"
-						onclick = "[InteractionItem.OnClickCheckbox]"
-						tooltip = "[InteractionItem.GetCheckboxTooltip]"
-						shortcut = "context_menu_allow_marriage"
-					}
+					hbox = {
+						margin_left = 10
 
-					# important that text is in front for tooltip links inside the text
-					text_single = {
-						position = { 38 2 }
-						text = "CHARACTER_INTERACTION_ALLOWED_TO_MARRY"
+						button_checkbox_label = {
+							alwaystransparent = yes
+							name = "button"
+							size = { 30 30 }
+							enabled = "[InteractionItem.CheckboxEnabled]"
+							blockoverride "checkbox"
+							{
+								alwaystransparent = yes
+								checked = "[EqualTo_int32(InteractionItem.GetCheckboxFrame, '(int32)2')]"
+							}
+							blockoverride "text"
+							{
+								text = "CHARACTER_INTERACTION_ALLOWED_TO_MARRY"
+							}
+							shortcut = "context_menu_allow_marriage"
+						}
+						expand = {}
 					}
 				}
 			}

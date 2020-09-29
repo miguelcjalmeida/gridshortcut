@@ -72,7 +72,7 @@ window = {
 				
 				blockoverride "portrait_options_button" {
 					shortcut = "war_portrait_left_options"
-				}
+				}			
 			}
 
 			scrollarea = {
@@ -93,7 +93,6 @@ window = {
 						item = {
 							portrait_head_small = {
 								name = "character_button"
-								datacontext = "[CharacterRef.Get]"
 							}
 						}
 					}
@@ -153,7 +152,6 @@ window = {
 						item = {
 							portrait_head_small = {
 								name = "character_button"
-								datacontext = "[CharacterRef.Get]"
 							}
 						}
 					}

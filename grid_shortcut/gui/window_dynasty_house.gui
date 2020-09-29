@@ -49,14 +49,14 @@ window = {
 				minimumsize = { 0 160 }
 
 				background = {
-					texture = "gfx/interface/tiles/tile_title_big_top_01.dds"
+					texture = "gfx/interface/component_tiles/tile_title_big_top_01.dds"
 					margin_bottom = 10
 					spriteType = Corneredtiled
 					spriteborder = { 0 18 }
 
 					modify_texture = {
 						name = "mask"
-						texture = "gfx/interface/tiles/tile_title_big_top_01_mask.dds"
+						texture = "gfx/interface/component_masks/mask_title_big_top.dds"
 						spriteType = Corneredtiled
 						spriteborder = { 160 0 }
 						blend_mode = alphamultiply
@@ -65,7 +65,7 @@ window = {
 
 					modify_texture = {
 						name = "overlay"
-						texture = "gfx/interface/tiles/tile_title_big_top_01_overlay.dds"
+						texture = "gfx/interface/component_overlay/overlay_title_big_top.dds"
 						spriteType = Corneredstretched
 						spriteborder = { 0 0 }
 						blend_mode = overlay
@@ -205,7 +205,47 @@ window = {
 			}
 
 			vbox = {
+				datacontext = "[DynastyHouse.GetFounder]"
+				visible = "[Not( DynastyHouse.GetHeadOfHouse.IsValid )]"
+				layoutpolicy_horizontal = expanding
+				margin = { 15 0 }
+				minimumsize = { 0 260 }
+
+				datacontext = "[GetIllustration( 'character_view_bg' )]"
+
+				state = {
+					name = "house_view_refresh"
+					using = Animation_Refresh_FadeOut
+				}
+
+				state = {
+					using = Animation_Refresh_FadeIn
+				}
+
+				background = {
+					visible = "[Character.IsValid]"
+					texture = "[Illustration.GetTexture( Character.Self )]"
+					alpha = 0.5
+					fittype = centercrop
+
+					using = Mask_Rough_Edges
+
+					modify_texture = {
+						texture = "gfx/interface/component_masks/mask_fade_horizontal_right.dds"
+						blend_mode = alphamultiply
+					}
+				}
+
+				text_label_left = {
+					layoutpolicy_horizontal = expanding
+					text = "DYNASTY_TT_DEAD_HOUSE"
+					max_width = 370
+				}
+			}
+
+			vbox = {
 				datacontext = "[DynastyHouse.GetHeadOfHouse]"
+				visible = "[DynastyHouse.GetHeadOfHouse.IsValid]"
 				layoutpolicy_horizontal = expanding
 				margin = { 15 0 }
 				minimumsize = { 0 260 }
@@ -229,7 +269,7 @@ window = {
 					using = Mask_Rough_Edges
 
 					modify_texture = {
-						texture = "gfx/interface/tiles/tile_fade_mask.dds"
+						texture = "gfx/interface/component_masks/mask_fade_horizontal_right.dds"
 						blend_mode = alphamultiply
 					}
 				}
@@ -310,6 +350,7 @@ window = {
 									layoutpolicy_horizontal = expanding
 									visible = "[DynastyHouse.HasHeirOfHouse]"
 									datacontext = "[DynastyHouse.GetHeirOfHouse]"
+
 									text = "HOUSE_HEAD_HEIR"
 									max_width = 370
 									multiline = yes
@@ -384,14 +425,14 @@ window = {
 				margin_right = 10
 
 				background = {
-					texture = "gfx/interface/tiles/tile_title_big_top_01.dds"
+					texture = "gfx/interface/component_tiles/tile_title_big_top_01.dds"
 					margin_bottom = 10
 					spriteType = Corneredtiled
 					spriteborder = { 0 18 }
 
 					modify_texture = {
 						name = "mask"
-						texture = "gfx/interface/tiles/tile_title_big_top_01_mask.dds"
+						texture = "gfx/interface/component_masks/mask_title_big_top.dds"
 						spriteType = Corneredtiled
 						spriteborder = { 160 0 }
 						blend_mode = alphamultiply
@@ -400,7 +441,7 @@ window = {
 
 					modify_texture = {
 						name = "overlay"
-						texture = "gfx/interface/tiles/tile_title_big_top_01_overlay.dds"
+						texture = "gfx/interface/component_overlay/overlay_title_big_top.dds"
 						spriteType = Corneredstretched
 						spriteborder = { 0 0 }
 						blend_mode = overlay
@@ -449,8 +490,17 @@ window = {
 									layoutpolicy_horizontal = expanding
 
 									text_multi = {
+										visible = "[Dynasty.GetDynast.IsValid]"
 										layoutpolicy_horizontal = expanding
 										text = "DYNASTY_TT_DYNAST"
+										default_format = "#low"
+										autoresize = no
+									}
+
+									text_multi = {
+										visible = "[Not( Dynasty.GetDynast.IsValid )]"
+										layoutpolicy_horizontal = expanding
+										text = "DYNASTY_TT_DEAD_DYNASTY"
 										default_format = "#low"
 										autoresize = no
 									}
@@ -567,7 +617,7 @@ window = {
 						}
 
 						background = {
-							texture = "gfx/interface/tiles/tile_vignette_3px.dds"
+							texture = "gfx/interface/component_tiles/tile_vignette_3px.dds"
 							spriteType = Corneredtiled
 							spriteborder = { 5 5 }
 							margin = { -2 -2 }
@@ -583,20 +633,13 @@ window = {
 
 							expand = {}
 
-							button_group = {
+							button_sidepanel_right = {
 								shortcut = "house_toggle_members"
 								onclick = "[DynastyHouseView.ToggleMembersWindow('dynasty')]"
 								tooltip = "DYNASTY_VIEW_MEMBERS_TT"
-								size = { 0 21 }
-
-								hbox = {
-									text_single = {
-										text = "DYNASTY_VIEW_MEMBERS"
-										align = nobaseline
-										default_format = "#clickable"
-									}
-
-									button_expand = {}
+								blockoverride "button_text"
+								{
+									text = "DYNASTY_VIEW_MEMBERS"
 								}
 							}
 						}
@@ -607,39 +650,27 @@ window = {
 
 							expand = {}
 
-							button_group = {
+							button_sidepanel_right = {
 								shortcut = "house_toggle_houses"
 								visible = "[GetVariableSystem.HasValue( 'dynasty_view_expand', 'houses' )]"
 								onclick = "[GetVariableSystem.Set( 'dynasty_view_expand', 'none' )]"
 								tooltip = "DYNASTY_VIEW_HOUSES_TT"
-								size = { 0 21 }
 
-								hbox ={
-									text_single = {
-										text = "DYNASTY_VIEW_HOUSES_AMOUNT"
-										align = nobaseline
-										default_format = "#clickable"
-									}
-
-									button_expand = {}
+								blockoverride "button_text"
+								{
+									text = "DYNASTY_VIEW_HOUSES_AMOUNT"
 								}
 							}
 
-							button_group = {
+							button_sidepanel_right = {
 								shortcut = "house_toggle_houses"
 								visible = "[Not(GetVariableSystem.HasValue( 'dynasty_view_expand', 'houses' ))]"
 								onclick = "[GetVariableSystem.Set( 'dynasty_view_expand', 'houses' )]"
 								tooltip = "DYNASTY_VIEW_HOUSES_TT"
-								size = { 0 21 }
 
-								hbox ={
-									text_single = {
-										text = "DYNASTY_VIEW_HOUSES_AMOUNT"
-										align = nobaseline
-										default_format = "#clickable"
-									}
-
-									button_expand = {}
+								blockoverride "button_text"
+								{
+									text = "DYNASTY_VIEW_HOUSES_AMOUNT"
 								}
 							}
 						}
@@ -767,7 +798,7 @@ window = {
 
 							highlight_icon = {
 								size = { 100% 100% }
-								texture = "gfx/interface/tiles/tile_frame_horizontal_mask.dds"
+								texture = "gfx/interface/component_masks/mask_frame_horizontal.dds"
 								tintcolor = { 0 0 0 0.4 }
 							}
 						}
@@ -794,7 +825,7 @@ window = {
 								margin_right = 50
 								alpha = 0.5
 
-								texture = "gfx/interface/tiles/tile_title_bg_01.dds"
+								texture = "gfx/interface/component_tiles/tile_title_bg_01.dds"
 								spriteType = Corneredtiled
 								spriteborder = { 40 8 }
 							}
@@ -805,7 +836,7 @@ window = {
 							alwaystransparent = yes
 
 							background = {
-								texture = "gfx/interface/tiles/tile_vignette_3px.dds"
+								texture = "gfx/interface/component_tiles/tile_vignette_3px.dds"
 								spriteType = Corneredtiled
 								spriteborder = { 5 5 }
 								margin = { -2 -2 }
@@ -855,7 +886,7 @@ window = {
 
 										highlight_icon = {
 											size = { 100% 100% }
-											texture = "gfx/interface/tiles/tile_frame_horizontal_mask.dds"
+											texture = "gfx/interface/component_masks/mask_frame_horizontal.dds"
 											tintcolor = { 0 0 0 0.4 }
 										}
 									}
@@ -876,7 +907,7 @@ window = {
 				fittype = end
 
 				modify_texture = {
-					texture = "gfx/interface/tiles/stretch_bottom_fade.dds"
+					texture = "gfx/interface/component_masks/mask_fade_vertical_up.dds"
 					blend_mode = alphamultiply
 				}
 			}
@@ -980,7 +1011,7 @@ window = {
 							maximumsize = { 215 250 }
 							autoresizescrollarea = yes
 							scrollbarpolicy_horizontal = always_off
-							
+
 							using = Background_DropDown
 
 							scrollwidget = {
