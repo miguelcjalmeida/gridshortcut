@@ -466,7 +466,6 @@ window = {
 										visible = "[CasusBelliTitleItem.IsSelected]"
 										parentanchor = center
 										using = tooltip_ne
-										margin_left = 15
 									}
 								}
 							}
