@@ -1,4 +1,4 @@
-[b]Mod v1.2.4[/b] for [b]CK3 v1.1.1[/b]
+[b]Mod v1.3.0[/b] for [b]CK3 v1.1.1[/b]
 
 This mod adds more than four hundred shortcuts to the game. The idea is to speed up interface interactions by diminishing the mouse usage with scoped shortcuts. They are scoped to the window that is opened, allowing the coverage of many different actions with same hotkeys.
 
@@ -12,8 +12,8 @@ https://drive.google.com/file/d/18MQJiulA32cKGcFod4YmgEb0_-usVQ2G/view?usp=shari
 
 [b]NOTE: When updating your mod version, you must again manually update the 'shortcuts.shortcuts'.[/b]
 
-[h1] Mods incorporated [/h1]
-[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2219611817]Extended Outliner[/url]: Amazing quality of life mod which was added and slightly modified to display income and war status of pinned characters. Cycling through armies shortcut was added as well.
+[h1] Mods integrated [/h1]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2219611817]Extended Outliner[/url]: Amazing quality of life mod which was added and slightly modified to display income and war status of pinned characters. The cycling through armies shortcut was added as well. Thanks 'Fun' for developing it; please don't forget to upvote his mod.
 
 [h1] Learning the hotkeys [/h1]
 Check the link below to learn about every hotkey:

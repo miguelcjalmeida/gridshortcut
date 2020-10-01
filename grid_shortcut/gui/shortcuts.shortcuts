@@ -252,10 +252,10 @@ shortcutbindings = {
 	court_hire_physician = "Q"
 	court_hire_physician_options = "C"
 	court_invite_knights = "E"
-	court_invite_claimants = "R"
+	court_invite_claimants = "F"
 	court_prison_mass_ransom = "Q"
 	court_prison_mass_release = "E"
-	court_prison_mass_execute = "R"
+	court_prison_mass_execute = "F"
 
 # Factions
 	factions_mine = "1"

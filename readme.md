@@ -5,7 +5,7 @@ This is a mod for Crusader King 3 (**v1.1.1**) that adds more than four hundred 
 
 The most frequent actions are mapped with easy-to-reach thinking, meaning they are mapped to the left side of the keyboard, where the hand rests, by the keys: 1-5, QWERT, ASDFG, ZXCVB, TAB and SPACE. The more uncommon actions (map view and few windows), are mapped to sequences which is usually initiated by SPACE. This configuration should help decreasing the mouse usage, allowing you to even combo hotkeys. Just keep in mind that there is a learning curve, since it requires memorization.
 
-# Requirement  [Very Important]
+# Requirement
 
 Since CK3 still don't support modding the file "*Crusader King III/game/gui/shorcuts.shortcuts*", you will have to replace your version with [mine](https://drive.google.com/file/d/18MQJiulA32cKGcFod4YmgEb0_-usVQ2G/view?usp=sharing) manually, otherwise the hotkeys won't work. 
 
@@ -15,8 +15,8 @@ Since CK3 still don't support modding the file "*Crusader King III/game/gui/shor
 
 Download available on [steam workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=2231258079).
 
-# Mods incorporated
-- [Extended Outliner](https://steamcommunity.com/sharedfiles/filedetails/?id=2219611817): Amazing quality of life mod which was added and slightly modified to display income and war status of pinned characters. The 'cycling through armies' shortcut was added to it as well.
+# Mods integrated
+- [Extended Outliner](https://steamcommunity.com/sharedfiles/filedetails/?id=2219611817): Amazing quality of life mod which was added and slightly modified to display income and war status of pinned characters. The 'cycling through armies' shortcut was added to it as well. Thanks 'Fun' for developing it; please don't forget to upvote his mod.
 
 # Hotkeys Guide
 Right below you can learn every mapping added by this mod. Fortunately, most hotkeys you can also discover in-game by hovering buttons, but some just won't show up, like the opening portraits ones. For that, it is recommended to check the list below from time to time, while playing.
@@ -523,7 +523,7 @@ _The HUD window shortcuts are only triggered when there is no other window opene
 | 1, 2 | Navigate between Court and Prison |
 | Q | Hire physician, and mass ransom |
 | E | Invite knights, and mass release | 
-| R | Invite claimants, and mass execution | 
+| F | Invite claimants, and mass execution ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)| 
 
 ### Intrigue window
 
