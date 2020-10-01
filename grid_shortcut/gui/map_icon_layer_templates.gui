@@ -636,6 +636,8 @@ template siege_goto_template
 			name = "blocked_icon"
 			texture = "gfx/interface/icons/map_icons/onmap_siege_icon.dds"
 		}
+
+		block "siege_button" {}
 	}
 }
 
