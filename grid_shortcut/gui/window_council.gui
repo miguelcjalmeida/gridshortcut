@@ -172,7 +172,8 @@ window = {
 
 						down = "[CouncilWindow.IsPlayerCouncilShown]"
 						onclick = "[CouncilWindow.SetPlayerCouncil]"
-
+						enabled = "[Not(Or(Or(GetVariableSystem.Exists('council_replace_on'), GetVariableSystem.Exists('council_retask_on')), GetVariableSystem.Exists('council_retask_choosing_on')))]"
+				
 						# onclick = "[PdxGuiTriggerAllAnimations('council_refresh')]"
 
 						# state = {
@@ -188,8 +189,8 @@ window = {
 
 						down = "[CouncilWindow.IsLiegeCouncilShown]"
 						onclick = "[CouncilWindow.SetLiegeCouncil]"
-
-
+						enabled = "[Not(Or(Or(GetVariableSystem.Exists('council_replace_on'), GetVariableSystem.Exists('council_retask_on')), GetVariableSystem.Exists('council_retask_choosing_on')))]"
+						
 						# onclick = "[PdxGuiTriggerAllAnimations('council_refresh')]"
 
 						# state = {
