@@ -21,6 +21,8 @@ window = {
 		on_start = "[GetVariableSystem.Set( 'right_window_open', 'true' )]"
 		on_start = "[GetVariableSystem.Set( 'council_tabs', 'my_council' )]"
 		on_start = "[GetVariableSystem.Clear('council_replace_on')]"
+		on_start = "[GetVariableSystem.Clear('council_retask_on')]"
+		on_start = "[GetVariableSystem.Clear('council_retask_choosing_on')]"
 	}
 
 	state = {
@@ -30,6 +32,89 @@ window = {
 		using = Window_Position_MainTab_Hide
 
 		on_start = "[GetVariableSystem.Clear( 'right_window_open' )]"
+	}
+
+	button_normal = {
+		size = { 0 0 }
+		shortcut = "council_replace_activator"
+		onclick = "[GetVariableSystem.Clear('council_replace_on')]"
+		onclick = "[GetVariableSystem.Clear('council_retask_on')]"
+		onclick = "[GetVariableSystem.Toggle('council_replace_on')]"
+	}
+	
+	# retask shortcut 
+	button_normal = {
+		size = { 0 0 }
+		shortcut = "council_retask_activator"
+		onclick = "[GetVariableSystem.Clear('council_replace_on')]"
+		onclick = "[GetVariableSystem.Clear('council_retask_on')]"
+		onclick = "[GetVariableSystem.Toggle('council_retask_on')]"
+	}
+
+	button_normal = {
+		size = { 0 0 }
+		visible = "[GetVariableSystem.Exists('council_retask_choosing_on')]"
+		state = {
+			name = "_show"
+			duration = 1
+			on_finish = "[GetVariableSystem.Clear('council_retask_choosing_on')]"
+		}
+	}
+
+	widget = {
+		size = { 0 0 }
+		visible = "[GetVariableSystem.Exists('council_retask_on')]"
+
+		state = {
+			name = "_show"
+			duration = 1
+			on_finish = "[GetVariableSystem.Clear('council_retask_on')]"
+		}
+
+		button_normal = {
+			size = { 0 0 }
+			shortcut = "council_chancellor"
+			onclick = "[GetVariableSystem.Clear('council_retask_on')]"
+			onclick = "[GetVariableSystem.Set('council_retask_choosing_on', '1')]"
+		}
+
+		button_normal = {
+			size = { 0 0 }
+			shortcut = "council_marshal"
+			onclick = "[GetVariableSystem.Clear('council_retask_on')]"
+			onclick = "[GetVariableSystem.Set('council_retask_choosing_on', '2')]"
+		}
+
+		button_normal = {
+			size = { 0 0 }
+			shortcut = "council_steward"
+			onclick = "[GetVariableSystem.Clear('council_retask_on')]"
+			onclick = "[GetVariableSystem.Set('council_retask_choosing_on', '3')]"
+		}
+
+		button_normal = {
+			size = { 0 0 }
+			shortcut = "council_spymaster"
+			onclick = "[GetVariableSystem.Clear('council_retask_on')]"
+			onclick = "[GetVariableSystem.Set('council_retask_choosing_on', '4')]"
+		}
+
+		button_normal = {
+			size = { 0 0 }
+			shortcut = "council_chaplain"
+			onclick = "[GetVariableSystem.Clear('council_retask_on')]"
+			onclick = "[GetVariableSystem.Set('council_retask_choosing_on', '5')]"
+		}
+	}
+
+	button_normal = {
+		size = { 0 0 }
+		visible = "[GetVariableSystem.Exists('council_retask_choosing_on')]"
+		state = {
+			name = "_show"
+			duration = 1
+			on_finish = "[GetVariableSystem.Clear('council_retask_choosing_on')]"
+		}
 	}
 
 	margin_widget = {
@@ -556,12 +641,6 @@ types CouncilWindow
 				block "replace_councillor"
 				{
 					hbox = {
-						button_normal = {
-							size = { 0 0 }
-							shortcut = "council_replace_activator"
-							onclick = "[GetVariableSystem.Clear('council_replace_on')]"
-							onclick = "[GetVariableSystem.Toggle('council_replace_on')]"
-						}
 
 						widget = {
 							name = "council_position_wgt"
@@ -570,7 +649,8 @@ types CouncilWindow
 							
 							button_normal = {
 								visible = "[And(GuiCouncilPosition.CanPotentiallySelectCouncillor, EqualTo_string(ActiveCouncilTask.GetPositionType.GetName, SelectLocalization(GuiCouncilPosition.CanPotentiallySelectCouncillor, 'councillor_court_chaplain', 'councillor_court_chaplain')))]"
-								shortcut = "council_replace_chaplain"
+								shortcut = "council_chaplain"
+								onclick = "[GetVariableSystem.Clear('council_replace_on')]"
 								onclick = "[GuiCouncilPosition.SelectCouncillor]"
 								enabled = "[GuiCouncilPosition.CanSelectCouncillor]"
 								size = { 0 0 }
@@ -578,7 +658,8 @@ types CouncilWindow
 
 							button_normal = {
 								visible = "[And(GuiCouncilPosition.CanPotentiallySelectCouncillor, EqualTo_string(ActiveCouncilTask.GetPositionType.GetName, SelectLocalization(GuiCouncilPosition.CanPotentiallySelectCouncillor, 'councillor_marshal', 'councillor_marshal')))]"
-								shortcut = "council_replace_marshal"
+								shortcut = "council_marshal"
+								onclick = "[GetVariableSystem.Clear('council_replace_on')]"
 								onclick = "[GuiCouncilPosition.SelectCouncillor]"
 								enabled = "[GuiCouncilPosition.CanSelectCouncillor]"
 								size = { 0 0 }
@@ -586,7 +667,8 @@ types CouncilWindow
 
 							button_normal = {
 								visible = "[And(GuiCouncilPosition.CanPotentiallySelectCouncillor, EqualTo_string(ActiveCouncilTask.GetPositionType.GetName, SelectLocalization(GuiCouncilPosition.CanPotentiallySelectCouncillor, 'councillor_steward', 'councillor_steward')))]"
-								shortcut = "council_replace_steward"
+								shortcut = "council_steward"
+								onclick = "[GetVariableSystem.Clear('council_replace_on')]"
 								onclick = "[GuiCouncilPosition.SelectCouncillor]"
 								enabled = "[GuiCouncilPosition.CanSelectCouncillor]"
 								size = { 0 0 }
@@ -594,7 +676,8 @@ types CouncilWindow
 
 							button_normal = {
 								visible = "[And(GuiCouncilPosition.CanPotentiallySelectCouncillor, EqualTo_string(ActiveCouncilTask.GetPositionType.GetName, SelectLocalization(GuiCouncilPosition.CanPotentiallySelectCouncillor, 'councillor_chancellor', 'councillor_chancellor')))]"
-								shortcut = "council_replace_chancellor"
+								shortcut = "council_chancellor"
+								onclick = "[GetVariableSystem.Clear('council_replace_on')]"
 								onclick = "[GuiCouncilPosition.SelectCouncillor]"
 								enabled = "[GuiCouncilPosition.CanSelectCouncillor]"
 								size = { 0 0 }
@@ -602,7 +685,8 @@ types CouncilWindow
 							
 							button_normal = {
 								visible = "[And(GuiCouncilPosition.CanPotentiallySelectCouncillor, EqualTo_string(ActiveCouncilTask.GetPositionType.GetName, SelectLocalization(GuiCouncilPosition.CanPotentiallySelectCouncillor, 'councillor_spymaster', 'councillor_spymaster')))]"
-								shortcut = "council_replace_spymaster"
+								shortcut = "council_spymaster"
+								onclick = "[GetVariableSystem.Clear('council_replace_on')]"
 								onclick = "[GuiCouncilPosition.SelectCouncillor]"
 								enabled = "[GuiCouncilPosition.CanSelectCouncillor]"
 								size = { 0 0 }
@@ -940,6 +1024,155 @@ types CouncilWindow
 										size = { 45 45 }
 										gfxtype = togglepushbuttongfx
 										effectname = "NoHighlight"
+
+										# Chancellor
+										button_normal = {
+											size = { 0 0 }
+											shortcut = "council_task_1"
+											onclick = "[GuiPotentialCouncilTask.SelectTaskType]"
+											onclick = "[GetVariableSystem.Clear('council_retask_choosing_on')]"
+											enabled = "[Not(CouncilWindow.IsLiegeCouncilShown)]"
+											visible = "[And(EqualTo_string(GetVariableSystem.Get('council_retask_choosing_on'), '1'), EqualTo_string(GuiPotentialCouncilTask.GetCouncilTaskType.GetName, Localize('task_foreign_affairs')))]"
+										}
+
+										button_normal = {
+											size = { 0 0 }
+											shortcut = "council_task_2"
+											onclick = "[GuiPotentialCouncilTask.SelectTaskType]"
+											onclick = "[GetVariableSystem.Clear('council_retask_choosing_on')]"
+											enabled = "[Not(CouncilWindow.IsLiegeCouncilShown)]"
+											visible = "[And(EqualTo_string(GetVariableSystem.Get('council_retask_choosing_on'), '1'), EqualTo_string(GuiPotentialCouncilTask.GetCouncilTaskType.GetName, Localize('task_domestic_affairs')))]"
+										}
+
+										button_normal = {
+											size = { 0 0 }
+											shortcut = "council_task_3"
+											onclick = "[GuiPotentialCouncilTask.SelectTaskType]"
+											onclick = "[GetVariableSystem.Clear('council_retask_choosing_on')]"
+											enabled = "[Not(CouncilWindow.IsLiegeCouncilShown)]"
+											visible = "[And(EqualTo_string(GetVariableSystem.Get('council_retask_choosing_on'), '1'), EqualTo_string(GuiPotentialCouncilTask.GetCouncilTaskType.GetName, Localize('task_integrate_title')))]"
+										}
+
+										# Marshal
+										button_normal = {
+											size = { 0 0 }
+											shortcut = "council_task_1"
+											onclick = "[GuiPotentialCouncilTask.SelectTaskType]"
+											onclick = "[GetVariableSystem.Clear('council_retask_choosing_on')]"
+											enabled = "[Not(CouncilWindow.IsLiegeCouncilShown)]"
+											visible = "[And(EqualTo_string(GetVariableSystem.Get('council_retask_choosing_on'), '2'), EqualTo_string(GuiPotentialCouncilTask.GetCouncilTaskType.GetName, Localize('task_organize_levies')))]"
+										}
+
+										button_normal = {
+											size = { 0 0 }
+											shortcut = "council_task_2"
+											onclick = "[GuiPotentialCouncilTask.SelectTaskType]"
+											onclick = "[GetVariableSystem.Clear('council_retask_choosing_on')]"
+											enabled = "[Not(CouncilWindow.IsLiegeCouncilShown)]"
+											visible = "[And(EqualTo_string(GetVariableSystem.Get('council_retask_choosing_on'), '2'), EqualTo_string(GuiPotentialCouncilTask.GetCouncilTaskType.GetName, Localize('task_train_commanders')))]"
+										}
+
+										button_normal = {
+											size = { 0 0 }
+											shortcut = "council_task_3"
+											onclick = "[GuiPotentialCouncilTask.SelectTaskType]"
+											onclick = "[GetVariableSystem.Clear('council_retask_choosing_on')]"
+											enabled = "[Not(CouncilWindow.IsLiegeCouncilShown)]"
+											visible = "[And(EqualTo_string(GetVariableSystem.Get('council_retask_choosing_on'), '2'), EqualTo_string(GuiPotentialCouncilTask.GetCouncilTaskType.GetName, Localize('task_increase_control')))]"
+										}
+
+										button_normal = {
+											size = { 0 0 }
+											shortcut = "council_task_4"
+											onclick = "[GuiPotentialCouncilTask.SelectTaskType]"
+											onclick = "[GetVariableSystem.Clear('council_retask_choosing_on')]"
+											enabled = "[Not(CouncilWindow.IsLiegeCouncilShown)]"
+											visible = "[And(EqualTo_string(GetVariableSystem.Get('council_retask_choosing_on'), '2'), EqualTo_string(GuiPotentialCouncilTask.GetCouncilTaskType.GetName, Localize('task_suppress_crime')))]"
+										}
+
+										# Steward
+										button_normal = {
+											size = { 0 0 }
+											shortcut = "council_task_1"
+											onclick = "[GuiPotentialCouncilTask.SelectTaskType]"
+											onclick = "[GetVariableSystem.Clear('council_retask_choosing_on')]"
+											enabled = "[Not(CouncilWindow.IsLiegeCouncilShown)]"
+											visible = "[And(EqualTo_string(GetVariableSystem.Get('council_retask_choosing_on'), '3'), EqualTo_string(GuiPotentialCouncilTask.GetCouncilTaskType.GetName, Localize('task_collect_taxes')))]"
+										}
+
+										button_normal = {
+											size = { 0 0 }
+											shortcut = "council_task_2"
+											onclick = "[GuiPotentialCouncilTask.SelectTaskType]"
+											onclick = "[GetVariableSystem.Clear('council_retask_choosing_on')]"
+											enabled = "[Not(CouncilWindow.IsLiegeCouncilShown)]"
+											visible = "[And(EqualTo_string(GetVariableSystem.Get('council_retask_choosing_on'), '3'), EqualTo_string(GuiPotentialCouncilTask.GetCouncilTaskType.GetName, Localize('task_develop_county')))]"
+										}
+
+										button_normal = {
+											size = { 0 0 }
+											shortcut = "council_task_3"
+											onclick = "[GuiPotentialCouncilTask.SelectTaskType]"
+											onclick = "[GetVariableSystem.Clear('council_retask_choosing_on')]"
+											enabled = "[Not(CouncilWindow.IsLiegeCouncilShown)]"
+											visible = "[And(EqualTo_string(GetVariableSystem.Get('council_retask_choosing_on'), '3'), EqualTo_string(GuiPotentialCouncilTask.GetCouncilTaskType.GetName, Localize('task_promote_culture')))]"
+										}
+
+										# Spymaster
+										button_normal = {
+											size = { 0 0 }
+											shortcut = "council_task_1"
+											onclick = "[GuiPotentialCouncilTask.SelectTaskType]"
+											onclick = "[GetVariableSystem.Clear('council_retask_choosing_on')]"
+											enabled = "[Not(CouncilWindow.IsLiegeCouncilShown)]"
+											visible = "[And(EqualTo_string(GetVariableSystem.Get('council_retask_choosing_on'), '4'), EqualTo_string(GuiPotentialCouncilTask.GetCouncilTaskType.GetName, Localize('task_disrupt_schemes')))]"
+										}
+
+										button_normal = {
+											size = { 0 0 }
+											shortcut = "council_task_2"
+											onclick = "[GuiPotentialCouncilTask.SelectTaskType]"
+											onclick = "[GetVariableSystem.Clear('council_retask_choosing_on')]"
+											enabled = "[Not(CouncilWindow.IsLiegeCouncilShown)]"
+											visible = "[And(EqualTo_string(GetVariableSystem.Get('council_retask_choosing_on'), '4'), EqualTo_string(GuiPotentialCouncilTask.GetCouncilTaskType.GetName, Localize('task_support_schemes')))]"
+										}
+
+										button_normal = {
+											size = { 0 0 }
+											shortcut = "council_task_3"
+											onclick = "[GuiPotentialCouncilTask.SelectTaskType]"
+											onclick = "[GetVariableSystem.Clear('council_retask_choosing_on')]"
+											enabled = "[Not(CouncilWindow.IsLiegeCouncilShown)]"
+											visible = "[And(EqualTo_string(GetVariableSystem.Get('council_retask_choosing_on'), '4'), EqualTo_string(GuiPotentialCouncilTask.GetCouncilTaskType.GetName, Localize('task_find_secrets')))]"
+										}
+
+										# Court Chaplain
+										button_normal = {
+											size = { 0 0 }
+											shortcut = "council_task_1"
+											onclick = "[GuiPotentialCouncilTask.SelectTaskType]"
+											onclick = "[GetVariableSystem.Clear('council_retask_choosing_on')]"
+											enabled = "[Not(CouncilWindow.IsLiegeCouncilShown)]"
+											visible = "[And(EqualTo_string(GetVariableSystem.Get('council_retask_choosing_on'), '5'), EqualTo_string(GuiPotentialCouncilTask.GetCouncilTaskType.GetName, Localize('task_religious_relations')))]"
+										}
+
+										button_normal = {
+											size = { 0 0 }
+											shortcut = "council_task_2"
+											onclick = "[GuiPotentialCouncilTask.SelectTaskType]"
+											onclick = "[GetVariableSystem.Clear('council_retask_choosing_on')]"
+											enabled = "[Not(CouncilWindow.IsLiegeCouncilShown)]"
+											visible = "[And(EqualTo_string(GetVariableSystem.Get('council_retask_choosing_on'), '5'), EqualTo_string(GuiPotentialCouncilTask.GetCouncilTaskType.GetName, Localize('task_conversion')))]"
+										}
+
+										button_normal = {
+											size = { 0 0 }
+											shortcut = "council_task_3"
+											onclick = "[GuiPotentialCouncilTask.SelectTaskType]"
+											onclick = "[GetVariableSystem.Clear('council_retask_choosing_on')]"
+											enabled = "[Not(CouncilWindow.IsLiegeCouncilShown)]"
+											visible = "[And(EqualTo_string(GetVariableSystem.Get('council_retask_choosing_on'), '5'), EqualTo_string(GuiPotentialCouncilTask.GetCouncilTaskType.GetName, Localize('task_fabricate_claim')))]"
+										}
 
 										onclick = "[GuiPotentialCouncilTask.SelectTaskType]"
 										enabled = "[Not(CouncilWindow.IsLiegeCouncilShown)]"
