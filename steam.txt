@@ -8,7 +8,7 @@ The most frequent actions are mapped with easy-to-reach thinking, meaning they a
 Since CK3 still don't support modding the file "Crusader King III/game/gui/shorcuts.shortcuts", you will have to replace your version with mine manually, otherwise the hotkeys won't work. You should find this mod file inside your workshop directory under the ID 2231258079.
 
 However, if you prefer, you can also find the shortcuts.shortcuts in this link:
-https://drive.google.com/file/d/18MQJiulA32cKGcFod4YmgEb0_-usVQ2G/view?usp=sharing
+https://drive.google.com/file/d/1qqcUODmwOF2NYtI87KutyU6J7tDeV5dm/view?usp=sharing
 
 [b]NOTE: When updating your mod version, you must again manually update the 'shortcuts.shortcuts'.[/b]
 

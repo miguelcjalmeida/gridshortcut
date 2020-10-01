@@ -7,7 +7,7 @@ The most frequent actions are mapped with easy-to-reach thinking, meaning they a
 
 # Requirement
 
-Since CK3 still don't support modding the file "*Crusader King III/game/gui/shorcuts.shortcuts*", you will have to replace your version with [mine](https://drive.google.com/file/d/18MQJiulA32cKGcFod4YmgEb0_-usVQ2G/view?usp=sharing) manually, otherwise the hotkeys won't work. 
+Since CK3 still don't support modding the file "*Crusader King III/game/gui/shorcuts.shortcuts*", you will have to replace your version with [mine](https://drive.google.com/file/d/1qqcUODmwOF2NYtI87KutyU6J7tDeV5dm/view?usp=sharing) manually, otherwise the hotkeys won't work. 
 
 **NOTE: When updating your mod version, you must again manually update the 'shortcuts.shortcuts'.**
 
