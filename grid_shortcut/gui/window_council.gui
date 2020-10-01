@@ -1464,18 +1464,14 @@ types CouncilTaskTypes
 				widget_councillor_item = {
 					layoutpolicy_horizontal = expanding
 					layoutpolicy_vertical = expanding
-					datacontext = "[CouncilWindow.GetCouncillor('councillor_court_chaplain')]"
+					datacontext = "[CouncilWindow.GetCouncillor('councillor_chancellor')]"
 					datacontext = "[GuiCouncilPosition.GetActiveCouncilTask]"
 					datacontext = "[ActiveCouncilTask.GetPositionType]"
 					datacontext = "[ActiveCouncilTask.GetCouncillor]"
-					name = "tutorial_court_chaplain"
-
-					datacontext = "[GetIllustration( 'religion_interior' )]"
 
 					background =  {
-						texture = "[Illustration.GetTextureForFaith( ActiveCouncilTask.GetCouncillor.GetFaith )]"
-						fittype = centercrop
-						alpha = 0.7
+						texture = "gfx/interface/illustrations/council/bg_council_chancellor.dds"
+						alpha = 0.6
 						using = Mask_Rough_Edges
 					}
 
@@ -1496,15 +1492,15 @@ types CouncilTaskTypes
 				widget_councillor_item = {
 					layoutpolicy_horizontal = expanding
 					layoutpolicy_vertical = expanding
-					datacontext = "[CouncilWindow.GetCouncillor('councillor_chancellor')]"
+					datacontext = "[CouncilWindow.GetCouncillor('councillor_marshal')]"
 					datacontext = "[GuiCouncilPosition.GetActiveCouncilTask]"
 					datacontext = "[ActiveCouncilTask.GetPositionType]"
 					datacontext = "[ActiveCouncilTask.GetCouncillor]"
 
 					background =  {
-						texture = "gfx/interface/illustrations/council/bg_council_chancellor.dds"
-						alpha = 0.6
+						texture = "gfx/interface/illustrations/council/bg_council_marshal.dds"
 						using = Mask_Rough_Edges
+						alpha = 0.7
 					}
 
 					background = {
@@ -1546,13 +1542,13 @@ types CouncilTaskTypes
 				widget_councillor_item = {
 					layoutpolicy_horizontal = expanding
 					layoutpolicy_vertical = expanding
-					datacontext = "[CouncilWindow.GetCouncillor('councillor_marshal')]"
+					datacontext = "[CouncilWindow.GetCouncillor('councillor_spymaster')]"
 					datacontext = "[GuiCouncilPosition.GetActiveCouncilTask]"
 					datacontext = "[ActiveCouncilTask.GetPositionType]"
 					datacontext = "[ActiveCouncilTask.GetCouncillor]"
 
 					background =  {
-						texture = "gfx/interface/illustrations/council/bg_council_marshal.dds"
+						texture = "gfx/interface/illustrations/council/bg_council_spymaster.dds"
 						using = Mask_Rough_Edges
 						alpha = 0.7
 					}
@@ -1567,15 +1563,19 @@ types CouncilTaskTypes
 				widget_councillor_item = {
 					layoutpolicy_horizontal = expanding
 					layoutpolicy_vertical = expanding
-					datacontext = "[CouncilWindow.GetCouncillor('councillor_spymaster')]"
+					datacontext = "[CouncilWindow.GetCouncillor('councillor_court_chaplain')]"
 					datacontext = "[GuiCouncilPosition.GetActiveCouncilTask]"
 					datacontext = "[ActiveCouncilTask.GetPositionType]"
 					datacontext = "[ActiveCouncilTask.GetCouncillor]"
+					name = "tutorial_court_chaplain"
+
+					datacontext = "[GetIllustration( 'religion_interior' )]"
 
 					background =  {
-						texture = "gfx/interface/illustrations/council/bg_council_spymaster.dds"
-						using = Mask_Rough_Edges
+						texture = "[Illustration.GetTextureForFaith( ActiveCouncilTask.GetCouncillor.GetFaith )]"
+						fittype = centercrop
 						alpha = 0.7
+						using = Mask_Rough_Edges
 					}
 
 					background = {
