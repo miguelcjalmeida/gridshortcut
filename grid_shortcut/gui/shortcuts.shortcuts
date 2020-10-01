@@ -20,11 +20,11 @@ shortcutbindings = {
 	action_list = "TAB"
 
 # Disabled 
-	speed_1 = "P"
-	speed_2 = "P"
-	speed_3 = "P"
-	speed_4 = "P"
-	speed_5 = "P"
+	speed_1 = "shift+1"
+	speed_2 = "shift+2"
+	speed_3 = "shift+3"
+	speed_4 = "shift+4"
+	speed_5 = "shift+5"
 	character_finder = "P"
 	pause = "P"
 	sequence_character_options = "P"
@@ -47,6 +47,18 @@ shortcutbindings = {
 # Dev
 	map_editor_toggle_game_map_mode = "0"
 	editor_toggle = "P"
+
+# Quickslot 
+	quickslot_1 = "1"
+	quickslot_2 = "2"
+	quickslot_3 = "3"
+	quickslot_4 = "4"
+	quickslot_5 = "5"
+	quickslot_set_1 = "ctrl+1"
+	quickslot_set_2 = "ctrl+2"
+	quickslot_set_3 = "ctrl+3"
+	quickslot_set_4 = "ctrl+4"
+	quickslot_set_5 = "ctrl+5"
 
 # Outliner
 	outliner = "F10"
