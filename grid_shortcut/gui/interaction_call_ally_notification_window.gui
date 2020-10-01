@@ -132,6 +132,14 @@ window = {
 			portrait_head_small = {
 				name = "primary_ally"
 				datacontext = "[CallAllyInteractionNotificationWindow.GetPrimaryEnemy]"
+
+				blockoverride "portrait_button" {
+					shortcut = "war_portrait_right"
+				}
+				
+				blockoverride "portrait_options_button" {
+					shortcut = "war_portrait_right_options"
+				}
 			}
 
 			scrollarea = {
