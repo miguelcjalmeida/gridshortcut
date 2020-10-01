@@ -211,6 +211,7 @@ _The HUD window shortcuts are only triggered when there is no other window opene
 | R | Declare war, call ally to war, offer to join war | 
 | B | Educate child, offer guardianship | 
 | C | Remove Guardian | 
+| D | Demand Conversion ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)| 
 | T | Sway | 
 | Z | Murder | 
 | X | Fabricate hook | 
@@ -367,6 +368,7 @@ _The HUD window shortcuts are only triggered when there is no other window opene
 
 | Key | Action |
 | - | - |
+| E | Modify |
 | Q | Reset parameters |
 | F | Toggle use hook checkbox |
 
@@ -409,16 +411,17 @@ _The HUD window shortcuts are only triggered when there is no other window opene
 | - | - |
 | E | Change commander |
 | 1 | Merge units |
-| 2 | Split units in half |
-| 3 | Split only enough units to complete siege |
-| 4 | Split only mercenaries |
-| R | Split as you want | 
+| 2 | Split as you want ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)| 
+| 3 | Split units in half ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
+| 4 | Split only enough units to complete siege ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
+| 5 | Split only mercenaries ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
 | Q | Disband army |
-| F | Toggle auto raiding checkbox | 
-| G | Turn raiders into normal soldiers |
+| R | Toggle auto raiding checkbox ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)| 
+| T | Turn raiders into normal soldiers ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
 | V | Cycle the selected unit from army |
-| 5 | Reorganize two armies 
-| T | Go to siege, if happening 
+| G | Reorganize two armies ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)| 
+| F | Go to siege, if happening ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)| 
+
 ### Siege window
 
 ![siege window](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/siege.png)
@@ -426,7 +429,7 @@ _The HUD window shortcuts are only triggered when there is no other window opene
 | Key | Action |
 | - | - |
 | 5 | Select the county being sieged | 
-| T | Select the sieging army  | 
+| F | Select the sieging army  | 
 | G | Assault! | 
 
 ### War overview
@@ -455,6 +458,8 @@ _The HUD window shortcuts are only triggered when there is no other window opene
 | E | Accept |
 | F | Open primary ally profile |
 | C | Right-click primary ally portrait |
+| G | Open primary enemy profile ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
+| V | Right-click primary enemy portrait ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
 
 ### Declare war!
 
@@ -545,6 +550,7 @@ _The HUD window shortcuts are only triggered when there is no other window opene
 ### Decisions window
 
 ![decisions](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/decisions.png)
+
 _The next shortcuts will allow you to access almost any minor decision by hotkey. You can't access major decisions though._
 | Key | Action |
 | - | - |
