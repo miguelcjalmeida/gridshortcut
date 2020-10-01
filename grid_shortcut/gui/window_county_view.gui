@@ -14,32 +14,26 @@ window = {
 	datacontext = "[HoldingView.GetProvince]"
 	datacontext = "[Province.GetCounty]"
 
+	#init vars
 	state = { 
-		name = "_show"
+		name = _show
+		duration = 1
 		on_start = "[GetVariableSystem.Clear( 'county_combining' )]"
 		on_start = "[GetVariableSystem.Clear( 'county_county_combining' )]"
 		on_start = "[GetVariableSystem.Clear( 'county_baron_combining' )]"
+		on_start = "[GetVariableSystem.Set( 'county_holding_position', '1' )]"
+		on_finish = "[PdxGuiTriggerAllAnimations('refresh_county_position')]"
+		on_finish = "[PdxGuiTriggerAllAnimations('refresh_county_holding_indexes')]"
+		on_finish = "[GetVariableSystem.Set('county_current_name', HoldingView.GetCountyTitle.GetNameNoTooltip)]"
 	}
 
+	# activators
+	# default actions 
 	button_normal = {
 		size = { 0 0 }
 		shortcut = "county_activator"
 		onclick = "[GetVariableSystem.Clear( 'county_combining' )]"
 		onclick = "[GetVariableSystem.Toggle( 'county_combining' )]"
-	}
-
-	button_normal = {
-		size = { 0 0 }
-		shortcut = "county_county_activator"
-		onclick = "[GetVariableSystem.Clear( 'county_county_combining' )]"
-		onclick = "[GetVariableSystem.Toggle( 'county_county_combining' )]"
-	}
-
-	button_normal = {
-		size = { 0 0 }
-		shortcut = "county_baron_activator"
-		onclick = "[GetVariableSystem.Clear( 'county_baron_combining' )]"
-		onclick = "[GetVariableSystem.Toggle( 'county_baron_combining' )]"
 	}
 
 	button_normal = {
@@ -50,6 +44,14 @@ window = {
 			delay = 1
 			on_start = "[GetVariableSystem.Clear( 'county_combining' )]"
 		}
+	}
+
+	# county related - title, owner
+	button_normal = {
+		size = { 0 0 }
+		shortcut = "county_county_activator"
+		onclick = "[GetVariableSystem.Clear( 'county_county_combining' )]"
+		onclick = "[GetVariableSystem.Toggle( 'county_county_combining' )]"
 	}
 
 	button_normal = {
@@ -63,6 +65,14 @@ window = {
 		}
 	}
 
+	# barony related - title, owner
+	button_normal = {
+		size = { 0 0 }
+		shortcut = "county_baron_activator"
+		onclick = "[GetVariableSystem.Clear( 'county_baron_combining' )]"
+		onclick = "[GetVariableSystem.Toggle( 'county_baron_combining' )]"
+	}
+
 	button_normal = {
 		size = { 0 0 }
 		visible = "[GetVariableSystem.Exists('county_baron_combining')]" 
@@ -73,7 +83,25 @@ window = {
 			on_finish = "[GetVariableSystem.Clear( 'county_baron_combining' )]"
 		}
 	}
+	
+	# indexing of holdings
+	state = {
+		name = "refresh_county_position"
+		on_start = "[GetVariableSystem.Set( 'county_holding_position', '1' )]"
+	}
 
+	button_normal = {
+		size = { 0 0 }
+		visible = "[Not(EqualTo_string(GetVariableSystem.Get('county_current_name'), HoldingView.GetCountyTitle.GetNameNoTooltip))]"
+		state = {
+			name = "_show"
+			on_finish = "[GetVariableSystem.Set('county_current_name', HoldingView.GetCountyTitle.GetNameNoTooltip)]"
+			on_finish = "[PdxGuiTriggerAllAnimations('refresh_county_position')]"
+			on_finish = "[PdxGuiTriggerAllAnimations('refresh_county_holding_indexes')]"
+		}
+	}
+
+	# GUI
 	background = {
 		texture = "gfx/interface/component_tiles/tile_window_background_subwindow.dds"
 		spriteType = Corneredtiled
@@ -672,55 +700,111 @@ window = {
 						using = tooltip_ne
 						tooltipwidget = { holding_tooltip_click = {} }
 
+						#visible = "[And(Not(GetVariableSystem.Exists('county_combining')), EqualTo_string(GUICountyHolding.GetHolding.GetType.GetName, Localize('building_type_castle_01')))]"
+						
+						# index setter
 						button_normal = {
 							size = { 0 0 }
-							enabled = "[Not(GUICountyHolding.IsSelected)]"
-							visible = "[And(Not(GetVariableSystem.Exists('county_combining')), EqualTo_string(GUICountyHolding.GetHolding.GetType.GetName, Localize('building_type_castle_01')))]"
-							shortcut = "county_select_castle"
-							onclick = "[GUICountyHolding.OnClick]"
-							onclick = "[PdxGuiTriggerAllAnimations('holding_view_refresh')]"
-							onclick = "[GetVariableSystem.Clear('county_combining')]"
+							state = { 
+								name = "refresh_county_holding_indexes"
+                   	 			on_start = "[GetVariableSystem.Set(Concatenate('county_holding_', GetVariableSystem.Get('county_holding_position')), GUICountyHolding.GetHolding.GetName)]"	
+                   	 			on_start = "[GetVariableSystem.Set('county_holding_position', Concatenate(GetVariableSystem.Get('county_holding_position'), '1'))]"			
+							}
 						}
 
+						# shortcuts 
+						
 						button_normal = {
 							size = { 0 0 }
-							enabled = "[Not(GUICountyHolding.IsSelected)]"
-							visible = "[And(Not(GetVariableSystem.Exists('county_combining')), EqualTo_string(GUICountyHolding.GetHolding.GetType.GetName, Localize('building_type_city_01')))]"
-							shortcut = "county_select_city"
+							shortcut = "county_holding_1"
 							onclick = "[GUICountyHolding.OnClick]"
 							onclick = "[PdxGuiTriggerAllAnimations('holding_view_refresh')]"
-							onclick = "[GetVariableSystem.Clear('county_combining')]"
+							enabled = "[Not(GetVariableSystem.Exists('county_combining'))]"
+							visible = "[EqualTo_string(GetVariableSystem.Get('county_holding_1'), GUICountyHolding.GetHolding.GetName)]"
 						}
-
+						
 						button_normal = {
 							size = { 0 0 }
-							enabled = "[Not(GUICountyHolding.IsSelected)]"
-							visible = "[And(Not(GetVariableSystem.Exists('county_combining')), EqualTo_string(GUICountyHolding.GetHolding.GetType.GetName, Localize('building_type_temple_01')))]"
-							shortcut = "county_select_temple"
+							shortcut = "county_holding_2"
 							onclick = "[GUICountyHolding.OnClick]"
 							onclick = "[PdxGuiTriggerAllAnimations('holding_view_refresh')]"
-							onclick = "[GetVariableSystem.Clear('county_combining')]"
+							enabled = "[Not(GetVariableSystem.Exists('county_combining'))]"
+							visible = "[EqualTo_string(GetVariableSystem.Get('county_holding_11'), GUICountyHolding.GetHolding.GetName)]"
 						}
-
+						
 						button_normal = {
 							size = { 0 0 }
-							enabled = "[Not(GUICountyHolding.IsSelected)]"
-							visible = "[And(Not(GetVariableSystem.Exists('county_combining')), Not(Or(EqualTo_string(GUICountyHolding.GetHolding.GetType.GetName, Localize('building_type_castle_01')), Or(EqualTo_string(GUICountyHolding.GetHolding.GetType.GetName, Localize('building_type_city_01')), EqualTo_string(GUICountyHolding.GetHolding.GetType.GetName, Localize('building_type_temple_01'))))))]"
-							shortcut = "county_select_empty"
+							shortcut = "county_holding_3"
 							onclick = "[GUICountyHolding.OnClick]"
 							onclick = "[PdxGuiTriggerAllAnimations('holding_view_refresh')]"
-							onclick = "[GetVariableSystem.Clear('county_combining')]"
+							enabled = "[Not(GetVariableSystem.Exists('county_combining'))]"
+							visible = "[EqualTo_string(GetVariableSystem.Get('county_holding_111'), GUICountyHolding.GetHolding.GetName)]"
 						}
-
+						
 						button_normal = {
 							size = { 0 0 }
-							visible = "[And(GetVariableSystem.Exists('county_combining'), GUICountyHolding.GetHolding.GetProvince.GetTitle.IsCountyCapital)]"
-							shortcut = "county_action_select_capital"
+							shortcut = "county_holding_4"
 							onclick = "[GUICountyHolding.OnClick]"
 							onclick = "[PdxGuiTriggerAllAnimations('holding_view_refresh')]"
-							onclick = "[GetVariableSystem.Clear('county_combining')]"
+							enabled = "[Not(GetVariableSystem.Exists('county_combining'))]"
+							visible = "[EqualTo_string(GetVariableSystem.Get('county_holding_1111'), GUICountyHolding.GetHolding.GetName)]"
 						}
-
+						
+						button_normal = {
+							size = { 0 0 }
+							shortcut = "county_holding_5"
+							onclick = "[GUICountyHolding.OnClick]"
+							onclick = "[PdxGuiTriggerAllAnimations('holding_view_refresh')]"
+							enabled = "[Not(GetVariableSystem.Exists('county_combining'))]"
+							visible = "[EqualTo_string(GetVariableSystem.Get('county_holding_11111'), GUICountyHolding.GetHolding.GetName)]"
+						}
+						
+						button_normal = {
+							size = { 0 0 }
+							shortcut = "county_holding_6"
+							onclick = "[GUICountyHolding.OnClick]"
+							onclick = "[PdxGuiTriggerAllAnimations('holding_view_refresh')]"
+							enabled = "[Not(GetVariableSystem.Exists('county_combining'))]"
+							visible = "[EqualTo_string(GetVariableSystem.Get('county_holding_111111'), GUICountyHolding.GetHolding.GetName)]"
+						}
+						
+						button_normal = {
+							size = { 0 0 }
+							shortcut = "county_holding_7"
+							onclick = "[GUICountyHolding.OnClick]"
+							onclick = "[PdxGuiTriggerAllAnimations('holding_view_refresh')]"
+							enabled = "[Not(GetVariableSystem.Exists('county_combining'))]"
+							visible = "[EqualTo_string(GetVariableSystem.Get('county_holding_1111111'), GUICountyHolding.GetHolding.GetName)]"
+						}
+						
+						button_normal = {
+							size = { 0 0 }
+							shortcut = "county_holding_8"
+							onclick = "[GUICountyHolding.OnClick]"
+							onclick = "[PdxGuiTriggerAllAnimations('holding_view_refresh')]"
+							enabled = "[Not(GetVariableSystem.Exists('county_combining'))]"
+							visible = "[EqualTo_string(GetVariableSystem.Get('county_holding_11111111'), GUICountyHolding.GetHolding.GetName)]"
+						}
+						
+						button_normal = {
+							size = { 0 0 }
+							shortcut = "county_holding_9"
+							onclick = "[GUICountyHolding.OnClick]"
+							onclick = "[PdxGuiTriggerAllAnimations('holding_view_refresh')]"
+							enabled = "[Not(GetVariableSystem.Exists('county_combining'))]"
+							visible = "[EqualTo_string(GetVariableSystem.Get('county_holding_111111111'), GUICountyHolding.GetHolding.GetName)]"
+						}
+						
+						button_normal = {
+							size = { 0 0 }
+							shortcut = "county_holding_10"
+							onclick = "[GUICountyHolding.OnClick]"
+							onclick = "[PdxGuiTriggerAllAnimations('holding_view_refresh')]"
+							enabled = "[Not(GetVariableSystem.Exists('county_combining'))]"
+							visible = "[EqualTo_string(GetVariableSystem.Get('county_holding_1111111111'), GUICountyHolding.GetHolding.GetName)]"
+						}
+						
+						# GUI
 						icon_building_tab = {
 							parentanchor = center
 							position = { 0 1 }
