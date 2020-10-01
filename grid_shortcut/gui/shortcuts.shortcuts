@@ -397,6 +397,7 @@ shortcutbindings = {
 	context_menu_find_spouse = "E"
 	context_menu_request_divorce = "E"
 	context_menu_allow_marriage = "F"
+	context_menu_demand_conversion = "D"
 	context_menu_sway = "T"
 	context_menu_murder = "Z"
 	context_menu_fabricate_hook = "X"

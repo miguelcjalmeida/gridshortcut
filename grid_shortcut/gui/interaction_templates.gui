@@ -1876,6 +1876,14 @@ types CharacterInteraction
 					onclick = "[InteractionItem.OnClick]"
 				}
 
+				button_normal = {
+					name = "button_demand_conversion"			
+					size = { 0 0 }		
+					shortcut = "context_menu_demand_conversion"		
+					visible = "[And(Not(InteractionItem.IsMarriageSetting), EqualTo_string(InteractionItem.GetName, SelectLocalization(InteractionItem.IsValid, 'ask_for_conversion_interaction', 'ask_for_conversion_interaction')))]"					
+					enabled = "[InteractionItem.IsValid]"
+					onclick = "[InteractionItem.OnClick]"
+				}
 
 				button_normal = {
 					name = "button_diplomacy_more"			
@@ -1954,6 +1962,13 @@ types CharacterInteraction
 							name = "button"
 							size = { 30 30 }
 							enabled = "[InteractionItem.CheckboxEnabled]"
+
+							button_normal = {
+								size = { 0 0 }
+								onclick = "[InteractionItem.OnClickCheckbox]"
+								shortcut = "context_menu_allow_marriage"
+							}
+							
 							blockoverride "checkbox"
 							{
 								alwaystransparent = yes
@@ -1963,7 +1978,6 @@ types CharacterInteraction
 							{
 								text = "CHARACTER_INTERACTION_ALLOWED_TO_MARRY"
 							}
-							shortcut = "context_menu_allow_marriage"
 						}
 						expand = {}
 					}
