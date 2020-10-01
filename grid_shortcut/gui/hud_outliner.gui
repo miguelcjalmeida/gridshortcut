@@ -59,6 +59,90 @@ window = {
 	}
 
 	# shortcuts 
+	
+	# player
+	vbox = {
+		size = { 0 0 }
+		datamodel = "[Outliner.GetPlayers]"
+		visible = "[GameHasMultiplePlayers]"
+		item = {
+			container = { 
+				datacontext = "[OutlinerPlayer.GetCharacter]"
+				# quickslots 
+
+				button_normal  = {
+					size = { 0 0 }
+					shortcut = "quickslot_1"
+					onclick = "[DefaultOnCharacterClick(Character.GetID)]"
+					visible = "[EqualTo_string(GetVariableSystem.Get('quickslot_1'), OutlinerPlayer.GetName)]"
+				}
+
+				button_normal  = {
+					size = { 0 0 }
+					shortcut = "quickslot_2"
+					onclick = "[DefaultOnCharacterClick(Character.GetID)]"
+					visible = "[EqualTo_string(GetVariableSystem.Get('quickslot_2'), OutlinerPlayer.GetName)]"
+				}
+
+				button_normal  = {
+					size = { 0 0 }
+					shortcut = "quickslot_3"
+					onclick = "[DefaultOnCharacterClick(Character.GetID)]"
+					visible = "[EqualTo_string(GetVariableSystem.Get('quickslot_3'), OutlinerPlayer.GetName)]"
+				}
+
+				button_normal  = {
+					size = { 0 0 }
+					shortcut = "quickslot_4"
+					onclick = "[DefaultOnCharacterClick(Character.GetID)]"
+					visible = "[EqualTo_string(GetVariableSystem.Get('quickslot_4'), OutlinerPlayer.GetName)]"
+				}
+
+				button_normal  = {
+					size = { 0 0 }
+					shortcut = "quickslot_5"
+					onclick = "[DefaultOnCharacterClick(Character.GetID)]"
+					visible = "[EqualTo_string(GetVariableSystem.Get('quickslot_5'), OutlinerPlayer.GetName)]"
+				}
+
+				button_normal  = {
+					size = { 0 0 }
+					shortcut = "quickslot_set_1"
+					onclick = "[GetVariableSystem.Set( 'quickslot_1',  OutlinerPlayer.GetName)]"
+					visible = "[Character.IsShownInCharacterWindow]"
+				}
+
+				button_normal  = {
+					size = { 0 0 }
+					shortcut = "quickslot_set_2"
+					onclick = "[GetVariableSystem.Set( 'quickslot_2',  OutlinerPlayer.GetName)]"
+					visible = "[Character.IsShownInCharacterWindow]"
+				}
+
+				button_normal  = {
+					size = { 0 0 }
+					shortcut = "quickslot_set_3"
+					onclick = "[GetVariableSystem.Set( 'quickslot_3',  OutlinerPlayer.GetName)]"
+					visible = "[Character.IsShownInCharacterWindow]"
+				}
+
+				button_normal  = {
+					size = { 0 0 }
+					shortcut = "quickslot_set_4"
+					onclick = "[GetVariableSystem.Set( 'quickslot_4',  OutlinerPlayer.GetName)]"
+					visible = "[Character.IsShownInCharacterWindow]"
+				}
+
+				button_normal  = {
+					size = { 0 0 }
+					shortcut = "quickslot_set_5"
+					onclick = "[GetVariableSystem.Set( 'quickslot_5',  OutlinerPlayer.GetName)]"
+					visible = "[Character.IsShownInCharacterWindow]"
+				}
+			}
+		}
+	}
+
 	# characters
 	vbox = {
 		size = { 0 0 }
@@ -304,118 +388,35 @@ window = {
 					size = { 0 0 }
 					shortcut = "quickslot_set_1"
 					onclick = "[GetVariableSystem.Set( 'quickslot_1',  Holding.GetProvince.GetNameNoTooltip)]"
-					visible = "[Or(Holding.IsHovered, Holding.IsSelected)]"
+					visible = "[Holding.IsSelected]"
 				}
 
 				button_normal  = {
 					size = { 0 0 }
 					shortcut = "quickslot_set_2"
 					onclick = "[GetVariableSystem.Set( 'quickslot_2',  Holding.GetProvince.GetNameNoTooltip)]"
-					visible = "[Or(Holding.IsHovered, Holding.IsSelected)]"
+					visible = "[Holding.IsSelected]"
 				}
 
 				button_normal  = {
 					size = { 0 0 }
 					shortcut = "quickslot_set_3"
 					onclick = "[GetVariableSystem.Set( 'quickslot_3',  Holding.GetProvince.GetNameNoTooltip)]"
-					visible = "[Or(Holding.IsHovered, Holding.IsSelected)]"
+					visible = "[Holding.IsSelected]"
 				}
 
 				button_normal  = {
 					size = { 0 0 }
 					shortcut = "quickslot_set_4"
 					onclick = "[GetVariableSystem.Set( 'quickslot_4',  Holding.GetProvince.GetNameNoTooltip)]"
-					visible = "[Or(Holding.IsHovered, Holding.IsSelected)]"
+					visible = "[Holding.IsSelected]"
 				}
 
 				button_normal  = {
 					size = { 0 0 }
 					shortcut = "quickslot_set_5"
 					onclick = "[GetVariableSystem.Set( 'quickslot_5',  Holding.GetProvince.GetNameNoTooltip)]"
-					visible = "[Or(Holding.IsHovered, Holding.IsSelected)]"
-				}
-			}
-		}
-	}
-
-	# player
-	vbox = {
-		size = { 0 0 }
-		datamodel = "[Outliner.GetPlayers]"
-		visible = "[GameHasMultiplePlayers]"
-		item = {
-			container = { 
-				datacontext = "[OutlinerPlayer.GetCharacter]"
-				# quickslots 
-
-				button_normal  = {
-					size = { 0 0 }
-					shortcut = "quickslot_1"
-					onclick = "[DefaultOnCharacterClick(Character.GetID)]"
-					visible = "[EqualTo_string(GetVariableSystem.Get('quickslot_1'), OutlinerPlayer.GetName)]"
-				}
-
-				button_normal  = {
-					size = { 0 0 }
-					shortcut = "quickslot_2"
-					onclick = "[DefaultOnCharacterClick(Character.GetID)]"
-					visible = "[EqualTo_string(GetVariableSystem.Get('quickslot_2'), OutlinerPlayer.GetName)]"
-				}
-
-				button_normal  = {
-					size = { 0 0 }
-					shortcut = "quickslot_3"
-					onclick = "[DefaultOnCharacterClick(Character.GetID)]"
-					visible = "[EqualTo_string(GetVariableSystem.Get('quickslot_3'), OutlinerPlayer.GetName)]"
-				}
-
-				button_normal  = {
-					size = { 0 0 }
-					shortcut = "quickslot_4"
-					onclick = "[DefaultOnCharacterClick(Character.GetID)]"
-					visible = "[EqualTo_string(GetVariableSystem.Get('quickslot_4'), OutlinerPlayer.GetName)]"
-				}
-
-				button_normal  = {
-					size = { 0 0 }
-					shortcut = "quickslot_5"
-					onclick = "[DefaultOnCharacterClick(Character.GetID)]"
-					visible = "[EqualTo_string(GetVariableSystem.Get('quickslot_5'), OutlinerPlayer.GetName)]"
-				}
-
-				button_normal  = {
-					size = { 0 0 }
-					shortcut = "quickslot_set_1"
-					onclick = "[GetVariableSystem.Set( 'quickslot_1',  OutlinerPlayer.GetName)]"
-					visible = "[Character.IsShownInCharacterWindow]"
-				}
-
-				button_normal  = {
-					size = { 0 0 }
-					shortcut = "quickslot_set_2"
-					onclick = "[GetVariableSystem.Set( 'quickslot_2',  OutlinerPlayer.GetName)]"
-					visible = "[Character.IsShownInCharacterWindow]"
-				}
-
-				button_normal  = {
-					size = { 0 0 }
-					shortcut = "quickslot_set_3"
-					onclick = "[GetVariableSystem.Set( 'quickslot_3',  OutlinerPlayer.GetName)]"
-					visible = "[Character.IsShownInCharacterWindow]"
-				}
-
-				button_normal  = {
-					size = { 0 0 }
-					shortcut = "quickslot_set_4"
-					onclick = "[GetVariableSystem.Set( 'quickslot_4',  OutlinerPlayer.GetName)]"
-					visible = "[Character.IsShownInCharacterWindow]"
-				}
-
-				button_normal  = {
-					size = { 0 0 }
-					shortcut = "quickslot_set_5"
-					onclick = "[GetVariableSystem.Set( 'quickslot_5',  OutlinerPlayer.GetName)]"
-					visible = "[Character.IsShownInCharacterWindow]"
+					visible = "[Holding.IsSelected]"
 				}
 			}
 		}
