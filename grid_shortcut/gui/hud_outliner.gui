@@ -1,7 +1,7 @@
 window = {
 	name = "outliner_window"
 	parentanchor = top|right
-	position = { -40 45 }
+	position = { -35 50 }
 	alwaystransparent = no
 	movable = yes
 	filter_mouse = all
@@ -32,7 +32,7 @@ window = {
 
 	state = {
 		name = _hide
-		using = Animation_FadeOut_Quick
+		using = Animation_FadeOut_Standard
 		start_sound = {
 			soundeffect = "event:/SFX/UI/Generic/sfx_ui_generic_tab_sub"
 			soundparam = {
@@ -48,7 +48,7 @@ window = {
 
 	state = {
 		name = "hide_outliner"
-		using = Animation_FadeOut_Quick
+		using = Animation_FadeOut_Standard
 		trigger_when = "[Not(IsDefaultGUIMode)]"
 	}
 
@@ -422,6 +422,7 @@ window = {
 	}
 
 	flowcontainer = {
+#		visible = "[Not(GetVariableSystem.Exists( 'right_window_open'))]"
 		resizeparent = yes
 		margin = { 10 10 }
 		margin_bottom = 15
@@ -438,7 +439,7 @@ window = {
 
 		background = {
 			name = "paper_texture_shadow"
-            texture = "gfx/interface/window_event/tile_letter_shadow.dds"
+			texture = "gfx/interface/window_event/tile_letter_shadow.dds"
 			spriteType = Corneredtiled
 			spriteborder = { 200 200 }
 			margin = { -15 0 }
@@ -447,7 +448,7 @@ window = {
 
 		background = {
 			name = "paper_texture_flat"
-            texture = "gfx/interface/window_event/tile_letter_flat.dds"
+			texture = "gfx/interface/window_event/tile_letter_flat.dds"
 			spriteType = Corneredtiled
 			spriteborder = { 200 200 }
 			alpha = 0.9
@@ -457,7 +458,7 @@ window = {
 
 			modify_texture = {
 				name = "paper_texture_overlay"
-                texture = "gfx/interface/window_event/overlay_letter_texture.dds"
+				texture = "gfx/interface/window_event/overlay_letter_texture.dds"
 				spriteType = Corneredstretched
 				blend_mode = overlay
 			}
@@ -467,7 +468,7 @@ window = {
 			autoresizescrollarea = yes
 			scrollbarpolicy_horizontal = always_off
 			maximumsize = { -1 800 }
-			size = { 335 0 }
+			size = { 300 0 }
 
 			scrollbar_vertical = {
 				using = Scrollbar_Vertical
@@ -476,7 +477,7 @@ window = {
 			scrollwidget = {
 				vbox = {
 					set_parent_size_to_minimum = yes
-					min_width = 310
+					min_width = 300
 					margin = { 10 0 }
 					margin_right = 15
 					spacing = 2
@@ -525,12 +526,14 @@ window = {
 						visible = "[And(Outliner.IsCategoryShown('pinned_character'),Or(GameHasMultiplePlayers,Not(GetVariableSystem.Exists('pinned_character_is_simple'))))]"
 						datamodel = "[Outliner.GetPinnedCharacters]"
 						layoutpolicy_horizontal = expanding
-						margin = { 8 5 }
+						margin = { 5 5 }
 						margin_bottom = 10
+#						spacing = 5
 
 						hbox = {
 							layoutpolicy_horizontal = expanding
-							margin_left = 5
+
+							expand = {}
 
 							text_single = {
 								visible = "[And(Outliner.IsCategoryShown('pinned_character'), IsDataModelEmpty(Outliner.GetPinnedCharacters))]"
@@ -551,8 +554,8 @@ window = {
 
 								button_list = {
 									name = "character_button"
-									layoutpolicy_horizontal = expanding
 									size = { 0 75 }
+									layoutpolicy_horizontal = expanding
 
 									onclick = "[DefaultOnCharacterClick(Character.GetID)]"
 									down = "[Character.IsShownInCharacterWindow]"
@@ -564,7 +567,6 @@ window = {
 									}
 
 									hbox = {
-										layoutpolicy_horizontal = expanding
 										margin = { 0 -15 }
 
 										hbox = {
@@ -584,10 +586,10 @@ window = {
 												layoutpolicy_horizontal = expanding
 
 												text_single = {
-													align = top|left
 													layoutpolicy_horizontal = expanding
 													autoresize = no
-													text = "[Character.GetShortUINameNotMeNoTooltip], [Character.GetAge]"
+													text = "OUTLINER_PINNED_CHARACTER"
+													align = nobaseline
 													default_format = "#high"
 												}
 
@@ -613,18 +615,18 @@ window = {
 													}
 
 													text_single = {
-														align = top|right
-														size = { 40 20 }
 														layoutpolicy_horizontal = fixed
+														size = { 40 20 }
 														autoresize = no
-														text = "[Character.GetOpinionOf(GetPlayer)|=]"
-														fonttintcolor = "[Character.GetOpinionOfTint(GetPlayer)]"
+														align = top|right
+														text = "[Character.GetOpinionOf( GetPlayer )|=]"
+														fonttintcolor = "[Character.GetOpinionOfTint( GetPlayer )]"
 														default_format = "#high"
 													}
 
 													expand = {}
 
-													button_pin = {
+													button_unpin = {
 														size = { 20 20 }
 														onclick = "[Character.ToggleCharacterPinned]"
 														tooltip = "PIN_TT"
@@ -637,28 +639,29 @@ window = {
 
 												text_single = {
 													visible = "[Character.HasRelationTo(GetPlayer)]"
-													align = top|left
 													layoutpolicy_horizontal = expanding
 													autoresize = no
+													align = nobaseline
 													text = "[Character.GetRelationToString(GetPlayer)]"
 													default_format = "#medium"
 												}
 
 												text_single = {
 													visible = "[And(Not(Character.HasRelationTo(GetPlayer)),Character.HasLandedTitles)]"
-													align = top|left
 													layoutpolicy_horizontal = expanding
 													autoresize = no
+													align = nobaseline
 													text = "[Character.GetPrimaryTitle.GetNameNoTooltip]"
 													default_format = "#medium"
 												}
 
 												text_single = {
 													visible = "[And(Not(Character.HasRelationTo(GetPlayer)),Not(Character.HasLandedTitles))]"
-													align = top|left
 													layoutpolicy_horizontal = expanding
 													autoresize = yes
+													align = nobaseline
 													text = "CV_NO_RELATIONS"
+													default_format = "#medium"
 												}
 
 												expand = {}
@@ -674,10 +677,10 @@ window = {
 
 													text_single = {
 														visible = "[Character.HasLandedTitles]"
-														align = top|right
 														size = { 40 20 }
 														layoutpolicy_horizontal = fixed
 														autoresize = no
+														align = top|right
 														text = "[Character.GetMilitaryStrengthText]"
 														default_format = "#high"
 													}
@@ -749,8 +752,6 @@ window = {
 						}
 					}
 
-					# display
-
 					button_outliner_header = {
 						layoutpolicy_horizontal = expanding
 						visible = "[And(Not(GameHasMultiplePlayers),GetVariableSystem.Exists('pinned_character_is_simple'))]"
@@ -793,12 +794,14 @@ window = {
 						visible = "[And(Outliner.IsCategoryShown('pinned_character'),And(Not(GameHasMultiplePlayers),GetVariableSystem.Exists('pinned_character_is_simple')))]"
 						datamodel = "[Outliner.GetPinnedCharacters]"
 						layoutpolicy_horizontal = expanding
-						margin = { 8 5 }
+						margin = { 5 5 }
 						margin_bottom = 10
 						spacing = 5
 
 						hbox = {
 							layoutpolicy_horizontal = expanding
+
+							expand = {}
 
 							text_single = {
 								visible = "[And(Outliner.IsCategoryShown('pinned_character'), IsDataModelEmpty(Outliner.GetPinnedCharacters))]"
@@ -837,10 +840,10 @@ window = {
 											layoutpolicy_horizontal = expanding
 
 											text_single = {
-												align = top|left
 												layoutpolicy_horizontal = expanding
 												autoresize = no
-												text = "[Character.GetShortUINameNotMeNoTooltip], [Character.GetAge]"
+												text = "OUTLINER_PINNED_CHARACTER"
+												align = nobaseline
 												default_format = "#high"
 											}
 
@@ -866,18 +869,18 @@ window = {
 												}
 
 												text_single = {
-													align = top|right
-													size = { 40 20 }
 													layoutpolicy_horizontal = fixed
+													size = { 40 20 }
 													autoresize = no
-													text = "[Character.GetOpinionOf(GetPlayer)|=]"
-													fonttintcolor = "[Character.GetOpinionOfTint(GetPlayer)]"
+													align = top|right
+													text = "[Character.GetOpinionOf( GetPlayer )|=]"
+													fonttintcolor = "[Character.GetOpinionOfTint( GetPlayer )]"
 													default_format = "#high"
 												}
 
 												expand = {}
 
-												button_pin = {
+												button_unpin = {
 													size = { 20 20 }
 													onclick = "[Character.ToggleCharacterPinned]"
 													tooltip = "PIN_TT"
@@ -932,7 +935,7 @@ window = {
 						datamodel = "[Outliner.GetPlayers]"
 						visible = "[And( Outliner.IsCategoryShown('players'), GameHasMultiplePlayers )]"
 						layoutpolicy_horizontal = expanding
-						margin = { 3 5 }
+						margin = { 0 5 }
 						margin_bottom = 10
 						spacing = 5
 
@@ -1019,12 +1022,13 @@ window = {
 						datamodel = "[Outliner.GetUnitItems]"
 						visible = "[And(Outliner.IsCategoryShown('unit'), GetPlayer.IsValid)]"
 						layoutpolicy_horizontal = expanding
-						margin = { 3 5 }
+						margin = { 0 5 }
 						margin_bottom = 10
 
 						hbox = {
 							layoutpolicy_horizontal = expanding
-							margin_left = 10
+
+							expand = {}
 
 							text_single = {
 								visible = "[And(And(Outliner.IsCategoryShown('unit'), IsDataModelEmpty(Outliner.GetUnitItems)), GetPlayer.IsValid)]"
@@ -1045,13 +1049,14 @@ window = {
 
 								onclick = "[UnitItem.SelectAndPanUnit]"
 								onrightclick = "[UnitItem.PanToUnit]"
+								button_ignore = none
 								down = "[UnitItem.IsSelected]"
 
 								hbox = {
 									hbox = {
 										margin_left = 10
 										layoutpolicy_horizontal = expanding
-										max_width = 170
+										max_width = 155
 
 										text_single = {
 											layoutpolicy_horizontal = expanding
@@ -1071,9 +1076,10 @@ window = {
 											min_width = 20
 											visible = "[EqualTo_string(UnitItem.GetStatusDescription, SelectLocalization(Army.IsMoving, 'UNIT_STATE_COMBAT', 'UNIT_STATE_COMBAT'))]"
 
-											icon = {
+											button = {
 												size = { 20 20 }
 												texture = "gfx/interface/icons/map_icons/combat_map_icon.dds"
+												onclick = "[UnitItem.PanToUnit]"
 											}
 										}
 
@@ -1143,25 +1149,18 @@ window = {
 											}
 										}
 
-#										hbox = {
-#											min_width = 20
-#
-#											icon = {
-#												parentanchor = vcenter
-#												size = { 20 20 }
-#												texture = "gfx/interface/icons/icon_supplies_small.dds"
-#												framesize = { 30 30 }
-#												frame = "[UnitItem.GetSupplyStateFrame]"
-#											}
-#										}
-
 										hbox = {
-											min_width = 50
+											margin_right = 10
+											layoutpolicy_horizontal = expanding
+											min_width = 45
 
 											text_single = {
+												align = top|right
+												size = { 45 20 }
+												layoutpolicy_horizontal = fixed
+												autoresize = no
 												text = "[Army.GetSoldierCountString]"
 												default_format = "#high"
-												align = nobaseline
 											}
 										}
 									}
@@ -1250,7 +1249,7 @@ window = {
 						datamodel = "[Outliner.GetHoldingItems]"
 						visible = "[Outliner.IsCategoryShown('holding')]"
 						layoutpolicy_horizontal = expanding
-						margin = { 3 5 }
+						margin = { 0 5 }
 						margin_bottom = 10
 
 						item = {
@@ -1284,7 +1283,7 @@ window = {
 										margin_left = 10
 
 										text_single = {
-											max_width = 115
+											max_width = 110
 											name = "holding_name"
 											layoutpolicy_horizontal = expanding
 											text = "[Holding.GetProvince.GetNameNoTooltip]"
@@ -1297,6 +1296,14 @@ window = {
 
 									hbox = {
 										margin_right = 10
+#										text_single = {
+#											max_width = 120
+#											name = "construction_name"
+#											visible = "[Holding.IsConstructionInProgress]"
+#											text = "[Holding.GetConstructionBuilding.GetName]"
+#											align = right|nobaseline
+#
+#										}
 
 										hbox = {
 											margin_right = 0
@@ -1306,6 +1313,7 @@ window = {
 
 												icon = {
 													visible = "[Holding.IsLowControl]"
+													parentanchor = vcenter
 													size = { 20 20 }
 													texture = "gfx/interface/icons/map_icons/county_low_control.dds"
 													tooltip = "MY_REALM_WINDOW_MAP_ICON_LOW_CONTROL"
@@ -1313,41 +1321,54 @@ window = {
 
 												icon = {
 													visible = "[Holding.CanConstructAnyBuilding(GetPlayer)]"
+													parentanchor = vcenter
 													size = { 20 20 }
-							texture = "gfx/interface/icons/map_icons/county_building_available.dds"
+													texture = "gfx/interface/icons/map_icons/county_building_available.dds"
 													tooltip = "MY_REALM_WINDOW_CONSTRUCT_BUILDING"
 												}
 											}
 
 											hbox = {
+												layoutpolicy_horizontal = expanding
 												min_width = 50
 
 												icon = {
+													margin_left = 0
+													parentanchor = vcenter
 													size = { 20 20 }
 													texture = "gfx/interface/icons/icon_gold.dds"
 												}
 
 												text_single = {
+													align = top|right
+													size = { 25 20 }
+													layoutpolicy_horizontal = fixed
+													autoresize = no
 													margin_right = 0
 													text = "[Holding.GetIncome|1]"
 													default_format = "#high"
-													align = nobaseline
 												}
 											}
 
 											hbox = {
+												layoutpolicy_horizontal = expanding
 												min_width = 55
 
 												icon = {
+													margin_left = 0
+													parentanchor = vcenter
 													size = { 20 20 }
 													texture = "gfx/interface/icons/icon_soldier.dds"
 												}
 
 												text_single = {
+													align = top|right
+													size = { 30 20 }
+													layoutpolicy_horizontal = fixed
+													autoresize = no
 													margin_right = 0
 													text = "[Holding.GetMaxLevySize]"
 													default_format = "#high"
-													align = nobaseline
 												}
 											}
 										}
@@ -1427,4 +1448,3 @@ local_template character_tooltip
 	}
 	using = tooltip_ws
 }
-
