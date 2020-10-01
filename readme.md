@@ -1,5 +1,5 @@
 
-# Grid#Shortcut **v1.2.4**
+# Grid#Shortcut **v1.3.0**
 
 This is a mod for Crusader King 3 (**v1.1.1**) that adds more than four hundred shortcuts to the game. The idea is to speed up interface interactions by diminishing the mouse usage with scoped shortcuts. They are scoped to the window that is opened, allowing the coverage of many different actions with same hotkeys.
 
@@ -27,7 +27,7 @@ Hotkeys can be either global or window-scoped, meaning they change based on the 
 | Key | Action |
 | ------ | ------ |
 | 1, 2, 3, 4 | Navigate between tabs |
-| SPACE | Start sequential global hotkeys ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png) |
+| SPACE | Start sequential global hotkeys  |
 | ESCAPE | Cancel most actions |
 | E | Confirm most actions. Also more related to positive actions |
 | Q | Decline most actions. Also more related to negative actions | 
@@ -51,9 +51,14 @@ PAUSE > PAUSE
 
 | Key | Action |
 | ------ | ------ |
-| SPACE > SPACE | Pause, **even multiplayer games** ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png) |
+| SPACE > SPACE | Pause, **even multiplayer games** |
 | Z | (time) Speed down |
 | X | (time) Speed up |
+| shift+1 | (time) Speed 1 ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
+| shift+2 | (time) Speed 2 ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
+| shift+3 | (time) Speed 3 ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
+| shift+4 | (time) Speed 4 ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
+| shift+5 | (time) Speed 5 ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
 | B | Go back |
 
 ### Character HUD buttons
@@ -61,13 +66,13 @@ PAUSE > PAUSE
 
 | Key | Action |
 | ------ | ------ |
-| SPACE > W | Open focus and lifestyle window ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
-| SPACE > R | Open religion panel ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
-| SPACE > T | Open culture panel ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
-| SPACE > F | Open your character panel ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
-| SPACE > G | Open primary title panel ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
-| SPACE > B | Open your house panel ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
-| SPACE > C | Open your interaction menu ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
+| SPACE > W | Open focus and lifestyle window |
+| SPACE > R | Open religion panel |
+| SPACE > T | Open culture panel |
+| SPACE > F | Open your character panel |
+| SPACE > G | Open primary title panel |
+| SPACE > B | Open your house panel |
+| SPACE > C | Open your interaction menu |
 
 ### Opening windows
 ![Opening windows](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/suggestionbutton.png)
@@ -76,24 +81,24 @@ PAUSE > PAUSE
 | Key | Action |
 | ------ | ------ |
 | TAB | Suggestions panel |
-| SPACE > TAB | Outliner panel ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png) |
-| SPACE > A | Your realm panel ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png) |
-| SPACE > S | Military panel ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png) |
-| SPACE > D | Council panel ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png) |
-| SPACE > Z | Court panel ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png) |
-| SPACE > X | Intrigue panel ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png) |
-| SPACE > C | Factions panel ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png) |
-| SPACE > V | Decisions panel ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png) |
+| SPACE > TAB | Outliner panel  |
+| SPACE > A | Your realm panel  |
+| SPACE > S | Military panel  |
+| SPACE > D | Council panel  |
+| SPACE > Z | Court panel  |
+| SPACE > X | Intrigue panel  |
+| SPACE > C | Factions panel  |
+| SPACE > V | Decisions panel  |
 
 ### More windows & actions
 ![more windows](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/more.png)
 
 | Key | Action |
 | ------ | ------ |
-| SPACE > Q | Go to capital ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
-| SPACE > 3 | Find character window ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png) |
-| SPACE > 4 | Find title ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
-| SPACE > 5 | encyclopedia ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
+| SPACE > Q | Go to capital |
+| SPACE > 3 | Find character window  |
+| SPACE > 4 | Find title |
+| SPACE > 5 | encyclopedia |
 
 ### Disband / Raise all at war
 
@@ -101,7 +106,7 @@ PAUSE > PAUSE
 
 | Key | Action |
 | ------ | ------ |
-| SPACE > 1 | Raise all armies when at war or Disband all when at peace ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)| 
+| SPACE > 1 | Raise all armies when at war or Disband all when at peace | 
 
 ### Notifications
 ![Notifications](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/notifications.png?)
@@ -110,7 +115,7 @@ _These hotkeys will allow you to open pending notifications in the upper area of
 
 | Key | Action |
 | ------ | ------ |
-| SPACE > 2 | Open the next pending action ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
+| SPACE > 2 | Open the next pending action |
 | N | Also open the next pending action |
 | E | Confirm the action |
 | Q | Decline the actions |
@@ -131,22 +136,22 @@ _All map views can be toggle by pressing a combination of buttons. All the seque
 
 | Key | Action |
 | ----- | ----- |
-| SPACE > E > E | Realm view ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png) |
-| SPACE > E > A | Duchies, de jure view ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png) | 
-| SPACE > E > S | Kingdoms, de jure view ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png) |
-| SPACE > E > D | Empire, de jure view ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png) |
-| SPACE > E > F | Counties, de jure view ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)  |
-| SPACE > E > G | Baronies, de jure view ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)  |
-| SPACE > E > Q | Governments view ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png) |
-| SPACE > E > W | Development view ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png) |
-| SPACE > E > R | Religions view ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png) |
-| SPACE > E > T | Cultures view ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png) |
-| SPACE > E > 1 | Terrain 2D view ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png) |
-| SPACE > E > 2 | Terrain 3D view ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png) |
-| SPACE > E > 3 | No icons realm view ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png) |
-| SPACE > E > Z | Areas of realm view ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png) |
-| SPACE > E > X | Diplomacy view ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png) |
-| SPACE > E > C | Player view ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png) |
+| SPACE > E > E | Realm view  |
+| SPACE > E > A | Duchies, de jure view  | 
+| SPACE > E > S | Kingdoms, de jure view  |
+| SPACE > E > D | Empire, de jure view  |
+| SPACE > E > F | Counties, de jure view   |
+| SPACE > E > G | Baronies, de jure view   |
+| SPACE > E > Q | Governments view  |
+| SPACE > E > W | Development view  |
+| SPACE > E > R | Religions view  |
+| SPACE > E > T | Cultures view  |
+| SPACE > E > 1 | Terrain 2D view  |
+| SPACE > E > 2 | Terrain 3D view  |
+| SPACE > E > 3 | No icons realm view  |
+| SPACE > E > Z | Areas of realm view  |
+| SPACE > E > X | Diplomacy view  |
+| SPACE > E > C | Player view  |
 
 ## Window Scoped Hotkeys
 Different from the hotkeys above, all the next ones are bound to a window.
@@ -158,21 +163,21 @@ _The HUD window shortcuts are only triggered when there is no other window opene
 
 | Key | Action |
 | ----- | ----- |
-| V | Select an army you control that is visible in your screen ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png) | 
+| V | Select an army you control that is visible in your screen  | 
 
 ![rally point](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/hudrally.png)
 
 | Key | Action |
 | ----- | ----- |
-| C | Select an rally point you control that is visible in your screen ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)| 
+| C | Select an rally point you control that is visible in your screen | 
 
 ![rally point](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/waremblems.png)
 
 | Key | Action |
 | ----- | ----- |
-| R | Open your war overview ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)| 
-| T | Open liege's war overview (blue) ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)| 
-| F | Open a war you can enforce demands (+100 score) ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
+| R | Open your war overview | 
+| T | Open liege's war overview (blue) | 
+| F | Open a war you can enforce demands (+100 score) |
 
 ### Suggestions 
 
@@ -181,7 +186,7 @@ _The HUD window shortcuts are only triggered when there is no other window opene
 | Key | Action |
 | ----- | ----- |
 | TAB | Toggle suggestion panel | 
-| V | Select the last pending suggestion ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png) | 
+| V | Select the last pending suggestion  | 
 | E | Confirm an opened suggestion | 
 | Q | Decline an opened suggestion | 
 
@@ -190,34 +195,36 @@ _The HUD window shortcuts are only triggered when there is no other window opene
 
 | Key | Action |
 | ----- | ----- |
-| SPACE > TAB | Open outliner ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png) | 
-| V | Cycle to the next army ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png) | 
-| C | Pan to the selected army ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png) | 
+| SPACE > TAB | Open outliner  | 
+| V | Cycle to the next army  | 
+| C | Pan to the selected army  | 
+| CTRL + 1 ~ 5 | save the selected army/character/domain into the slot 1 to 5 ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)| 
+| 1 ~ 5 | select the army/character/domain saved in the slot 1 to 5 ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
 
 ### Interactions menu
 ![event window](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/contextmenu.png)
 | Key | Action | 
 | - | - |
-| TAB | Pin character ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)| 
-| Q | Go to location ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)| 
-| E | Arrange marriage, find spouse, request divorce ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)| 
-| R | Declare war, call ally to war, offer to join war ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)| 
-| B | Educate child, offer guardianship ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)| 
-| C | Remove Guardian ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)| 
-| T | Sway ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)| 
-| Z | Murder ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)| 
-| X | Fabricate hook ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)| 
-| C | Abduct ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)| 
-| G | Blackmail ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)| 
-| F | Toggle allow marriage checkbox  ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)| 
-| V | Grant titles ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)| 
-| 1 | Open the option "more" from diplomacy category ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)| 
-| 2 | Open the option "more" from personal category ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)| 
-| 3 | Open the option "more" from hostile category ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)| 
-| 4 | Open the option "more" from vassalage category ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)| 
-| 5 | Open the option "more" from religion category ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)| 
-| 6 | Open the option "more" from house head category ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)| 
-| 7 | Open the option "more" from prison category ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)| 
+| TAB | Pin character | 
+| Q | Go to location | 
+| E | Arrange marriage, find spouse, request divorce | 
+| R | Declare war, call ally to war, offer to join war | 
+| B | Educate child, offer guardianship | 
+| C | Remove Guardian | 
+| T | Sway | 
+| Z | Murder | 
+| X | Fabricate hook | 
+| C | Abduct | 
+| G | Blackmail | 
+| F | Toggle allow marriage checkbox  | 
+| V | Grant titles | 
+| 1 | Open the option "more" from diplomacy category | 
+| 2 | Open the option "more" from personal category | 
+| 3 | Open the option "more" from hostile category | 
+| 4 | Open the option "more" from vassalage category | 
+| 5 | Open the option "more" from religion category | 
+| 6 | Open the option "more" from house head category | 
+| 7 | Open the option "more" from prison category | 
 
 ### Events Window
 ![event window](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/events.png)
@@ -241,18 +248,18 @@ _The HUD window shortcuts are only triggered when there is no other window opene
 | V | Open house | 
 | F | Open Liege / Host profile |
 | G | Open Heir profile |
-| C | Open the interaction menu ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png) | 
-| 6 | Open jailor profile ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png) | 
-| 5 | Open spouse ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png) |
+| C | Open the interaction menu  | 
+| 6 | Open jailor profile  | 
+| 5 | Open spouse  |
 
 ### Find character window
 ![character search](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/character%20finder.png)
 
 | Key | Action |
 | ----- | ----- |
-| SPACE > 3 | Open/close finder window ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png) |
+| SPACE > 3 | Open/close finder window  |
 | Q | Open filters window |
-| T | Reverse the sorting ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png) |
+| T | Reverse the sorting  |
 | 1 | Sort by diplomacy
 | 2 | Sort by martial
 | 3 | Sort by stewardship
@@ -271,18 +278,18 @@ _The HUD window shortcuts are only triggered when there is no other window opene
 | E | Reform / Convert to religion | 
 | R | Create head of faith | 
 | F | Toggle only my group faiths checkbox |
-| F | Open head of faith profile, if any ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png) |
-| C | Open head of faith interaction menu, if any ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png) |
+| F | Open head of faith profile, if any  |
+| C | Open head of faith interaction menu, if any  |
 
-### Culture Window ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)
+### Culture Window 
 
 ![faith](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/culture.png)
 
 | Key | Action |
 | - | - |
-| 1, 2, 3, 4 | Navigate between the Era tabs ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
-| F | Go to culture head profile ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png) |
-| C | Open culture head interaction menu ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)| 
+| 1, 2, 3, 4 | Navigate between the Era tabs |
+| F | Go to culture head profile  |
+| C | Open culture head interaction menu | 
 
 ### House Window
 
@@ -293,7 +300,7 @@ _The HUD window shortcuts are only triggered when there is no other window opene
 | 1 | Show members |
 | 2 | Show house branches | 
 | F | Open house head profile | 
-| C | Open house head interaction menu ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)| 
+| C | Open house head interaction menu | 
 | Q | Open legacies | 
 | E | Open house tree |
 
@@ -303,27 +310,27 @@ _The HUD window shortcuts are only triggered when there is no other window opene
 
 | Key | Action |
 | - | - |
-| 1 | select castle holding ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
-| 2 | select city holding ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
-| 3 | select temple holding ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
-| 4 | select empty holding ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
+| 1 | select castle holding |
+| 2 | select city holding |
+| 3 | select temple holding |
+| 4 | select empty holding |
 | Q | go to county location |
-| E > Q | select capital holding ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
-| E > E | upgrade holding ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
-| E > W | build new construction ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
-| E > R | upgrade available construction ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
-| E > F | build or upgrade duchy construction ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
-| E > C | build or upgrade special construction ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
-| E > V | Grant land/title to vassal ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
-| F > F | Open county owner profile ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
-| F > C | Open county owner options menu ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
-| F > E | Open county title ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
-| G > G | Open holding owner profile ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
-| G > C | Open holding owner options menu ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
-| G > E | Open holding title ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
+| E > Q | select capital holding |
+| E > E | upgrade holding |
+| E > W | build new construction |
+| E > R | upgrade available construction |
+| E > F | build or upgrade duchy construction |
+| E > C | build or upgrade special construction |
+| E > V | Grant land/title to vassal |
+| F > F | Open county owner profile |
+| F > C | Open county owner options menu |
+| F > E | Open county title |
+| G > G | Open holding owner profile |
+| G > C | Open holding owner options menu |
+| G > E | Open holding title |
 | R | Open county faith |
 | T | Open county culture |
-| 5 | Go to siege, if any is happening ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
+| 5 | Go to siege, if any is happening |
 
 ### Title Window 
 
@@ -339,7 +346,7 @@ _The HUD window shortcuts are only triggered when there is no other window opene
 | T | Select the title holding |
 | V | If yours, grant title to a vassal |
 | F | Select profile of title owner |
-| C | Open title owner interaction menu ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)| 
+| C | Open title owner interaction menu | 
 | 5 | Make it your primary title |
 
 ### My Realm Window
@@ -372,13 +379,13 @@ _The HUD window shortcuts are only triggered when there is no other window opene
 | 1, 2, 3 | Navigate between tabs |
 | 4 | Open knights window
 | 5 | Open men-at-arms window |
-| E | Raise all armies ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png) |
-| Q | Disband all / Raise all armies ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png) |
+| E | Raise all armies  |
+| Q | Disband all / Raise all armies  |
 | R | Raise all as raiders | 
-| T | Raise one mercenary army at a time. ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png) |
+| T | Raise one mercenary army at a time.  |
 | F | Select last created rally point | 
 | G | Create new rally point |
-| V | Toggle reinforcement checkbox ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)| 
+| V | Toggle reinforcement checkbox | 
 | F | When holy order tab is open, create new holy order |
 | E | When knights window is open, invite knights |
 
@@ -409,18 +416,18 @@ _The HUD window shortcuts are only triggered when there is no other window opene
 | Q | Disband army |
 | F | Toggle auto raiding checkbox | 
 | G | Turn raiders into normal soldiers |
-| V | Cycle the selected unit from army ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
-| 5 | Reorganize two armies ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)
-| T | Go to siege, if happening ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)
+| V | Cycle the selected unit from army |
+| 5 | Reorganize two armies 
+| T | Go to siege, if happening 
 ### Siege window
 
 ![siege window](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/siege.png)
 
 | Key | Action |
 | - | - |
-| 5 | Select the county being sieged ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)| 
-| T | Select the sieging army ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png) | 
-| G | Assault! ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)| 
+| 5 | Select the county being sieged | 
+| T | Select the sieging army  | 
+| G | Assault! | 
 
 ### War overview
 
@@ -428,14 +435,14 @@ _The HUD window shortcuts are only triggered when there is no other window opene
 
 | Key | Action |
 | - | - |
-| 1, 2, 3 | Navigate between Surrender, whie piece and enforce demands ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png) | 
-| Q | Toggle allies ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
-| T | Toggle enemies ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)| 
-| F | Open left primary member profile ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
-| G | Open right primary member profile ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
-| C | Right-click left primary member portrait ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
-| V | Right-click right primary member portrait ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)| 
-| 4 | Change beneficiary, if any ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)| 
+| 1, 2, 3 | Navigate between Surrender, whie piece and enforce demands  | 
+| Q | Toggle allies |
+| T | Toggle enemies | 
+| F | Open left primary member profile |
+| G | Open right primary member profile |
+| C | Right-click left primary member portrait |
+| V | Right-click right primary member portrait | 
+| 4 | Change beneficiary, if any | 
 
 ### Ally calling to war notification 
 
@@ -443,11 +450,11 @@ _The HUD window shortcuts are only triggered when there is no other window opene
 
 | Key | Action |
 | - | - |
-| 1, 2 | Navigate between tabs ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)| 
-| Q | Decline ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
+| 1, 2 | Navigate between tabs | 
+| Q | Decline |
 | E | Accept |
-| F | Open primary ally profile ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
-| C | Right-click primary ally portrait ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
+| F | Open primary ally profile |
+| C | Right-click primary ally portrait |
 
 ### Declare war!
 
@@ -456,24 +463,24 @@ _The HUD window shortcuts are only triggered when there is no other window opene
 | Key | Action |
 | - | - |
 | 1, 2, 3 | Navigate between Surrender, whie piece and enforce demands | 
-| Q | Toggle allies ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
-| T | Toggle enemies ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)| 
-| F | Open enemy profile ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
-| C | Right-click enemy portrait ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
-| 4 | Change Objective ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)| 
-| R > 1 | Select 'Holy War for **county**' Casus belli ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)| 
-| R > 2 | Select 'Holy War for **duchy**' Casus belli ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)| 
-| R > 3 | Select 'Holy War for **kingdom**' Casus belli ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)| 
-| R > 4 | Select 'Excomunication War' casus belli ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)| 
-| R > 5 | Select 'Crusade / Jihad' casus belli ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
-| R > Q | Select 'Conquer **county**' casus belli ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)| 
-| R > W | Select 'Conquer **duchy**' casus belli ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)| 
-| R > E | Select 'Invade **kingdom**' casus belli ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)| 
-| R > R | Select 'Your claim' Casus belli ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)| 
-| R > C | Select 'Subjugation' or 'Independence War' Casus belli ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)| 
-| R > A | Select 'De jure of **county**' Casus belli ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)| 
-| R > S | Select 'De jure of **duchy**' Casus belli ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)| 
-| R > F | Select 'Raid for captives' Casus belli ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)| 
+| Q | Toggle allies |
+| T | Toggle enemies | 
+| F | Open enemy profile |
+| C | Right-click enemy portrait |
+| 4 | Change Objective | 
+| R > 1 | Select 'Holy War for **county**' Casus belli | 
+| R > 2 | Select 'Holy War for **duchy**' Casus belli | 
+| R > 3 | Select 'Holy War for **kingdom**' Casus belli | 
+| R > 4 | Select 'Excomunication War' casus belli | 
+| R > 5 | Select 'Crusade / Jihad' casus belli |
+| R > Q | Select 'Conquer **county**' casus belli | 
+| R > W | Select 'Conquer **duchy**' casus belli | 
+| R > E | Select 'Invade **kingdom**' casus belli | 
+| R > R | Select 'Your claim' Casus belli | 
+| R > C | Select 'Subjugation' or 'Independence War' Casus belli | 
+| R > A | Select 'De jure of **county**' Casus belli | 
+| R > S | Select 'De jure of **duchy**' Casus belli | 
+| R > F | Select 'Raid for captives' Casus belli | 
 
 ### Council window
 
@@ -484,18 +491,23 @@ _The HUD window shortcuts are only triggered when there is no other window opene
 | 1, 2 | Navigate between yours and liege council |
 | Q | Open spouse tasks | 
 | E | Hire councelor for empty spots only |
-| 1 | Spouse task - diplomacy ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
-| 2 | Spouse task - martial ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
-| 3 | Spouse task - steward ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
-| 4 | Spouse task - intrigue ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)| 
-| 5 | Spouse task - learning ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
-| R | Spouse task - assist ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)| 
-| F > 1 | Replace chancellor ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
-| F > 2 | Replace marshal ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
-| F > 3 | Replace steward ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
-| F > 4 | Replace spymaster ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png) |
-| F > 5 | Replace chaplain ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
-| E | On liege's council, leave the council ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png) |
+| 1 | Spouse task - diplomacy |
+| 2 | Spouse task - martial |
+| 3 | Spouse task - steward |
+| 4 | Spouse task - intrigue | 
+| 5 | Spouse task - learning |
+| R | Spouse task - assist | 
+| F > 1 | Replace chancellor |
+| F > 2 | Replace marshal |
+| F > 3 | Replace steward |
+| F > 4 | Replace spymaster  |
+| F > 5 | Replace chaplain |
+| E | On liege's council, leave the council  |
+| R > 1 > 1 ~ 3| Select from task 1 to 3 of chancellor ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
+| R > 2 > 1 ~ 3| Select from task 1 to 3 of marshall ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)| 
+| R > 3 > 1 ~ 3| Select from task 1 to 3 of steward ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
+| R > 4 > 1 ~ 3| Select from task 1 to 3 of spymaster ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
+| R > 5 > 1 ~ 3| Select from task 1 to 3 of court chaplain ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
 
 ### Court Window
 
@@ -526,8 +538,8 @@ _The HUD window shortcuts are only triggered when there is no other window opene
 | Key | Action |
 | - | - |
 | 1, 2 | Navigate between yours and liege factions |
-| E | Show members ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
-| Q | Hide members ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
+| E | Show members |
+| Q | Hide members |
 
 
 ### Decisions window
@@ -537,20 +549,20 @@ _The next shortcuts will allow you to access almost any minor decision by hotkey
 | Key | Action |
 | - | - |
 | F | On details, toggle important decisions checkbox |
-| E | Select a possible minor decision ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
-| F | Select **important** possible minor decision ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)| 
-| Q | Select an available lifestyle decision ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)| 
-| R | Select an available tenet decision ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
-| C | Select an available coping decision (stress relievers) ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
-| 1 | Invite Knights ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)| 
-| 2 | Invite claimants ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
-| 3 | Go on pilgrimage / hajj ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
-| 4 | Host feast ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
-| 5 | Call Hunt ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)| 
-| T | Pet dog or cat ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
-| G | Commit suicide ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
-| V | Search for physician ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)| 
-| B | Convert to local culture ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
+| E | Select a possible minor decision |
+| F | Select **important** possible minor decision | 
+| Q | Select an available lifestyle decision | 
+| R | Select an available tenet decision |
+| C | Select an available coping decision (stress relievers) |
+| 1 | Invite Knights | 
+| 2 | Invite claimants |
+| 3 | Go on pilgrimage / hajj |
+| 4 | Host feast |
+| 5 | Call Hunt | 
+| T | Pet dog or cat |
+| G | Commit suicide |
+| V | Search for physician | 
+| B | Convert to local culture |
 
 # Credits 
 
