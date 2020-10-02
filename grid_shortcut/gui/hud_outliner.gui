@@ -107,6 +107,41 @@ window = {
 
 				button_normal  = {
 					size = { 0 0 }
+					shortcut = "quickslot_6"
+					onclick = "[DefaultOnCharacterClick(Character.GetID)]"
+					visible = "[EqualTo_string(GetVariableSystem.Get('quickslot_6'), OutlinerPlayer.GetName)]"
+				}
+
+				button_normal  = {
+					size = { 0 0 }
+					shortcut = "quickslot_7"
+					onclick = "[DefaultOnCharacterClick(Character.GetID)]"
+					visible = "[EqualTo_string(GetVariableSystem.Get('quickslot_7'), OutlinerPlayer.GetName)]"
+				}
+
+				button_normal  = {
+					size = { 0 0 }
+					shortcut = "quickslot_8"
+					onclick = "[DefaultOnCharacterClick(Character.GetID)]"
+					visible = "[EqualTo_string(GetVariableSystem.Get('quickslot_8'), OutlinerPlayer.GetName)]"
+				}
+
+				button_normal  = {
+					size = { 0 0 }
+					shortcut = "quickslot_9"
+					onclick = "[DefaultOnCharacterClick(Character.GetID)]"
+					visible = "[EqualTo_string(GetVariableSystem.Get('quickslot_9'), OutlinerPlayer.GetName)]"
+				}
+
+				button_normal  = {
+					size = { 0 0 }
+					shortcut = "quickslot_10"
+					onclick = "[DefaultOnCharacterClick(Character.GetID)]"
+					visible = "[EqualTo_string(GetVariableSystem.Get('quickslot_10'), OutlinerPlayer.GetName)]"
+				}
+
+				button_normal  = {
+					size = { 0 0 }
 					shortcut = "quickslot_set_1"
 					onclick = "[GetVariableSystem.Set( 'quickslot_1',  OutlinerPlayer.GetName)]"
 					visible = "[Character.IsShownInCharacterWindow]"
@@ -137,6 +172,41 @@ window = {
 					size = { 0 0 }
 					shortcut = "quickslot_set_5"
 					onclick = "[GetVariableSystem.Set( 'quickslot_5',  OutlinerPlayer.GetName)]"
+					visible = "[Character.IsShownInCharacterWindow]"
+				}
+
+				button_normal  = {
+					size = { 0 0 }
+					shortcut = "quickslot_set_6"
+					onclick = "[GetVariableSystem.Set( 'quickslot_6',  OutlinerPlayer.GetName)]"
+					visible = "[Character.IsShownInCharacterWindow]"
+				}
+
+				button_normal  = {
+					size = { 0 0 }
+					shortcut = "quickslot_set_7"
+					onclick = "[GetVariableSystem.Set( 'quickslot_7',  OutlinerPlayer.GetName)]"
+					visible = "[Character.IsShownInCharacterWindow]"
+				}
+
+				button_normal  = {
+					size = { 0 0 }
+					shortcut = "quickslot_set_8"
+					onclick = "[GetVariableSystem.Set( 'quickslot_8',  OutlinerPlayer.GetName)]"
+					visible = "[Character.IsShownInCharacterWindow]"
+				}
+
+				button_normal  = {
+					size = { 0 0 }
+					shortcut = "quickslot_set_9"
+					onclick = "[GetVariableSystem.Set( 'quickslot_9',  OutlinerPlayer.GetName)]"
+					visible = "[Character.IsShownInCharacterWindow]"
+				}
+
+				button_normal  = {
+					size = { 0 0 }
+					shortcut = "quickslot_set_10"
+					onclick = "[GetVariableSystem.Set( 'quickslot_10',  OutlinerPlayer.GetName)]"
 					visible = "[Character.IsShownInCharacterWindow]"
 				}
 			}
@@ -188,6 +258,41 @@ window = {
 
 				button_normal  = {
 					size = { 0 0 }
+					shortcut = "quickslot_6"
+					onclick = "[DefaultOnCharacterClick(Character.GetID)]"
+					visible = "[EqualTo_string(GetVariableSystem.Get('quickslot_6'), Character.GetFullName)]"
+				}
+
+				button_normal  = {
+					size = { 0 0 }
+					shortcut = "quickslot_7"
+					onclick = "[DefaultOnCharacterClick(Character.GetID)]"
+					visible = "[EqualTo_string(GetVariableSystem.Get('quickslot_7'), Character.GetFullName)]"
+				}
+
+				button_normal  = {
+					size = { 0 0 }
+					shortcut = "quickslot_8"
+					onclick = "[DefaultOnCharacterClick(Character.GetID)]"
+					visible = "[EqualTo_string(GetVariableSystem.Get('quickslot_8'), Character.GetFullName)]"
+				}
+
+				button_normal  = {
+					size = { 0 0 }
+					shortcut = "quickslot_9"
+					onclick = "[DefaultOnCharacterClick(Character.GetID)]"
+					visible = "[EqualTo_string(GetVariableSystem.Get('quickslot_9'), Character.GetFullName)]"
+				}
+
+				button_normal  = {
+					size = { 0 0 }
+					shortcut = "quickslot_10"
+					onclick = "[DefaultOnCharacterClick(Character.GetID)]"
+					visible = "[EqualTo_string(GetVariableSystem.Get('quickslot_10'), Character.GetFullName)]"
+				}
+
+				button_normal  = {
+					size = { 0 0 }
 					shortcut = "quickslot_set_1"
 					onclick = "[GetVariableSystem.Set( 'quickslot_1',  Character.GetFullName)]"
 					visible = "[Character.IsShownInCharacterWindow]"
@@ -218,6 +323,41 @@ window = {
 					size = { 0 0 }
 					shortcut = "quickslot_set_5"
 					onclick = "[GetVariableSystem.Set( 'quickslot_5',  Character.GetFullName)]"
+					visible = "[Character.IsShownInCharacterWindow]"
+				}
+
+				button_normal  = {
+					size = { 0 0 }
+					shortcut = "quickslot_set_6"
+					onclick = "[GetVariableSystem.Set( 'quickslot_6',  Character.GetFullName)]"
+					visible = "[Character.IsShownInCharacterWindow]"
+				}
+
+				button_normal  = {
+					size = { 0 0 }
+					shortcut = "quickslot_set_7"
+					onclick = "[GetVariableSystem.Set( 'quickslot_7',  Character.GetFullName)]"
+					visible = "[Character.IsShownInCharacterWindow]"
+				}
+
+				button_normal  = {
+					size = { 0 0 }
+					shortcut = "quickslot_set_8"
+					onclick = "[GetVariableSystem.Set( 'quickslot_8',  Character.GetFullName)]"
+					visible = "[Character.IsShownInCharacterWindow]"
+				}
+
+				button_normal  = {
+					size = { 0 0 }
+					shortcut = "quickslot_set_9"
+					onclick = "[GetVariableSystem.Set( 'quickslot_9',  Character.GetFullName)]"
+					visible = "[Character.IsShownInCharacterWindow]"
+				}
+
+				button_normal  = {
+					size = { 0 0 }
+					shortcut = "quickslot_set_10"
+					onclick = "[GetVariableSystem.Set( 'quickslot_10',  Character.GetFullName)]"
 					visible = "[Character.IsShownInCharacterWindow]"
 				}
 			}
@@ -278,6 +418,41 @@ window = {
 
 				button_normal  = {
 					size = { 0 0 }
+					shortcut = "quickslot_6"
+					onclick = "[UnitItem.SelectAndPanUnit]"
+					visible = "[EqualTo_string(GetVariableSystem.Get('quickslot_6'), UnitItem.GetArmy.GetNameNoTooltip)]"
+				}
+
+				button_normal  = {
+					size = { 0 0 }
+					shortcut = "quickslot_7"
+					onclick = "[UnitItem.SelectAndPanUnit]"
+					visible = "[EqualTo_string(GetVariableSystem.Get('quickslot_7'), UnitItem.GetArmy.GetNameNoTooltip)]"
+				}
+
+				button_normal  = {
+					size = { 0 0 }
+					shortcut = "quickslot_8"
+					onclick = "[UnitItem.SelectAndPanUnit]"
+					visible = "[EqualTo_string(GetVariableSystem.Get('quickslot_8'), UnitItem.GetArmy.GetNameNoTooltip)]"
+				}
+
+				button_normal  = {
+					size = { 0 0 }
+					shortcut = "quickslot_9"
+					onclick = "[UnitItem.SelectAndPanUnit]"
+					visible = "[EqualTo_string(GetVariableSystem.Get('quickslot_9'), UnitItem.GetArmy.GetNameNoTooltip)]"
+				}
+
+				button_normal  = {
+					size = { 0 0 }
+					shortcut = "quickslot_10"
+					onclick = "[UnitItem.SelectAndPanUnit]"
+					visible = "[EqualTo_string(GetVariableSystem.Get('quickslot_10'), UnitItem.GetArmy.GetNameNoTooltip)]"
+				}
+
+				button_normal  = {
+					size = { 0 0 }
 					shortcut = "quickslot_set_1"
 					onclick = "[GetVariableSystem.Set( 'quickslot_1',  UnitItem.GetArmy.GetNameNoTooltip)]"
 					visible = "[UnitItem.IsSelected]"
@@ -308,6 +483,41 @@ window = {
 					size = { 0 0 }
 					shortcut = "quickslot_set_5"
 					onclick = "[GetVariableSystem.Set( 'quickslot_5',  UnitItem.GetArmy.GetNameNoTooltip)]"
+					visible = "[UnitItem.IsSelected]"
+				}
+
+				button_normal  = {
+					size = { 0 0 }
+					shortcut = "quickslot_set_6"
+					onclick = "[GetVariableSystem.Set( 'quickslot_6',  UnitItem.GetArmy.GetNameNoTooltip)]"
+					visible = "[UnitItem.IsSelected]"
+				}
+
+				button_normal  = {
+					size = { 0 0 }
+					shortcut = "quickslot_set_7"
+					onclick = "[GetVariableSystem.Set( 'quickslot_7',  UnitItem.GetArmy.GetNameNoTooltip)]"
+					visible = "[UnitItem.IsSelected]"
+				}
+
+				button_normal  = {
+					size = { 0 0 }
+					shortcut = "quickslot_set_8"
+					onclick = "[GetVariableSystem.Set( 'quickslot_8',  UnitItem.GetArmy.GetNameNoTooltip)]"
+					visible = "[UnitItem.IsSelected]"
+				}
+
+				button_normal  = {
+					size = { 0 0 }
+					shortcut = "quickslot_set_9"
+					onclick = "[GetVariableSystem.Set( 'quickslot_9',  UnitItem.GetArmy.GetNameNoTooltip)]"
+					visible = "[UnitItem.IsSelected]"
+				}
+
+				button_normal  = {
+					size = { 0 0 }
+					shortcut = "quickslot_set_10"
+					onclick = "[GetVariableSystem.Set( 'quickslot_10',  UnitItem.GetArmy.GetNameNoTooltip)]"
 					visible = "[UnitItem.IsSelected]"
 				}
 			}
@@ -386,6 +596,41 @@ window = {
 
 				button_normal  = {
 					size = { 0 0 }
+					shortcut = "quickslot_6"
+					onclick = "[OutlinerHoldingItem.OnClick]"
+					visible = "[EqualTo_string(GetVariableSystem.Get('quickslot_6'), Holding.GetProvince.GetNameNoTooltip)]"
+				}
+
+				button_normal  = {
+					size = { 0 0 }
+					shortcut = "quickslot_7"
+					onclick = "[OutlinerHoldingItem.OnClick]"
+					visible = "[EqualTo_string(GetVariableSystem.Get('quickslot_7'), Holding.GetProvince.GetNameNoTooltip)]"
+				}
+
+				button_normal  = {
+					size = { 0 0 }
+					shortcut = "quickslot_8"
+					onclick = "[OutlinerHoldingItem.OnClick]"
+					visible = "[EqualTo_string(GetVariableSystem.Get('quickslot_8'), Holding.GetProvince.GetNameNoTooltip)]"
+				}
+
+				button_normal  = {
+					size = { 0 0 }
+					shortcut = "quickslot_9"
+					onclick = "[OutlinerHoldingItem.OnClick]"
+					visible = "[EqualTo_string(GetVariableSystem.Get('quickslot_9'), Holding.GetProvince.GetNameNoTooltip)]"
+				}
+
+				button_normal  = {
+					size = { 0 0 }
+					shortcut = "quickslot_10"
+					onclick = "[OutlinerHoldingItem.OnClick]"
+					visible = "[EqualTo_string(GetVariableSystem.Get('quickslot_10'), Holding.GetProvince.GetNameNoTooltip)]"
+				}
+
+				button_normal  = {
+					size = { 0 0 }
 					shortcut = "quickslot_set_1"
 					onclick = "[GetVariableSystem.Set( 'quickslot_1',  Holding.GetProvince.GetNameNoTooltip)]"
 					visible = "[Holding.IsSelected]"
@@ -416,6 +661,41 @@ window = {
 					size = { 0 0 }
 					shortcut = "quickslot_set_5"
 					onclick = "[GetVariableSystem.Set( 'quickslot_5',  Holding.GetProvince.GetNameNoTooltip)]"
+					visible = "[Holding.IsSelected]"
+				}
+
+				button_normal  = {
+					size = { 0 0 }
+					shortcut = "quickslot_set_6"
+					onclick = "[GetVariableSystem.Set( 'quickslot_6',  Holding.GetProvince.GetNameNoTooltip)]"
+					visible = "[Holding.IsSelected]"
+				}
+
+				button_normal  = {
+					size = { 0 0 }
+					shortcut = "quickslot_set_7"
+					onclick = "[GetVariableSystem.Set( 'quickslot_7',  Holding.GetProvince.GetNameNoTooltip)]"
+					visible = "[Holding.IsSelected]"
+				}
+
+				button_normal  = {
+					size = { 0 0 }
+					shortcut = "quickslot_set_8"
+					onclick = "[GetVariableSystem.Set( 'quickslot_8',  Holding.GetProvince.GetNameNoTooltip)]"
+					visible = "[Holding.IsSelected]"
+				}
+
+				button_normal  = {
+					size = { 0 0 }
+					shortcut = "quickslot_set_9"
+					onclick = "[GetVariableSystem.Set( 'quickslot_9',  Holding.GetProvince.GetNameNoTooltip)]"
+					visible = "[Holding.IsSelected]"
+				}
+
+				button_normal  = {
+					size = { 0 0 }
+					shortcut = "quickslot_set_10"
+					onclick = "[GetVariableSystem.Set( 'quickslot_10',  Holding.GetProvince.GetNameNoTooltip)]"
 					visible = "[Holding.IsSelected]"
 				}
 			}
