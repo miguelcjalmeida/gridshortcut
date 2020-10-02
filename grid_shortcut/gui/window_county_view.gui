@@ -947,7 +947,7 @@ window = {
 						
 					button_normal = {
 						size = { 0 0 }
-						visible = "[GetVariableSystem.Exists('county_combining')]"
+						visible = "[Not(GetVariableSystem.Exists('county_county_combining'))]"
 						shortcut = "county_action_cancel_construction"
 						onclick = "[HoldingView.CancelHoldingConstruction]"
 						onclick = "[GetVariableSystem.Clear('county_combining')]"
@@ -1016,7 +1016,7 @@ window = {
 
 				button_normal = {
 					size = { 0 0 }
-					visible = "[GetVariableSystem.Exists('county_combining')]"
+					visible = "[Not(GetVariableSystem.Exists('county_county_combining'))]"
 					shortcut = "county_action_construct"
 					onclick = "[HoldingView.OnConstructHoldingClick]"
 					onclick = "[GetVariableSystem.Clear('county_combining')]"
@@ -1879,6 +1879,7 @@ window = {
 							blockoverride "button_close"
 							{
 								onclick = "[HoldingView.CloseSubwindows]"
+								shortcut = "event_decline"
 							}
 						}
 
@@ -2175,7 +2176,8 @@ window = {
 									buttons_window_control = {
 										blockoverride "button_close"
 										{
-											onclick = "[HoldingView.CloseSubwindows]"
+											onclick = "[HoldingView.CloseSubwindows]"											
+											shortcut = "event_decline"
 										}
 									}
 								}
@@ -2819,7 +2821,7 @@ window = {
 window = {
 	name = "holding_type_selection_view"
 	movable = no
-	layer = windows_layer
+	layer = top
 	parentanchor = bottom|hcenter
 	position = { 70 -50 }
 	using = Window_Background_Popup
@@ -2840,6 +2842,7 @@ window = {
 			blockoverride "button_close"
 			{
 				onclick = "[HoldingView.CloseHoldingConstruction]"
+				shortcut = "event_decline"
 			}
 		}
 
