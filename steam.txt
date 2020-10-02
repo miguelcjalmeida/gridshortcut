@@ -1,4 +1,4 @@
-[b]Mod v1.3.0[/b] for [b]CK3 v1.1.1[/b]
+[b]Mod v1.4.0[/b] for [b]CK3 v1.1.1[/b]
 
 This mod adds more than four hundred shortcuts to the game. The idea is to speed up interface interactions by diminishing the mouse usage with scoped shortcuts. They are scoped to the window that is opened, allowing the coverage of many different actions with same hotkeys.
 

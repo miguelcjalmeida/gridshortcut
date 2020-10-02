@@ -1,5 +1,5 @@
 
-# Grid#Shortcut **v1.3.0**
+# Grid#Shortcut **v1.4.0**
 
 This is a mod for Crusader King 3 (**v1.1.1**) that adds more than four hundred shortcuts to the game. The idea is to speed up interface interactions by diminishing the mouse usage with scoped shortcuts. They are scoped to the window that is opened, allowing the coverage of many different actions with same hotkeys.
 
@@ -200,6 +200,8 @@ _The HUD window shortcuts are only triggered when there is no other window opene
 | C | Pan to the selected army  | 
 | CTRL + 1 ~ 5 | save the selected army/character/domain into the slot 1 to 5 ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)| 
 | 1 ~ 5 | select the army/character/domain saved in the slot 1 to 5 ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
+| CTRL + ALT + 1 ~ 5 | save the selected army/character/domain into the slot 6 to 10 ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)| 
+| ALT + 1 ~ 5 | select the army/character/domain saved in the slot 6 to 10 ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
 
 ### Interactions menu
 ![event window](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/contextmenu.png)
@@ -311,14 +313,12 @@ _The HUD window shortcuts are only triggered when there is no other window opene
 
 | Key | Action |
 | - | - |
-| 1 | select castle holding |
-| 2 | select city holding |
-| 3 | select temple holding |
-| 4 | select empty holding |
+| 1, 2, 3, 4 ,5 | select the holding by position ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
+| ALT + 1 ~ 5 | select holding by position counting after the fifth ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
 | Q | go to county location |
-| E > Q | select capital holding |
+| E | create new construction ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
+| E | cancel on-progress construction ![](https://github.com/miguelcjalmeida/gridshortcut/raw/master/pics/new.png)|
 | E > E | upgrade holding |
-| E > W | build new construction |
 | E > R | upgrade available construction |
 | E > F | build or upgrade duchy construction |
 | E > C | build or upgrade special construction |
